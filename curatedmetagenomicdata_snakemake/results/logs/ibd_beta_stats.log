@@ -1,0 +1,10 @@
+p-value annotation legend:
+      ns: 5.00e-02 < p <= 1.00e+00
+       *: 1.00e-02 < p <= 5.00e-02
+      **: 1.00e-03 < p <= 1.00e-02
+     ***: 1.00e-04 < p <= 1.00e-03
+    ****: p <= 1.00e-04
+
+Within IBD vs. Between Groups: Mann-Whitney-Wilcoxon test two-sided, P_val:0.000e+00 U_stat=1.288e+12
+Within Healthy vs. Within IBD: Mann-Whitney-Wilcoxon test two-sided, P_val:0.000e+00 U_stat=2.293e+11
+Within Healthy vs. Between Groups: Mann-Whitney-Wilcoxon test two-sided, P_val:0.000e+00 U_stat=2.075e+11

@@ -1,0 +1,8 @@
+PERMANOVA (scikit-bio), Bray-Curtis ~ condition (Healthy vs IBD)
+method name               PERMANOVA
+test statistic name        pseudo-F
+sample size                    2635
+number of groups                  2
+test statistic            24.293891
+p-value                       0.001
+number of permutations          999

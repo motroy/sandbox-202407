@@ -1,0 +1,6 @@
+Features kept (prevalence >= 0.01): 263
+   stage       term Df  SumOfSqs          R2        F     p
+1 Before study_name  4 59.592852 0.073250277 52.46669 0.005
+2 Before  condition  1  6.405810 0.007873886 22.55919 0.005
+5  After study_name  4 17.199836 0.021785741 14.78314 0.005
+6  After  condition  1  6.513771 0.008250504 22.39417 0.005

@@ -1,0 +1,32 @@
+p-value annotation legend:
+      ns: 5.00e-02 < p <= 1.00e+00
+       *: 1.00e-02 < p <= 5.00e-02
+      **: 1.00e-03 < p <= 1.00e-02
+     ***: 1.00e-04 < p <= 1.00e-03
+    ****: p <= 1.00e-04
+
+IBD vs. Healthy: Mann-Whitney-Wilcoxon test two-sided, P_val:5.058e-16 U_stat=5.865e+05
+p-value annotation legend:
+      ns: 5.00e-02 < p <= 1.00e+00
+       *: 1.00e-02 < p <= 5.00e-02
+      **: 1.00e-03 < p <= 1.00e-02
+     ***: 1.00e-04 < p <= 1.00e-03
+    ****: p <= 1.00e-04
+
+IBD vs. Healthy: Mann-Whitney-Wilcoxon test two-sided, P_val:8.046e-23 U_stat=5.556e+05
+p-value annotation legend:
+      ns: 5.00e-02 < p <= 1.00e+00
+       *: 1.00e-02 < p <= 5.00e-02
+      **: 1.00e-03 < p <= 1.00e-02
+     ***: 1.00e-04 < p <= 1.00e-03
+    ****: p <= 1.00e-04
+
+IBD vs. Healthy: Mann-Whitney-Wilcoxon test two-sided, P_val:5.058e-16 U_stat=5.865e+05
+p-value annotation legend:
+      ns: 5.00e-02 < p <= 1.00e+00
+       *: 1.00e-02 < p <= 5.00e-02
+      **: 1.00e-03 < p <= 1.00e-02
+     ***: 1.00e-04 < p <= 1.00e-03
+    ****: p <= 1.00e-04
+
+IBD vs. Healthy: Mann-Whitney-Wilcoxon test two-sided, P_val:8.046e-23 U_stat=5.556e+05
