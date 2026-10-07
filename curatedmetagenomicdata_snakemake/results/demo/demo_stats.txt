@@ -1,0 +1,32 @@
+--- Beta Diversity (PERMANOVA, Bray-Curtis ~ body_site) ---
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = dist_matrix ~ body_site, data = as.data.frame(colData(tse)), permutations = 999)
+         Df SumOfSqs      R2      F Pr(>F)    
+Model     1   1.3971 0.13751 3.5077  0.001 ***
+Residual 22   8.7628 0.86249                  
+Total    23  10.1599 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+--- Differential Abundance Example (first feature, lm on logcounts) ---
+Feature: k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales|f__Enterobacteriaceae|g__Escherichia|s__Escherichia_coli 
+
+Call:
+lm(formula = assay(tse, "logcounts")[1, ] ~ colData(tse)$body_site)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.4151 -1.3822 -0.1682  0.0000  5.0149 
+
+Coefficients:
+                              Estimate Std. Error t value Pr(>|t|)
+(Intercept)                 -6.009e-16  6.816e-01   0.000    1.000
+colData(tse)$body_sitestool  1.415e+00  8.348e-01   1.695    0.104
+
+Residual standard error: 1.928 on 22 degrees of freedom
+Multiple R-squared:  0.1155,	Adjusted R-squared:  0.07531 
+F-statistic: 2.873 on 1 and 22 DF,  p-value: 0.1042
+

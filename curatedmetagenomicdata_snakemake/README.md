@@ -15,7 +15,7 @@ pixi run setup                                  # one-off fix-ups, see setup_env
 pixi run run                                    # = snakemake --profile profiles/default
 ```
 
-Everything lands in `results/` (logs in `results/logs/`). Downloaded datasets are cached in
+Everything lands in `results/`. The committed `results/` folder is an example run (all figures, tables and logs; the two Bray-Curtis distance matrices `ibd_bray_dist.{rds,csv}`, 25 MB and 123 MB, are git-ignored and regenerated on demand; Snakemake will re-run the steps that need them) (logs in `results/logs/`). Downloaded datasets are cached in
 `resources/experimenthub_cache/`. Parameters (studies, thresholds, seeds) are in `config/config.yaml`.
 
 ## Workflow ↔ notebook

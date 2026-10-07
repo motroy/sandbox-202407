@@ -1,0 +1,12 @@
+p-value annotation legend:
+      ns: 5.00e-02 < p <= 1.00e+00
+       *: 1.00e-02 < p <= 5.00e-02
+      **: 1.00e-03 < p <= 1.00e-02
+     ***: 1.00e-04 < p <= 1.00e-03
+    ****: p <= 1.00e-04
+
+IBD vs. Healthy: Mann-Whitney-Wilcoxon test two-sided, P_val:1.101e-21 U_stat=5.636e+05
+--- Species Statistics (FDR BH Corrected) ---
+Coprococcus_catus: padj = 1.29e-10
+Coprococcus_comes: padj = 2.40e-12
+Coprococcus_eutactus: padj = 2.29e-43

@@ -1,0 +1,16 @@
+
+
+$`2021-10-14.AsnicarF_2017.relative_abundance`
+dropping rows without rowTree matches:
+  k__Bacteria|p__Actinobacteria|c__Coriobacteriia|o__Coriobacteriales|f__Coriobacteriaceae|g__Collinsella|s__Collinsella_stercoris
+  k__Bacteria|p__Actinobacteria|c__Coriobacteriia|o__Coriobacteriales|f__Coriobacteriaceae|g__Enorma|s__[Collinsella]_massiliensis
+  k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Carnobacteriaceae|g__Granulicatella|s__Granulicatella_elegans
+  k__Bacteria|p__Firmicutes|c__Clostridia|o__Clostridiales|f__Ruminococcaceae|g__Ruminococcus|s__Ruminococcus_champanellensis
+  k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Sutterellaceae|g__Sutterella|s__Sutterella_parvirubra
+  k__Bacteria|p__Synergistetes|c__Synergistia|o__Synergistales|f__Synergistaceae|g__Cloacibacillus|s__Cloacibacillus_evryensis
+
+Warning messages:
+1: In check_numbers(k = k, nu = nu, nv = nv, limit = min(dim(x)) -  :
+  more singular values/vectors requested than available
+2: In (function (A, nv = 5, nu = nv, maxit = 1000, work = nv + 16,  :
+  You're computing too large a percentage of total singular values, use a standard svd instead.
