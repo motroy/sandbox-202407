@@ -32,6 +32,7 @@ r-rcppparallel = ">=6.2.1,<7"
 r-rjson = ">=0.2.23,<0.3"
 "r-r.utils" = ">=2.13.0,<3"
 r-openxlsx = ">=4.2.9,<5"
+r-biocmanager = ">=1.30.27,<2"
 
 [pypi-dependencies]
 statannotations = "*"
