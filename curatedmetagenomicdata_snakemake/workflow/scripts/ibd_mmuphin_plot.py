@@ -30,24 +30,14 @@ fig.savefig(snakemake.output.pcoa, dpi=200)
 plt.close(fig)
 
 perm["stage"] = pd.Categorical(perm["stage"], ["Before", "After"])
+perm["term"] = perm["term"].map({"study_name": "Study (batch)", "condition": "Condition (Healthy vs IBD)"})
 fig, ax = plt.subplots(figsize=(7, 5))
 sns.barplot(data=perm, x="term", y="R2", hue="stage", palette=["#999999", "#2a9d8f"], ax=ax)
-ax.set_ylabel(f"PCo2 ({v2}%)")
-        ax.legend(fontsize=8, title=None)
-plt.tight_layout()
-fig.savefig(snakemake.output.pcoa, dpi=200)
-plt.close(fig)
-
-perm["stage"] = pd.Categorical(perm["stage"], ["Before", "After"])
-fig, ax = plt.subplots(figsize=(7, 5))
-sns.barplot(data=perm, x="term", y="R2", hue="stage", palette=["#999999", "#2a9d8f"], ax=ax)
-for c, (_, r) in zip(ax.containers, [(None, None)] * 2):
-    pass
-for p_, (_, r) in zip(ax.patches, perm.sort_values(["stage", "term"]).iterrows()):
-    pass
+for cont in ax.containers:
+    ax.bar_label(cont, fmt="%.3f", fontsize=9)
 ax.set_ylabel("PERMANOVA R$^2$ (Bray-Curtis, marginal)")
 ax.set_xlabel("")
-ax.set_xticks(range(2), ["Condition (Healthy vs IBD)" if t.get_text() == "condition" else "Study (batch)" for t in ax.get_xticklabels()])
 ax.set_title("Variance explained before / after MMUPHin")
+ax.legend(title=None)
 plt.tight_layout()
 fig.savefig(snakemake.output.r2, dpi=200)

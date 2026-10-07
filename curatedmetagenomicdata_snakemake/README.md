@@ -29,6 +29,7 @@ Everything lands in `results/` (logs in `results/logs/`). Downloaded datasets ar
 | Taxonomic set enrichment | `ibd_taxonomic_sea`, `ibd_taxonomic_sea_plot` | 20–21 | `ibd/ibd_taxonomic_sea_results.csv`, `…_plot.png` |
 | Marker clade enrichment | `ibd_marker_sea`, `ibd_marker_sea_plot` | 22–24 | `ibd/ibd_marker_clade_sea_results.csv`, `…_plot.png` |
 | Coprococcus | `ibd_coprococcus_extract`, `ibd_coprococcus_stats` | 25–26 | `ibd/ibd_coprococcus_species_stats.csv`, `…_summary_plot.png` |
+| MMUPHin batch correction (new, not in notebook) | `ibd_mmuphin`, `ibd_mmuphin_plot` | – | `ibd/mmuphin_pcoa_before_after.png`, `ibd/mmuphin_variance_explained.png`, `ibd/mmuphin_permanova.csv`, `ibd/mmuphin_adjusted_abundance.csv` |
 
 Cells 0–2 (apt/pip installs, Google Drive mounting) are replaced by the pixi environment.
 
