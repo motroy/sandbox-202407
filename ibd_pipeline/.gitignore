@@ -1,0 +1,7 @@
+.pixi/
+.snakemake/
+resources/
+__pycache__/
+data_example_local/
+results_example_local/
+data/

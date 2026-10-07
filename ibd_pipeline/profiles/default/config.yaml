@@ -1,0 +1,4 @@
+cores: 4
+resources: [ehub=1]   # serialise ExperimentHub downloads (cache index is not concurrency-safe)
+rerun-incomplete: true
+printshellcmds: true

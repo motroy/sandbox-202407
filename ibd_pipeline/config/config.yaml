@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+# IBD case/control pipeline - default configuration
+#   * datasets come from curatedMetagenomicData and/or local MetaPhlAn4 / HUMAnN outputs
+#   * run with and/or without MMUPHin batch-effect correction
+# See README.md for every option; config/config.example_local.yaml shows local data.
+# ---------------------------------------------------------------------------
+outdir: results
+experimenthub_cache: resources/experimenthub_cache   # downloaded curatedMetagenomicData files
+workdir: data                                       # per-dataset standardised tables
+seed: 42
+
+datasets:
+  curated:
+    # Any curatedMetagenomicData study names (see curatedMetagenomicData::sampleMetadata$study_name)
+    studies: [HMP_2019_ibdmdb, HallAB_2017, NielsenHB_2014, LiJ_2014, IjazUZ_2017]
+    body_site: stool                 # keep only this body_site (set to null to keep all)
+    condition_column: study_condition
+    control_regex: "^(control|healthy)$"          # case-insensitive
+    case_regex: "^(IBD|UC|CD|ulcerative_colitis|crohns_disease)$"
+    # samples matching neither regex (e.g. T1D/T2D in LiJ_2014) are dropped
+  local: []                          # list of local datasets, see config.example_local.yaml
+
+condition_labels: {control: Healthy, case: IBD}
+
+# Data layers to analyse: taxa = MetaPhlAn species profiles, pathways = HUMAnN pathway abundance.
+# 'pathways' only uses datasets that have pathway data (curatedMetagenomicData "pathway_abundance"
+# or a local humann_pathabundance); others are skipped for that layer.
+layers: [taxa, pathways]
+
+merge:
+  join: inner            # taxa/pathways shared by all datasets (inner) or union filled with 0 (outer)
+  renormalize: true      # rescale every sample to sum to 100 after joining
+  humann_drop: [UNMAPPED, UNINTEGRATED]   # non-pathway HUMAnN rows removed from the pathways layer
+
+batch_correction:
+  mode: both             # none = raw only | mmuphin = corrected only | both = run both and compare
+  batch_column: dataset  # column of the sample metadata used as the batch
+  min_prevalence: 0.01   # features present in < 1% of samples are dropped before MMUPHin
+  min_batch_size: 5
+
+analysis:
+  permutations: 999      # PERMANOVA
+  alpha_metrics: [shannon, simpson, richness]
+  da:
+    pseudocount: 1.0e-6          # log10(abundance(%) + pseudocount) before the linear model
+    adjust_batch_in_model: false # add the batch column as a covariate in the DA model
+    fdr_threshold: 0.05
+    top_n: 20
+  sea: {min_size: 1, max_size: 1000}   # fgsea on taxonomic groups (taxa layer)
+  focus_genera: [Coprococcus]          # genera shown in the focused plots (taxa layer)
+  focus_pseudocount: 1.0e-5
