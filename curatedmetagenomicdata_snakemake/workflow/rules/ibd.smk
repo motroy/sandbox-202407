@@ -89,3 +89,23 @@ rule ibd_coprococcus_stats:
         plot=f"{IBD}/ibd_coprococcus_summary_plot.png",
     log: f"{OUT}/logs/ibd_coprococcus_stats.log"
     script: "../scripts/ibd_coprococcus_stats.py"
+
+rule ibd_mmuphin:
+    """Batch-effect correction across the 5 IBD studies with MMUPHin."""
+    input: rules.ibd_prepare.output.tse
+    output:
+        coords=f"{IBD}/mmuphin_pcoa_coords.csv",
+        permanova=f"{IBD}/mmuphin_permanova.csv",
+        adjusted=f"{IBD}/mmuphin_adjusted_abundance.csv",
+    log: f"{OUT}/logs/ibd_mmuphin.log"
+    script: "../scripts/ibd_mmuphin.R"
+
+rule ibd_mmuphin_plot:
+    input:
+        coords=rules.ibd_mmuphin.output.coords,
+        permanova=rules.ibd_mmuphin.output.permanova,
+    output:
+        pcoa=f"{IBD}/mmuphin_pcoa_before_after.png",
+        r2=f"{IBD}/mmuphin_variance_explained.png",
+    log: f"{OUT}/logs/ibd_mmuphin_plot.log"
+    script: "../scripts/ibd_mmuphin_plot.py"

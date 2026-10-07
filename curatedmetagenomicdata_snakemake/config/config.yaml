@@ -22,3 +22,8 @@ ibd:
   coprococcus_pseudocount: 1.0e-5
   taxonomic_sea: {min_size: 1, max_size: 1000}
   marker_sea:   {min_size: 2, max_size: 500}
+
+# Section 4: MMUPHin batch correction (batch = study, covariate = condition)
+mmuphin:
+  min_prevalence: 0.01   # drop features present in <1% of samples
+  permutations: 199

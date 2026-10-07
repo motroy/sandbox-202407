@@ -40,3 +40,6 @@ rule all:
         f"{OUT}/ibd/ibd_marker_sea_plot.png",
         f"{OUT}/ibd/ibd_coprococcus_species_stats.csv",
         f"{OUT}/ibd/ibd_coprococcus_summary_plot.png",
+        # 4. MMUPHin batch correction
+        f"{OUT}/ibd/mmuphin_pcoa_before_after.png",
+        f"{OUT}/ibd/mmuphin_variance_explained.png",
