@@ -1,0 +1,42 @@
+"""
+Snakemake pipeline reproducing the notebook
+"Using curatedMetagenomicData in colab" (Colab / rpy2 -> plain R + Python scripts).
+
+Run:  pixi run setup && pixi run snakemake --cores 4
+"""
+import os
+
+configfile: "config/config.yaml"
+
+OUT = config["outdir"]
+# Keep the ExperimentHub cache inside the project (inherited by all job processes)
+os.makedirs(config["experimenthub_cache"], exist_ok=True)
+os.environ["EXPERIMENTHUB_CACHE"] = os.path.abspath(config["experimenthub_cache"])
+
+include: "workflow/rules/demo.smk"
+include: "workflow/rules/alcohol.smk"
+include: "workflow/rules/ibd.smk"
+
+
+rule all:
+    input:
+        # 1. demo (AsnicarF_2017)
+        f"{OUT}/demo/demo_pca_alpha.png",
+        f"{OUT}/demo/demo_stats.txt",
+        # 2. alcohol study
+        f"{OUT}/alcohol/alcohol_ggplot_alpha.png",
+        f"{OUT}/alcohol/alcohol_ggplot_bray.png",
+        f"{OUT}/alcohol/alcohol_ggplot_umap.png",
+        f"{OUT}/alcohol/alcohol_seaborn_summary.png",
+        # 3. IBD meta-analysis
+        f"{OUT}/ibd/data_availability.csv",
+        f"{OUT}/ibd/ibd_alpha_diversity.png",
+        f"{OUT}/ibd/ibd_alpha_beta_overview.png",
+        f"{OUT}/ibd/ibd_beta_statistical_summary.png",
+        f"{OUT}/ibd/ibd_permanova.txt",
+        f"{OUT}/ibd/ibd_taxonomic_sea_results.csv",
+        f"{OUT}/ibd/ibd_taxonomic_sea_plot.png",
+        f"{OUT}/ibd/ibd_marker_clade_sea_results.csv",
+        f"{OUT}/ibd/ibd_marker_sea_plot.png",
+        f"{OUT}/ibd/ibd_coprococcus_species_stats.csv",
+        f"{OUT}/ibd/ibd_coprococcus_summary_plot.png",

@@ -1,0 +1,24 @@
+# Output / cache locations (relative to the pipeline directory)
+outdir: results
+experimenthub_cache: resources/experimenthub_cache
+
+seed: 42
+
+# Section 1: quick demo (notebook cells 4-7)
+demo:
+  dataset: AsnicarF_2017
+
+# Section 2: alcohol consumption & stool microbiota (notebook cells 9-11)
+alcohol:
+  min_age: 18
+
+# Section 3: IBD meta-analysis (notebook cells 13-26)
+ibd:
+  studies: [HMP_2019_ibdmdb, HallAB_2017, NielsenHB_2014, LiJ_2014, IjazUZ_2017]
+  body_site: stool
+  permutations: 999            # skbio PERMANOVA
+  log_pseudocount_sea: 1.0e-6  # fgsea ranking statistic
+  fdr_threshold: 0.05
+  coprococcus_pseudocount: 1.0e-5
+  taxonomic_sea: {min_size: 1, max_size: 1000}
+  marker_sea:   {min_size: 2, max_size: 500}
