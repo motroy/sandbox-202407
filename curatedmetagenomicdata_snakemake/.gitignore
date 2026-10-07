@@ -1,0 +1,6 @@
+.pixi/
+.snakemake/
+resources/
+results/
+pixi.lock.bak
+__pycache__/
