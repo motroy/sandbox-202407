@@ -91,6 +91,8 @@ MMUPHin needs at least two batches, each with at least `min_batch_size` samples.
 
 ## Outputs (`results/`)
 
+`results_example_local/` is a committed example run of `config/config.example_local.yaml` (2 curated studies + 2 local fixture cohorts, raw + MMUPHin, taxa + pathways). It is a small test set meant to show the output layout, not a result about IBD.
+
 | Path | Contents |
 |---|---|
 | `merged/sample_counts.csv` | samples per dataset, condition and layer |

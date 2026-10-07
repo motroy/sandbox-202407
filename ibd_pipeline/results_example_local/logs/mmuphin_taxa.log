@@ -1,0 +1,2 @@
+Batch sizes (dataset): HallAB_2017=258, NielsenHB_2014=396, cohort_A=24, cohort_B=24
+Features kept (prevalence >= 0.01): 197 of 199
