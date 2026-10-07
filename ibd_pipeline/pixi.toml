@@ -1,0 +1,42 @@
+[workspace]
+name = "ibd_pipeline"
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[dependencies]
+snakemake = ">=9"
+r-base = "*"
+r-vegan = "*"
+r-stringr = "*"
+r-dplyr = "*"
+r-ggplot2 = "*"
+r-ape = "*"
+bioconductor-curatedmetagenomicdata = "*"
+bioconductor-treesummarizedexperiment = "*"
+bioconductor-scater = "*"
+bioconductor-mia = "*"
+bioconductor-fgsea = "*"
+bioconductor-summarizedexperiment = "*"
+r-uwot = "*"
+python = "3.12.*"
+pandas = "*"
+numpy = "*"
+scipy = "*"
+statsmodels = "*"
+matplotlib = "*"
+seaborn = "*"
+scikit-bio = "*"
+pip = "*"
+r-rcppparallel = ">=6.2.1,<7"
+r-rjson = ">=0.2.23,<0.3"
+"r-r.utils" = ">=2.13.0,<3"
+r-openxlsx = ">=4.2.9,<5"
+r-biocmanager = ">=1.30.27,<2"
+
+[pypi-dependencies]
+statannotations = "*"
+
+[tasks]
+setup = "bash setup_env.sh"
+run = "snakemake --profile profiles/default"

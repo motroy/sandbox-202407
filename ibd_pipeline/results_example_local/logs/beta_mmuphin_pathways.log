@@ -1,0 +1,4 @@
+                       model      term Df  SumOfSqs          R2         F     p
+1 batch+condition (marginal)   dataset  2 0.0463926 0.003058843  1.057175 0.375
+2 batch+condition (marginal) condition  1 0.3610181 0.023803314 16.453461 0.005
+5             condition_only     Model  1 0.4412776 0.029095134 20.107876 0.005

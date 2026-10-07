@@ -1,0 +1,26 @@
+/home/user/sandbox-202407/ibd_pipeline/workflow/rules/../scripts/ibd_lib.py:161: UserWarning: This pattern is interpreted as a regular expression, and has match groups. To actually get the groups, use str.extract.
+  m |= s.str.contains(spec[rx_key], flags=re.IGNORECASE, regex=True).fillna(False)
+[HallAB_2017] 259 samples; 0 dropped (not matching case/control definition; values: {})
+/home/user/sandbox-202407/ibd_pipeline/workflow/rules/../scripts/ibd_lib.py:161: UserWarning: This pattern is interpreted as a regular expression, and has match groups. To actually get the groups, use str.extract.
+  m |= s.str.contains(spec[rx_key], flags=re.IGNORECASE, regex=True).fillna(False)
+[NielsenHB_2014] 396 samples; 0 dropped (not matching case/control definition; values: {})
+[cohort_A] 24 samples; 0 dropped (not matching case/control definition; values: {})
+[cohort_B] 24 samples; 0 dropped (not matching case/control definition; values: {})
+[taxa] datasets: ['HallAB_2017', 'NielsenHB_2014', 'cohort_A', 'cohort_B']; 199 features x 702 samples (inner join)
+[pathways] cohort_B: no data, skipped
+[pathways] datasets: ['HallAB_2017', 'NielsenHB_2014', 'cohort_A']; 437 features x 673 samples (inner join)
+   layer        dataset condition  n_samples
+    taxa    HallAB_2017   Healthy         74
+    taxa    HallAB_2017       IBD        184
+    taxa NielsenHB_2014   Healthy        248
+    taxa NielsenHB_2014       IBD        148
+    taxa       cohort_A   Healthy         12
+    taxa       cohort_A       IBD         12
+    taxa       cohort_B   Healthy         10
+    taxa       cohort_B       IBD         14
+pathways    HallAB_2017   Healthy         72
+pathways    HallAB_2017       IBD        181
+pathways NielsenHB_2014   Healthy        248
+pathways NielsenHB_2014       IBD        148
+pathways       cohort_A   Healthy         12
+pathways       cohort_A       IBD         12

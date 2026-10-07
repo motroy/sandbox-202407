@@ -1,0 +1,15 @@
+layer,dataset,condition,n_samples
+taxa,HallAB_2017,Healthy,74
+taxa,HallAB_2017,IBD,184
+taxa,NielsenHB_2014,Healthy,248
+taxa,NielsenHB_2014,IBD,148
+taxa,cohort_A,Healthy,12
+taxa,cohort_A,IBD,12
+taxa,cohort_B,Healthy,10
+taxa,cohort_B,IBD,14
+pathways,HallAB_2017,Healthy,72
+pathways,HallAB_2017,IBD,181
+pathways,NielsenHB_2014,Healthy,248
+pathways,NielsenHB_2014,IBD,148
+pathways,cohort_A,Healthy,12
+pathways,cohort_A,IBD,12

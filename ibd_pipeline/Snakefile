@@ -1,0 +1,97 @@
+"""
+IBD case/control pipeline for curatedMetagenomicData and/or local MetaPhlAn4 + HUMAnN outputs,
+with optional MMUPHin batch-effect correction.
+
+    pixi run setup                         # once (see setup_env.sh)
+    pixi run run                           # uses config/config.yaml
+    pixi run snakemake --profile profiles/default --configfile config/config.example_local.yaml
+"""
+import glob
+import os
+
+from snakemake.exceptions import WorkflowError
+
+configfile: "config/config.yaml"
+
+OUT = config["outdir"]
+DATA = config["workdir"]
+os.makedirs(config["experimenthub_cache"], exist_ok=True)
+os.environ["EXPERIMENTHUB_CACHE"] = os.path.abspath(config["experimenthub_cache"])
+
+# ---------------------------------------------------------------- datasets
+CURATED = list(config["datasets"]["curated"].get("studies") or [])
+LOCAL = {d["name"]: d for d in (config["datasets"].get("local") or [])}
+
+if not CURATED and not LOCAL:
+    raise WorkflowError("No datasets selected: set datasets.curated.studies and/or datasets.local")
+dup = set(CURATED) & set(LOCAL)
+if dup:
+    raise WorkflowError(f"Dataset names must be unique; curated and local both use: {sorted(dup)}")
+for name, spec in LOCAL.items():
+    for key in ("metaphlan", "metadata", "condition_column"):
+        if not spec.get(key):
+            raise WorkflowError(f"Local dataset '{name}': '{key}' is required")
+    if not (spec.get("case_values") or spec.get("case_regex")) or not (spec.get("control_values") or spec.get("control_regex")):
+        raise WorkflowError(f"Local dataset '{name}': give case_values/case_regex and control_values/control_regex")
+
+DATASETS = CURATED + list(LOCAL)
+
+# ---------------------------------------------------------------- layers / variants
+LAYERS = list(config["layers"])
+bad = set(LAYERS) - {"taxa", "pathways"}
+if bad:
+    raise WorkflowError(f"Unknown layers {sorted(bad)}; choose from taxa, pathways")
+
+MODE = config["batch_correction"]["mode"]
+VARIANTS = {"none": ["raw"], "mmuphin": ["mmuphin"], "both": ["raw", "mmuphin"]}.get(MODE)
+if VARIANTS is None:
+    raise WorkflowError("batch_correction.mode must be one of: none, mmuphin, both")
+
+wildcard_constraints:
+    variant="raw|mmuphin",
+    layer="taxa|pathways",
+    study="[^/]+",
+    name="[^/]+",
+
+
+def local_inputs(name):
+    """Local files tracked by Snakemake (metadata + every file matched by the globs)."""
+    spec, files = LOCAL[name], []
+    for key in ("metaphlan", "humann_pathabundance"):
+        if spec.get(key):
+            pats = [spec[key]] if isinstance(spec[key], str) else list(spec[key])
+            hits = [f for p in pats for f in sorted(glob.glob(p))]
+            if not hits:
+                raise WorkflowError(f"Local dataset '{name}': no files match {key} = {spec[key]!r}")
+            files += hits
+    return [spec["metadata"]] + files
+
+
+def dataset_dir(ds):
+    return f"{DATA}/{'curated' if ds in CURATED else 'local'}/{ds}"
+
+
+def targets():
+    t = [f"{OUT}/merged/sample_counts.csv"]
+    for v in VARIANTS:
+        for l in LAYERS:
+            base = f"{OUT}/{v}/{l}"
+            t += [f"{base}/beta_diversity.png", f"{base}/permanova.csv",
+                  f"{base}/differential_abundance.csv", f"{base}/differential_abundance.png"]
+            if l == "taxa":
+                t += [f"{base}/alpha_diversity.png", f"{base}/sea_plot.png", f"{base}/focus_genera.png"]
+    if len(VARIANTS) == 2:
+        for l in LAYERS:
+            t += [f"{OUT}/comparison/{l}/variance_explained.png",
+                  f"{OUT}/comparison/{l}/pcoa_before_after.png",
+                  f"{OUT}/comparison/{l}/da_concordance.png"]
+    return t
+
+
+include: "workflow/rules/data.smk"
+include: "workflow/rules/correction.smk"
+include: "workflow/rules/analysis.smk"
+
+
+rule all:
+    input: targets()

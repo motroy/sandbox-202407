@@ -1,0 +1,35 @@
+# Example: curatedMetagenomicData studies + two LOCAL cohorts (MetaPhlAn4 / HUMAnN outputs).
+# Run:  pixi run snakemake --profile profiles/default --configfile config/config.example_local.yaml
+# (--configfile overrides only the keys given here; everything else comes from config/config.yaml)
+#
+# The local data in tests/fixtures are real curatedMetagenomicData samples re-exported in
+# MetaPhlAn4 / HUMAnN file formats (tests/make_fixtures.R), used to test the local-input code.
+outdir: results_example_local
+workdir: data_example_local
+
+datasets:
+  curated:
+    studies: [HallAB_2017, NielsenHB_2014]
+  local:
+    # (1) one MetaPhlAn profile per sample + one HUMAnN pathabundance file per sample
+    - name: cohort_A
+      metaphlan: "tests/fixtures/cohort_A/metaphlan/*_profile.txt"
+      humann_pathabundance: "tests/fixtures/cohort_A/humann/*_pathabundance.tsv"
+      metadata: tests/fixtures/cohort_A/metadata.tsv       # tab-separated (.csv = comma-separated)
+      sample_id_column: sample_id
+      condition_column: diagnosis
+      control_values: [healthy]
+      case_values: [IBD]
+    # (2) a single merged MetaPhlAn table (merge_metaphlan_tables.py), no HUMAnN data
+    - name: cohort_B
+      metaphlan: "tests/fixtures/cohort_B/metaphlan_merged.tsv"
+      metadata: tests/fixtures/cohort_B/metadata.csv
+      sample_id_column: SampleName
+      condition_column: Group
+      control_regex: "^control$"
+      case_regex: "^patient"
+
+batch_correction:
+  mode: both
+analysis:
+  permutations: 199
