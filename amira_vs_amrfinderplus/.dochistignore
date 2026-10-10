@@ -1,0 +1,19 @@
+# .dochistignore — paths dochist excludes from artifact provenance.
+#
+# One pattern per line. Blank lines and lines starting with '#' are ignored.
+#   - A pattern without '/' matches any file or directory with that name,
+#     anywhere in the tree, and supports '*' and '?' wildcards (e.g. *.tmp).
+#   - A pattern containing '/' matches a path prefix relative to the store
+#     root (e.g. results/scratch excludes everything under it).
+#
+# Always excluded (no entry needed): .dochist/  .git/  .dochistignore
+#
+# Excluded by default: target node_modules __pycache__ .snakemake .nextflow
+#                      work .ipynb_checkpoints .DS_Store
+#
+# Add your own patterns below, for example:
+# *.tmp
+# *.log
+# scratch/
+.pixi/
+data/

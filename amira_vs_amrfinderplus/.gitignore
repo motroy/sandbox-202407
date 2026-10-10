@@ -1,0 +1,6 @@
+.pixi/
+data/
+bin/
+# large Amira intermediates (reads, BAM/SAM, jellyfish, pandora output); curated outputs live in results/amira_curated
+results/amira/
+.dochist/
