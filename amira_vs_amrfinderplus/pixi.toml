@@ -25,3 +25,13 @@ ncbi-amrfinderplus = ">=4.2"
 [environments]
 amira = { features = ["amira"], no-default-feature = false }
 amrfinder = { features = ["amrfinder"], no-default-feature = false }
+asm = { features = ["asm"], no-default-feature = false }
+
+# long-read assembly + short-read polishing
+[feature.asm.dependencies]
+myloasm = "*"
+polypolish = "*"
+pypolca = "*"
+bwa = "*"
+samtools = "*"
+seqkit = "*"

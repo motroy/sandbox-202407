@@ -1,0 +1,4 @@
+stage	contigs	total_bp	aligned_bp	edits(NM)	error_rate_%	QV
+myloasm	272	7937731	6311846	111818	1.7716	17.5
+polypolish	272	7963667	6526520	42349	0.6489	21.9
+polished	272	7966274	6701131	35772	0.5338	22.7

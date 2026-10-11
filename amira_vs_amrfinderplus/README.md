@@ -59,3 +59,29 @@ Now any difference is tool/assembly behaviour, not biology. (`results/summary_sa
 - `figshare.com/ndownloader/...` returns a bot challenge (HTTP 202, empty body); the same file downloads normally from `ndownloader.figshare.com`.
 - The `pypi` package `amira-amr==0.11.0` did not resolve; used the bioconda `amira` package.
 - The first AMRFinderPlus run used 3.12.8 / DB 2024-07-22.1 (solver default); it was redone with 4.2.7 / DB 2026-08-07.1. Both attempts are in the dochist log.
+
+## Matched-isolate benchmark: SAMN08768108 (*E. coli* O103:H2 FWSEC0007), myloasm + Polypolish + pypolca
+A true matched set, with a **complete genome for truth** (GCF_005037795.1: chromosome + 1 plasmid): ONT MinION SRR7896269 (100,004 reads, 312 Mb, mean 3.1 kb, ~57x)
+and MiSeq 2x SRR7896254 (1.28 M pairs, 567 Mb, ~100x). Pipeline: `scripts/fwsec0007.sh`; summary: `scripts/fwsec_summary.py`; outputs in `results/FWSEC0007/`.
+Tools: myloasm 0.7.0 (defaults) → Polypolish 0.7.1 (bwa `-a`, `filter`, `polish`) → pypolca 0.5.0 (`--careful`); AMRFinderPlus 4.2.7; Amira 0.11.0 (323 s).
+
+**The truth genome has no acquired AMR genes.** AMRFinderPlus on it reports only chromosomal acrF, mdtM and blaEC (`plus` scope), plus stress and a stx1a virulence operon.
+
+| assembly stage | contigs | total | error vs truth (aligned blocks) |
+|---|---|---|---|
+| myloasm | 272 | 7.94 Mb | 1.77 % (≈QV 17.5) |
+| + Polypolish | 272 | 7.96 Mb | 0.65 % (≈QV 21.9) |
+| + pypolca | 272 | 7.97 Mb | 0.53 % (≈QV 22.7) |
+
+| AMRFinderPlus / Amira call | truth | myloasm | +polypolish | +pypolca | Amira |
+|---|---|---|---|---|---|
+| acrF, mdtM (chromosomal efflux) | ✓ | ✗ | ✓ | ✓ | – (not an acquired gene) |
+| blaEC | ✓ | ✗ | ✓ | ✓ | ✓ (blaEC-18, 1 allele) |
+| spurious frameshift/“POINT_DISRUPT” calls (acrR, marR, nfsA, ompC) | 0 | 3 | 2 | 2 | 0 |
+
+- **Raw myloasm assembly loses every gene**: indels break the reading frames (AMRFinderPlus reports FRAMESHIFT and no BLASTX hits for acrF/mdtM/blaEC). **Polypolish alone restores them**; pypolca then removes one spurious call (marR) but leaves **2 false frameshift “resistance” calls** (nfsA, ompC) that the truth genome does not have.
+- **Amira recovered the one relevant acquired-style gene (blaEC) with a single allele at relative depth 1.0 and no false positives** from the unassembled reads. This is much cleaner than the ST131 run above, which suggests that run's many-allele output was driven by that sample's multi-copy-rich/noisy content rather than a general Amira problem — still not proven.
+- **The myloasm assembly is not good here**: 272 contigs / 7.9 Mb for a 5.5 Mb genome (N50 66 kb, none ≥ 1 Mb; no circular chromosome). myloasm targets R10 reads (>97 % accuracy); these are R9-era reads (≈90 % mean identity estimated from base qualities), and the reads are short (N50 5.4 kb). Residual error after polishing is still 0.53 % (≈QV 23) — far from a finished genome.
+- Trials: `--quality-value-cutoff 85` (keeps 93 % of reads instead of 58 %) was **worse** (359 contigs, 9.5 Mb, N50 43 kb), so defaults were kept.
+- Method caveat: error rate is `NM / aligned block length` from `minimap2 -cx asm5` against truth. Because the assembly is redundant, aligned bases exceed what a single copy would give, so treat it as a rough comparison between stages, not a formal QV.
+- This isolate carries essentially no acquired resistance, so it tests false positives and recovery of intrinsic genes, not detection of real resistance genes; a sample with plasmid-borne AMR genes, ideally R10 ONT, would be a more informative test of myloasm and Amira.

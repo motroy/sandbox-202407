@@ -1,0 +1,2 @@
+Determinant name	Sequence name	Closest reference	Reference length	Identity (%)	Coverage (%)	Cigar string	Amira allele	Number of reads used for polishing	Relative mean read depth	Approximate cellular copy number	Comments
+blaEC-18	extended-spectrum class C beta-lactamase EC-18	NG_049083	1134	98.2	99.6	173=2D20=1D272=1X10=1I1X143=1X3=1X6=1I14=1D16=1X8=1X11=1D18=1X35=1X109=1D86=1X15=1D84=1I56=1X11=1X26=	blaEC_1	38	1.0	1.0	
