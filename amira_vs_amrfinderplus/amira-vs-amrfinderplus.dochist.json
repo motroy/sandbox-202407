@@ -5,7 +5,7 @@
   "description": "Amira (SRR13116389 ONT reads) vs AMRFinderPlus (GCF_025392675.1 assembly)",
   "status": "active",
   "created_at": "2026-10-10T20:39:43.334080449Z",
-  "updated_at": "2026-10-10T21:18:26.669278934Z",
+  "updated_at": "2026-10-11T02:41:46.330233324Z",
   "environment": {
     "user": "unknown",
     "hostname": "vm",
@@ -20698,6 +20698,136 @@
       "artifacts_created": [
         "results/summary/gene_family_comparison.tsv",
         "results/summary/summary.txt"
+      ],
+      "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0017",
+      "seq": 17,
+      "command_line": "zcat data/SRR13116389_100k.fastq.gz | head -n 200000 | gzip > data/SRR13116389_50k.fastq.gz && pixi run -e amira flye --nano-raw data/SRR13116389_50k.fastq.gz --out-dir results/flye/SRR13116389_50k --threads 4 --genome-size 5.2m",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T02:22:15.484182640Z",
+      "finished_at": "2026-10-11T02:39:32.749436567Z",
+      "duration_ms": 1037265,
+      "exit_code": 0,
+      "stdout_tail": "",
+      "stderr_tail": "[2026-10-11 02:23:53] INFO: Starting Flye 2.9.3-b1797\n[2026-10-11 02:23:53] INFO: >>>STAGE: configure\n[2026-10-11 02:23:53] INFO: Configuring run\n[2026-10-11 02:23:58] INFO: Total read length: 336113529\n[2026-10-11 02:23:58] INFO: Input genome size: 5200000\n[2026-10-11 02:23:58] INFO: Estimated coverage: 64\n[2026-10-11 02:23:58] INFO: Reads N50/N90: 13317 / 3453\n[2026-10-11 02:23:58] INFO: Minimum overlap set to 3000\n[2026-10-11 02:23:58] INFO: >>>STAGE: assembly\n[2026-10-11 02:23:58] INFO: Assembling disjointigs\n[2026-10-11 02:23:58] INFO: Reading sequences\n[2026-10-11 02:24:40] INFO: Counting k-mers:\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:25:40] INFO: Filling index table (1/2)\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:26:25] INFO: Filling index table (2/2)\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:27:15] INFO: Extending reads\n[2026-10-11 02:27:43] INFO: Overlap-based coverage: 53\n[2026-10-11 02:27:43] INFO: Median overlap divergence: 0.0980827\n0% 80% 90% 100% \n[2026-10-11 02:28:28] INFO: Assembled 29 disjointigs\n[2026-10-11 02:28:29] INFO: Generating sequence\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:28:35] INFO: Filtering contained disjointigs\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:28:38] INFO: Contained seqs: 0\n[2026-10-11 02:28:38] INFO: >>>STAGE: consensus\n[2026-10-11 02:28:38] INFO: Running Minimap2\n[2026-10-11 02:29:39] INFO: Computing consensus\n[2026-10-11 02:30:53] INFO: Alignment error rate: 0.155843\n[2026-10-11 02:30:53] INFO: >>>STAGE: repeat\n[2026-10-11 02:30:53] INFO: Building and resolving repeat graph\n[2026-10-11 02:30:53] INFO: Parsing disjointigs\n[2026-10-11 02:30:53] INFO: Building repeat graph\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:31:00] INFO: Median overlap divergence: 0.066082\n[2026-10-11 02:31:00] INFO: Parsing reads\n[2026-10-11 02:31:05] INFO: Aligning reads to the graph\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:31:43] INFO: Aligned read sequence: 293472287 / 308644012 (0.950844)\n[2026-10-11 02:31:43] INFO: Median overlap divergence: 0.0517392\n[2026-10-11 02:31:43] INFO: Mean edge coverage: 49\n[2026-10-11 02:31:43] INFO: Simplifying the graph\n[2026-10-11 02:31:44] INFO: >>>STAGE: contigger\n[2026-10-11 02:31:44] INFO: Generating contigs\n[2026-10-11 02:31:44] INFO: Reading sequences\n[2026-10-11 02:31:49] INFO: Generated 46 contigs\n[2026-10-11 02:31:49] INFO: Added 1 scaffold connections\n[2026-10-11 02:31:49] INFO: >>>STAGE: polishing\n[2026-10-11 02:31:49] INFO: Polishing genome (1/1)\n[2026-10-11 02:31:49] INFO: Running minimap2\n[2026-10-11 02:32:28] INFO: Separating alignment into bubbles\n[2026-10-11 02:33:54] INFO: Alignment error rate: 0.108104\n[2026-10-11 02:33:54] INFO: Correcting bubbles\n0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% \n[2026-10-11 02:39:32] INFO: >>>STAGE: finalize\n[2026-10-11 02:39:32] INFO: Assembly statistics:\n\n\tTotal length:\t5823950\n\tFragments:\t28\n\tFragments N50:\t1509232\n\tLargest frg:\t1997496\n\tScaffolds:\t0\n\tMean coverage:\t58\n\n[2026-10-11 02:39:32] INFO: Final assembly: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/flye/SRR13116389_50k/assembly.fasta\n",
+      "artifacts_created": [
+        "results/flye/SRR13116389_50k/00-assembly/draft_assembly.fasta",
+        "results/flye/SRR13116389_50k/00-assembly/draft_assembly.fasta.fai",
+        "results/flye/SRR13116389_50k/10-consensus/consensus.fasta",
+        "results/flye/SRR13116389_50k/10-consensus/minimap.bam.bai",
+        "results/flye/SRR13116389_50k/10-consensus/minimap.stderr",
+        "results/flye/SRR13116389_50k/20-repeat/graph_after_rr.gv",
+        "results/flye/SRR13116389_50k/20-repeat/graph_before_rr.fasta",
+        "results/flye/SRR13116389_50k/20-repeat/graph_before_rr.gfa",
+        "results/flye/SRR13116389_50k/20-repeat/graph_before_rr.gv",
+        "results/flye/SRR13116389_50k/20-repeat/read_alignment_dump",
+        "results/flye/SRR13116389_50k/20-repeat/repeat_graph_dump",
+        "results/flye/SRR13116389_50k/20-repeat/repeat_graph_edges.fasta",
+        "results/flye/SRR13116389_50k/30-contigger/contigs.fasta",
+        "results/flye/SRR13116389_50k/30-contigger/contigs.fasta.fai",
+        "results/flye/SRR13116389_50k/30-contigger/contigs_stats.txt",
+        "results/flye/SRR13116389_50k/30-contigger/graph_final.fasta",
+        "results/flye/SRR13116389_50k/30-contigger/graph_final.gfa",
+        "results/flye/SRR13116389_50k/30-contigger/graph_final.gv",
+        "results/flye/SRR13116389_50k/30-contigger/scaffolds_links.txt",
+        "results/flye/SRR13116389_50k/40-polishing/base_coverage.bed.gz",
+        "results/flye/SRR13116389_50k/40-polishing/contigs_stats.txt",
+        "results/flye/SRR13116389_50k/40-polishing/edges_aln.bam.bai",
+        "results/flye/SRR13116389_50k/40-polishing/filtered_contigs.fasta",
+        "results/flye/SRR13116389_50k/40-polishing/filtered_contigs.fasta.fai",
+        "results/flye/SRR13116389_50k/40-polishing/filtered_stats.txt",
+        "results/flye/SRR13116389_50k/40-polishing/minimap.stderr",
+        "results/flye/SRR13116389_50k/40-polishing/minimap_1.bam.bai",
+        "results/flye/SRR13116389_50k/40-polishing/polished_edges.gfa",
+        "results/flye/SRR13116389_50k/assembly.fasta",
+        "results/flye/SRR13116389_50k/assembly_graph.gfa",
+        "results/flye/SRR13116389_50k/assembly_graph.gv",
+        "results/flye/SRR13116389_50k/assembly_info.txt",
+        "results/flye/SRR13116389_50k/flye.log",
+        "results/flye/SRR13116389_50k/params.json"
+      ],
+      "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "zcat",
+          "path": "/usr/bin/zcat",
+          "sha256": "f0b4d86b6a10064b7f2f41a452ab5437f61d4f17d8b1ab3488f3f345519f4f8d",
+          "version": "zcat (gzip) 1.12",
+          "version_probe": "--version"
+        },
+        {
+          "name": "head",
+          "path": "/usr/bin/head",
+          "sha256": "2f990e7472d0c4dc6826c4afd827c61288d8a7f5e12debe8b116a99eeab7b83e",
+          "version": "head (GNU coreutils) 9.4",
+          "version_probe": "--version"
+        },
+        {
+          "name": "gzip",
+          "path": "/usr/bin/gzip",
+          "sha256": "afea077ce127d4fa9ad410d3066ba2b54dea19c0b44f04adf56c72d5f7b7a9bb",
+          "version": "gzip 1.12",
+          "version_probe": "--version"
+        },
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0018",
+      "seq": 18,
+      "command_line": "pixi run -e amrfinder amrfinder -n results/flye/SRR13116389_50k/assembly.fasta -O Escherichia --plus --threads 4 -o results/amrfinderplus/SRR13116389_flye.amrfinderplus.tsv",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T02:40:11.294830476Z",
+      "finished_at": "2026-10-11T02:41:20.517645008Z",
+      "duration_ms": 69222,
+      "exit_code": 0,
+      "stdout_tail": "",
+      "stderr_tail": "Running: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/amrfinder -n results/flye/SRR13116389_50k/assembly.fasta -O Escherichia --plus --threads 4 -o results/amrfinderplus/SRR13116389_flye.amrfinderplus.tsv\nSoftware directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/\nSoftware version: 4.2.7\nDatabase directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/share/amrfinderplus/data/2026-08-07.1\nDatabase version: 2026-08-07.1\nAMRFinder translated nucleotide and mutation search\nRunning tblastn\nRunning blastn\nRunning stxtyper\nMaking report\namrfinder took 69 seconds to complete\n",
+      "artifacts_created": [
+        "results/amrfinderplus/SRR13116389_flye.amrfinderplus.tsv"
+      ],
+      "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0019",
+      "seq": 19,
+      "command_line": "pixi run python -I scripts/compare.py results/amira/SRR13116389/amira_results.tsv results/amrfinderplus/SRR13116389_flye.amrfinderplus.tsv results/summary_same_isolate",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T02:41:25.466012646Z",
+      "finished_at": "2026-10-11T02:41:44.048237880Z",
+      "duration_ms": 18582,
+      "exit_code": 0,
+      "stdout_tail": "Amira allele rows: 72; distinct gene families: 22\nAMRFinderPlus AMR (acquired, Subtype=AMR) hits: 28; families: 18\nShared: 13  Amira-only: 9  AMRFinderPlus-only: 5\n\n             amira_alleles  amira_sum_depth  amrfinder_copies         amrfinder_symbols amrfinder_scope              status\nfamily                                                                                                                     \naac(3)-IId               1             0.97                 0                       NaN             NaN          amira_only\naph(3')-Ia               2             1.64                 0                       NaN             NaN          amira_only\naph(6)-Id                2             1.49                 0                       NaN             NaN          amira_only\nblaCMY                   1             1.07                 0                       NaN             NaN          amira_only\ndfrA12                   1             1.10                 0                       NaN             NaN          amira_only\ndfrA5                    2             0.80                 0                       NaN             NaN          amira_only\ndfrA7                    1             0.87                 0                       NaN             NaN          amira_only\nere(A)                   2             0.80                 0                       NaN             NaN          amira_only\nsul2                     3             2.31                 0                       NaN             NaN          amira_only\ncatB3                    0              NaN                 1                     catB3            core  amrfinderplus_only\ncatB8                    0              NaN                 1                     catB8            core  amrfinderplus_only\ndfrA                     0              NaN                 1                      dfrA            core  amrfinderplus_only\nfosA                     0              NaN                 1                      fosA            core  amrfinderplus_only\nmdtM                     0              NaN                 1                      mdtM            plus  amrfinderplus_only\naac(3)-IIe               2             1.48                 1                aac(3)-IIe            core                both\naac(6')-Ib               6             3.98                 3  aac(6')-Ib;aac(6')-Ib-cr            core                both\naadA1                    2             0.93                 1                     aadA1            core                both\naadA5                    2             1.61                 1                     aadA5            core                both\naph(3'')-Ib              3             2.28                 1               aph(3'')-Ib            core                both\nblaCTX-M                 8             7.26                 2                  blaCTX-M            core                both\nblaEC                    2             2.36                 1                     blaEC            plus                both\nblaOXA                   6             3.84                 2                    blaOXA            core                both\nblaTEM                   9             6.51                 2           blaTEM;blaTEM-1            core                both\ndfrA17                   2             1.30                 2                    dfrA17            core                both\nmph(A)                   6             5.02                 2                    mph(A)            core                both\nsul1                     5             3.07                 3                      sul1            core                both\ntet(A)                   4             2.84                 2                    tet(A)            core                both\n",
+      "stderr_tail": "",
+      "artifacts_created": [
+        "results/summary_same_isolate/gene_family_comparison.tsv",
+        "results/summary_same_isolate/summary.txt"
       ],
       "artifacts_modified": [],
       "tools": [
@@ -223047,6 +223177,376 @@
       "modified_by": [],
       "first_recorded": "2026-10-10T21:18:16.882747098Z",
       "last_updated": "2026-10-10T21:18:16.882747098Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/00-assembly/draft_assembly.fasta",
+      "sha256": "8bfb8151333819d39be169a02622289ba04025830c312b15a9f32fc0d06c8f5f",
+      "size_bytes": 7311296,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352200178Z",
+      "last_updated": "2026-10-11T02:39:35.352200178Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/00-assembly/draft_assembly.fasta.fai",
+      "sha256": "a010004fb78f0f04c58a8d086e5d98d42232e6a516cd328d1cfb0c2fea71d521",
+      "size_bytes": 980,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352745373Z",
+      "last_updated": "2026-10-11T02:39:35.352745373Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/10-consensus/consensus.fasta",
+      "sha256": "6bed10d0250635053a5e56c8b5cb0f962d5f445e0a13727c7b8c6b55832d7495",
+      "size_bytes": 7430077,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352838269Z",
+      "last_updated": "2026-10-11T02:39:35.352838269Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/10-consensus/minimap.bam.bai",
+      "sha256": "23f0472bfe36f70582c8ccb641cf7b69b224fc28466e159a88d0bcaa1621b078",
+      "size_bytes": 175240,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352883296Z",
+      "last_updated": "2026-10-11T02:39:35.352883296Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/10-consensus/minimap.stderr",
+      "sha256": "123563ed3ac61238ab96e119d65ea828d8fdb5d4012fd21847be8be9bf99a519",
+      "size_bytes": 1001,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352909751Z",
+      "last_updated": "2026-10-11T02:39:35.352909751Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/20-repeat/graph_after_rr.gv",
+      "sha256": "65c0b5a5a05bd0b752505735de70b50c2e8be4505b55a5cc04b59ca69e3b39ef",
+      "size_bytes": 25085,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352944249Z",
+      "last_updated": "2026-10-11T02:39:35.352944249Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/20-repeat/graph_before_rr.fasta",
+      "sha256": "dd2dd673f2e1e327f5a039fe732ad554892bd9e4495a2bef7a624846f4679287",
+      "size_bytes": 5957178,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352966231Z",
+      "last_updated": "2026-10-11T02:39:35.352966231Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/20-repeat/graph_before_rr.gfa",
+      "sha256": "680ca2c49bf55263bcd639df4dc27282483afa644ea108aa31f4052728638f15",
+      "size_bytes": 5892009,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.352997300Z",
+      "last_updated": "2026-10-11T02:39:35.352997300Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/20-repeat/graph_before_rr.gv",
+      "sha256": "295d99e6126a76d9df27205b9d16a574dca3c6163440fe403533d8835bdb0b14",
+      "size_bytes": 22442,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353027503Z",
+      "last_updated": "2026-10-11T02:39:35.353027503Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/20-repeat/read_alignment_dump",
+      "sha256": "aa671a4de0cf5f44a2346a93d18a1ef11b72b7f30837c6894d7772f4d7a5e2f1",
+      "size_bytes": 8231502,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353048949Z",
+      "last_updated": "2026-10-11T02:39:35.353048949Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/20-repeat/repeat_graph_dump",
+      "sha256": "897a636a07754bd643d95d4817d171ae049137d64b7975e34edd4590993671ce",
+      "size_bytes": 53723,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353070245Z",
+      "last_updated": "2026-10-11T02:39:35.353070245Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/20-repeat/repeat_graph_edges.fasta",
+      "sha256": "11ec01c7f2446264d7156096c9ff0968e0e097eb495ba6ff9033247c8427987e",
+      "size_bytes": 7009135,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353092919Z",
+      "last_updated": "2026-10-11T02:39:35.353092919Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/30-contigger/contigs.fasta",
+      "sha256": "8fe0309e0880fc0de3fb8d593cc3698ffd192b29ffc7eb52616e133e3b5f6a19",
+      "size_bytes": 6077637,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353129960Z",
+      "last_updated": "2026-10-11T02:39:35.353129960Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/30-contigger/contigs.fasta.fai",
+      "sha256": "b123cd4ddfecb27207f538ced51ba4498abadde2fcefb6f963dfd42e86e77d77",
+      "size_bytes": 1351,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353164064Z",
+      "last_updated": "2026-10-11T02:39:35.353164064Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/30-contigger/contigs_stats.txt",
+      "sha256": "2894b7fa8a6579ec40af06b2275e0681238d396cd2db05ac341cb08c323fefc4",
+      "size_bytes": 1685,
+      "media_type": "text/plain",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353194767Z",
+      "last_updated": "2026-10-11T02:39:35.353194767Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/30-contigger/graph_final.fasta",
+      "sha256": "d7468d5b5ed9ed5ed9978683625f2bf4191df7d5552919f3f4e1575c9f2caea4",
+      "size_bytes": 6034473,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353216634Z",
+      "last_updated": "2026-10-11T02:39:35.353216634Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/30-contigger/graph_final.gfa",
+      "sha256": "b0d183e1d02f904ba087bd77949e45ac33b3963c8188039433322b982aa0dc6f",
+      "size_bytes": 5962653,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353236080Z",
+      "last_updated": "2026-10-11T02:39:35.353236080Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/30-contigger/graph_final.gv",
+      "sha256": "c7c8a4d75877a73ee97a1e31223943940ee4177c9c38af2ba3d87963c4d4ccde",
+      "size_bytes": 9708,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353255904Z",
+      "last_updated": "2026-10-11T02:39:35.353255904Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/30-contigger/scaffolds_links.txt",
+      "sha256": "cd16a1de1b2834981b4956e5142ab81b9bfc7207bde8f6a8a8288797eb563af9",
+      "size_bytes": 24,
+      "media_type": "text/plain",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353276233Z",
+      "last_updated": "2026-10-11T02:39:35.353276233Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/base_coverage.bed.gz",
+      "sha256": "46c7d308367e69e36dd35e60af8ff40f7b73d510a7068026664df98962a13f33",
+      "size_bytes": 1823544,
+      "media_type": "application/gzip",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353300230Z",
+      "last_updated": "2026-10-11T02:39:35.353300230Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/contigs_stats.txt",
+      "sha256": "df3bc4101cfd2729d28c61e53d3544aede4b5f01d93eaf66e2fedf12884f3d06",
+      "size_bytes": 824,
+      "media_type": "text/plain",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353328737Z",
+      "last_updated": "2026-10-11T02:39:35.353328737Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/edges_aln.bam.bai",
+      "sha256": "19b7b724ff7ce51ca0f9bf89b1c52f6bec1a57d0c3344de0c6393d78a75610c4",
+      "size_bytes": 5296,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353348109Z",
+      "last_updated": "2026-10-11T02:39:35.353348109Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/filtered_contigs.fasta",
+      "sha256": "13ef568970ee68ec5e579ec67300e4dcb079311431c2f5d19cc0ae577af0e8c9",
+      "size_bytes": 5921329,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353367398Z",
+      "last_updated": "2026-10-11T02:39:35.353367398Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/filtered_contigs.fasta.fai",
+      "sha256": "faa391b522ffc16dfd255a8309a9d184ffa7e7c7931bad5b0a6b8daa7eb369b3",
+      "size_bytes": 823,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353397907Z",
+      "last_updated": "2026-10-11T02:39:35.353397907Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/filtered_stats.txt",
+      "sha256": "9b36aeed8e9fb1d92d2902414838778d4567c55e928bc06e0158d202c4f22afa",
+      "size_bytes": 552,
+      "media_type": "text/plain",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353435863Z",
+      "last_updated": "2026-10-11T02:39:35.353435863Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/minimap.stderr",
+      "sha256": "0302fe1fd516f3a71690caf63196dca471a62966bd7ad2538c241b53852e005b",
+      "size_bytes": 964,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353461546Z",
+      "last_updated": "2026-10-11T02:39:35.353461546Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/minimap_1.bam.bai",
+      "sha256": "8f424e3cf6ca6a3ebf3dc0e8f943e8fc03de001cd29eb2e65fe9908414d41186",
+      "size_bytes": 158160,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.353946345Z",
+      "last_updated": "2026-10-11T02:39:35.353946345Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/40-polishing/polished_edges.gfa",
+      "sha256": "d63ce9c7fe1133387678c9a61bb6e6c1a73c14b28670e86ee72a8e865553395b",
+      "size_bytes": 6130627,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.354037206Z",
+      "last_updated": "2026-10-11T02:39:35.354037206Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/assembly.fasta",
+      "sha256": "13ef568970ee68ec5e579ec67300e4dcb079311431c2f5d19cc0ae577af0e8c9",
+      "size_bytes": 5921329,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.354075787Z",
+      "last_updated": "2026-10-11T02:39:35.354075787Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/assembly_graph.gfa",
+      "sha256": "d63ce9c7fe1133387678c9a61bb6e6c1a73c14b28670e86ee72a8e865553395b",
+      "size_bytes": 6130627,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.354141188Z",
+      "last_updated": "2026-10-11T02:39:35.354141188Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/assembly_graph.gv",
+      "sha256": "c7c8a4d75877a73ee97a1e31223943940ee4177c9c38af2ba3d87963c4d4ccde",
+      "size_bytes": 9708,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.354199527Z",
+      "last_updated": "2026-10-11T02:39:35.354199527Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/assembly_info.txt",
+      "sha256": "1bc1aff9653cbe40b52834e869bdee44e548a8de37f1441b30a58a76c5327462",
+      "size_bytes": 954,
+      "media_type": "text/plain",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.354239605Z",
+      "last_updated": "2026-10-11T02:39:35.354239605Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/flye.log",
+      "sha256": "0dde279e8cb758a6fd06f650dc37daf5e1a729df2c27a7c3b59612d349d55752",
+      "size_bytes": 148282,
+      "media_type": "text/plain",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.354266808Z",
+      "last_updated": "2026-10-11T02:39:35.354266808Z"
+    },
+    {
+      "path": "results/flye/SRR13116389_50k/params.json",
+      "sha256": "dc5be94313463c3eced44e055e63018454f6871c7816e4ca306ffb94f2374df3",
+      "size_bytes": 92,
+      "media_type": "application/json",
+      "created_by": "cmd-0017",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:39:35.354294256Z",
+      "last_updated": "2026-10-11T02:39:35.354294256Z"
+    },
+    {
+      "path": "results/amrfinderplus/SRR13116389_flye.amrfinderplus.tsv",
+      "sha256": "f984fe4a39bde1a4a9239cb4f398b71a1601a670bbd669918d4d8b6cfaf9fcef",
+      "size_bytes": 11764,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0018",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:41:22.958439995Z",
+      "last_updated": "2026-10-11T02:41:22.958439995Z"
+    },
+    {
+      "path": "results/summary_same_isolate/gene_family_comparison.tsv",
+      "sha256": "38a847a71a81b11ce051eb36950d3750ccdeea02e15e98118546a8dbb4bd4d39",
+      "size_bytes": 1056,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0019",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:41:46.329880086Z",
+      "last_updated": "2026-10-11T02:41:46.329880086Z"
+    },
+    {
+      "path": "results/summary_same_isolate/summary.txt",
+      "sha256": "b87ccd5d5f4d705f22d01effe05d5080b9760b9941117911dac0aa5a5db01889",
+      "size_bytes": 164,
+      "media_type": "text/plain",
+      "created_by": "cmd-0019",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T02:41:46.330138780Z",
+      "last_updated": "2026-10-11T02:41:46.330138780Z"
     }
   ],
   "env_snapshots": []

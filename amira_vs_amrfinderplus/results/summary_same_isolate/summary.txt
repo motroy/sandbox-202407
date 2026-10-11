@@ -1,0 +1,3 @@
+Amira allele rows: 72; distinct gene families: 22
+AMRFinderPlus AMR (acquired, Subtype=AMR) hits: 28; families: 18
+Shared: 13  Amira-only: 9  AMRFinderPlus-only: 5

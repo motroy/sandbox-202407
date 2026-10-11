@@ -34,12 +34,25 @@ many at 91–99 % identity to the closest reference. For a single isolate this l
 not real multi-copy genes; I did not validate that (no truth assembly for the read isolate). Treat the Amira allele *counts* here as unreliable and the
 *presence/absence* calls as the meaningful comparison. A fair copy-number benchmark would need a long-read assembly of the same isolate.
 
+## Follow-up: matched-isolate comparison (same reads, assembled with Flye)
+No matched pair exists publicly (the reads' isolate has no assembly or Illumina data; the assembly's isolate has no reads), so I assembled the
+**same SRR13116389 reads** (first 50,000 reads, ~58x) with Flye 2.9.3 (`--nano-raw`, no polishing; 28 contigs, largest 2.0 Mb) and ran AMRFinderPlus 4.2.7 on that.
+Now any difference is tool/assembly behaviour, not biology. (`results/summary_same_isolate/`, `results/amrfinderplus/SRR13116389_flye.amrfinderplus.tsv`)
+
+**13 shared · 9 Amira-only · 5 AMRFinderPlus-only** (families, acquired AMR genes).
+- Amira-only: aac(3)-IId, aph(3')-Ia, aph(6)-Id, blaCMY, dfrA5/7/12, ere(A), sul2.
+- AMRFinderPlus-only: catB3, catB8, fosA, dfrA (unresolved subtype), mdtM (`plus`). Amira's panRG may not contain these, or it filtered them; I did not check which.
+- **18 of the 32 AMR-type hits on the Flye assembly are `PARTIALX`** (50–85 % coverage of the reference), consistent with uncorrected nanopore indels breaking
+  gene frames in an unpolished assembly; this probably explains some of the Amira-only genes. I did not test this (e.g. by polishing with medaka/racon), so it is a hypothesis.
+- Flye split many genes across multiple contigs/copies (e.g. sul1 x3, aac(6')-Ib x3), so AMRFinderPlus copy counts here are also not trustworthy as truth.
+- Caveat still applies: no ground-truth assembly, so neither tool is "right"; Amira's high per-family allele counts remain unvalidated.
+
 ## Layout
 - `pixi.toml`, `pixi.lock` — environments
 - `scripts/run_all.sh` — clean end-to-end reproduction; `scripts/compare.py` — comparison
 - `results/amrfinderplus/` — AMRFinderPlus table + detected gene sequences
 - `results/amira_curated/` — `amira_results.tsv`, final polished allele FASTA, coverage plot, run log (the 2.7 GB raw Amira output dir is git-ignored)
-- `results/summary/` — gene-family comparison table
+- `results/summary/` — cross-isolate comparison table; `results/summary_same_isolate/` — Amira vs Flye+AMRFinderPlus on the same reads; `results/flye_curated/` — Flye assembly
 - `amira-vs-amrfinderplus.dochist.json` — saved dochist session (16 commands, includes the failed/superseded steps); `FAIR-report.md` — dochist FAIR report. Reload with `dochist load amira-vs-amrfinderplus.dochist.json`.
 
 ## Notes on the run
