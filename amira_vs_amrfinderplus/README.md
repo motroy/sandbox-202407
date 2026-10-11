@@ -104,3 +104,13 @@ Dragonflye 1.2.1 (Flye 2.9.x `--nano-raw` + 1 Racon round + dnaapler reorientati
 - **AMR calls from the final dragonflye assembly match the truth genome exactly** (acrF, mdtM, blaEC) with **no spurious frameshift calls**. The raw Flye and Racon stages show false “POINT_DISRUPT” calls
   (acrR, marR, cirA) and miss all three genes; **Polypolish is what fixes it** (Racon 0.79 % → Polypolish 0.037 % error); pypolca adds a small further gain (0.037 → 0.030 %). Amira's single blaEC call is consistent with this.
 - One isolate, one run per tool, ~57x of older ONT chemistry: this is a worked example, not a benchmark of the assemblers in general. myloasm is built for R10 reads, so this comparison is unfavourable to it.
+
+## `scripts/amira_aggregate.py`: summarise many Amira runs
+Stdlib-only aggregator (extended from a user-supplied script). Collapses tied names (`blaTEM-1/blaTEM-208`) to gene families, reports `est_copies`
+(sum of Amira's approximate cellular copy number) beside the raw allele count, filters weak alleles (`--min-depth/--min-identity/--min-coverage`),
+and compares against AMRFinderPlus (`--amrfinder NAME=TSV --compare out.tsv`, `both`/`amira_only`/`amrfinder_only`).
+```
+python -I scripts/amira_aggregate.py ST131=results/amira/SRR13116389 FWSEC0007=results/FWSEC0007/amira \
+  -o summary.tsv --long hits.tsv --matrix matrix.tsv --matrix-value copies \
+  --amrfinder ST131=results/amrfinderplus/SRR13116389_flye.amrfinderplus.tsv FWSEC0007=results/FWSEC0007/dragonflye/amrfinder/polished.tsv --compare compare.tsv
+```
