@@ -1,0 +1,8 @@
+stage	contigs	total_bp	truth_covered_%	aligned_bp	edits(NM)	error_rate_%	QV
+myloasm	272	7937731	86.0	6311846	111818	1.7716	17.5
+myloasm+polypolish	272	7963667	87.9	6526520	42349	0.6489	21.9
+myloasm+polypolish+pypolca	272	7966274	90.2	6701131	35772	0.5338	22.7
+dragonflye(flye)	12	5434765	93.8	5141132	82459	1.6039	17.9
+dragonflye(flye+racon)	4	5453654	100.0	5476090	43204	0.789	21.0
+dragonflye+polypolish	4	5477841	100.0	5473638	2039	0.0373	34.3
+dragonflye+polypolish+pypolca	4	5477986	100.0	5474282	1636	0.0299	35.2

@@ -1,0 +1,12 @@
+.pixi/
+data/
+bin/
+# large Amira intermediates (reads, BAM/SAM, jellyfish, pandora output); curated outputs live in results/amira_curated
+results/amira/
+.dochist/
+results/flye/
+results/FWSEC0007/myloasm/
+results/FWSEC0007/polish/
+results/FWSEC0007/amira/
+results/FWSEC0007/dragonflye/asm/
+results/FWSEC0007/dragonflye/polish/

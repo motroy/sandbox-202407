@@ -1,0 +1,28 @@
+family	amira_alleles	amira_sum_depth	amrfinder_copies	amrfinder_symbols	amrfinder_scope	status
+aac(3)-IId	1	0.967	0			amira_only
+aph(3')-Ia	2	1.639	0			amira_only
+aph(6)-Id	2	1.492	0			amira_only
+blaCMY	1	1.066	0			amira_only
+dfrA12	1	1.098	0			amira_only
+dfrA5	2	0.803	0			amira_only
+dfrA7	1	0.869	0			amira_only
+ere(A)	2	0.803	0			amira_only
+sul2	3	2.311	0			amira_only
+catB3	0		1	catB3	core	amrfinderplus_only
+catB8	0		1	catB8	core	amrfinderplus_only
+dfrA	0		1	dfrA	core	amrfinderplus_only
+fosA	0		1	fosA	core	amrfinderplus_only
+mdtM	0		1	mdtM	plus	amrfinderplus_only
+aac(3)-IIe	2	1.475	1	aac(3)-IIe	core	both
+aac(6')-Ib	6	3.984	3	aac(6')-Ib;aac(6')-Ib-cr	core	both
+aadA1	2	0.934	1	aadA1	core	both
+aadA5	2	1.607	1	aadA5	core	both
+aph(3'')-Ib	3	2.279	1	aph(3'')-Ib	core	both
+blaCTX-M	8	7.262	2	blaCTX-M	core	both
+blaEC	2	2.361	1	blaEC	plus	both
+blaOXA	6	3.836	2	blaOXA	core	both
+blaTEM	9	6.508	2	blaTEM;blaTEM-1	core	both
+dfrA17	2	1.295	2	dfrA17	core	both
+mph(A)	6	5.016	2	mph(A)	core	both
+sul1	5	3.066	3	sul1	core	both
+tet(A)	4	2.836	2	tet(A)	core	both
