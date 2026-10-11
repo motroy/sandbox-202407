@@ -1,0 +1,226 @@
+[dragonflye] Hello stranger
+[dragonflye] You ran: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/dragonflye --reads data/FWSEC0007/SRR7896269_1.fastq.gz --outdir results/FWSEC0007/dragonflye/asm --gsize 5.5m --cpus 4 --force --keepfiles --polypolish 0
+[dragonflye] This is dragonflye 1.2.1
+[dragonflye] Written by Robert A Petit III
+[dragonflye] Homepage is https://github.com/rpetit3/dragonflye
+[dragonflye] Operating system is linux
+[dragonflye] Perl version is v5.44.0
+[dragonflye] Machine has 4 CPU cores and 15.72 GB RAM
+[dragonflye] Using any2fasta - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/any2fasta | any2fasta 0.8.1
+[dragonflye] Using assembly-scan - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/assembly-scan | assembly-scan 1.0.0
+[dragonflye] Using bwa - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/bwa | Version: 0.7.19-r1273
+[dragonflye] Using dnaapler - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/dnaapler | dnaapler, version 1.4.0
+[dragonflye] Using fastp - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/fastp | fastp 1.4.0
+[dragonflye] Using flye - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/flye | 2.9.6-b1802
+[dragonflye] Using kmc - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/kmc | K-Mer Counter (KMC) ver. 3.2.4 (2024-02-09)
+[dragonflye] Using medaka - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/medaka | medaka 2.2.1
+[dragonflye] Using miniasm - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/miniasm | 0.3-r179
+[dragonflye] Using minimap2 - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/minimap2 | 2.31-r1302
+[dragonflye] Using nanoq - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/nanoq | nanoq 0.10.0
+[dragonflye] Using pigz - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/pigz | pigz 2.8
+[dragonflye] Using pilon - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/pilon | Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=43023 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+[dragonflye] Using polypolish - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/polypolish | Polypolish 0.7.1
+[dragonflye] Using porechop - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/porechop | 0.2.4
+[dragonflye] Using racon - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/racon | 1.5.0
+[dragonflye] Using rasusa - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/rasusa | rasusa 5.1.0
+[dragonflye] Using raven - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/raven | 1.8.3
+[dragonflye] Using samclip - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/samclip | samclip 0.4.0
+[dragonflye] Using samtools - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/samtools | Version: 1.24 (using htslib 1.24)
+[dragonflye] Using seqtk - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/seqtk | Version: 1.5-r133
+[dragonflye] Using tempdir: /tmp/OvCmmNdVza
+[dragonflye] Changing into folder: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm
+[dragonflye] Collecting raw read statistics with 'seqtk'
+[dragonflye] Running: seqtk fqchk -q3 \/home\/user\/sandbox\-202407\/amira_vs_amrfinderplus\/data\/FWSEC0007\/SRR7896269_1\.fastq\.gz 2>&1 1>/tmp/ijrmn7z82w | sed 's/^/[seqtk] /' | tee -a dragonflye.log
+[dragonflye] Read stats: max_len = 76506
+[dragonflye] Read stats: total_bp = 312097027
+[dragonflye] Read stats: avg_len = 3121
+[dragonflye] Read stats: min_len = 160
+[dragonflye] Using genome size 5500000 bp
+[dragonflye] Estimated sequencing depth: 56x
+[dragonflye] Filter reads based on length and/or quality
+[dragonflye] Running: nanoq --min-len 1000 --input /home/user/sandbox-202407/amira_vs_amrfinderplus/data/FWSEC0007/SRR7896269_1.fastq.gz --min-qual 0 2>&1 1> READS.filt.fq | sed 's/^/[nanoq] /' | tee -a dragonflye.log
+[dragonflye] Running: pigz -f -p 4 --fast READS.filt.fq 2>&1 | sed 's/^/[pigz] /' | tee -a dragonflye.log
+[dragonflye] No read depth reduction requested or necessary.
+[dragonflye] No read adapter trimming requested.
+[dragonflye] Running: ln -sf READS\.filt\.fq\.gz READS.fq.gz 2>&1 | sed 's/^/[ln] /' | tee -a dragonflye.log
+[dragonflye] Collecting qc'd read statistics with 'seqtk'
+[dragonflye] Running: seqtk fqchk -q3 READS\.fq\.gz 2>&1 1>/tmp/pIiGVi8G3r | sed 's/^/[seqtk] /' | tee -a dragonflye.log
+[dragonflye] Final Read stats: avg_len = 4183
+[dragonflye] Final Read stats: max_len = 76506
+[dragonflye] Final Read stats: total_bp = 292684028
+[dragonflye] Final Read stats: min_len = 1000
+[dragonflye] Average read length looks like 4183 bp
+[dragonflye] Assembling reads with 'flye'
+[dragonflye] Running: flye --nano-raw READS.fq.gz -g 5500000 -i 0 --threads 4 -o flye  2>&1 | sed 's/^/[flye] /' | tee -a dragonflye.log
+[flye] [2026-10-11 03:37:17] INFO: Starting Flye 2.9.6-b1802
+[flye] [2026-10-11 03:37:17] INFO: >>>STAGE: configure
+[flye] [2026-10-11 03:37:17] INFO: Configuring run
+[flye] [2026-10-11 03:37:22] INFO: Total read length: 292684028
+[flye] [2026-10-11 03:37:22] INFO: Input genome size: 5500000
+[flye] [2026-10-11 03:37:22] INFO: Estimated coverage: 53
+[flye] [2026-10-11 03:37:22] INFO: Reads N50/N90: 5873 / 1848
+[flye] [2026-10-11 03:37:22] INFO: Minimum overlap set to 2000
+[flye] [2026-10-11 03:37:22] INFO: >>>STAGE: assembly
+[flye] [2026-10-11 03:37:22] INFO: Assembling disjointigs
+[flye] [2026-10-11 03:37:22] INFO: Reading sequences
+[flye] [2026-10-11 03:37:51] INFO: Counting k-mers:
+[flye] 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[flye] [2026-10-11 03:38:49] INFO: Filling index table (1/2)
+[flye] 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[flye] [2026-10-11 03:39:24] INFO: Filling index table (2/2)
+[flye] 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[flye] [2026-10-11 03:40:03] INFO: Extending reads
+[flye] [2026-10-11 03:40:12] INFO: Overlap-based coverage: 41
+[flye] [2026-10-11 03:40:12] INFO: Median overlap divergence: 0.114362
+[flye] 0% 80% 100% 
+[flye] [2026-10-11 03:40:30] INFO: Assembled 3 disjointigs
+[flye] [2026-10-11 03:40:30] INFO: Generating sequence
+[flye] 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[flye] [2026-10-11 03:40:36] INFO: Filtering contained disjointigs
+[flye] 0% 30% 60% 100% 
+[flye] [2026-10-11 03:40:38] INFO: Contained seqs: 0
+[flye] [2026-10-11 03:40:39] INFO: >>>STAGE: consensus
+[flye] [2026-10-11 03:40:39] INFO: Running Minimap2
+[flye] [2026-10-11 03:41:25] INFO: Computing consensus
+[flye] [2026-10-11 03:42:36] INFO: Alignment error rate: 0.182970
+[flye] [2026-10-11 03:42:36] INFO: >>>STAGE: repeat
+[flye] [2026-10-11 03:42:36] INFO: Building and resolving repeat graph
+[flye] [2026-10-11 03:42:36] INFO: Parsing disjointigs
+[flye] [2026-10-11 03:42:36] INFO: Building repeat graph
+[flye] 0% 30% 60% 100% 
+[flye] [2026-10-11 03:42:44] INFO: Median overlap divergence: 0.109821
+[flye] [2026-10-11 03:42:45] INFO: Parsing reads
+[flye] [2026-10-11 03:42:49] INFO: Aligning reads to the graph
+[flye] 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100% 
+[flye] [2026-10-11 03:43:19] INFO: Aligned read sequence: 238751635 / 258178384 (0.924755)
+[flye] [2026-10-11 03:43:19] INFO: Median overlap divergence: 0.0627698
+[flye] [2026-10-11 03:43:19] INFO: Mean edge coverage: 45
+[flye] [2026-10-11 03:43:19] INFO: Simplifying the graph
+[flye] [2026-10-11 03:43:19] INFO: >>>STAGE: contigger
+[flye] [2026-10-11 03:43:19] INFO: Generating contigs
+[flye] [2026-10-11 03:43:19] INFO: Reading sequences
+[flye] [2026-10-11 03:43:24] INFO: Generated 12 contigs
+[flye] [2026-10-11 03:43:24] INFO: Added 0 scaffold connections
+[flye] [2026-10-11 03:43:24] INFO: >>>STAGE: finalize
+[flye] [2026-10-11 03:43:24] INFO: Assembly statistics:
+[flye] 
+[flye] 	Total length:	5434765
+[flye] 	Fragments:	12
+[flye] 	Fragments N50:	3733266
+[flye] 	Largest frg:	3733266
+[flye] 	Scaffolds:	0
+[flye] 	Mean coverage:	42
+[flye] 
+[flye] [2026-10-11 03:43:24] INFO: Final assembly: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm/flye/assembly.fasta
+[dragonflye] Polishing with Racon (1 rounds)
+[dragonflye] Running: minimap2 -t 3 -x map-ont flye.fasta READS.fq.gz 2>&1  1> flye/polish/racon/1/aligments.paf | sed 's/^/[polishing - racon (1 of 1)] /' | tee -a dragonflye.log
+[polishing - racon (1 of 1)] [M::mm_idx_gen::0.132*1.01] collected minimizers
+[polishing - racon (1 of 1)] [M::mm_idx_gen::0.174*1.42] sorted minimizers
+[polishing - racon (1 of 1)] [M::main::0.174*1.42] loaded/built the index for 12 target sequence(s)
+[polishing - racon (1 of 1)] [M::mm_mapopt_update::0.191*1.39] mid_occ = 13
+[polishing - racon (1 of 1)] [M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 12
+[polishing - racon (1 of 1)] [M::mm_idx_stat::0.203*1.36] distinct minimizers: 977443 (97.30% are singletons); average occurrences: 1.039; average spacing: 5.353; total length: 5434765
+[polishing - racon (1 of 1)] [M::worker_pipeline::10.763*2.18] mapped 69977 sequences
+[polishing - racon (1 of 1)] [M::main] Version: 2.31-r1302
+[polishing - racon (1 of 1)] [M::main] CMD: minimap2 -t 3 -x map-ont flye.fasta READS.fq.gz
+[polishing - racon (1 of 1)] [M::main] Real time: 10.774 sec; CPU: 23.463 sec; Peak RSS: 0.342 GB
+[dragonflye] Running: racon -t 4 READS.fq.gz flye/polish/racon/1/aligments.paf flye.fasta 2>&1 1> flye/polish/racon/1/consensus.fasta | sed 's/^/[polishing - racon (1 of 1)] /' | tee -a dragonflye.log
+[polishing - racon (1 of 1)] [racon::Polisher::initialize] loaded target sequences 0.013755 s
+[polishing - racon (1 of 1)] [racon::Polisher::initialize] loaded sequences 4.727469 s
+[polishing - racon (1 of 1)] [racon::Polisher::initialize] loaded overlaps 0.076451 s
+[polishing - racon (1 of 1)] [racon::Polisher::initialize] aligning overlaps [=>                  ] 1.266638 s[racon::Polisher::initialize] aligning overlaps [==>                 ] 1.901784 s[racon::Polisher::initialize] aligning overlaps [===>                ] 2.616087 s[racon::Polisher::initialize] aligning overlaps [====>               ] 3.340538 s[racon::Polisher::initialize] aligning overlaps [=====>              ] 4.128966 s[racon::Polisher::initialize] aligning overlaps [======>             ] 4.845930 s[racon::Polisher::initialize] aligning overlaps [=======>            ] 5.500977 s[racon::Polisher::initialize] aligning overlaps [========>           ] 6.198260 s[racon::Polisher::initialize] aligning overlaps [=========>          ] 6.920433 s[racon::Polisher::initialize] aligning overlaps [==========>         ] 7.598051 s[racon::Polisher::initialize] aligning overlaps [===========>        ] 8.309430 s[racon::Polisher::initialize] aligning overlaps [============>       ] 8.935190 s[racon::Polisher::initialize] aligning overlaps [=============>      ] 9.633435 s[racon::Polisher::initialize] aligning overlaps [==============>     ] 11.121637 s[racon::Polisher::initialize] aligning overlaps [===============>    ] 13.738715 s[racon::Polisher::initialize] aligning overlaps [================>   ] 16.630099 s[racon::Polisher::initialize] aligning overlaps [=================>  ] 19.370036 s[racon::Polisher::initialize] aligning overlaps [==================> ] 21.726728 s[racon::Polisher::initialize] aligning overlaps [===================>] 24.571955 s[racon::Polisher::initialize] aligning overlaps [====================] 26.665449 s
+[polishing - racon (1 of 1)] [racon::Polisher::initialize] transformed data into windows 0.411319 s
+[polishing - racon (1 of 1)] [racon::Polisher::polish] generating consensus [=>                  ] 3.651934 s[racon::Polisher::polish] generating consensus [==>                 ] 7.312280 s[racon::Polisher::polish] generating consensus [===>                ] 11.039566 s[racon::Polisher::polish] generating consensus [====>               ] 14.716604 s[racon::Polisher::polish] generating consensus [=====>              ] 18.587494 s[racon::Polisher::polish] generating consensus [======>             ] 22.624398 s[racon::Polisher::polish] generating consensus [=======>            ] 26.693909 s[racon::Polisher::polish] generating consensus [========>           ] 30.650830 s[racon::Polisher::polish] generating consensus [=========>          ] 34.528080 s[racon::Polisher::polish] generating consensus [==========>         ] 38.757344 s[racon::Polisher::polish] generating consensus [===========>        ] 42.763528 s[racon::Polisher::polish] generating consensus [============>       ] 46.941842 s[racon::Polisher::polish] generating consensus [=============>      ] 50.907991 s[racon::Polisher::polish] generating consensus [==============>     ] 54.382528 s[racon::Polisher::polish] generating consensus [===============>    ] 58.400443 s[racon::Polisher::polish] generating consensus [================>   ] 62.108641 s[racon::Polisher::polish] generating consensus [=================>  ] 65.965738 s[racon::Polisher::polish] generating consensus [==================> ] 69.946054 s[racon::Polisher::polish] generating consensus [===================>] 73.532057 s[racon::Polisher::polish] generating consensus [====================] 77.217780 s
+[polishing - racon (1 of 1)] [racon::Polisher::] total = 109.207173 s
+[dragonflye] Using assembly file 'flye/polish/racon/1/consensus.fasta' => 'flye.fasta'
+[dragonflye] Matched contig_1 to contig_1_LN:i:3757405_RC:i:48411_XC:f:1.000000
+[dragonflye] Matched contig_2 to contig_2_LN:i:1621958_RC:i:20495_XC:f:1.000000
+[dragonflye] Matched contig_18 to contig_18_LN:i:72775_RC:i:878_XC:f:1.000000
+[dragonflye] Matched contig_3 to contig_3_LN:i:4337_RC:i:74_XC:f:1.000000
+[dragonflye] Removing low coverage contig (0x < 2x): contig_3_LN:i:4337_RC:i:74_XC:f:1.000000
+[dragonflye] Matched contig_13 to contig_13_LN:i:3005_RC:i:18_XC:f:1.000000
+[dragonflye] Removing low coverage contig (0x < 2x): contig_13_LN:i:3005_RC:i:18_XC:f:1.000000
+[dragonflye] Matched contig_16 to contig_16_LN:i:1908_RC:i:7_XC:f:0.750000
+[dragonflye] Removing low coverage contig (0x < 2x): contig_16_LN:i:1908_RC:i:7_XC:f:0.750000
+[dragonflye] Matched contig_17 to contig_17_LN:i:1516_RC:i:5_XC:f:1.000000
+[dragonflye] Matched contig_11 to contig_11_LN:i:674_RC:i:2_XC:f:1.000000
+[dragonflye] Removing low coverage contig (0x < 2x): contig_11_LN:i:674_RC:i:2_XC:f:1.000000
+[dragonflye] Writing final assembly file => 'contigs.fa'
+[dragonflye] Reorienting contigs with dnaapler
+[dragonflye] Running: dnaapler all --input contigs.fa --output flye/reorient --threads 4 --prefix contigs --force  2>&1 | sed 's/^/[dnaapler] /' | tee -a dragonflye.log
+[dnaapler] 2026-10-11 03:45:24.895 | INFO     | dnaapler.utils.validation:instantiate_dirs:29 - Checking the output directory flye/reorient
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:74 - You are using dnaapler version 1.4.0
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:75 - Repository homepage is https://github.com/gbouras13/dnaapler
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:76 - Written by George Bouras: george.bouras@adelaide.edu.au
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:77 - Your input file is contigs.fa
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:78 - Your output directory  is flye/reorient
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:79 - You have specified 4 threads to use with MMseqs2
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:80 - You have specified all gene(s) to reorient your sequence
+[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:check_mmseqs2_version:122 - Checking MMseqs2 installation.
+[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_mmseqs2_version:142 - MMseqs2 version found is 18.8cc5c
+[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_mmseqs2_version:156 - MMseqs2 version is ok.
+[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_pyrodigal_version:95 - Checking pyrodigal installation.
+[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_pyrodigal_version:106 - Pyrodigal version is v3.7.1
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:check_pyrodigal_version:107 - Pyrodigal version is ok.
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --input contigs.fa
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --output flye/reorient
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --threads 4
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --force True
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --prefix contigs
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --evalue 1e-10
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --autocomplete none
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --seed_value 13
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --ignore 
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --custom_db 
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --db all
+[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.validation:validate_input_all:156 - Checking that the input file contigs.fa is in FASTA or GFA format and has at least 1 entry.
+[dnaapler] 2026-10-11 03:45:24.926 | INFO     | dnaapler.utils.validation:check_file_format:105 - contigs.fa is in FASTA format.
+[dnaapler] 2026-10-11 03:45:24.956 | INFO     | dnaapler.utils.validation:validate_input_all:163 - contigs.fa has more than one entry.
+[dnaapler] 2026-10-11 03:45:24.986 | INFO     | dnaapler.utils.validation:check_evalue:228 - You have specified an evalue of 1e-10.
+[dnaapler] 2026-10-11 03:45:24.986 | INFO     | dnaapler:all:1029 - No contigs specified to ignore.
+[dnaapler] mmseqs easy-search flye/reorient/rotated_input.fasta /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/lib/python3.10/site-packages/dnaapler/db/all_db flye/reorient/contigs_MMseqs2_output.txt flye/reorient/tmp_MMseqs2_output --search-type 2  --threads 4 -e 1e-10 --format-output query,qlen,target,tlen,alnlen,qstart,qend,tstart,tend,fident,nident,gapopen,mismatch,evalue,bits,qaln,taln
+[dnaapler] 2026-10-11 03:45:25.046 | INFO     | dnaapler.utils.external_tools:run:52 - Started running mmseqs easy-search flye/reorient/rotated_input.fasta /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/lib/python3.10/site-packages/dnaapler/db/all_db flye/reorient/contigs_MMseqs2_output.txt flye/reorient/tmp_MMseqs2_output --search-type 2 --threads 4 -e 1e-10 --format-output query,qlen,target,tlen,alnlen,qstart,qend,tstart,tend,fident,nident,gapopen,mismatch,evalue,bits,qaln,taln ...
+[dnaapler] 2026-10-11 03:46:04.863 | INFO     | dnaapler.utils.external_tools:run:54 - Done running mmseqs easy-search flye/reorient/rotated_input.fasta /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/lib/python3.10/site-packages/dnaapler/db/all_db flye/reorient/contigs_MMseqs2_output.txt flye/reorient/tmp_MMseqs2_output --search-type 2 --threads 4 -e 1e-10 --format-output query,qlen,target,tlen,alnlen,qstart,qend,tstart,tend,fident,nident,gapopen,mismatch,evalue,bits,qaln,taln
+[dnaapler] 2026-10-11 03:46:05.185 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:506 - The top MMseqs2 hit for the contig contig00002 did not begin with a valid start codon.
+[dnaapler] 2026-10-11 03:46:05.185 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:509 - Searching with pyrodigal for the CDS overlapping the most with the top MMseqs2 hit to reorient with.
+[dnaapler] 2026-10-11 03:46:10.386 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:506 - The top MMseqs2 hit for the contig contig00003 did not begin with a valid start codon.
+[dnaapler] 2026-10-11 03:46:10.386 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:509 - Searching with pyrodigal for the CDS overlapping the most with the top MMseqs2 hit to reorient with.
+[dnaapler] 2026-10-11 03:46:10.616 | INFO     | dnaapler.utils.util:end_dnaapler:173 - dnaapler has finished
+[dnaapler] 2026-10-11 03:46:10.616 | INFO     | dnaapler.utils.util:end_dnaapler:174 - Elapsed time: 45.72 seconds
+[dragonflye] Running: mv flye/reorient/contigs_all_reorientation_summary.tsv ./contigs.dnaapler.summary.tsv | sed 's/^/[mv] /' | tee -a dragonflye.log
+[dragonflye] Running: mv flye/reorient/contigs_reoriented.fasta ./contigs.reoriented.fa | sed 's/^/[mv] /' | tee -a dragonflye.log
+[dragonflye] Assembly is 5453654, estimated genome size was 5500000 (-0.84%)
+[dragonflye] It contains 4 (min=500) contigs totalling 5453654 bp.
+[dragonflye] Getting more stats now...
+[dragonflye] Running: assembly-scan --transpose contigs.fa 2>&1 | sed 's/^/[stats] /' | tee -a dragonflye.log
+[stats] contigs.fa	sample	contigs.fa
+[stats] contigs.fa	total_contig	4
+[stats] contigs.fa	total_contig_length	5453654
+[stats] contigs.fa	max_contig_length	3757405
+[stats] contigs.fa	mean_contig_length	1363413
+[stats] contigs.fa	median_contig_length	847366
+[stats] contigs.fa	min_contig_length	1516
+[stats] contigs.fa	n50_contig_length	3757405
+[stats] contigs.fa	l50_contig_count	1
+[stats] contigs.fa	num_contig_non_acgtn	0
+[stats] contigs.fa	contig_percent_a	24.63
+[stats] contigs.fa	contig_percent_c	25.58
+[stats] contigs.fa	contig_percent_g	25.27
+[stats] contigs.fa	contig_percent_t	24.52
+[stats] contigs.fa	contig_percent_n	0.00
+[stats] contigs.fa	contig_non_acgtn	0.00
+[stats] contigs.fa	contigs_greater_1m	2
+[stats] contigs.fa	contigs_greater_100k	2
+[stats] contigs.fa	contigs_greater_10k	3
+[stats] contigs.fa	contigs_greater_1k	4
+[stats] contigs.fa	percent_contigs_greater_1m	50.00
+[stats] contigs.fa	percent_contigs_greater_100k	50.00
+[stats] contigs.fa	percent_contigs_greater_10k	75.00
+[stats] contigs.fa	percent_contigs_greater_1k	100.00
+[dragonflye] Using genome graph file 'flye/assembly_graph.gfa' => 'flye-unpolished.gfa'
+[dragonflye] Walltime used: 9 min 28 sec
+[dragonflye] Results in: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm
+[dragonflye] Final assembly graph: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm/flye-unpolished.gfa
+[dragonflye] Final assembly contigs: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm/contigs.fa
+[dragonflye] Dragonflye is heavily based off Shovill (https://github.com/tseemann/shovill), the Illumina counterpart
+[dragonflye] Done.

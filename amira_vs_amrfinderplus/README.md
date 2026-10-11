@@ -85,3 +85,22 @@ Tools: myloasm 0.7.0 (defaults) → Polypolish 0.7.1 (bwa `-a`, `filter`, `polis
 - Trials: `--quality-value-cutoff 85` (keeps 93 % of reads instead of 58 %) was **worse** (359 contigs, 9.5 Mb, N50 43 kb), so defaults were kept.
 - Method caveat: error rate is `NM / aligned block length` from `minimap2 -cx asm5` against truth. Because the assembly is redundant, aligned bases exceed what a single copy would give, so treat it as a rough comparison between stages, not a formal QV.
 - This isolate carries essentially no acquired resistance, so it tests false positives and recovery of intrinsic genes, not detection of real resistance genes; a sample with plasmid-borne AMR genes, ideally R10 ONT, would be a more informative test of myloasm and Amira.
+
+### Same sample, assembled with **dragonflye** instead of myloasm
+Dragonflye 1.2.1 (Flye 2.9.x `--nano-raw` + 1 Racon round + dnaapler reorientation; `--gsize 5.5m`, other defaults, no Medaka), then the same Polypolish → pypolca steps
+(`scripts/fwsec0007.sh dragonflye | polish_df | amrfinder_df`; 9.5 min assembly). Accuracy is against the complete genome, same method and caveats as above
+(`results/FWSEC0007/summary/`).
+
+| stage | contigs | total | truth covered | error vs truth | ≈QV |
+|---|---|---|---|---|---|
+| myloasm | 272 | 7.94 Mb | 86.0 % | 1.77 % | 17.5 |
+| myloasm + Polypolish + pypolca | 272 | 7.97 Mb | 90.2 % | 0.53 % | 22.7 |
+| dragonflye (Flye) | 12 | 5.43 Mb | 93.8 % | 1.60 % | 17.9 |
+| dragonflye (Flye + Racon) | 4 | 5.45 Mb | 100 % | 0.79 % | 21.0 |
+| dragonflye + Polypolish | 4 | 5.48 Mb | 100 % | 0.037 % | 34.3 |
+| **dragonflye + Polypolish + pypolca** | **4** | **5.48 Mb** | **100 %** | **0.030 %** | **35.2** |
+
+- Dragonflye's final assembly is 4 contigs (chromosome split in two, 3.76 + 1.62 Mb; one circular 72.8 kb plasmid-sized contig; one 1.5 kb low-coverage contig), versus 272 for myloasm on the same R9-era reads.
+- **AMR calls from the final dragonflye assembly match the truth genome exactly** (acrF, mdtM, blaEC) with **no spurious frameshift calls**. The raw Flye and Racon stages show false “POINT_DISRUPT” calls
+  (acrR, marR, cirA) and miss all three genes; **Polypolish is what fixes it** (Racon 0.79 % → Polypolish 0.037 % error); pypolca adds a small further gain (0.037 → 0.030 %). Amira's single blaEC call is consistent with this.
+- One isolate, one run per tool, ~57x of older ONT chemistry: this is a worked example, not a benchmark of the assemblers in general. myloasm is built for R10 reads, so this comparison is unfavourable to it.

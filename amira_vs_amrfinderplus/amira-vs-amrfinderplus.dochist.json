@@ -5,7 +5,7 @@
   "description": "Amira (SRR13116389 ONT reads) vs AMRFinderPlus (GCF_025392675.1 assembly)",
   "status": "active",
   "created_at": "2026-10-10T20:39:43.334080449Z",
-  "updated_at": "2026-10-11T03:34:55.441169722Z",
+  "updated_at": "2026-10-11T03:59:34.306026147Z",
   "environment": {
     "user": "unknown",
     "hostname": "vm",
@@ -21743,6 +21743,358 @@
         "results/FWSEC0007/summary/assembly_accuracy.tsv"
       ],
       "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0028",
+      "seq": 28,
+      "command_line": "pixi install -e asm",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T03:35:50.066652221Z",
+      "finished_at": "2026-10-11T03:36:23.281468471Z",
+      "duration_ms": 33214,
+      "exit_code": 0,
+      "stdout_tail": "",
+      "stderr_tail": "The asm environment has been installed.\n",
+      "artifacts_created": [],
+      "artifacts_modified": [
+        "pixi.lock"
+      ],
+      "tools": [
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0029",
+      "seq": 29,
+      "command_line": "bash scripts/fwsec0007.sh dragonflye",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T03:36:43.428959633Z",
+      "finished_at": "2026-10-11T03:46:11.496875855Z",
+      "duration_ms": 568067,
+      "exit_code": 0,
+      "stdout_tail": "... [truncated] ...41842 s\r[racon::Polisher::polish] generating consensus [=============>      ] 50.907991 s\r[racon::Polisher::polish] generating consensus [==============>     ] 54.382528 s\r[racon::Polisher::polish] generating consensus [===============>    ] 58.400443 s\r[racon::Polisher::polish] generating consensus [================>   ] 62.108641 s\r[racon::Polisher::polish] generating consensus [=================>  ] 65.965738 s\r[racon::Polisher::polish] generating consensus [==================> ] 69.946054 s\r[racon::Polisher::polish] generating consensus [===================>] 73.532057 s\r[racon::Polisher::polish] generating consensus [====================] 77.217780 s\n[polishing - racon (1 of 1)] [racon::Polisher::] total = 109.207173 s\n[dnaapler] 2026-10-11 03:45:24.895 | INFO     | dnaapler.utils.validation:instantiate_dirs:29 - Checking the output directory flye/reorient\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:74 - You are using dnaapler version 1.4.0\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:75 - Repository homepage is https://github.com/gbouras13/dnaapler\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:76 - Written by George Bouras: george.bouras@adelaide.edu.au\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:77 - Your input file is contigs.fa\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:78 - Your output directory  is flye/reorient\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:79 - You have specified 4 threads to use with MMseqs2\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:begin_dnaapler:80 - You have specified all gene(s) to reorient your sequence\n[dnaapler] 2026-10-11 03:45:24.900 | INFO     | dnaapler.utils.util:check_mmseqs2_version:122 - Checking MMseqs2 installation.\n[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_mmseqs2_version:142 - MMseqs2 version found is 18.8cc5c\n[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_mmseqs2_version:156 - MMseqs2 version is ok.\n[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_pyrodigal_version:95 - Checking pyrodigal installation.\n[dnaapler] 2026-10-11 03:45:24.907 | INFO     | dnaapler.utils.util:check_pyrodigal_version:106 - Pyrodigal version is v3.7.1\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:check_pyrodigal_version:107 - Pyrodigal version is ok.\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --input contigs.fa\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --output flye/reorient\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --threads 4\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --force True\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --prefix contigs\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --evalue 1e-10\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --autocomplete none\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --seed_value 13\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --ignore \n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --custom_db \n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.util:begin_dnaapler:85 - Parameter: --db all\n[dnaapler] 2026-10-11 03:45:24.908 | INFO     | dnaapler.utils.validation:validate_input_all:156 - Checking that the input file contigs.fa is in FASTA or GFA format and has at least 1 entry.\n[dnaapler] 2026-10-11 03:45:24.926 | INFO     | dnaapler.utils.validation:check_file_format:105 - contigs.fa is in FASTA format.\n[dnaapler] 2026-10-11 03:45:24.956 | INFO     | dnaapler.utils.validation:validate_input_all:163 - contigs.fa has more than one entry.\n[dnaapler] 2026-10-11 03:45:24.986 | INFO     | dnaapler.utils.validation:check_evalue:228 - You have specified an evalue of 1e-10.\n[dnaapler] 2026-10-11 03:45:24.986 | INFO     | dnaapler:all:1029 - No contigs specified to ignore.\n[dnaapler] mmseqs easy-search flye/reorient/rotated_input.fasta /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/lib/python3.10/site-packages/dnaapler/db/all_db flye/reorient/contigs_MMseqs2_output.txt flye/reorient/tmp_MMseqs2_output --search-type 2  --threads 4 -e 1e-10 --format-output query,qlen,target,tlen,alnlen,qstart,qend,tstart,tend,fident,nident,gapopen,mismatch,evalue,bits,qaln,taln\n[dnaapler] 2026-10-11 03:45:25.046 | INFO     | dnaapler.utils.external_tools:run:52 - Started running mmseqs easy-search flye/reorient/rotated_input.fasta /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/lib/python3.10/site-packages/dnaapler/db/all_db flye/reorient/contigs_MMseqs2_output.txt flye/reorient/tmp_MMseqs2_output --search-type 2 --threads 4 -e 1e-10 --format-output query,qlen,target,tlen,alnlen,qstart,qend,tstart,tend,fident,nident,gapopen,mismatch,evalue,bits,qaln,taln ...\n[dnaapler] 2026-10-11 03:46:04.863 | INFO     | dnaapler.utils.external_tools:run:54 - Done running mmseqs easy-search flye/reorient/rotated_input.fasta /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/lib/python3.10/site-packages/dnaapler/db/all_db flye/reorient/contigs_MMseqs2_output.txt flye/reorient/tmp_MMseqs2_output --search-type 2 --threads 4 -e 1e-10 --format-output query,qlen,target,tlen,alnlen,qstart,qend,tstart,tend,fident,nident,gapopen,mismatch,evalue,bits,qaln,taln\n[dnaapler] 2026-10-11 03:46:05.185 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:506 - The top MMseqs2 hit for the contig contig00002 did not begin with a valid start codon.\n[dnaapler] 2026-10-11 03:46:05.185 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:509 - Searching with pyrodigal for the CDS overlapping the most with the top MMseqs2 hit to reorient with.\n[dnaapler] 2026-10-11 03:46:10.386 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:506 - The top MMseqs2 hit for the contig contig00003 did not begin with a valid start codon.\n[dnaapler] 2026-10-11 03:46:10.386 | WARNING  | dnaapler.utils.processing:reorient_single_record_bulk:509 - Searching with pyrodigal for the CDS overlapping the most with the top MMseqs2 hit to reorient with.\n[dnaapler] 2026-10-11 03:46:10.616 | INFO     | dnaapler.utils.util:end_dnaapler:173 - dnaapler has finished\n[dnaapler] 2026-10-11 03:46:10.616 | INFO     | dnaapler.utils.util:end_dnaapler:174 - Elapsed time: 45.72 seconds\n[stats] contigs.fa\tsample\tcontigs.fa\n[stats] contigs.fa\ttotal_contig\t4\n[stats] contigs.fa\ttotal_contig_length\t5453654\n[stats] contigs.fa\tmax_contig_length\t3757405\n[stats] contigs.fa\tmean_contig_length\t1363413\n[stats] contigs.fa\tmedian_contig_length\t847366\n[stats] contigs.fa\tmin_contig_length\t1516\n[stats] contigs.fa\tn50_contig_length\t3757405\n[stats] contigs.fa\tl50_contig_count\t1\n[stats] contigs.fa\tnum_contig_non_acgtn\t0\n[stats] contigs.fa\tcontig_percent_a\t24.63\n[stats] contigs.fa\tcontig_percent_c\t25.58\n[stats] contigs.fa\tcontig_percent_g\t25.27\n[stats] contigs.fa\tcontig_percent_t\t24.52\n[stats] contigs.fa\tcontig_percent_n\t0.00\n[stats] contigs.fa\tcontig_non_acgtn\t0.00\n[stats] contigs.fa\tcontigs_greater_1m\t2\n[stats] contigs.fa\tcontigs_greater_100k\t2\n[stats] contigs.fa\tcontigs_greater_10k\t3\n[stats] contigs.fa\tcontigs_greater_1k\t4\n[stats] contigs.fa\tpercent_contigs_greater_1m\t50.00\n[stats] contigs.fa\tpercent_contigs_greater_100k\t50.00\n[stats] contigs.fa\tpercent_contigs_greater_10k\t75.00\n[stats] contigs.fa\tpercent_contigs_greater_1k\t100.00\nREADS.filt.fq.gz\nREADS.fq.gz\ncontigs.dnaapler.summary.tsv\ncontigs.fa\ncontigs.reoriented.fa\ndragonflye.log\nflye\nflye-info.txt\nflye-unpolished.fasta\nflye-unpolished.gfa\nflye.fasta\n",
+      "stderr_tail": "... [truncated] ...[dragonflye] Using any2fasta - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/any2fasta | any2fasta 0.8.1\n[dragonflye] Using assembly-scan - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/assembly-scan | assembly-scan 1.0.0\n[dragonflye] Using bwa - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/bwa | Version: 0.7.19-r1273\n[dragonflye] Using dnaapler - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/dnaapler | dnaapler, version 1.4.0\n[dragonflye] Using fastp - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/fastp | fastp 1.4.0\n[dragonflye] Using flye - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/flye | 2.9.6-b1802\n[dragonflye] Using kmc - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/kmc | K-Mer Counter (KMC) ver. 3.2.4 (2024-02-09)\n[dragonflye] Using medaka - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/medaka | medaka 2.2.1\n[dragonflye] Using miniasm - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/miniasm | 0.3-r179\n[dragonflye] Using minimap2 - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/minimap2 | 2.31-r1302\n[dragonflye] Using nanoq - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/nanoq | nanoq 0.10.0\n[dragonflye] Using pigz - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/pigz | pigz 2.8\n[dragonflye] Using pilon - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/pilon | Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=43023 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=\n[dragonflye] Using polypolish - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/polypolish | Polypolish 0.7.1\n[dragonflye] Using porechop - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/porechop | 0.2.4\n[dragonflye] Using racon - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/racon | 1.5.0\n[dragonflye] Using rasusa - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/rasusa | rasusa 5.1.0\n[dragonflye] Using raven - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/raven | 1.8.3\n[dragonflye] Using samclip - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/samclip | samclip 0.4.0\n[dragonflye] Using samtools - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/samtools | Version: 1.24 (using htslib 1.24)\n[dragonflye] Using seqtk - /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/asm/bin/seqtk | Version: 1.5-r133\n[dragonflye] Using tempdir: /tmp/OvCmmNdVza\n[dragonflye] Changing into folder: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm\n[dragonflye] Collecting raw read statistics with 'seqtk'\n[dragonflye] Running: seqtk fqchk -q3 \\/home\\/user\\/sandbox\\-202407\\/amira_vs_amrfinderplus\\/data\\/FWSEC0007\\/SRR7896269_1\\.fastq\\.gz 2>&1 1>/tmp/ijrmn7z82w | sed 's/^/[seqtk] /' | tee -a dragonflye.log\n[dragonflye] Read stats: max_len = 76506\n[dragonflye] Read stats: total_bp = 312097027\n[dragonflye] Read stats: avg_len = 3121\n[dragonflye] Read stats: min_len = 160\n[dragonflye] Using genome size 5500000 bp\n[dragonflye] Estimated sequencing depth: 56x\n[dragonflye] Filter reads based on length and/or quality\n[dragonflye] Running: nanoq --min-len 1000 --input /home/user/sandbox-202407/amira_vs_amrfinderplus/data/FWSEC0007/SRR7896269_1.fastq.gz --min-qual 0 2>&1 1> READS.filt.fq | sed 's/^/[nanoq] /' | tee -a dragonflye.log\n[dragonflye] Running: pigz -f -p 4 --fast READS.filt.fq 2>&1 | sed 's/^/[pigz] /' | tee -a dragonflye.log\n[dragonflye] No read depth reduction requested or necessary.\n[dragonflye] No read adapter trimming requested.\n[dragonflye] Running: ln -sf READS\\.filt\\.fq\\.gz READS.fq.gz 2>&1 | sed 's/^/[ln] /' | tee -a dragonflye.log\n[dragonflye] Collecting qc'd read statistics with 'seqtk'\n[dragonflye] Running: seqtk fqchk -q3 READS\\.fq\\.gz 2>&1 1>/tmp/pIiGVi8G3r | sed 's/^/[seqtk] /' | tee -a dragonflye.log\n[dragonflye] Final Read stats: avg_len = 4183\n[dragonflye] Final Read stats: max_len = 76506\n[dragonflye] Final Read stats: total_bp = 292684028\n[dragonflye] Final Read stats: min_len = 1000\n[dragonflye] Average read length looks like 4183 bp\n[dragonflye] Assembling reads with 'flye'\n[dragonflye] Running: flye --nano-raw READS.fq.gz -g 5500000 -i 0 --threads 4 -o flye  2>&1 | sed 's/^/[flye] /' | tee -a dragonflye.log\n[dragonflye] Polishing with Racon (1 rounds)\n[dragonflye] Running: minimap2 -t 3 -x map-ont flye.fasta READS.fq.gz 2>&1  1> flye/polish/racon/1/aligments.paf | sed 's/^/[polishing - racon (1 of 1)] /' | tee -a dragonflye.log\n[dragonflye] Running: racon -t 4 READS.fq.gz flye/polish/racon/1/aligments.paf flye.fasta 2>&1 1> flye/polish/racon/1/consensus.fasta | sed 's/^/[polishing - racon (1 of 1)] /' | tee -a dragonflye.log\n[dragonflye] Using assembly file 'flye/polish/racon/1/consensus.fasta' => 'flye.fasta'\n[dragonflye] Matched contig_1 to contig_1_LN:i:3757405_RC:i:48411_XC:f:1.000000\n[dragonflye] Matched contig_2 to contig_2_LN:i:1621958_RC:i:20495_XC:f:1.000000\n[dragonflye] Matched contig_18 to contig_18_LN:i:72775_RC:i:878_XC:f:1.000000\n[dragonflye] Matched contig_3 to contig_3_LN:i:4337_RC:i:74_XC:f:1.000000\n[dragonflye] Removing low coverage contig (0x < 2x): contig_3_LN:i:4337_RC:i:74_XC:f:1.000000\n[dragonflye] Matched contig_13 to contig_13_LN:i:3005_RC:i:18_XC:f:1.000000\n[dragonflye] Removing low coverage contig (0x < 2x): contig_13_LN:i:3005_RC:i:18_XC:f:1.000000\n[dragonflye] Matched contig_16 to contig_16_LN:i:1908_RC:i:7_XC:f:0.750000\n[dragonflye] Removing low coverage contig (0x < 2x): contig_16_LN:i:1908_RC:i:7_XC:f:0.750000\n[dragonflye] Matched contig_17 to contig_17_LN:i:1516_RC:i:5_XC:f:1.000000\n[dragonflye] Matched contig_11 to contig_11_LN:i:674_RC:i:2_XC:f:1.000000\n[dragonflye] Removing low coverage contig (0x < 2x): contig_11_LN:i:674_RC:i:2_XC:f:1.000000\n[dragonflye] Writing final assembly file => 'contigs.fa'\n[dragonflye] Reorienting contigs with dnaapler\n[dragonflye] Running: dnaapler all --input contigs.fa --output flye/reorient --threads 4 --prefix contigs --force  2>&1 | sed 's/^/[dnaapler] /' | tee -a dragonflye.log\n[dragonflye] Running: mv flye/reorient/contigs_all_reorientation_summary.tsv ./contigs.dnaapler.summary.tsv | sed 's/^/[mv] /' | tee -a dragonflye.log\n[dragonflye] Running: mv flye/reorient/contigs_reoriented.fasta ./contigs.reoriented.fa | sed 's/^/[mv] /' | tee -a dragonflye.log\n[dragonflye] Assembly is 5453654, estimated genome size was 5500000 (-0.84%)\n[dragonflye] It contains 4 (min=500) contigs totalling 5453654 bp.\n[dragonflye] Getting more stats now...\n[dragonflye] Running: assembly-scan --transpose contigs.fa 2>&1 | sed 's/^/[stats] /' | tee -a dragonflye.log\n[dragonflye] Using genome graph file 'flye/assembly_graph.gfa' => 'flye-unpolished.gfa'\n[dragonflye] Walltime used: 9 min 28 sec\n[dragonflye] Results in: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm\n[dragonflye] Final assembly graph: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm/flye-unpolished.gfa\n[dragonflye] Final assembly contigs: /home/user/sandbox-202407/amira_vs_amrfinderplus/results/FWSEC0007/dragonflye/asm/contigs.fa\n[dragonflye] Dragonflye is heavily based off Shovill (https://github.com/tseemann/shovill), the Illumina counterpart\n[dragonflye] Done.\n",
+      "artifacts_created": [
+        "results/FWSEC0007/dragonflye/asm/READS.filt.fq.gz",
+        "results/FWSEC0007/dragonflye/asm/contigs.dnaapler.summary.tsv",
+        "results/FWSEC0007/dragonflye/asm/contigs.fa",
+        "results/FWSEC0007/dragonflye/asm/contigs.reoriented.fa",
+        "results/FWSEC0007/dragonflye/asm/dragonflye.log",
+        "results/FWSEC0007/dragonflye/asm/flye-info.txt",
+        "results/FWSEC0007/dragonflye/asm/flye-unpolished.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye-unpolished.gfa",
+        "results/FWSEC0007/dragonflye/asm/flye.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/00-assembly/draft_assembly.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/00-assembly/draft_assembly.fasta.fai",
+        "results/FWSEC0007/dragonflye/asm/flye/10-consensus/consensus.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/10-consensus/minimap.bam.csi",
+        "results/FWSEC0007/dragonflye/asm/flye/10-consensus/minimap.stderr",
+        "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_after_rr.gv",
+        "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_before_rr.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_before_rr.gfa",
+        "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_before_rr.gv",
+        "results/FWSEC0007/dragonflye/asm/flye/20-repeat/read_alignment_dump",
+        "results/FWSEC0007/dragonflye/asm/flye/20-repeat/repeat_graph_dump",
+        "results/FWSEC0007/dragonflye/asm/flye/20-repeat/repeat_graph_edges.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/30-contigger/contigs.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/30-contigger/contigs_stats.txt",
+        "results/FWSEC0007/dragonflye/asm/flye/30-contigger/graph_final.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/30-contigger/graph_final.gfa",
+        "results/FWSEC0007/dragonflye/asm/flye/30-contigger/graph_final.gv",
+        "results/FWSEC0007/dragonflye/asm/flye/30-contigger/scaffolds_links.txt",
+        "results/FWSEC0007/dragonflye/asm/flye/assembly.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/assembly_graph.gv",
+        "results/FWSEC0007/dragonflye/asm/flye/assembly_info.txt",
+        "results/FWSEC0007/dragonflye/asm/flye/flye.log",
+        "results/FWSEC0007/dragonflye/asm/flye/params.json",
+        "results/FWSEC0007/dragonflye/asm/flye/polish/racon/1/aligments.paf",
+        "results/FWSEC0007/dragonflye/asm/flye/polish/racon/1/consensus.fasta",
+        "results/FWSEC0007/dragonflye/asm/flye/reorient/contigs_MMseqs2_output.txt",
+        "results/FWSEC0007/dragonflye/asm/flye/reorient/dnaapler_1791690324.8959575.log",
+        "results/FWSEC0007/dragonflye/asm/flye/reorient/logs/mmseqs easy-search_a5172c05de2048d943a661d297e35de44ef9d64c10ea81378ebabfe9c26dd530.err",
+        "results/FWSEC0007/dragonflye/asm/flye/reorient/logs/mmseqs easy-search_a5172c05de2048d943a661d297e35de44ef9d64c10ea81378ebabfe9c26dd530.out"
+      ],
+      "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "bash",
+          "path": "/usr/bin/bash",
+          "sha256": "bc5945feb8bd26203ebfafea5ce1878bb2e32cb8fb50ab7ae395cfb1e1aaaef1",
+          "version": "GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)",
+          "version_probe": "--version"
+        },
+        {
+          "name": "cp",
+          "path": "/usr/bin/cp",
+          "sha256": "95cdd604fdf0a292e349d27d1a80170ca0913bd3bbd9d2c0fcfc6c8adaebe2f0",
+          "version": "cp (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "rm",
+          "path": "/usr/bin/rm",
+          "sha256": "78721a1709e77e74163f73067cef7049496463325adb300f4b7fd6155fca1c62",
+          "version": "rm (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "ls",
+          "path": "/usr/bin/ls",
+          "sha256": "2726eb35864608ff34969fbf45ef4afcbba95eefed5ce5653c9c0124c4cd26cf",
+          "version": "ls (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "curl",
+          "path": "/usr/bin/curl",
+          "sha256": "8fb310957fb556e3f66a2d66418d72ad5487569f5855cae5ca782ca215b08133",
+          "version": "curl 8.5.0 (x86_64-pc-linux-gnu) libcurl/8.5.0 OpenSSL/3.0.13 zlib/1.3 brotli/1.1.0 zstd/1.5.5 libidn2/2.3.7 libpsl/0.21.2 (+libidn2/2.3.7) libssh/0.10.6/openssl/zlib nghttp2/1.59.0 librtmp/2.3 OpenLD…",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "gzip",
+          "path": "/usr/bin/gzip",
+          "sha256": "afea077ce127d4fa9ad410d3066ba2b54dea19c0b44f04adf56c72d5f7b7a9bb",
+          "version": "gzip 1.12",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "scripts/fwsec0007.sh",
+          "path": "/home/user/sandbox-202407/amira_vs_amrfinderplus/scripts/fwsec0007.sh",
+          "sha256": "29d047b634ca4a14ed97b0f42ce9e8d447d22d0a55b51d2bc01c54a37f2fd713",
+          "version": "shell script"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0030",
+      "seq": 30,
+      "command_line": "bash scripts/fwsec0007.sh polish_df",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T03:46:24.268348772Z",
+      "finished_at": "2026-10-11T03:52:55.049073904Z",
+      "duration_ms": 390780,
+      "exit_code": 0,
+      "stdout_tail": "\b\n                         _           \n _ __  _   _ _ __   ___ | | ___ __ _ \n| '_ \\| | | | '_ \\ / _ \\| |/ __/ _` |\n| |_) | |_| | |_) | (_) | | (_| (_| |\n| .__/ \\__, | .__/ \\___/|_|\\___\\__,_|\n|_|    |___/|_| \n\n\n",
+      "stderr_tail": "... [truncated] ...7.715 | INFO     | pypolca.utils.validation:instantiate_dirs:28 - --force was specified even though the output directory does not already exist. Continuing.\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:84 - pypolca: Standalone Python implementation of the POLCA polisher from MaSuRCA\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:87 - You are using pypolca version 0.5.0\n\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:88 - Repository homepage is https://github.com/gbouras13/pypolca.\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:89 - Written by George Bouras: george.bouras@adelaide.edu.au adapting the original POLCA code by Aleksey Zimin.\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:93 - Listing input parameters.\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --assembly results/FWSEC0007/dragonflye/polish/polypolish.fasta.\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --reads1 data/FWSEC0007/SRR7896254_1.fastq.gz.\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --reads2 data/FWSEC0007/SRR7896254_2.fastq.gz.\n2026-10-11 03:48:57.720 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --reads_se None.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --output results/FWSEC0007/dragonflye/polish/pypolca.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --threads 4.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --force True.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --careful True.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --min_alt 4.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --min_ratio 3.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --homopolymers None.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --memory_limit 2G.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --no_polish False.\n2026-10-11 03:48:57.721 | INFO     | pypolca.utils.util:begin_pypolca:95 - Parameter: --prefix pypolca.\n2026-10-11 03:48:57.739 | INFO     | pypolca.utils.validation:check_dependencies:112 - Samtools v1.24 found.\n2026-10-11 03:48:57.746 | INFO     | pypolca.utils.validation:check_dependencies:123 - freebayes v1.3.10 found.\n2026-10-11 03:48:57.748 | INFO     | pypolca.utils.validation:check_dependencies:140 - bwa v0.7.19-r1273 found.\n2026-10-11 03:48:57.748 | INFO     | pypolca.utils.validation:validate_fasta:46 - Checking that the input file results/FWSEC0007/dragonflye/polish/polypolish.fasta is in FASTA format.\n2026-10-11 03:48:57.758 | INFO     | pypolca.utils.validation:validate_fasta:51 - results/FWSEC0007/dragonflye/polish/polypolish.fasta file checked.\n2026-10-11 03:48:57.759 | INFO     | pypolca.utils.validation:validate_fastq:73 - FASTQ data/FWSEC0007/SRR7896254_1.fastq.gz checked\n2026-10-11 03:48:57.759 | INFO     | pypolca.utils.validation:validate_fastq:73 - FASTQ data/FWSEC0007/SRR7896254_2.fastq.gz checked\n2026-10-11 03:48:57.759 | INFO     | pypolca:run:266 - Checking memory limit of 2G.\n2026-10-11 03:48:57.759 | INFO     | pypolca:run:271 - Creating BWA index\n2026-10-11 03:48:57.761 | INFO     | pypolca.utils.external_tools:run:50 - Started running bwa index results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta ...\n2026-10-11 03:48:59.613 | INFO     | pypolca.utils.external_tools:run:52 - Done running bwa index results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta\n2026-10-11 03:48:59.614 | INFO     | pypolca:run:277 - Aligning reads with BWA\n2026-10-11 03:48:59.614 | INFO     | pypolca.utils.external_tools:run_to_stdout:59 - Started running bwa mem -SP -t 4 results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta data/FWSEC0007/SRR7896254_1.fastq.gz data/FWSEC0007/SRR7896254_2.fastq.gz ...\n2026-10-11 03:50:44.681 | INFO     | pypolca.utils.external_tools:run_to_stdout:61 - Done running bwa mem -SP -t 4 results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta data/FWSEC0007/SRR7896254_1.fastq.gz data/FWSEC0007/SRR7896254_2.fastq.gz\n2026-10-11 03:50:44.681 | INFO     | pypolca:run:284 - Sorting and indexing alignment file\n2026-10-11 03:50:44.682 | INFO     | pypolca.utils.external_tools:run:50 - Started running samtools view -h -@ 4 -b results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa.sam -o results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa.bam ...\n2026-10-11 03:50:52.047 | INFO     | pypolca.utils.external_tools:run:52 - Done running samtools view -h -@ 4 -b results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa.sam -o results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa.bam\n2026-10-11 03:50:52.048 | INFO     | pypolca.utils.external_tools:run:50 - Started running samtools sort -m 2G -@ 4 results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa.bam -o results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa_sorted.bam ...\n2026-10-11 03:51:05.845 | INFO     | pypolca.utils.external_tools:run:52 - Done running samtools sort -m 2G -@ 4 results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa.bam -o results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa_sorted.bam\n2026-10-11 03:51:05.846 | INFO     | pypolca.utils.external_tools:run:50 - Started running samtools index -@ 4 results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa_sorted.bam ...\n2026-10-11 03:51:06.633 | INFO     | pypolca.utils.external_tools:run:52 - Done running samtools index -@ 4 results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa_sorted.bam\n2026-10-11 03:51:06.633 | INFO     | pypolca:run:304 - Calling variants.\n2026-10-11 03:51:06.633 | INFO     | pypolca.utils.external_tools:run:50 - Started running samtools faidx results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta ...\n2026-10-11 03:51:06.651 | INFO     | pypolca.utils.external_tools:run:52 - Done running samtools faidx results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta\n2026-10-11 03:51:06.652 | INFO     | pypolca.utils.external_tools:run:50 - Started running freebayes -m 0 --min-coverage 3 -R 0 -p 1 -F 0.2 -E 0 -b results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa_sorted.bam -f results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta -v results/FWSEC0007/dragonflye/polish/pypolca/pypolca.vcf ...\n2026-10-11 03:52:53.515 | INFO     | pypolca.utils.external_tools:run:52 - Done running freebayes -m 0 --min-coverage 3 -R 0 -p 1 -F 0.2 -E 0 -b results/FWSEC0007/dragonflye/polish/pypolca/temp/temp_bwa_sorted.bam -f results/FWSEC0007/dragonflye/polish/pypolca/temp/assembly.fasta -v results/FWSEC0007/dragonflye/polish/pypolca/pypolca.vcf\n2026-10-11 03:52:53.678 | INFO     | pypolca.utils.fix_consensus_from_vcf:fix_consensus_from_vcf:148 - POLCA has found variants. Fixing\n2026-10-11 03:52:53.708 | INFO     | pypolca.utils.report:create_report:27 - Stats BEFORE polishing:\n2026-10-11 03:52:53.708 | INFO     | pypolca.utils.report:create_report:29 - Substitution Errors Found: 129\n2026-10-11 03:52:53.709 | INFO     | pypolca.utils.report:create_report:31 - Insertion/Deletion Errors Found: 503\n2026-10-11 03:52:53.709 | INFO     | pypolca.utils.report:create_report:33 - Assembly Size: 5477841\n2026-10-11 03:52:53.709 | INFO     | pypolca.utils.report:create_report:35 - Consensus Quality Before Polishing: 99.99\n2026-10-11 03:52:53.709 | INFO     | pypolca.utils.report:create_report:37 - Consensus QV Before Polishing: 39.38\n2026-10-11 03:52:53.709 | INFO     | pypolca:run:327 - Final report is in results/FWSEC0007/dragonflye/polish/pypolca/pypolca.report; polished assembly is in results/FWSEC0007/dragonflye/polish/pypolca/pypolca_corrected.fasta\n2026-10-11 03:52:55.004 | INFO     | pypolca.utils.util:end_pypolca:110 - pypolca has finished\n2026-10-11 03:52:55.004 | INFO     | pypolca.utils.util:end_pypolca:111 - Elapsed time: 237.29 seconds\n",
+      "artifacts_created": [
+        "results/FWSEC0007/dragonflye/polish/input.fasta",
+        "results/FWSEC0007/dragonflye/polish/input.fasta.amb",
+        "results/FWSEC0007/dragonflye/polish/input.fasta.ann",
+        "results/FWSEC0007/dragonflye/polish/input.fasta.bwt",
+        "results/FWSEC0007/dragonflye/polish/input.fasta.pac",
+        "results/FWSEC0007/dragonflye/polish/input.fasta.sa",
+        "results/FWSEC0007/dragonflye/polish/polypolish.fasta",
+        "results/FWSEC0007/dragonflye/polish/polypolish_pypolca.fasta",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/bwa_32eef2f46322ac7891a088e4c38fe33c2fad90a503340bce78f7064d96515f9a.err",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/bwa_32eef2f46322ac7891a088e4c38fe33c2fad90a503340bce78f7064d96515f9a.out",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/bwa_de58afa209334fccc36ede110dac06f67699edc1aa97b67733eb72e28e698f1c.err",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/freebayes_6640623aebe6b20dd26fa64845087a3aeabb76e04621a9feb9a894c97c86e41d.err",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/freebayes_6640623aebe6b20dd26fa64845087a3aeabb76e04621a9feb9a894c97c86e41d.out",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_085197f6b55fc68759d241004386654b05301805d0ca0f119a10797d04e0fa2e.err",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_085197f6b55fc68759d241004386654b05301805d0ca0f119a10797d04e0fa2e.out",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_41bb8bc3ad61a6269c895d4fa68d29d7a18ee5e5fa2f0dbbb26e60ac81ec9773.err",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_41bb8bc3ad61a6269c895d4fa68d29d7a18ee5e5fa2f0dbbb26e60ac81ec9773.out",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_70330d83bc7725fcffa4fa38571f6d3e1c8fd353b8f596d9eea0a674558b0559.err",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_70330d83bc7725fcffa4fa38571f6d3e1c8fd353b8f596d9eea0a674558b0559.out",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_dbe35d302ca09005dce26bacfd9fc35680910f2cc793ee41e5fffa7685bd2391.err",
+        "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_dbe35d302ca09005dce26bacfd9fc35680910f2cc793ee41e5fffa7685bd2391.out",
+        "results/FWSEC0007/dragonflye/polish/pypolca/pypolca.report",
+        "results/FWSEC0007/dragonflye/polish/pypolca/pypolca.vcf",
+        "results/FWSEC0007/dragonflye/polish/pypolca/pypolca_1791690537.7153127.log",
+        "results/FWSEC0007/dragonflye/polish/pypolca/pypolca_corrected.fasta"
+      ],
+      "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "bash",
+          "path": "/usr/bin/bash",
+          "sha256": "bc5945feb8bd26203ebfafea5ce1878bb2e32cb8fb50ab7ae395cfb1e1aaaef1",
+          "version": "GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)",
+          "version_probe": "--version"
+        },
+        {
+          "name": "cp",
+          "path": "/usr/bin/cp",
+          "sha256": "95cdd604fdf0a292e349d27d1a80170ca0913bd3bbd9d2c0fcfc6c8adaebe2f0",
+          "version": "cp (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "rm",
+          "path": "/usr/bin/rm",
+          "sha256": "78721a1709e77e74163f73067cef7049496463325adb300f4b7fd6155fca1c62",
+          "version": "rm (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "ls",
+          "path": "/usr/bin/ls",
+          "sha256": "2726eb35864608ff34969fbf45ef4afcbba95eefed5ce5653c9c0124c4cd26cf",
+          "version": "ls (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "curl",
+          "path": "/usr/bin/curl",
+          "sha256": "8fb310957fb556e3f66a2d66418d72ad5487569f5855cae5ca782ca215b08133",
+          "version": "curl 8.5.0 (x86_64-pc-linux-gnu) libcurl/8.5.0 OpenSSL/3.0.13 zlib/1.3 brotli/1.1.0 zstd/1.5.5 libidn2/2.3.7 libpsl/0.21.2 (+libidn2/2.3.7) libssh/0.10.6/openssl/zlib nghttp2/1.59.0 librtmp/2.3 OpenLD…",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "gzip",
+          "path": "/usr/bin/gzip",
+          "sha256": "afea077ce127d4fa9ad410d3066ba2b54dea19c0b44f04adf56c72d5f7b7a9bb",
+          "version": "gzip 1.12",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "scripts/fwsec0007.sh",
+          "path": "/home/user/sandbox-202407/amira_vs_amrfinderplus/scripts/fwsec0007.sh",
+          "sha256": "29d047b634ca4a14ed97b0f42ce9e8d447d22d0a55b51d2bc01c54a37f2fd713",
+          "version": "shell script"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0031",
+      "seq": 31,
+      "command_line": "bash scripts/fwsec0007.sh amrfinder_df",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T03:53:17.512124820Z",
+      "finished_at": "2026-10-11T03:59:14.208440949Z",
+      "duration_ms": 356696,
+      "exit_code": 0,
+      "stdout_tail": "",
+      "stderr_tail": "Running: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/amrfinder -n results/FWSEC0007/dragonflye/asm/flye-unpolished.fasta -O Escherichia --plus --threads 4 -o results/FWSEC0007/dragonflye/amrfinder/flye.tsv\nSoftware directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/\nSoftware version: 4.2.7\nDatabase directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/share/amrfinderplus/data/2026-08-07.1\nDatabase version: 2026-08-07.1\nAMRFinder translated nucleotide and mutation search\nRunning tblastn\nRunning blastn\nRunning stxtyper\nMaking report\namrfinder took 100 seconds to complete\nRunning: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/amrfinder -n results/FWSEC0007/dragonflye/polish/input.fasta -O Escherichia --plus --threads 4 -o results/FWSEC0007/dragonflye/amrfinder/racon.tsv\nSoftware directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/\nSoftware version: 4.2.7\nDatabase directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/share/amrfinderplus/data/2026-08-07.1\nDatabase version: 2026-08-07.1\nAMRFinder translated nucleotide and mutation search\nRunning tblastn\nRunning blastn\nRunning stxtyper\nMaking report\namrfinder took 92 seconds to complete\nRunning: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/amrfinder -n results/FWSEC0007/dragonflye/polish/polypolish.fasta -O Escherichia --plus --threads 4 -o results/FWSEC0007/dragonflye/amrfinder/polypolish.tsv\nSoftware directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/\nSoftware version: 4.2.7\nDatabase directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/share/amrfinderplus/data/2026-08-07.1\nDatabase version: 2026-08-07.1\nAMRFinder translated nucleotide and mutation search\nRunning tblastn\nRunning blastn\nRunning stxtyper\nMaking report\namrfinder took 82 seconds to complete\nRunning: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/amrfinder -n results/FWSEC0007/dragonflye/polish/polypolish_pypolca.fasta -O Escherichia --plus --threads 4 -o results/FWSEC0007/dragonflye/amrfinder/polished.tsv\nSoftware directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/bin/\nSoftware version: 4.2.7\nDatabase directory: /home/user/sandbox-202407/amira_vs_amrfinderplus/.pixi/envs/amrfinder/share/amrfinderplus/data/2026-08-07.1\nDatabase version: 2026-08-07.1\nAMRFinder translated nucleotide and mutation search\nRunning tblastn\nRunning blastn\nRunning stxtyper\nMaking report\namrfinder took 83 seconds to complete\n",
+      "artifacts_created": [
+        "results/FWSEC0007/dragonflye/amrfinder/flye.tsv",
+        "results/FWSEC0007/dragonflye/amrfinder/polished.tsv",
+        "results/FWSEC0007/dragonflye/amrfinder/polypolish.tsv",
+        "results/FWSEC0007/dragonflye/amrfinder/racon.tsv"
+      ],
+      "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "bash",
+          "path": "/usr/bin/bash",
+          "sha256": "bc5945feb8bd26203ebfafea5ce1878bb2e32cb8fb50ab7ae395cfb1e1aaaef1",
+          "version": "GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)",
+          "version_probe": "--version"
+        },
+        {
+          "name": "cp",
+          "path": "/usr/bin/cp",
+          "sha256": "95cdd604fdf0a292e349d27d1a80170ca0913bd3bbd9d2c0fcfc6c8adaebe2f0",
+          "version": "cp (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "pixi",
+          "path": "/root/.pixi/bin/pixi",
+          "sha256": "248510f5f75460a2ae4ec62d761e15c0191dc35db3b1da6f82d9f17c6017051d",
+          "version": "pixi 0.81.0",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "rm",
+          "path": "/usr/bin/rm",
+          "sha256": "78721a1709e77e74163f73067cef7049496463325adb300f4b7fd6155fca1c62",
+          "version": "rm (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "ls",
+          "path": "/usr/bin/ls",
+          "sha256": "2726eb35864608ff34969fbf45ef4afcbba95eefed5ce5653c9c0124c4cd26cf",
+          "version": "ls (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "curl",
+          "path": "/usr/bin/curl",
+          "sha256": "8fb310957fb556e3f66a2d66418d72ad5487569f5855cae5ca782ca215b08133",
+          "version": "curl 8.5.0 (x86_64-pc-linux-gnu) libcurl/8.5.0 OpenSSL/3.0.13 zlib/1.3 brotli/1.1.0 zstd/1.5.5 libidn2/2.3.7 libpsl/0.21.2 (+libidn2/2.3.7) libssh/0.10.6/openssl/zlib nghttp2/1.59.0 librtmp/2.3 OpenLD…",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "gzip",
+          "path": "/usr/bin/gzip",
+          "sha256": "afea077ce127d4fa9ad410d3066ba2b54dea19c0b44f04adf56c72d5f7b7a9bb",
+          "version": "gzip 1.12",
+          "version_probe": "--version",
+          "origin": "scripts/fwsec0007.sh"
+        },
+        {
+          "name": "scripts/fwsec0007.sh",
+          "path": "/home/user/sandbox-202407/amira_vs_amrfinderplus/scripts/fwsec0007.sh",
+          "sha256": "29d047b634ca4a14ed97b0f42ce9e8d447d22d0a55b51d2bc01c54a37f2fd713",
+          "version": "shell script"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0032",
+      "seq": 32,
+      "command_line": "pixi run -e amira python -I scripts/fwsec_summary.py results/FWSEC0007/summary",
+      "cwd": "/home/user/sandbox-202407/amira_vs_amrfinderplus",
+      "started_at": "2026-10-11T03:59:22.316374937Z",
+      "finished_at": "2026-10-11T03:59:30.398356487Z",
+      "duration_ms": 8081,
+      "exit_code": 0,
+      "stdout_tail": "                        stage  contigs  total_bp  truth_covered_%  aligned_bp  edits(NM)  error_rate_%   QV\n                      myloasm      272   7937731             86.0     6311846     111818        1.7716 17.5\n           myloasm+polypolish      272   7963667             87.9     6526520      42349        0.6489 21.9\n   myloasm+polypolish+pypolca      272   7966274             90.2     6701131      35772        0.5338 22.7\n             dragonflye(flye)       12   5434765             93.8     5141132      82459        1.6039 17.9\n       dragonflye(flye+racon)        4   5453654            100.0     5476090      43204        0.7890 21.0\n        dragonflye+polypolish        4   5477841            100.0     5473638       2039        0.0373 34.3\ndragonflye+polypolish+pypolca        4   5477986            100.0     5474282       1636        0.0299 35.2\n\n                               [POINTX] acrR_V29YfsTer23  [POINTX] acrR_V29YfsTer44  [POINTX] cirA_Q56GfsTer11  [POINTX] marR_L68RfsTer30  [POINTX] marR_R50PfsTer30  [POINTX] marR_V63CfsTer35  [POINTX] nfsA_A29GfsTer3  [POINTX] nfsA_W212EfsTer9  [POINTX] ompC_G172MfsTer4  acrF  blaEC  mdtM\ntruth                                                  0                          0                          0                          0                          0                          0                         0                          0                          0     1      1     1\nmyloasm                                                1                          0                          0                          0                          0                          1                         1                          0                          0     0      0     0\nmyloasm+polypolish                                     0                          0                          0                          0                          0                          1                         0                          1                          1     1      1     1\nmyloasm+polypolish+pypolca                             0                          0                          0                          0                          0                          0                         0                          1                          1     1      1     1\ndragonflye(flye)                                       0                          1                          0                          0                          1                          0                         0                          0                          0     0      0     0\ndragonflye(flye+racon)                                 0                          0                          1                          1                          0                          0                         0                          0                          0     0      0     0\ndragonflye+polypolish                                  0                          0                          0                          0                          0                          0                         0                          0                          0     1      1     1\ndragonflye+polypolish+pypolca                          0                          0                          0                          0                          0                          0                         0                          0                          0     1      1     1\namira                                                  0                          0                          0                          0                          0                          0                         0                          0                          0     0      1     0\n",
+      "stderr_tail": "",
+      "artifacts_created": [],
+      "artifacts_modified": [
+        "results/FWSEC0007/summary/amr_call_matrix.tsv",
+        "results/FWSEC0007/summary/assembly_accuracy.tsv"
+      ],
       "tools": [
         {
           "name": "pixi",
@@ -213777,16 +214129,17 @@
     },
     {
       "path": "pixi.lock",
-      "sha256": "cd55c3307d41027f691eaf8adb055f84a83ab8ba004e1db7c4d07da65945be14",
-      "size_bytes": 112614,
+      "sha256": "35a55b052207deef4bad8edeb5c455330fe9ec0ce73bdbb29d2890b443cb524b",
+      "size_bytes": 200164,
       "media_type": "application/octet-stream",
       "created_by": "cmd-0002",
       "modified_by": [
         "cmd-0012",
-        "cmd-0020"
+        "cmd-0020",
+        "cmd-0028"
       ],
       "first_recorded": "2026-10-10T20:40:29.165783948Z",
-      "last_updated": "2026-10-11T02:54:25.936318518Z"
+      "last_updated": "2026-10-11T03:36:26.916031238Z"
     },
     {
       "path": "bin/pandora",
@@ -227310,23 +227663,697 @@
     },
     {
       "path": "results/FWSEC0007/summary/amr_call_matrix.tsv",
-      "sha256": "b3445ab6489330f42eb0e4f17ad192873755de33ffeac972a5b354ed0317378b",
-      "size_bytes": 266,
+      "sha256": "ebd29b1c687cfa1565515e1e85c6f9104b607bdb583f6fcbb8365fb869c01f19",
+      "size_bytes": 624,
       "media_type": "text/tab-separated-values",
       "created_by": "cmd-0027",
-      "modified_by": [],
+      "modified_by": [
+        "cmd-0032"
+      ],
       "first_recorded": "2026-10-11T03:34:55.440721440Z",
-      "last_updated": "2026-10-11T03:34:55.440721440Z"
+      "last_updated": "2026-10-11T03:59:34.305655429Z"
     },
     {
       "path": "results/FWSEC0007/summary/assembly_accuracy.tsv",
-      "sha256": "f7e1e095baa570571740b67bddfdd7b3dc0e10a87485891134c4206077218856",
-      "size_bytes": 203,
+      "sha256": "472cde1ebc1bfca40888a2de1962aec77ade7b5f1923132d211448cb2ece349c",
+      "size_bytes": 517,
       "media_type": "text/tab-separated-values",
       "created_by": "cmd-0027",
-      "modified_by": [],
+      "modified_by": [
+        "cmd-0032"
+      ],
       "first_recorded": "2026-10-11T03:34:55.441048784Z",
-      "last_updated": "2026-10-11T03:34:55.441048784Z"
+      "last_updated": "2026-10-11T03:59:34.305919600Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/READS.filt.fq.gz",
+      "sha256": "43c2e48a470f94c65f7140c290d0598603bc2673c09ab73cbf2a69da10cb5036",
+      "size_bytes": 303769100,
+      "media_type": "application/gzip",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.856932734Z",
+      "last_updated": "2026-10-11T03:46:15.856932734Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/contigs.dnaapler.summary.tsv",
+      "sha256": "ee27b3f6c12b31fe765b9993ae54744840660061d7c8c8bc413b795fb9572e7d",
+      "size_bytes": 1143,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.857572097Z",
+      "last_updated": "2026-10-11T03:46:15.857572097Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/contigs.fa",
+      "sha256": "ebefd7cf20ab10bc433dcb8e900f9fc4a26f467119e0ef768a9c8ae81120b488",
+      "size_bytes": 5545195,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.857803181Z",
+      "last_updated": "2026-10-11T03:46:15.857803181Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/contigs.reoriented.fa",
+      "sha256": "ddd4a524e99b3b95578433fe0874c3d9148bfe8ed73fbdaee471e9c7186d104c",
+      "size_bytes": 5545288,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858008119Z",
+      "last_updated": "2026-10-11T03:46:15.858008119Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/dragonflye.log",
+      "sha256": "5d2b4367894aaa643cd7bda33609fdc7e20fd0a8a805d8e2539df51b57b8a189",
+      "size_bytes": 23944,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858118550Z",
+      "last_updated": "2026-10-11T03:46:15.858118550Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye-info.txt",
+      "sha256": "e2422b255a1987c2bfa703214be8d0d50c05ce923a9e79e8e81cc9bb613da813",
+      "size_bytes": 457,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858258055Z",
+      "last_updated": "2026-10-11T03:46:15.858258055Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye-unpolished.fasta",
+      "sha256": "45b5b3a9c4bb1e12456bb13bb557dbfb94d2c270f1990f4aa0c8e0d710accf9d",
+      "size_bytes": 5525478,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858356291Z",
+      "last_updated": "2026-10-11T03:46:15.858356291Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye-unpolished.gfa",
+      "sha256": "76963d172d033ae1db9f456fb2ab1a5413f2c181ced6c2f40aedc6e26833db91",
+      "size_bytes": 5416812,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858429506Z",
+      "last_updated": "2026-10-11T03:46:15.858429506Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye.fasta",
+      "sha256": "fff35e020f0364bf865140b68b10a4dac31b26a315239e02a09b6d6ccac5b581",
+      "size_bytes": 5463937,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858497294Z",
+      "last_updated": "2026-10-11T03:46:15.858497294Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/00-assembly/draft_assembly.fasta",
+      "sha256": "5c05cbce670da06a88021cad9a35585c00640328ea986c01dde1711d0a12eab3",
+      "size_bytes": 5618410,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858577363Z",
+      "last_updated": "2026-10-11T03:46:15.858577363Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/00-assembly/draft_assembly.fasta.fai",
+      "sha256": "8264b845e1a8f8844558afc5c98482dfe5861b676617ce41931f7cb900579689",
+      "size_bytes": 96,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858698841Z",
+      "last_updated": "2026-10-11T03:46:15.858698841Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/10-consensus/consensus.fasta",
+      "sha256": "417e5ebec7a613bc730976aee01a00d2cc3cfbe1aced67909f447e9b18b0c791",
+      "size_bytes": 5652026,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858807014Z",
+      "last_updated": "2026-10-11T03:46:15.858807014Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/10-consensus/minimap.bam.csi",
+      "sha256": "839a69561321f8a8acda0dcdd418a10105823067ceeaa93606ebb40c59889904",
+      "size_bytes": 60231,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858892992Z",
+      "last_updated": "2026-10-11T03:46:15.858892992Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/10-consensus/minimap.stderr",
+      "sha256": "ceef9e514de9fc8d953659f731420244e54a1fb2f8cb484d83f65a9bd8cb2d0e",
+      "size_bytes": 1023,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.858953340Z",
+      "last_updated": "2026-10-11T03:46:15.858953340Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_after_rr.gv",
+      "sha256": "3a0ae36a1c1639a777c3001532ec553432566964cbb7b6e1f840dd1ad9b22764",
+      "size_bytes": 16026,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859015430Z",
+      "last_updated": "2026-10-11T03:46:15.859015430Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_before_rr.fasta",
+      "sha256": "c5c058887819404bae443673386fc223b84df7f39691a2a0b86821584ce85b4a",
+      "size_bytes": 5258769,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859061501Z",
+      "last_updated": "2026-10-11T03:46:15.859061501Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_before_rr.gfa",
+      "sha256": "54e6bffe5b18be35c1c224a01d211113f205ae5b9471ae37270f360569f3a5ae",
+      "size_bytes": 5199189,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859121854Z",
+      "last_updated": "2026-10-11T03:46:15.859121854Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/20-repeat/graph_before_rr.gv",
+      "sha256": "3d2a9b77bfeb8d227ec0df1e7091a7d93dae91137294724b0f53be7d4e97a59d",
+      "size_bytes": 12785,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859219240Z",
+      "last_updated": "2026-10-11T03:46:15.859219240Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/20-repeat/read_alignment_dump",
+      "sha256": "d6694c04037316850722844f3e15261220564646ecde1ad7bff17697569c7375",
+      "size_bytes": 11621004,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859273527Z",
+      "last_updated": "2026-10-11T03:46:15.859273527Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/20-repeat/repeat_graph_dump",
+      "sha256": "fc9917b8810860d2d1ad66fd6a1911bbd89fb34cac821442bc21403acb3d4bdf",
+      "size_bytes": 31163,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859327570Z",
+      "last_updated": "2026-10-11T03:46:15.859327570Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/20-repeat/repeat_graph_edges.fasta",
+      "sha256": "7ab3e4f8a4cf934f56603347c8612b85365b1938d647ee5fede6db72307c64a8",
+      "size_bytes": 5788692,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859376612Z",
+      "last_updated": "2026-10-11T03:46:15.859376612Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/30-contigger/contigs.fasta",
+      "sha256": "dc41938583c6e7edebc1d2cdf09ac14d95d3f08095a46e2507f944fa86d3e7d1",
+      "size_bytes": 5502833,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859442534Z",
+      "last_updated": "2026-10-11T03:46:15.859442534Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/30-contigger/contigs_stats.txt",
+      "sha256": "04fec43d04f7afdb5212ef1de610f9959771534681bb967baa603f6cff8c6219",
+      "size_bytes": 504,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859501203Z",
+      "last_updated": "2026-10-11T03:46:15.859501203Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/30-contigger/graph_final.fasta",
+      "sha256": "ceb0ffbec476c404bbbffbb7bd2db6263d06b23c5f76ffd8c81e532e5f9000c6",
+      "size_bytes": 5483477,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859557960Z",
+      "last_updated": "2026-10-11T03:46:15.859557960Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/30-contigger/graph_final.gfa",
+      "sha256": "76963d172d033ae1db9f456fb2ab1a5413f2c181ced6c2f40aedc6e26833db91",
+      "size_bytes": 5416812,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859603017Z",
+      "last_updated": "2026-10-11T03:46:15.859603017Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/30-contigger/graph_final.gv",
+      "sha256": "a20c18e6e56e384d962cb1a9713df83063be36ea30e6db50ce8b06a9d4b28f2a",
+      "size_bytes": 3453,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859649251Z",
+      "last_updated": "2026-10-11T03:46:15.859649251Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/30-contigger/scaffolds_links.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859705700Z",
+      "last_updated": "2026-10-11T03:46:15.859705700Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/assembly.fasta",
+      "sha256": "45b5b3a9c4bb1e12456bb13bb557dbfb94d2c270f1990f4aa0c8e0d710accf9d",
+      "size_bytes": 5525478,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859764329Z",
+      "last_updated": "2026-10-11T03:46:15.859764329Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/assembly_graph.gv",
+      "sha256": "a20c18e6e56e384d962cb1a9713df83063be36ea30e6db50ce8b06a9d4b28f2a",
+      "size_bytes": 3453,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859821517Z",
+      "last_updated": "2026-10-11T03:46:15.859821517Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/assembly_info.txt",
+      "sha256": "e2422b255a1987c2bfa703214be8d0d50c05ce923a9e79e8e81cc9bb613da813",
+      "size_bytes": 457,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859882066Z",
+      "last_updated": "2026-10-11T03:46:15.859882066Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/flye.log",
+      "sha256": "fbfdfcf7bfd7916988a18353623a95d712175a46f4e2fa12df9c4d147c9ab313",
+      "size_bytes": 69188,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859933818Z",
+      "last_updated": "2026-10-11T03:46:15.859933818Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/params.json",
+      "sha256": "524c0f011928ca2d8bf2054b829e7730425086383a688052b7801e5ec525c36d",
+      "size_bytes": 92,
+      "media_type": "application/json",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.859993545Z",
+      "last_updated": "2026-10-11T03:46:15.859993545Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/polish/racon/1/aligments.paf",
+      "sha256": "0a431cce04f95cf46c9ddf50d98d18355078ee463ca3ddec6f59bbcf5683fd88",
+      "size_bytes": 9629128,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.860058991Z",
+      "last_updated": "2026-10-11T03:46:15.860058991Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/polish/racon/1/consensus.fasta",
+      "sha256": "fff35e020f0364bf865140b68b10a4dac31b26a315239e02a09b6d6ccac5b581",
+      "size_bytes": 5463937,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.860113760Z",
+      "last_updated": "2026-10-11T03:46:15.860113760Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/reorient/contigs_MMseqs2_output.txt",
+      "sha256": "abf530e20f3b18a9bce35b38c6ef61eef7622756247df8ffa940195cd96a77c9",
+      "size_bytes": 10526483,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.860196796Z",
+      "last_updated": "2026-10-11T03:46:15.860196796Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/reorient/dnaapler_1791690324.8959575.log",
+      "sha256": "fe0f532ab5ecb43ac7a40ef4de29e538d752042763bb57598040ca923584f35a",
+      "size_bytes": 5274,
+      "media_type": "text/plain",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.860265407Z",
+      "last_updated": "2026-10-11T03:46:15.860265407Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/reorient/logs/mmseqs easy-search_a5172c05de2048d943a661d297e35de44ef9d64c10ea81378ebabfe9c26dd530.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.860351636Z",
+      "last_updated": "2026-10-11T03:46:15.860351636Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/asm/flye/reorient/logs/mmseqs easy-search_a5172c05de2048d943a661d297e35de44ef9d64c10ea81378ebabfe9c26dd530.out",
+      "sha256": "94e19f6601796642de197966fa5f3ac3797d42bef92a84fe7b13f9f99026c2d6",
+      "size_bytes": 14015,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0029",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:46:15.860395569Z",
+      "last_updated": "2026-10-11T03:46:15.860395569Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/input.fasta",
+      "sha256": "ebefd7cf20ab10bc433dcb8e900f9fc4a26f467119e0ef768a9c8ae81120b488",
+      "size_bytes": 5545195,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.277800421Z",
+      "last_updated": "2026-10-11T03:52:59.277800421Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/input.fasta.amb",
+      "sha256": "4ea373c4d7a03c757311488d6ee43a2768bafead00934964d019959a72be1c01",
+      "size_bytes": 12,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278387019Z",
+      "last_updated": "2026-10-11T03:52:59.278387019Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/input.fasta.ann",
+      "sha256": "25875f3c8377f87c6f747fe1e311ea540f9b539ef9de71eb6ce051b4e4bed558",
+      "size_bytes": 723,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278482419Z",
+      "last_updated": "2026-10-11T03:52:59.278482419Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/input.fasta.bwt",
+      "sha256": "f82655a45a6e3cd8ddfb962039ddd6f1fc8226bf6a10a734152b0216700569eb",
+      "size_bytes": 5453748,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278505077Z",
+      "last_updated": "2026-10-11T03:52:59.278505077Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/input.fasta.pac",
+      "sha256": "f6e82cb901ca5c8a6dc98041f41806a6739117327bcab670361d967b5dfc20c8",
+      "size_bytes": 1363415,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278523347Z",
+      "last_updated": "2026-10-11T03:52:59.278523347Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/input.fasta.sa",
+      "sha256": "39994f24f3083573b630beb359a73d0ede0eddec5fdeeda6636c377194b31cfe",
+      "size_bytes": 2726880,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278540824Z",
+      "last_updated": "2026-10-11T03:52:59.278540824Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/polypolish.fasta",
+      "sha256": "244ce325360e79bff51f640b2e590eb98fa648b0e061a289f38d647bafabb033",
+      "size_bytes": 5478534,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278580831Z",
+      "last_updated": "2026-10-11T03:52:59.278580831Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/polypolish_pypolca.fasta",
+      "sha256": "6a57836ba0fc585ea88f4caec1fd5aa6fae02ba55eda9db8aa8b91ad72a28019",
+      "size_bytes": 5569340,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278616261Z",
+      "last_updated": "2026-10-11T03:52:59.278616261Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/bwa_32eef2f46322ac7891a088e4c38fe33c2fad90a503340bce78f7064d96515f9a.err",
+      "sha256": "215eab38042b17bba84611b9cd6a96836aaffc3df9c6ec3c6765910af38d934f",
+      "size_bytes": 505,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278649765Z",
+      "last_updated": "2026-10-11T03:52:59.278649765Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/bwa_32eef2f46322ac7891a088e4c38fe33c2fad90a503340bce78f7064d96515f9a.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278664850Z",
+      "last_updated": "2026-10-11T03:52:59.278664850Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/bwa_de58afa209334fccc36ede110dac06f67699edc1aa97b67733eb72e28e698f1c.err",
+      "sha256": "0326d5a22f97bcc70b256a894df2deb0ce99e1672ecc80dd61df5d5e410add8a",
+      "size_bytes": 25567,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278678975Z",
+      "last_updated": "2026-10-11T03:52:59.278678975Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/freebayes_6640623aebe6b20dd26fa64845087a3aeabb76e04621a9feb9a894c97c86e41d.err",
+      "sha256": "2baa1054a5e722d254301290a10ae6fe0cc9a8bd4846355b85175fbe47c0853d",
+      "size_bytes": 266,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278692462Z",
+      "last_updated": "2026-10-11T03:52:59.278692462Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/freebayes_6640623aebe6b20dd26fa64845087a3aeabb76e04621a9feb9a894c97c86e41d.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278706077Z",
+      "last_updated": "2026-10-11T03:52:59.278706077Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_085197f6b55fc68759d241004386654b05301805d0ca0f119a10797d04e0fa2e.err",
+      "sha256": "7c425a93f9e69d4189e5277f91eaa3ce731879b05fa76042222c9921cf44ee6c",
+      "size_bytes": 166,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278720026Z",
+      "last_updated": "2026-10-11T03:52:59.278720026Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_085197f6b55fc68759d241004386654b05301805d0ca0f119a10797d04e0fa2e.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278743740Z",
+      "last_updated": "2026-10-11T03:52:59.278743740Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_41bb8bc3ad61a6269c895d4fa68d29d7a18ee5e5fa2f0dbbb26e60ac81ec9773.err",
+      "sha256": "17802c4576f1f4a5d1444cde8f728d0e2922bb7ba1c5919a4694062e18ebaa80",
+      "size_bytes": 236,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278759837Z",
+      "last_updated": "2026-10-11T03:52:59.278759837Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_41bb8bc3ad61a6269c895d4fa68d29d7a18ee5e5fa2f0dbbb26e60ac81ec9773.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278774569Z",
+      "last_updated": "2026-10-11T03:52:59.278774569Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_70330d83bc7725fcffa4fa38571f6d3e1c8fd353b8f596d9eea0a674558b0559.err",
+      "sha256": "78ec91f84afa58d9a6cd10f960f2d89a50db1d1e914717879ebded7c64cb4f83",
+      "size_bytes": 93,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278793629Z",
+      "last_updated": "2026-10-11T03:52:59.278793629Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_70330d83bc7725fcffa4fa38571f6d3e1c8fd353b8f596d9eea0a674558b0559.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278807695Z",
+      "last_updated": "2026-10-11T03:52:59.278807695Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_dbe35d302ca09005dce26bacfd9fc35680910f2cc793ee41e5fffa7685bd2391.err",
+      "sha256": "00f7f35c144125e804a7cef0a699a8931bd8fdffa1be3c9c5bf5b225c8628c50",
+      "size_bytes": 103,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278822475Z",
+      "last_updated": "2026-10-11T03:52:59.278822475Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/logs/samtools_dbe35d302ca09005dce26bacfd9fc35680910f2cc793ee41e5fffa7685bd2391.out",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278837358Z",
+      "last_updated": "2026-10-11T03:52:59.278837358Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/pypolca.report",
+      "sha256": "096f0d37c2b99834c7b8e68586edaf18f917a87e985e384405b15ccfdb7e78a8",
+      "size_bytes": 194,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278852102Z",
+      "last_updated": "2026-10-11T03:52:59.278852102Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/pypolca.vcf",
+      "sha256": "53552faadace0ba1be0c1534eeda19e954fd766daf3f488f446f6c09953d9d3e",
+      "size_bytes": 233990,
+      "media_type": "text/x-vcf",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278881523Z",
+      "last_updated": "2026-10-11T03:52:59.278881523Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/pypolca_1791690537.7153127.log",
+      "sha256": "7d5f0f0bdbb7bdae3dd85b330a2135ece5e61c7bc21ff2786756925ed4b2869b",
+      "size_bytes": 8035,
+      "media_type": "text/plain",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278909572Z",
+      "last_updated": "2026-10-11T03:52:59.278909572Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/polish/pypolca/pypolca_corrected.fasta",
+      "sha256": "6a57836ba0fc585ea88f4caec1fd5aa6fae02ba55eda9db8aa8b91ad72a28019",
+      "size_bytes": 5569340,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0030",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:52:59.278987282Z",
+      "last_updated": "2026-10-11T03:52:59.278987282Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/amrfinder/flye.tsv",
+      "sha256": "7503066f17d7fcc4cc6ad7b5df74160852f3764e434ea6a35060ca7b9d9b288d",
+      "size_bytes": 1673,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0031",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:59:18.329211225Z",
+      "last_updated": "2026-10-11T03:59:18.329211225Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/amrfinder/polished.tsv",
+      "sha256": "b8b806c7b8d1ef6a214b9ab985b9bcafbb87ed314105f94fa5f41442c3e54964",
+      "size_bytes": 7486,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0031",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:59:18.329761882Z",
+      "last_updated": "2026-10-11T03:59:18.329761882Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/amrfinder/polypolish.tsv",
+      "sha256": "cc2b2a5feccc7c43e24d17ba7be89269a56d969745895d34a4e708961092b7bf",
+      "size_bytes": 7486,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0031",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:59:18.329900661Z",
+      "last_updated": "2026-10-11T03:59:18.329900661Z"
+    },
+    {
+      "path": "results/FWSEC0007/dragonflye/amrfinder/racon.tsv",
+      "sha256": "60b50317ee4a617cefaf729753e1684208dd779486e635ef0206766d255edbda",
+      "size_bytes": 2687,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0031",
+      "modified_by": [],
+      "first_recorded": "2026-10-11T03:59:18.329964363Z",
+      "last_updated": "2026-10-11T03:59:18.329964363Z"
     }
   ],
   "env_snapshots": []
