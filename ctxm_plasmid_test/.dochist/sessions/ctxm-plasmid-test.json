@@ -5,7 +5,7 @@
   "description": "Download short-read assemblies (PRJNA379782, AAC 01689-18) with atb-cli to test plot_ctxm_plasmids_v2.py",
   "status": "active",
   "created_at": "2026-10-18T14:24:35.350229235Z",
-  "updated_at": "2026-10-18T16:25:55.570472586Z",
+  "updated_at": "2026-10-18T16:28:44.815568270Z",
   "environment": {
     "user": "unknown",
     "hostname": "vm",
@@ -616,6 +616,78 @@
           "path": "/root/.local/bin/micromamba",
           "sha256": "366cd9cd8be14df1ab8ed50352a82111082a36686b2d389fdb79a92c3fafb3e3",
           "version": "2.9.0",
+          "version_probe": "--version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0007",
+      "seq": 7,
+      "command_line": "python3 -I scripts/00_select_subset.py",
+      "cwd": "/home/user/sandbox-202407/ctxm_plasmid_test",
+      "started_at": "2026-10-18T16:27:27.777363069Z",
+      "finished_at": "2026-10-18T16:28:44.172277966Z",
+      "duration_ms": 76394,
+      "exit_code": 0,
+      "stdout_tail": "65 CTX-M isolates; subset 34 ({'ctxm': 27, 'control_no_ctxm': 7}); 18 CTX-M-15 carriers; MOB-recon order 44\n",
+      "stderr_tail": "",
+      "artifacts_created": [
+        "fasta_tmp/SAMN06630112.fasta",
+        "mobrecon/SAMN06630074/__tmp/mpf_blast_results.txt",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.ndb",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nhr",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nin",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.njs",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.not",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nsq",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.ntf",
+        "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nto",
+        "mobrecon/SAMN06630112/__tmp/mob_blast_results.txt",
+        "mobrecon/SAMN06630112/__tmp/replicon_blast_results.txt",
+        "mobrecon/SAMN06630154/__tmp/contig_blast_results.txt",
+        "mobrecon/SAMN06630154/__tmp/mpf_blast_results.txt",
+        "mobrecon/SAMN06630154/__tmp/orit_blast_results.txt",
+        "mobrecon/SAMN06630154/__tmp/repetitive_blast_results.txt",
+        "mobrecon/SAMN06630181/biomarkers.blast.txt",
+        "mobrecon/SAMN06630181/chromosome.fasta",
+        "mobrecon/SAMN06630181/contig_report.txt",
+        "mobrecon/SAMN06630181/mge.report.txt",
+        "mobrecon/SAMN06630181/mobtyper_results.txt",
+        "mobrecon/SAMN06630181/plasmid_AA044.fasta",
+        "mobrecon/SAMN06630181/plasmid_AC303.fasta",
+        "mobrecon/SAMN06630181/plasmid_AD312.fasta",
+        "mobrecon/SAMN06630181/plasmid_AG471.fasta",
+        "mobrecon_SAMN06630112.log"
+      ],
+      "artifacts_modified": [
+        "input/amrfinder_atb/SAMN06630112.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN06630138.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN06630223.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN06630227.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN06630280.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN13286403.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN13286407.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN13286427.amrfinder.tsv",
+        "input/amrfinder_atb/SAMN13286434.amrfinder.tsv",
+        "input/atb_amrfinderplus_prjna379782.tsv",
+        "input/ctxm15_isolates.tsv",
+        "input/mobrecon_order.txt",
+        "input/subset.tsv",
+        "input/subset_biosamples.txt",
+        "mobrecon/SAMN06630074/__tmp/mob_blast_results.txt",
+        "mobrecon/SAMN06630154/__tmp/mob_blast_results.txt",
+        "mobrecon/SAMN13286434/__tmp/contig_blast_results.txt",
+        "mobrecon_SAMN06630074.log",
+        "mobrecon_SAMN06630154.log",
+        "mobrecon_SAMN06630181.log"
+      ],
+      "tools": [
+        {
+          "name": "python3",
+          "path": "/usr/bin/python3.13",
+          "sha256": "a35753ccb97941cce1467786cce892e608141f09d717188a3235d4f51a754446",
+          "version": "Python 3.13.16",
           "version_probe": "--version"
         }
       ]
@@ -3666,13 +3738,15 @@
     },
     {
       "path": "input/subset.tsv",
-      "sha256": "3cac5326f56bcb33eeb2a30c3333e4171e8b9eee5a11a1b55f6def885ad81c82",
+      "sha256": "782c227e7d0fbbdcdc32dd25f8ec6bb9860e5b55907467c51362435d16e58399",
       "size_bytes": 2906,
       "media_type": "text/tab-separated-values",
       "created_by": null,
-      "modified_by": [],
+      "modified_by": [
+        "cmd-0007"
+      ],
       "first_recorded": "2026-10-18T14:40:25.231723045Z",
-      "last_updated": "2026-10-18T14:40:25.231723045Z",
+      "last_updated": "2026-10-18T16:28:44.815542358Z",
       "role": "output"
     },
     {
@@ -4307,13 +4381,15 @@
     },
     {
       "path": "mobrecon_SAMN06630181.log",
-      "sha256": "cc0291f92d4bed48bcbc2c1df3c7cc1d92f5451efae02877b1a66cae29a84a78",
-      "size_bytes": 3144,
+      "sha256": "f36a79c9ec64b212b38cae6cb39a0c8e2c06f6d272f46a4397474b46558cb088",
+      "size_bytes": 12624,
       "media_type": "text/plain",
       "created_by": "cmd-0006",
-      "modified_by": [],
+      "modified_by": [
+        "cmd-0007"
+      ],
       "first_recorded": "2026-10-18T16:25:51.881429031Z",
-      "last_updated": "2026-10-18T16:25:51.881429031Z"
+      "last_updated": "2026-10-18T16:28:44.815556957Z"
     },
     {
       "path": "config_test.toml",
@@ -4339,35 +4415,41 @@
     },
     {
       "path": "input/ctxm15_isolates.tsv",
-      "sha256": "a9590969c037b6688d5f9ca426a2937544c90080cb8852ccf3c319694b67c6cc",
+      "sha256": "eb24ac2c0958d6ab9783cc95eddbce91eb4a4676c5c107af0857ff13bbad5c6d",
       "size_bytes": 773,
       "media_type": "text/tab-separated-values",
       "created_by": null,
-      "modified_by": [],
+      "modified_by": [
+        "cmd-0007"
+      ],
       "first_recorded": "2026-10-18T16:25:55.390469562Z",
-      "last_updated": "2026-10-18T16:25:55.390469562Z",
+      "last_updated": "2026-10-18T16:28:44.815539779Z",
       "role": "output"
     },
     {
       "path": "input/mobrecon_order.txt",
-      "sha256": "bced46776c1770df06598ba5906515d9a77995e7e859a1fbf7cb0c3e27a76c8d",
+      "sha256": "46a58e15cc06f43bebec1b3b1a02e7008878685a8023bca75bf902a04ca9586f",
       "size_bytes": 572,
       "media_type": "text/plain",
       "created_by": null,
-      "modified_by": [],
+      "modified_by": [
+        "cmd-0007"
+      ],
       "first_recorded": "2026-10-18T16:25:55.402818153Z",
-      "last_updated": "2026-10-18T16:25:55.402818153Z",
+      "last_updated": "2026-10-18T16:28:44.815541646Z",
       "role": "output"
     },
     {
       "path": "input/atb_amrfinderplus_prjna379782.tsv",
-      "sha256": "d2871b540857b92a758c432694850378b986ce6cf32244cbb241f8924472b745",
+      "sha256": "2e5b81cd16247bb049ca38e7c56f415674e7decf711ccfcb913541db50cb5620",
       "size_bytes": 3180905,
       "media_type": "text/tab-separated-values",
       "created_by": null,
-      "modified_by": [],
+      "modified_by": [
+        "cmd-0007"
+      ],
       "first_recorded": "2026-10-18T16:25:55.421373370Z",
-      "last_updated": "2026-10-18T16:25:55.421373370Z",
+      "last_updated": "2026-10-18T16:28:44.815537923Z",
       "role": "output"
     },
     {
@@ -4446,6 +4528,426 @@
       "first_recorded": "2026-10-18T16:25:55.570469003Z",
       "last_updated": "2026-10-18T16:25:55.570469003Z",
       "role": "output"
+    },
+    {
+      "path": "fasta_tmp/SAMN06630112.fasta",
+      "sha256": "c13780e5ace26890ce4895cefdd18312b7266a0bb072a94b7b5f77034a914d26",
+      "size_bytes": 5419001,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815454747Z",
+      "last_updated": "2026-10-18T16:28:44.815454747Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630074/__tmp/mpf_blast_results.txt",
+      "sha256": "5170a808a96642e52ecfaa006edcf516fe0cce9ea9b6baae2ea728a8209563bb",
+      "size_bytes": 141,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815467923Z",
+      "last_updated": "2026-10-18T16:28:44.815467923Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta",
+      "sha256": "ced67482d52711f0dccef17bb012c608c0329ac23c1416c7eb76f7aeaf3155c1",
+      "size_bytes": 5321126,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815472085Z",
+      "last_updated": "2026-10-18T16:28:44.815472085Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.ndb",
+      "sha256": "560e60da6d310109584827f72f6a576c9bc6a3ecac7b6bd946046607c42a4122",
+      "size_bytes": 20480,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815474187Z",
+      "last_updated": "2026-10-18T16:28:44.815474187Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nhr",
+      "sha256": "8514b589f89f74e1e575f952757fa7f525e6fc2ef29c6b8cb2290a032ff3c59a",
+      "size_bytes": 12088,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815477136Z",
+      "last_updated": "2026-10-18T16:28:44.815477136Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nin",
+      "sha256": "66806a671a3edab445eb265344785af553f39c7ebee9fd9e4537853022839d54",
+      "size_bytes": 1424,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815479307Z",
+      "last_updated": "2026-10-18T16:28:44.815479307Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.njs",
+      "sha256": "262d57e3ce442239e82aec52e5199da7b3e694b492c3c863c32c93ba8f6bb289",
+      "size_bytes": 571,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815481414Z",
+      "last_updated": "2026-10-18T16:28:44.815481414Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.not",
+      "sha256": "f84c45c48170d741faa99b9cc60e522ca56bbce0b77a9733a8abaea7d98cc306",
+      "size_bytes": 1292,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815483455Z",
+      "last_updated": "2026-10-18T16:28:44.815483455Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nsq",
+      "sha256": "725c9ab2023fdb19aa142d523bebf25c768aeadfaac664b12a41909aa0d60531",
+      "size_bytes": 1328943,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815488263Z",
+      "last_updated": "2026-10-18T16:28:44.815488263Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.ntf",
+      "sha256": "67982e4d7b1490b09cce06e7c29175c6bd011cd542cfacb1a1c310084a50821a",
+      "size_bytes": 16384,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815490443Z",
+      "last_updated": "2026-10-18T16:28:44.815490443Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/fixed.input.fasta.nto",
+      "sha256": "471f5a8840fa7e9ff0bef6b0e9dea0c78e4f71fa12b147a201cf0b4547a06cd6",
+      "size_bytes": 432,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815496125Z",
+      "last_updated": "2026-10-18T16:28:44.815496125Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/mob_blast_results.txt",
+      "sha256": "a175756e39f1da557443dde1824ebc3ee273a1b49a3e0973aa89f6504e7014c0",
+      "size_bytes": 31709,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815498263Z",
+      "last_updated": "2026-10-18T16:28:44.815498263Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630112/__tmp/replicon_blast_results.txt",
+      "sha256": "6a93c8a4429a3acd9b01bbfb9c66d5600acb6fd9523eebce8510bbac87abd012",
+      "size_bytes": 14709,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815500267Z",
+      "last_updated": "2026-10-18T16:28:44.815500267Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630154/__tmp/contig_blast_results.txt",
+      "sha256": "379439b538ef5b5890b47ece30bb2fb4e96f0eed4763be5775bc59a7925788b1",
+      "size_bytes": 2926897,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815501755Z",
+      "last_updated": "2026-10-18T16:28:44.815501755Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630154/__tmp/mpf_blast_results.txt",
+      "sha256": "c07a2307f0c1db66ded736d26d90be50e9daed0ffab8cc56f8206d82ea4faa9c",
+      "size_bytes": 7477,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815503079Z",
+      "last_updated": "2026-10-18T16:28:44.815503079Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630154/__tmp/orit_blast_results.txt",
+      "sha256": "d5c814ea744f2a6467cd404042d06be418fe69cce3e4d4d1bd54a43f4a10fb6d",
+      "size_bytes": 6035,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815504948Z",
+      "last_updated": "2026-10-18T16:28:44.815504948Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630154/__tmp/repetitive_blast_results.txt",
+      "sha256": "635cd404719e8f47ec6656315f213636b5e40394ceb9c3bb873d0974fc4ab359",
+      "size_bytes": 3426,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815506076Z",
+      "last_updated": "2026-10-18T16:28:44.815506076Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/biomarkers.blast.txt",
+      "sha256": "6aee04aa7a3e58f02c14ef1a919d3bda263b30d08da3968da666763a1cac3f53",
+      "size_bytes": 849,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815507246Z",
+      "last_updated": "2026-10-18T16:28:44.815507246Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/chromosome.fasta",
+      "sha256": "f0b365e6224e7d27f1c498908d13c9fe04febb2fa152645ef48133edd27d4107",
+      "size_bytes": 4970451,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815508330Z",
+      "last_updated": "2026-10-18T16:28:44.815508330Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/contig_report.txt",
+      "sha256": "2b2754dd9e79c42f320ae5e94de86ed54f9ae67f0a41b705c7a05dc945edb2ed",
+      "size_bytes": 34737,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815509507Z",
+      "last_updated": "2026-10-18T16:28:44.815509507Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/mge.report.txt",
+      "sha256": "d4f529aa6652f48ce74736a7ae4e4bcdee22a275b408803f7dfd125b04a1ecfb",
+      "size_bytes": 4685,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815510771Z",
+      "last_updated": "2026-10-18T16:28:44.815510771Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/mobtyper_results.txt",
+      "sha256": "ca8a51484e71300f088ae4a83787d01f82a639cd2b04989fbd895c286fd57a12",
+      "size_bytes": 1421,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815513383Z",
+      "last_updated": "2026-10-18T16:28:44.815513383Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/plasmid_AA044.fasta",
+      "sha256": "69a4896bdebedea47deaebefaec0a9fdcf5b8bc88988e8047b8ddaa7b3f85bec",
+      "size_bytes": 29947,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815514510Z",
+      "last_updated": "2026-10-18T16:28:44.815514510Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/plasmid_AC303.fasta",
+      "sha256": "0e83ea5df4e4d909b6ba316df01dd07d8afb9276249855579a8a75f6bf09f45f",
+      "size_bytes": 8990,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815515598Z",
+      "last_updated": "2026-10-18T16:28:44.815515598Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/plasmid_AD312.fasta",
+      "sha256": "767a57100dfa6b46701c88d2f6075e3ea8aaa1684f556fbe8109b5c41c4ef8dc",
+      "size_bytes": 10403,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815516763Z",
+      "last_updated": "2026-10-18T16:28:44.815516763Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630181/plasmid_AG471.fasta",
+      "sha256": "aad1d46a0c012b3c0f98346766e3cd585b6fd8079a15cdef1325adacc56931dd",
+      "size_bytes": 3941,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815518226Z",
+      "last_updated": "2026-10-18T16:28:44.815518226Z"
+    },
+    {
+      "path": "mobrecon_SAMN06630112.log",
+      "sha256": "45573db624ab5957651f94bfaf0b4c102d6877602e9b128670af1169dbd9bddb",
+      "size_bytes": 2403,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815519815Z",
+      "last_updated": "2026-10-18T16:28:44.815519815Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN06630112.amrfinder.tsv",
+      "sha256": "6071c1eafe4bb082683e92f5f7ff531026509b2cdd3347ea4026341d99cc6e33",
+      "size_bytes": 11440,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815521658Z",
+      "last_updated": "2026-10-18T16:28:44.815521658Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN06630138.amrfinder.tsv",
+      "sha256": "6bb5971c49a64bf61a8290a99d19211f1c9c5fc2d7088e9f549cd4da937986c4",
+      "size_bytes": 13590,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815523201Z",
+      "last_updated": "2026-10-18T16:28:44.815523201Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN06630223.amrfinder.tsv",
+      "sha256": "6062b821512cefb98a0051c855907556ff1be1386ce8cd154f9e87e1b69d6623",
+      "size_bytes": 10650,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815524558Z",
+      "last_updated": "2026-10-18T16:28:44.815524558Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN06630227.amrfinder.tsv",
+      "sha256": "ebadf9ec5d0d47fe82b8eb0654b0517493fb54df2ee5de7148034f1646edcf37",
+      "size_bytes": 9707,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815525821Z",
+      "last_updated": "2026-10-18T16:28:44.815525821Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN06630280.amrfinder.tsv",
+      "sha256": "85cb54d07e8a8595f56b80d453a7f3bc440c5dbf3303063b8cd82f01191ab4fd",
+      "size_bytes": 10363,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815526989Z",
+      "last_updated": "2026-10-18T16:28:44.815526989Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN13286403.amrfinder.tsv",
+      "sha256": "48084a2a4d322e35ab9173248b5342f98372023c77b839cce37b84acffe60e1b",
+      "size_bytes": 13342,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815528274Z",
+      "last_updated": "2026-10-18T16:28:44.815528274Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN13286407.amrfinder.tsv",
+      "sha256": "950fef677b9ee835ee5e76db1d77f80c4d03122aedf2c6c24dc6ee9115a9ed97",
+      "size_bytes": 13316,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815532083Z",
+      "last_updated": "2026-10-18T16:28:44.815532083Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN13286427.amrfinder.tsv",
+      "sha256": "d4b523f3d68e97de69b132e0448d121e87378c6bb0b582893f5df886a55f003e",
+      "size_bytes": 12373,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815535540Z",
+      "last_updated": "2026-10-18T16:28:44.815535540Z"
+    },
+    {
+      "path": "input/amrfinder_atb/SAMN13286434.amrfinder.tsv",
+      "sha256": "8f9702269074159ddfe82268b22b2774bc918e3ae00fd8103bce9336c14f15c7",
+      "size_bytes": 13336,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815536751Z",
+      "last_updated": "2026-10-18T16:28:44.815536751Z"
+    },
+    {
+      "path": "input/subset_biosamples.txt",
+      "sha256": "616eef378b64f6b2dfead600848efacacb4895fd618bbd638e227ce8ab0ce206",
+      "size_bytes": 442,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815544245Z",
+      "last_updated": "2026-10-18T16:28:44.815544245Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630074/__tmp/mob_blast_results.txt",
+      "sha256": "3a28b3af1639aa4b40a7957b2fdc96e1f6df15d7a948e3153bc5b1d579530f5a",
+      "size_bytes": 109,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815547750Z",
+      "last_updated": "2026-10-18T16:28:44.815547750Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630154/__tmp/mob_blast_results.txt",
+      "sha256": "5aa2c3c49ffa5a4ce75782a706c62f6e11156c394c21a987e701d97467915b7b",
+      "size_bytes": 1373,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815550366Z",
+      "last_updated": "2026-10-18T16:28:44.815550366Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286434/__tmp/contig_blast_results.txt",
+      "sha256": "c3494cfdf65dbf9a82e38bf333346825ad569b2ed6c3bbbf0ea3f1528bf3d449",
+      "size_bytes": 21991335,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815552807Z",
+      "last_updated": "2026-10-18T16:28:44.815552807Z"
+    },
+    {
+      "path": "mobrecon_SAMN06630074.log",
+      "sha256": "a2049210de687c4d731a5d3417076d53e4210fc72905a2d7c0e79a54d0715170",
+      "size_bytes": 3144,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815553938Z",
+      "last_updated": "2026-10-18T16:28:44.815553938Z"
+    },
+    {
+      "path": "mobrecon_SAMN06630154.log",
+      "sha256": "0cc04c3be486f336598e73a948da534d92df1f90c0a34af39dd420527b8525b7",
+      "size_bytes": 9119,
+      "media_type": "text/plain",
+      "created_by": "cmd-0007",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:28:44.815555441Z",
+      "last_updated": "2026-10-18T16:28:44.815555441Z"
     }
   ],
   "env_snapshots": []
