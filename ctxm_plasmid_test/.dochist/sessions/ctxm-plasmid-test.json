@@ -5,7 +5,7 @@
   "description": "Download short-read assemblies (PRJNA379782, AAC 01689-18) with atb-cli to test plot_ctxm_plasmids_v2.py",
   "status": "active",
   "created_at": "2026-10-18T14:24:35.350229235Z",
-  "updated_at": "2026-10-18T15:01:06.862441617Z",
+  "updated_at": "2026-10-18T16:25:55.570472586Z",
   "environment": {
     "user": "unknown",
     "hostname": "vm",
@@ -581,6 +581,42 @@
           "path": "/home/user/sandbox-202407/ctxm_plasmid_test/scripts/03_run_mobrecon.sh",
           "sha256": "2305ed680c9d3811a73ba218936578b9daafed51bed5dc0afbd981fa2da28f62",
           "version": "shell script"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0006",
+      "seq": 6,
+      "command_line": "micromamba run -n ctxm python scripts/plot_ctxm_plasmids_v2.py --config config_test.toml",
+      "cwd": "/home/user/sandbox-202407/ctxm_plasmid_test",
+      "started_at": "2026-10-18T16:25:42.334721508Z",
+      "finished_at": "2026-10-18T16:25:51.164256887Z",
+      "duration_ms": 8829,
+      "exit_code": 0,
+      "stdout_tail": "[skip] AA147: 0 CTX-M isolate(s)\n[skip] AC315: 0 CTX-M isolate(s)\n[skip] AA474: 0 CTX-M isolate(s)\n[skip] AA161: 0 CTX-M isolate(s)\n[skip] AA176: 0 CTX-M isolate(s)\n[skip] AB690: 0 CTX-M isolate(s)\n[skip] AA887: 0 CTX-M isolate(s)\n[skip] AA738: 0 CTX-M isolate(s)\n[plot] AA173: ref=SAMN13286419, 5 tracks\n[plot] AA002: ref=SAMN06630280, 2 tracks\n[plot] AA057: ref=SAMN06630209, 2 tracks\n[plot] AA739: ref=SAMN06630209, 2 tracks\n",
+      "stderr_tail": "",
+      "artifacts_created": [],
+      "artifacts_modified": [
+        "ctxm_plasmid_figs_test/AA002_ctxm_alignment.pdf",
+        "ctxm_plasmid_figs_test/AA002_ctxm_alignment.svg",
+        "ctxm_plasmid_figs_test/AA057_ctxm_alignment.pdf",
+        "ctxm_plasmid_figs_test/AA057_ctxm_alignment.svg",
+        "ctxm_plasmid_figs_test/AA173_ctxm_alignment.pdf",
+        "ctxm_plasmid_figs_test/AA173_ctxm_alignment.svg",
+        "ctxm_plasmid_figs_test/AA739_ctxm_alignment.pdf",
+        "ctxm_plasmid_figs_test/AA739_ctxm_alignment.svg",
+        "mobrecon/SAMN06630169/__tmp/contig_blast_results.txt",
+        "mobrecon/SAMN13286427/__tmp/contig_blast_results.txt",
+        "mobrecon/SAMN13286434/__tmp/mob_blast_results.txt",
+        "mobrecon_SAMN06630181.log"
+      ],
+      "tools": [
+        {
+          "name": "micromamba",
+          "path": "/root/.local/bin/micromamba",
+          "sha256": "366cd9cd8be14df1ab8ed50352a82111082a36686b2d389fdb79a92c3fafb3e3",
+          "version": "2.9.0",
+          "version_probe": "--version"
         }
       ]
     }
@@ -4158,6 +4194,258 @@
       "modified_by": [],
       "first_recorded": "2026-10-18T15:01:06.862419327Z",
       "last_updated": "2026-10-18T15:01:06.862419327Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA002_ctxm_alignment.pdf",
+      "sha256": "78111eda9da6d77f0c5cfc0cea33fede25521d723435cdc382f8d9937df828d6",
+      "size_bytes": 36543,
+      "media_type": "application/pdf",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881407248Z",
+      "last_updated": "2026-10-18T16:25:51.881407248Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA002_ctxm_alignment.svg",
+      "sha256": "3fb4718c9cad9f22f4f1dd346d95419cb49e42d1a9b90333784c6596a5aa321a",
+      "size_bytes": 23333,
+      "media_type": "image/svg+xml",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881417003Z",
+      "last_updated": "2026-10-18T16:25:51.881417003Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA057_ctxm_alignment.pdf",
+      "sha256": "819c36da56876b7add53fb4ed58bd38420a5ac573b21b8e61ce90bb4670ec914",
+      "size_bytes": 36097,
+      "media_type": "application/pdf",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881417771Z",
+      "last_updated": "2026-10-18T16:25:51.881417771Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA057_ctxm_alignment.svg",
+      "sha256": "60847df5f6b8553f16c4db88b06b50a4b8ca10c321454a49d86482a5713d589f",
+      "size_bytes": 31414,
+      "media_type": "image/svg+xml",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881418608Z",
+      "last_updated": "2026-10-18T16:25:51.881418608Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA173_ctxm_alignment.pdf",
+      "sha256": "8d9a1e7b523edf462ced939c2c8119137f16a11ef6dda410306d49a5b1aa2fcd",
+      "size_bytes": 38515,
+      "media_type": "application/pdf",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881419430Z",
+      "last_updated": "2026-10-18T16:25:51.881419430Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA173_ctxm_alignment.svg",
+      "sha256": "06c569b0d237b5a9b50bc4519b6a8eac46ffb8f429d45648b2ebe3dcb47eeb29",
+      "size_bytes": 63356,
+      "media_type": "image/svg+xml",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881420286Z",
+      "last_updated": "2026-10-18T16:25:51.881420286Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA739_ctxm_alignment.pdf",
+      "sha256": "2c8b8906eda58fa8265a71123785555b59e159efd4873f0b580ea32a0279be4a",
+      "size_bytes": 41290,
+      "media_type": "application/pdf",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881420967Z",
+      "last_updated": "2026-10-18T16:25:51.881420967Z"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA739_ctxm_alignment.svg",
+      "sha256": "c30dad391fa8a6e44d6d7651f0afabdc439bf3d73daf4bb42652a9185f6b8edd",
+      "size_bytes": 58583,
+      "media_type": "image/svg+xml",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881421684Z",
+      "last_updated": "2026-10-18T16:25:51.881421684Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630169/__tmp/contig_blast_results.txt",
+      "sha256": "56d27d57b2460601a951e3053e89d21797460106c4c21ac39e32d07defcc39b8",
+      "size_bytes": 97368570,
+      "media_type": "text/plain",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881422525Z",
+      "last_updated": "2026-10-18T16:25:51.881422525Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286427/__tmp/contig_blast_results.txt",
+      "sha256": "76d2209dc9fc10a4d71773a5feced5c8c2fbed61d15632f0f6063ae179ab5212",
+      "size_bytes": 64949899,
+      "media_type": "text/plain",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881423542Z",
+      "last_updated": "2026-10-18T16:25:51.881423542Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286434/__tmp/mob_blast_results.txt",
+      "sha256": "90f492033b4332e1c2a969ae04df2410e6d944a0e401fe40ae034f5f84623372",
+      "size_bytes": 45054,
+      "media_type": "text/plain",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881424357Z",
+      "last_updated": "2026-10-18T16:25:51.881424357Z"
+    },
+    {
+      "path": "mobrecon_SAMN06630181.log",
+      "sha256": "cc0291f92d4bed48bcbc2c1df3c7cc1d92f5451efae02877b1a66cae29a84a78",
+      "size_bytes": 3144,
+      "media_type": "text/plain",
+      "created_by": "cmd-0006",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:51.881429031Z",
+      "last_updated": "2026-10-18T16:25:51.881429031Z"
+    },
+    {
+      "path": "config_test.toml",
+      "sha256": "c74aa701bdc328bacb2de71bafb6eb60db20ebc62d1e783c1f916b1a0171ba53",
+      "size_bytes": 1046,
+      "media_type": "application/octet-stream",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.368999672Z",
+      "last_updated": "2026-10-18T16:25:55.368999672Z",
+      "role": "provenance"
+    },
+    {
+      "path": "ctxm_env_export.yml",
+      "sha256": "f6746e979b26cbec8ced14f5e0633466646a69d09772a01c1f1212e910c89af1",
+      "size_bytes": 8294,
+      "media_type": "application/yaml",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.375618939Z",
+      "last_updated": "2026-10-18T16:25:55.375618939Z",
+      "role": "provenance"
+    },
+    {
+      "path": "input/ctxm15_isolates.tsv",
+      "sha256": "a9590969c037b6688d5f9ca426a2937544c90080cb8852ccf3c319694b67c6cc",
+      "size_bytes": 773,
+      "media_type": "text/tab-separated-values",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.390469562Z",
+      "last_updated": "2026-10-18T16:25:55.390469562Z",
+      "role": "output"
+    },
+    {
+      "path": "input/mobrecon_order.txt",
+      "sha256": "bced46776c1770df06598ba5906515d9a77995e7e859a1fbf7cb0c3e27a76c8d",
+      "size_bytes": 572,
+      "media_type": "text/plain",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.402818153Z",
+      "last_updated": "2026-10-18T16:25:55.402818153Z",
+      "role": "output"
+    },
+    {
+      "path": "input/atb_amrfinderplus_prjna379782.tsv",
+      "sha256": "d2871b540857b92a758c432694850378b986ce6cf32244cbb241f8924472b745",
+      "size_bytes": 3180905,
+      "media_type": "text/tab-separated-values",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.421373370Z",
+      "last_updated": "2026-10-18T16:25:55.421373370Z",
+      "role": "output"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/ctxm_plasmid_summary.tsv",
+      "sha256": "e8172ebc587e91584524aee72dc8485e809e91c29a5f7649bdb27db8eaf9428b",
+      "size_bytes": 917,
+      "media_type": "text/tab-separated-values",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.438243433Z",
+      "last_updated": "2026-10-18T16:25:55.438243433Z",
+      "role": "output"
+    },
+    {
+      "path": "scripts/plot_ctxm_plasmids_v2.py",
+      "sha256": "651e082061bb5aca0d07e6636670c37bc424bbe4934327f0a5873c90fa1a2cac",
+      "size_bytes": 16656,
+      "media_type": "application/octet-stream",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.455407468Z",
+      "last_updated": "2026-10-18T16:25:55.455407468Z",
+      "role": "provenance"
+    },
+    {
+      "path": "scripts/03_run_mobrecon.sh",
+      "sha256": "1914e5ac5e6c9e584e6990ce9f91ba5222fd2447fda02341c6b4b3f123e16fdc",
+      "size_bytes": 580,
+      "media_type": "application/octet-stream",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.474337838Z",
+      "last_updated": "2026-10-18T16:25:55.474337838Z",
+      "role": "provenance"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA002_ctxm_alignment.png",
+      "sha256": "e2d6f7292f29415caeb21ea9b92c7708437cb0c43cac29d5030ee94001b4e948",
+      "size_bytes": 330591,
+      "media_type": "image/png",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.490296498Z",
+      "last_updated": "2026-10-18T16:25:55.490296498Z",
+      "role": "output"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA057_ctxm_alignment.png",
+      "sha256": "480e88d6322116ec531baae1f691bfcaa573c6ca1f145546ccf82ef1808b2942",
+      "size_bytes": 416022,
+      "media_type": "image/png",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.506372715Z",
+      "last_updated": "2026-10-18T16:25:55.506372715Z",
+      "role": "output"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA173_ctxm_alignment.png",
+      "sha256": "78203dd6f01e0c181b5f188fc165fdddb8bda672cb33e9b57cc280f241f9583c",
+      "size_bytes": 669307,
+      "media_type": "image/png",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.548116921Z",
+      "last_updated": "2026-10-18T16:25:55.548116921Z",
+      "role": "output"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/AA739_ctxm_alignment.png",
+      "sha256": "d864b519bfec89c91679564230108f087281cadd6799df4a3c9ec3c0356c7287",
+      "size_bytes": 457961,
+      "media_type": "image/png",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T16:25:55.570469003Z",
+      "last_updated": "2026-10-18T16:25:55.570469003Z",
+      "role": "output"
     }
   ],
   "env_snapshots": []
