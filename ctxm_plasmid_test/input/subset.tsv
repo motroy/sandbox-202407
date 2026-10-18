@@ -1,0 +1,35 @@
+sample	role	ctxm_variant	ST	n_contigs	N50	why
+SAMN06630263	control_no_ctxm		131	86	243498	best-assembled non-CTX-M isolate of same ST (candidate reference)
+SAMN13286408	control_no_ctxm		216	173	111488	best-assembled non-CTX-M isolate of same ST (candidate reference)
+SAMN06630124	control_no_ctxm		2363	133	127876	best-assembled non-CTX-M isolate of same ST (candidate reference)
+SAMN06630092	control_no_ctxm		38	135	166176	best-assembled non-CTX-M isolate of same ST (candidate reference)
+SAMN06630169	control_no_ctxm		401	272	78838	best-assembled non-CTX-M isolate of same ST (candidate reference)
+SAMN13286427	control_no_ctxm		410	122	134154	best-assembled non-CTX-M isolate of same ST (candidate reference)
+SAMN06630181	control_no_ctxm		607	127	182469	best-assembled non-CTX-M isolate of same ST (candidate reference)
+SAMN13286434	ctxm	blaCTX-M	2363	120	126986	top1 of 1 in blaCTX-M|ST2363
+SAMN06630154	ctxm	blaCTX-M	410	115	126635	top1 of 1 in blaCTX-M|ST410
+SAMN06630152	ctxm	blaCTX-M-15	2363	144	108984	top2 of 2 in blaCTX-M-15|ST2363
+SAMN06630195	ctxm	blaCTX-M-15	2363	158	105153	top2 of 2 in blaCTX-M-15|ST2363
+SAMN06630297	ctxm	blaCTX-M-15	405	223	108776	top2 of 4 in blaCTX-M-15|ST405
+SAMN06630299	ctxm	blaCTX-M-15	405	185	112877	top2 of 4 in blaCTX-M-15|ST405
+SAMN13286403	ctxm	blaCTX-M-15	410	116	134272	top2 of 6 in blaCTX-M-15|ST410
+SAMN13286407	ctxm	blaCTX-M-15	410	106	127876	top2 of 6 in blaCTX-M-15|ST410
+SAMN06630209	ctxm	blaCTX-M-15;blaCTX-M-9	216	241	111488	top1 of 1 in blaCTX-M-15;blaCTX-M-9|ST216
+SAMN06630074	ctxm	blaCTX-M-24	38	186	141942	top1 of 1 in blaCTX-M-24|ST38
+SAMN06630112	ctxm	blaCTX-M-27	131	107	191361	top2 of 2 in blaCTX-M-27|ST131
+SAMN06630234	ctxm	blaCTX-M-27	131	123	191030	top2 of 2 in blaCTX-M-27|ST131
+SAMN06630093	ctxm	blaCTX-M-27	3541	127	154787	top1 of 1 in blaCTX-M-27|ST3541
+SAMN06630180	ctxm	blaCTX-M-9	13850	235	75513	top2 of 2 in blaCTX-M-9|ST13850
+SAMN06630256	ctxm	blaCTX-M-9	13850	235	78871	top2 of 2 in blaCTX-M-9|ST13850
+SAMN06630080	ctxm	blaCTX-M-9	216	262	103139	extra ST216 CTX-M-9 (largest group)
+SAMN06630094	ctxm	blaCTX-M-9	216	223	110151	top2 of 19 in blaCTX-M-9|ST216
+SAMN06630136	ctxm	blaCTX-M-9	216	218	101313	top2 of 19 in blaCTX-M-9|ST216
+SAMN06630210	ctxm	blaCTX-M-9	216	230	111488	extra ST216 CTX-M-9 (largest group)
+SAMN06630274	ctxm	blaCTX-M-9	216	247	103139	extra ST216 CTX-M-9 (largest group)
+SAMN06630117	ctxm	blaCTX-M-9	401	274	73589	top2 of 7 in blaCTX-M-9|ST401
+SAMN06630184	ctxm	blaCTX-M-9	401	286	75642	top2 of 7 in blaCTX-M-9|ST401
+SAMN06630078	ctxm	blaCTX-M-9	409	220	82736	top2 of 3 in blaCTX-M-9|ST409
+SAMN06630091	ctxm	blaCTX-M-9	409	202	92938	top2 of 3 in blaCTX-M-9|ST409
+SAMN06630131	ctxm	blaCTX-M-9	607	147	174032	top2 of 4 in blaCTX-M-9|ST607
+SAMN06630172	ctxm	blaCTX-M-9	607	147	174033	top2 of 4 in blaCTX-M-9|ST607
+SAMN06630194	ctxm	blaCTX-M-9;blaCTX-M-15	409	227	88355	top1 of 1 in blaCTX-M-9;blaCTX-M-15|ST409

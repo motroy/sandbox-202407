@@ -5,7 +5,7 @@
   "description": "Download short-read assemblies (PRJNA379782, AAC 01689-18) with atb-cli to test plot_ctxm_plasmids_v2.py",
   "status": "active",
   "created_at": "2026-10-18T14:24:35.350229235Z",
-  "updated_at": "2026-10-18T14:25:31.903795206Z",
+  "updated_at": "2026-10-18T14:40:25.236921036Z",
   "environment": {
     "user": "unknown",
     "hostname": "vm",
@@ -363,6 +363,102 @@
           "sha256": "88139f7be96a9c742fa94a113d1d3203053fd064407c0ecc2055e36fd84a794d",
           "version": "Go version:       go1.26.9",
           "version_probe": "version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0004",
+      "seq": 4,
+      "command_line": "bash scripts/02_make_subset.sh",
+      "cwd": "/home/user/sandbox-202407/ctxm_plasmid_test",
+      "started_at": "2026-10-18T14:40:24.631021933Z",
+      "finished_at": "2026-10-18T14:40:24.762273828Z",
+      "duration_ms": 131,
+      "exit_code": 0,
+      "stdout_tail": "34\n",
+      "stderr_tail": "",
+      "artifacts_created": [
+        "amrfinder/SAMN06630074.amrfinder.tsv",
+        "amrfinder/SAMN06630078.amrfinder.tsv",
+        "amrfinder/SAMN06630080.amrfinder.tsv",
+        "amrfinder/SAMN06630091.amrfinder.tsv",
+        "amrfinder/SAMN06630092.amrfinder.tsv",
+        "amrfinder/SAMN06630093.amrfinder.tsv",
+        "amrfinder/SAMN06630094.amrfinder.tsv",
+        "amrfinder/SAMN06630112.amrfinder.tsv",
+        "amrfinder/SAMN06630117.amrfinder.tsv",
+        "amrfinder/SAMN06630124.amrfinder.tsv",
+        "amrfinder/SAMN06630131.amrfinder.tsv",
+        "amrfinder/SAMN06630136.amrfinder.tsv",
+        "amrfinder/SAMN06630152.amrfinder.tsv",
+        "amrfinder/SAMN06630154.amrfinder.tsv",
+        "amrfinder/SAMN06630169.amrfinder.tsv",
+        "amrfinder/SAMN06630172.amrfinder.tsv",
+        "amrfinder/SAMN06630180.amrfinder.tsv",
+        "amrfinder/SAMN06630181.amrfinder.tsv",
+        "amrfinder/SAMN06630184.amrfinder.tsv",
+        "amrfinder/SAMN06630194.amrfinder.tsv",
+        "amrfinder/SAMN06630195.amrfinder.tsv",
+        "amrfinder/SAMN06630209.amrfinder.tsv",
+        "amrfinder/SAMN06630210.amrfinder.tsv",
+        "amrfinder/SAMN06630234.amrfinder.tsv",
+        "amrfinder/SAMN06630256.amrfinder.tsv",
+        "amrfinder/SAMN06630263.amrfinder.tsv",
+        "amrfinder/SAMN06630274.amrfinder.tsv",
+        "amrfinder/SAMN06630297.amrfinder.tsv",
+        "amrfinder/SAMN06630299.amrfinder.tsv",
+        "amrfinder/SAMN13286403.amrfinder.tsv",
+        "amrfinder/SAMN13286407.amrfinder.tsv",
+        "amrfinder/SAMN13286408.amrfinder.tsv",
+        "amrfinder/SAMN13286427.amrfinder.tsv",
+        "amrfinder/SAMN13286434.amrfinder.tsv"
+      ],
+      "artifacts_modified": [],
+      "tools": [
+        {
+          "name": "bash",
+          "path": "/usr/bin/bash",
+          "sha256": "bc5945feb8bd26203ebfafea5ce1878bb2e32cb8fb50ab7ae395cfb1e1aaaef1",
+          "version": "GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)",
+          "version_probe": "--version"
+        },
+        {
+          "name": "ln",
+          "path": "/usr/bin/ln",
+          "sha256": "059a363e62adcc10e14e55b5c82df6945509303eb32370b02c461311329ad261",
+          "version": "ln (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/02_make_subset.sh"
+        },
+        {
+          "name": "cp",
+          "path": "/usr/bin/cp",
+          "sha256": "95cdd604fdf0a292e349d27d1a80170ca0913bd3bbd9d2c0fcfc6c8adaebe2f0",
+          "version": "cp (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/02_make_subset.sh"
+        },
+        {
+          "name": "ls",
+          "path": "/usr/bin/ls",
+          "sha256": "2726eb35864608ff34969fbf45ef4afcbba95eefed5ce5653c9c0124c4cd26cf",
+          "version": "ls (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/02_make_subset.sh"
+        },
+        {
+          "name": "wc",
+          "path": "/usr/bin/wc",
+          "sha256": "9005273a966c875547a4317288bdd92e7b2aa49ad86bc9978121242106405e6b",
+          "version": "wc (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/02_make_subset.sh"
+        },
+        {
+          "name": "scripts/02_make_subset.sh",
+          "path": "/home/user/sandbox-202407/ctxm_plasmid_test/scripts/02_make_subset.sh",
+          "sha256": "7562ce425dec9423df68b6df2500048092a535b1a91fca84966b8d55e79b8e85",
+          "version": "shell script"
         }
       ]
     }
@@ -3050,13 +3146,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "f6b7a694635e72874b347c10d090e3555c75a80fe82376491e56684e6bd9f980",
-      "size_bytes": 1961,
+      "sha256": "4d80c01982a0ba469a984c02003ffd4431ccaa7d281ec2cde2775875027283aa",
+      "size_bytes": 3550,
       "media_type": "text/markdown",
       "created_by": null,
       "modified_by": [],
       "first_recorded": "2026-10-18T14:25:31.888684910Z",
-      "last_updated": "2026-10-18T14:25:31.888684910Z",
+      "last_updated": "2026-10-18T14:40:25.236919765Z",
       "role": "output"
     },
     {
@@ -3069,6 +3165,357 @@
       "first_recorded": "2026-10-18T14:25:31.893573084Z",
       "last_updated": "2026-10-18T14:25:31.893573084Z",
       "role": "provenance"
+    },
+    {
+      "path": "amrfinder/SAMN06630074.amrfinder.tsv",
+      "sha256": "5a4556607d80a04da7b5f55109da9922e1d50802763bc559be67c2b133d85e24",
+      "size_bytes": 7327,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200496004Z",
+      "last_updated": "2026-10-18T14:40:25.200496004Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630078.amrfinder.tsv",
+      "sha256": "7f9ed36434a9a9075a4fc4f3467ef90548afb40508c9021e8af4d69b14430915",
+      "size_bytes": 13845,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200502482Z",
+      "last_updated": "2026-10-18T14:40:25.200502482Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630080.amrfinder.tsv",
+      "sha256": "62ab9a9435c903487c2c1cad4ea56bb124ab946d67593beec28c0424c1b67aff",
+      "size_bytes": 16225,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200503516Z",
+      "last_updated": "2026-10-18T14:40:25.200503516Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630091.amrfinder.tsv",
+      "sha256": "e476eb7a22d6d0653164a1240e075b15246d3a6464df670596d7056b262541f8",
+      "size_bytes": 13833,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200504598Z",
+      "last_updated": "2026-10-18T14:40:25.200504598Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630092.amrfinder.tsv",
+      "sha256": "de21bee15de7f4d6253a773265b89129b583debb3aa1f808773370477ce65bff",
+      "size_bytes": 7423,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200505949Z",
+      "last_updated": "2026-10-18T14:40:25.200505949Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630093.amrfinder.tsv",
+      "sha256": "daf498e9bb58dffdb44ccd6e76bdd33558040e50394ba61aa3dedee9f46a6520",
+      "size_bytes": 9523,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200509353Z",
+      "last_updated": "2026-10-18T14:40:25.200509353Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630094.amrfinder.tsv",
+      "sha256": "fd93fed8d314aab241176f545b9d0984b293bfb14cc505f6a5b9b7103b25b6a8",
+      "size_bytes": 15130,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200510429Z",
+      "last_updated": "2026-10-18T14:40:25.200510429Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630112.amrfinder.tsv",
+      "sha256": "bd16d44b729ee22a7c97b09086cb3af035cccc018e492ee9079579ef6370f084",
+      "size_bytes": 11440,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200511479Z",
+      "last_updated": "2026-10-18T14:40:25.200511479Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630117.amrfinder.tsv",
+      "sha256": "bea5271d649bde1dee7f25185a8f48c1f2b3cc726881626ad2a4e0a09d468e94",
+      "size_bytes": 16378,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200512506Z",
+      "last_updated": "2026-10-18T14:40:25.200512506Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630124.amrfinder.tsv",
+      "sha256": "fe869fe19f1b2bd966506656df3b55da3fc4ff8647caa2456c3a4420ea40a3da",
+      "size_bytes": 10556,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200513449Z",
+      "last_updated": "2026-10-18T14:40:25.200513449Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630131.amrfinder.tsv",
+      "sha256": "cf4c7821a08237efcb557918ac5e322a9e4c152d3c50f833968e3e107ff1fe94",
+      "size_bytes": 17216,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200514421Z",
+      "last_updated": "2026-10-18T14:40:25.200514421Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630136.amrfinder.tsv",
+      "sha256": "d31580550f417f38b387817543009394bd102bda24fe5eb9741e82da42f1e0e8",
+      "size_bytes": 15374,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200515364Z",
+      "last_updated": "2026-10-18T14:40:25.200515364Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630152.amrfinder.tsv",
+      "sha256": "241811f0a9d274ba83e27abe09f53f02b2368b1786b0069b587a706c60d5bf8b",
+      "size_bytes": 13313,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200516314Z",
+      "last_updated": "2026-10-18T14:40:25.200516314Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630154.amrfinder.tsv",
+      "sha256": "9958dcb72602265c71e62ed686cb4a00914ee68974bcc4e128eb2b0517cf4d7e",
+      "size_bytes": 13038,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200517394Z",
+      "last_updated": "2026-10-18T14:40:25.200517394Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630169.amrfinder.tsv",
+      "sha256": "a7b1ecf73af8b4eb15e7e0444a83c7548f9bd8844447923915c1c6cb02d9efb7",
+      "size_bytes": 14402,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200518450Z",
+      "last_updated": "2026-10-18T14:40:25.200518450Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630172.amrfinder.tsv",
+      "sha256": "671dcb3da08863a56bf9de590058f0feb9d076e4cef187cef316b5ae699e86ae",
+      "size_bytes": 17201,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200519576Z",
+      "last_updated": "2026-10-18T14:40:25.200519576Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630180.amrfinder.tsv",
+      "sha256": "8426bfcf854603df9a15af95e7a753e78d97ca6e04d4cbfc43360c6b7f7dbd46",
+      "size_bytes": 14017,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200520784Z",
+      "last_updated": "2026-10-18T14:40:25.200520784Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630181.amrfinder.tsv",
+      "sha256": "5908556ee05f5508856742c05715d24f42db89551b7f2ded456a9c1bdc8d4fcb",
+      "size_bytes": 14644,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200521769Z",
+      "last_updated": "2026-10-18T14:40:25.200521769Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630184.amrfinder.tsv",
+      "sha256": "f41f42b9836000178bc2eae65f43f1f3140d86e364af13f6d2faa5cfeeaeab58",
+      "size_bytes": 14969,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200525371Z",
+      "last_updated": "2026-10-18T14:40:25.200525371Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630194.amrfinder.tsv",
+      "sha256": "4cc3c33f71fcc99f67d3c7ca8f27079db50fdca1fd2e2a26befdb0260e43cb4c",
+      "size_bytes": 16243,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200526653Z",
+      "last_updated": "2026-10-18T14:40:25.200526653Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630195.amrfinder.tsv",
+      "sha256": "3be4c7c91ee3062984626b114a69c0e8bf73ecbdeaf6f1ae8e089bc368b3cce0",
+      "size_bytes": 13623,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200527718Z",
+      "last_updated": "2026-10-18T14:40:25.200527718Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630209.amrfinder.tsv",
+      "sha256": "a5623af20906f53c632f574ec162d87ec6c2a6499b05f60534382ab9ed4e16e5",
+      "size_bytes": 17504,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200528821Z",
+      "last_updated": "2026-10-18T14:40:25.200528821Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630210.amrfinder.tsv",
+      "sha256": "92e848f6e4e59434276d16982891eccd66471300337c445da284010c44d0d3e1",
+      "size_bytes": 15401,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200529965Z",
+      "last_updated": "2026-10-18T14:40:25.200529965Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630234.amrfinder.tsv",
+      "sha256": "4064a652a079b54fe66ef8080de4a43776240a6e17f02a15da13acc7aa7af358",
+      "size_bytes": 10366,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200531353Z",
+      "last_updated": "2026-10-18T14:40:25.200531353Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630256.amrfinder.tsv",
+      "sha256": "de12153b6d268158925e3f2d2a4757ae673e090b6662b3268c73b1586894885f",
+      "size_bytes": 14026,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200532748Z",
+      "last_updated": "2026-10-18T14:40:25.200532748Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630263.amrfinder.tsv",
+      "sha256": "fff439f29f7021ca05f7f0e5671801de506de7e219363123efa4ec53fb8feee3",
+      "size_bytes": 7142,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200533926Z",
+      "last_updated": "2026-10-18T14:40:25.200533926Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630274.amrfinder.tsv",
+      "sha256": "bfb5f045c71b171762235764a79dfa697ce6a898d7c00350b7da3e6f1d4016ae",
+      "size_bytes": 14917,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200535188Z",
+      "last_updated": "2026-10-18T14:40:25.200535188Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630297.amrfinder.tsv",
+      "sha256": "60a0d003a534ae4063380651ec6a2ec22e623afc55ae60008cec7166c9ff7dac",
+      "size_bytes": 9071,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200536390Z",
+      "last_updated": "2026-10-18T14:40:25.200536390Z"
+    },
+    {
+      "path": "amrfinder/SAMN06630299.amrfinder.tsv",
+      "sha256": "2bfa7a5cc9824d9445d0c78ddb9daec87972caa9e9f9334607a6806288823639",
+      "size_bytes": 9062,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200537839Z",
+      "last_updated": "2026-10-18T14:40:25.200537839Z"
+    },
+    {
+      "path": "amrfinder/SAMN13286403.amrfinder.tsv",
+      "sha256": "0e35d2c3c1771c6d07039bf77bcc4b1d59092ef5a3965cccd67f1cfab617775d",
+      "size_bytes": 13342,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200541341Z",
+      "last_updated": "2026-10-18T14:40:25.200541341Z"
+    },
+    {
+      "path": "amrfinder/SAMN13286407.amrfinder.tsv",
+      "sha256": "bbe432cf72627947d8bd28a5bc2e01312f4e5eaa23fdd46691735d887ef6cc26",
+      "size_bytes": 13316,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200545678Z",
+      "last_updated": "2026-10-18T14:40:25.200545678Z"
+    },
+    {
+      "path": "amrfinder/SAMN13286408.amrfinder.tsv",
+      "sha256": "153ee76d8ea30fedbe6999fe6eb0b57dda84213d64b79651f4d86d1bea624bad",
+      "size_bytes": 9519,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200547049Z",
+      "last_updated": "2026-10-18T14:40:25.200547049Z"
+    },
+    {
+      "path": "amrfinder/SAMN13286427.amrfinder.tsv",
+      "sha256": "8f4b685a28e190b1141980ffb697103b66c7c8e572c9d4ca964392c1b0f273ca",
+      "size_bytes": 12373,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200548434Z",
+      "last_updated": "2026-10-18T14:40:25.200548434Z"
+    },
+    {
+      "path": "amrfinder/SAMN13286434.amrfinder.tsv",
+      "sha256": "9059aeeb2df28bddbf572a53ed3475bd065cea8cafc538dcf05964ae670941de",
+      "size_bytes": 13336,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0004",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.200549823Z",
+      "last_updated": "2026-10-18T14:40:25.200549823Z"
+    },
+    {
+      "path": "input/subset.tsv",
+      "sha256": "3cac5326f56bcb33eeb2a30c3333e4171e8b9eee5a11a1b55f6def885ad81c82",
+      "size_bytes": 2906,
+      "media_type": "text/tab-separated-values",
+      "created_by": null,
+      "modified_by": [],
+      "first_recorded": "2026-10-18T14:40:25.231723045Z",
+      "last_updated": "2026-10-18T14:40:25.231723045Z",
+      "role": "output"
     }
   ],
   "env_snapshots": []

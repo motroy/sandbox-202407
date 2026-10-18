@@ -21,9 +21,16 @@ atb fetch --tables assembly.parquet,run.parquet   # small tables; plain `atb fet
 bash scripts/01_download_genomes.sh
 ```
 
+## Test subset (34 of 266 assemblies)
+MOB-recon and plasmid clustering on all 266 genomes is unnecessary for testing, so `input/subset.tsv` lists 34 chosen for this script's use case (the script needs >=2 blaCTX-M isolates sharing a MOB-suite cluster, plus an optional non-CTX-M isolate to serve as the reference). Selection used ATB's precomputed AMRFinderPlus calls (`input/atb_amrfinderplus_prjna379782.tsv`), MLST and assembly stats:
+- **27 blaCTX-M isolates** (65 of 266 carry it: CTX-M-9 x43, -15 x18, -27 x3, unspecified x2, -24 x1). For every variant + ST group the 2 best-assembled (fewest contigs) isolates are taken, so each probable shared backbone has >=2 members: CTX-M-9 in ST216 (x5, the largest group, spread over assembly quality), ST607, ST409, ST401, ST13850; CTX-M-15 in ST410, ST405, ST2363; CTX-M-27 in ST131. Singletons are kept only for the rare variants (CTX-M-24 ST38, CTX-M-27 ST3541, an unspecified blaCTX-M, ST2363) and the two dual-variant isolates (SAMN06630209, SAMN06630194) for the multi-gene case.
+- **7 non-CTX-M controls**, the best-assembled isolate in each of the ST131/410/607/216/38/2363/401 groups, as candidate references.
+- Clusters are **not known yet**: ST is only a proxy for a shared plasmid, so expect some of the intended MOB-suite clusters (AA147 etc.) to be skipped.
+- `scripts/02_make_subset.sh` links the subset into `subset_genomes/` and copies ATB's AMRFinderPlus tables (contig IDs match the FASTA headers) into `amrfinder/`, which can replace step 2 below.
+
 ## Still to do before running the plot script
 The script reads MOB-recon and AMRFinderPlus output, not raw assemblies, so these remain:
-1. `mob_recon -i genomes/<SAMN>.fa.gz -o mobrecon/<SAMN>` per sample (needs `plasmid_<CLUSTER>.fasta` files and `mge.report.txt`).
-2. `amrfinder -n <fasta> -o amrfinder/<SAMN>.amrfinder.tsv` per sample (needs the `Contig id` column to match the FASTA headers).
+1. `mob_recon -i subset_genomes/<SAMN>.fa.gz -o mobrecon/<SAMN>` per sample (needs `plasmid_<CLUSTER>.fasta` files and `mge.report.txt`).
+2. (optional for the subset, already staged by `02_make_subset.sh`) `amrfinder -n <fasta> -o amrfinder/<SAMN>.amrfinder.tsv` per sample (needs the `Contig id` column to match the FASTA headers).
 3. Optionally `metadata.tsv` (columns `sample`, `host`).
 4. `conda env create -f environment.yml && python scripts/plot_ctxm_plasmids_v2.py --config config.toml`
