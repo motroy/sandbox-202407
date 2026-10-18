@@ -161,12 +161,16 @@ def assemble(b, ref_rec, min_id, min_len):
         L = len(c.seq)
         seq = c.seq.reverse_complement() if flip else c.seq
         for _, m in b["mge"][b["mge"]["contig"] == c.id].iterrows():
-            st, en, sd = int(m["start"]), int(m["end"]), m["strand"]
+            st, en, sd = max(int(m["start"]), 1), min(int(m["end"]), L), m["strand"]   # MOB-recon can overhang contig ends
+            if en < st:
+                continue
             if flip:
                 st, en, sd = L - en + 1, L - st + 1, ("-" if sd == "+" else "+")
             mges.append(dict(name=m["name"], start=st + off, end=en + off, strand=sd))
         for _, g in b["amr"][b["amr"]["contig"] == c.id].iterrows():
-            st, en, sd = int(g["start"]), int(g["end"]), g["strand"]
+            st, en, sd = max(int(g["start"]), 1), min(int(g["end"]), L), g["strand"]
+            if en < st:
+                continue
             if flip:
                 st, en, sd = L - en + 1, L - st + 1, ("-" if sd == "+" else "+")
             genes.append(dict(symbol=g["symbol"], start=st + off, end=en + off, strand=sd, cls=g["cls"]))
@@ -228,10 +232,14 @@ def draw(cl, tracks, ref_label, outdir, min_id):
         pass
     fig.legend(handles=[Patch(fc=c, label=k) for k, c in pal.items()] + [Patch(fc="dimgray", label="MGE (MOB-recon)")],
                title="AMR class",
-               loc="lower center", ncol=min(len(pal), 5), fontsize=8, frameon=False,
-               bbox_to_anchor=(0.5, -0.12))
+               loc="upper center", ncol=min(len(pal), 5), fontsize=8, frameon=False,
+               bbox_to_anchor=(0.5, 0.0))
+    fig.canvas.draw()   # gene labels stick out above the figure box: put the title above everything drawn so far
+    bb = fig.get_tightbbox(fig.canvas.get_renderer())
+    top = bb.y1 / fig.get_size_inches()[1] + 0.02
     fig.suptitle(f"{cl}: blaCTX-M plasmids, ordered on reference {ref_label} "
-                 f"(white = contig break; * = blaCTX-M contig not placed on reference)", fontsize=9)
+                 f"(white = contig break; * = blaCTX-M contig not placed on reference)", fontsize=9,
+                 y=top, va="bottom")
     for ext in ("png", "svg", "pdf"):
         fig.savefig(outdir / f"{cl}_ctxm_alignment.{ext}", dpi=300, bbox_inches="tight")
     plt.close(fig)
@@ -293,6 +301,7 @@ def main():
         else:
             rb = max(allb, key=lambda b: (max(len(c.seq) for c in b["contigs"]), -len(b["contigs"])))
         ref = assemble(rb, None, a.min_identity, a.min_aln_len)   # reference: contigs by length
+        ref["ctx_placed"] = True if ref["ctx_contigs"] else None  # reference defines the coordinates
         ref_rec = SeqRecord(ref["rec"].seq, id="ref", description="")
 
         asm = [assemble(b, ref_rec, a.min_identity, a.min_aln_len) for b in ctxb if b["sample"] != rb["sample"]]
@@ -306,12 +315,13 @@ def main():
         picked = sorted(picked[:a.max_per_cluster - 1], key=lambda t: -t["aligned_bp"])
         tracks = [ref] + picked
 
-        for t in asm:
+        for t in [ref] + asm:
             ctx = t["genes"][t["genes"]["symbol"].astype(str).str.contains(CTX, na=False)]
+            is_ref = t is ref
             summary.append(dict(cluster=cl, sample=t["sample"], host=t["host"], n_contigs=len(t["contigs"]),
-                                total_bp=t["total"], aligned_bp_to_ref=t["aligned_bp"],
-                                n_unplaced_contigs=t["n_unplaced"], ctxm=";".join(ctx["symbol"]),
-                                ctxm_contig_placed=t["ctx_placed"], reference=rb["sample"]))
+                                total_bp=t["total"], aligned_bp_to_ref=t["total"] if is_ref else t["aligned_bp"],
+                                n_unplaced_contigs=0 if is_ref else t["n_unplaced"], ctxm=";".join(ctx["symbol"]),
+                                ctxm_contig_placed=t["ctx_placed"], reference=rb["sample"], is_reference=is_ref))
         print(f"[plot] {cl}: ref={rb['sample']}, {len(tracks)} tracks")
         draw(cl, tracks, rb["sample"], a.outdir, a.min_identity)
 
