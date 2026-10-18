@@ -2,13 +2,15 @@
 # Run:  python plot_ctxm_plasmids_v2.py --config config.toml
 # Any command-line option overrides the value here. Relative paths are relative to where you run the script.
 
-mobrecon_dir = "mobrecon_first_run"
+mobrecon_dir = "mobrecon"
 amr_dir      = "amrfinder"         # AMRFinderPlus tables, one per sample
-
 outdir       = "ctxm_plasmid_figs_test"
 
+# Target gene: "blaCTX-M" matches every variant; "blaCTX-M-15" matches only that allele
+gene = "blaCTX-M-15"
+
 # MOB-suite primary clusters to plot
-clusters = ["AA147", "AC315", "AA474", "AA161", "AA176", "AB690", "AA887", "AA738", "AA173", "AA002", "AA057", "AA739"]
+clusters = ["AA147", "AC315", "AA474", "AA161", "AA176", "AB690", "AA887", "AA738", "AA173", "AA002", "AA057"]
 
 mge_file        = "mge.report.txt" # MOB-recon MGE report inside each sample folder
 max_per_cluster = 8                # tracks per figure, including the reference
