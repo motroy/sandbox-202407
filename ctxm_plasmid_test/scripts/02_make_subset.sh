@@ -6,5 +6,5 @@ mkdir -p subset_genomes amrfinder
 while read -r s; do
   ln -sf "../genomes/${s}.fa.gz" "subset_genomes/${s}.fa.gz"
   cp "input/amrfinder_atb/${s}.amrfinder.tsv" "amrfinder/"
-done < input/subset_biosamples.txt
+done < input/mobrecon_order.txt
 ls subset_genomes | wc -l

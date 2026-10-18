@@ -1,0 +1,20 @@
+# Config for plot_ctxm_plasmids_v2.py
+# Run:  python plot_ctxm_plasmids_v2.py --config config.toml
+# Any command-line option overrides the value here. Relative paths are relative to where you run the script.
+
+mobrecon_dir = "mobrecon"          # <mobrecon_dir>/<sample>/plasmid_<CLUSTER>.fasta
+amr_dir      = "amrfinder"         # AMRFinderPlus tables, one per sample
+
+outdir       = "ctxm_plasmid_figs_test"
+
+# MOB-suite primary clusters to plot
+clusters = ["AA173"]
+
+mge_file        = "mge.report.txt" # MOB-recon MGE report inside each sample folder
+max_per_cluster = 8                # tracks per figure, including the reference
+min_identity    = 90.0             # blastn % identity for ribbons and contig placement
+min_aln_len     = 300              # minimum alignment length (bp)
+
+# Optional: closed reference plasmid per cluster (otherwise the longest single contig in the cluster is used)
+# [refs]
+# AA147 = "refs/AA147_reference.fasta"

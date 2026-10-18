@@ -1,0 +1,4 @@
+cluster	sample	host	n_contigs	total_bp	aligned_bp_to_ref	n_unplaced_contigs	ctxm	ctxm_contig_placed	reference
+AA173	SAMN13286407		8	83173	85533	0	blaCTX-M-15	True	SAMN13286419
+AA173	SAMN13286403		9	84569	85067	0	blaCTX-M-15	True	SAMN13286419
+AA173	SAMN13286415		9	84569	85067	0	blaCTX-M-15	True	SAMN13286419
