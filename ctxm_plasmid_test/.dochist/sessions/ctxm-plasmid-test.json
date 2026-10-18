@@ -5,7 +5,7 @@
   "description": "Download short-read assemblies (PRJNA379782, AAC 01689-18) with atb-cli to test plot_ctxm_plasmids_v2.py",
   "status": "active",
   "created_at": "2026-10-18T14:24:35.350229235Z",
-  "updated_at": "2026-10-18T14:40:25.236921036Z",
+  "updated_at": "2026-10-18T15:01:06.862441617Z",
   "environment": {
     "user": "unknown",
     "hostname": "vm",
@@ -458,6 +458,128 @@
           "name": "scripts/02_make_subset.sh",
           "path": "/home/user/sandbox-202407/ctxm_plasmid_test/scripts/02_make_subset.sh",
           "sha256": "7562ce425dec9423df68b6df2500048092a535b1a91fca84966b8d55e79b8e85",
+          "version": "shell script"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0005",
+      "seq": 5,
+      "command_line": "bash scripts/03_run_mobrecon.sh",
+      "cwd": "/home/user/sandbox-202407/ctxm_plasmid_test",
+      "started_at": "2026-10-18T14:59:00.200662486Z",
+      "finished_at": "2026-10-18T15:01:06.242571241Z",
+      "duration_ms": 126041,
+      "exit_code": 143,
+      "stdout_tail": "",
+      "stderr_tail": "Terminated\nTerminated\nTerminated\nTerminated\nTerminated\n",
+      "artifacts_created": [
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.ndb",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nhr",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nin",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.njs",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.not",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nsq",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.ntf",
+        "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nto",
+        "mobrecon/SAMN06630092/__tmp/mob_blast_results.txt",
+        "mobrecon/SAMN06630092/__tmp/mpf_blast_results.txt",
+        "mobrecon/SAMN06630092/__tmp/replicon_blast_results.txt",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.ndb",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nhr",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nin",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.njs",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.not",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nsq",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.ntf",
+        "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nto",
+        "mobrecon/SAMN06630124/__tmp/mob_blast_results.txt",
+        "mobrecon/SAMN06630124/__tmp/mpf_blast_results.txt",
+        "mobrecon/SAMN06630124/__tmp/replicon_blast_results.txt",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.ndb",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nhr",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nin",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.njs",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.not",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nsq",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.ntf",
+        "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nto",
+        "mobrecon/SAMN06630263/__tmp/mob_blast_results.txt",
+        "mobrecon/SAMN06630263/__tmp/mpf_blast_results.txt",
+        "mobrecon/SAMN06630263/__tmp/replicon_blast_results.txt",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.ndb",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nhr",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nin",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.njs",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.not",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nsq",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.ntf",
+        "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nto",
+        "mobrecon/SAMN13286408/__tmp/mob_blast_results.txt",
+        "mobrecon/SAMN13286408/__tmp/mpf_blast_results.txt",
+        "mobrecon/SAMN13286408/__tmp/replicon_blast_results.txt",
+        "mobrecon_SAMN06630092.log",
+        "mobrecon_SAMN06630124.log",
+        "mobrecon_SAMN06630263.log",
+        "mobrecon_SAMN13286408.log"
+      ],
+      "artifacts_modified": [],
+      "env": {
+        "manager": "mamba",
+        "name": "ctxm",
+        "prefix": "/root/mamba/envs/ctxm",
+        "vars": {
+          "CONDA_DEFAULT_ENV": "ctxm",
+          "CONDA_PREFIX": "/root/mamba/envs/ctxm",
+          "CONDA_SHLVL": "1",
+          "MAMBA_EXE": "/root/.local/bin/micromamba",
+          "MAMBA_ROOT_PREFIX": "/root/mamba"
+        }
+      },
+      "tools": [
+        {
+          "name": "bash",
+          "path": "/usr/bin/bash",
+          "sha256": "bc5945feb8bd26203ebfafea5ce1878bb2e32cb8fb50ab7ae395cfb1e1aaaef1",
+          "version": "GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)",
+          "version_probe": "--version"
+        },
+        {
+          "name": "zcat",
+          "path": "/usr/bin/zcat",
+          "sha256": "f0b4d86b6a10064b7f2f41a452ab5437f61d4f17d8b1ab3488f3f345519f4f8d",
+          "version": "zcat (gzip) 1.12",
+          "version_probe": "--version",
+          "origin": "scripts/03_run_mobrecon.sh"
+        },
+        {
+          "name": "mob_recon",
+          "path": "/root/mamba/envs/ctxm/bin/mob_recon",
+          "sha256": "8b8af8be41a111ac23ea4331fa56b5bef686429accc78be02480b66d00b7564d",
+          "version": "mob_recon 3.1.8",
+          "version_probe": "--version",
+          "origin": "scripts/03_run_mobrecon.sh"
+        },
+        {
+          "name": "rm",
+          "path": "/usr/bin/rm",
+          "sha256": "78721a1709e77e74163f73067cef7049496463325adb300f4b7fd6155fca1c62",
+          "version": "rm (GNU coreutils) 9.4",
+          "version_probe": "--version",
+          "origin": "scripts/03_run_mobrecon.sh"
+        },
+        {
+          "name": "run",
+          "origin": "scripts/03_run_mobrecon.sh"
+        },
+        {
+          "name": "scripts/03_run_mobrecon.sh",
+          "path": "/home/user/sandbox-202407/ctxm_plasmid_test/scripts/03_run_mobrecon.sh",
+          "sha256": "2305ed680c9d3811a73ba218936578b9daafed51bed5dc0afbd981fa2da28f62",
           "version": "shell script"
         }
       ]
@@ -3516,6 +3638,526 @@
       "first_recorded": "2026-10-18T14:40:25.231723045Z",
       "last_updated": "2026-10-18T14:40:25.231723045Z",
       "role": "output"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta",
+      "sha256": "d5539dda2ae3de210b635ccafc429d5ca00e1491bbab524adc0f865e6cf66d8b",
+      "size_bytes": 5199807,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862328512Z",
+      "last_updated": "2026-10-18T15:01:06.862328512Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.ndb",
+      "sha256": "24c3027c4e70e4976a2088cbbd19b1393eca1dca51da2756ad72016657c772d3",
+      "size_bytes": 20480,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862340772Z",
+      "last_updated": "2026-10-18T15:01:06.862340772Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nhr",
+      "sha256": "b8df238c0704e15ff260e4597a165e6a3f9370ba21b92f27d61d3b1fad4e5acc",
+      "size_bytes": 15287,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862342645Z",
+      "last_updated": "2026-10-18T15:01:06.862342645Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nin",
+      "sha256": "e05d47934383169ff0c4f9ab3ca80b7d51ed097c8547278777e7d6bd9c1a56c5",
+      "size_bytes": 1760,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862344195Z",
+      "last_updated": "2026-10-18T15:01:06.862344195Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.njs",
+      "sha256": "4d443c2fc52ce6fb3e13e3b9c4822ac01b0d6482b87f63cae40b0a6fbc719da8",
+      "size_bytes": 571,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862345469Z",
+      "last_updated": "2026-10-18T15:01:06.862345469Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.not",
+      "sha256": "f0423cee63d775a4b47d9d7ce16eb215ae2bd58904a4af7d8b212cf90cafa065",
+      "size_bytes": 1628,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862346691Z",
+      "last_updated": "2026-10-18T15:01:06.862346691Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nsq",
+      "sha256": "4d811460f5d35f574db883b05d0cb2d76689ea70364c88bdd67197cac62050e0",
+      "size_bytes": 1298255,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862347605Z",
+      "last_updated": "2026-10-18T15:01:06.862347605Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.ntf",
+      "sha256": "67982e4d7b1490b09cce06e7c29175c6bd011cd542cfacb1a1c310084a50821a",
+      "size_bytes": 16384,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862348960Z",
+      "last_updated": "2026-10-18T15:01:06.862348960Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/fixed.input.fasta.nto",
+      "sha256": "785acc807096ce3c4286bdb283d5739fe9ad50caee1d7afae13e0c95b7b09a27",
+      "size_bytes": 544,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862350130Z",
+      "last_updated": "2026-10-18T15:01:06.862350130Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/mob_blast_results.txt",
+      "sha256": "92be6acb73101e6953ddfa95d1d89409de9445d455dbec36628edc30a2a392d8",
+      "size_bytes": 1943,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862351376Z",
+      "last_updated": "2026-10-18T15:01:06.862351376Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/mpf_blast_results.txt",
+      "sha256": "5d10fc014dc0b8c076b8ec618270afbf017fa7ac49a7699b1b4861c8f507a292",
+      "size_bytes": 52274,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862352562Z",
+      "last_updated": "2026-10-18T15:01:06.862352562Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630092/__tmp/replicon_blast_results.txt",
+      "sha256": "5e6e1a331dedee9ede212b5b0b334d938431eef97d390e2b24f1c86f5005bd45",
+      "size_bytes": 1229,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862353716Z",
+      "last_updated": "2026-10-18T15:01:06.862353716Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta",
+      "sha256": "c0102f0a312498edecfce107b179b693a86d601164c85e6978c4eacc1bf4b3c5",
+      "size_bytes": 4890303,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862354587Z",
+      "last_updated": "2026-10-18T15:01:06.862354587Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.ndb",
+      "sha256": "9e1d30413159d0d785a1896265347f76918ebf3dabec32d319df5a015022241d",
+      "size_bytes": 20480,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862355762Z",
+      "last_updated": "2026-10-18T15:01:06.862355762Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nhr",
+      "sha256": "f2a65f8e386e51b2605f556c3d1bdeaefb43af86c3c74039dd8be990af80b4cd",
+      "size_bytes": 15057,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862357008Z",
+      "last_updated": "2026-10-18T15:01:06.862357008Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nin",
+      "sha256": "f0486234d59d61aa6fe56aa9c2fc2d30dedf38867998141b22ecb99ac9b71616",
+      "size_bytes": 1736,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862358256Z",
+      "last_updated": "2026-10-18T15:01:06.862358256Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.njs",
+      "sha256": "ac397545c1fb070e977cab08a4c4b6ac4d98feb40da2fd5df0de4632f25896ef",
+      "size_bytes": 571,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862359608Z",
+      "last_updated": "2026-10-18T15:01:06.862359608Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.not",
+      "sha256": "90478f8b6ade3fcdeb1accf90890719ebf0331e06fae62bf61b614615e96973d",
+      "size_bytes": 1604,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862363960Z",
+      "last_updated": "2026-10-18T15:01:06.862363960Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nsq",
+      "sha256": "6e70d258a9d90fffde25db1895bbe53ade761f837e2c2b6da4d0320611a8c79b",
+      "size_bytes": 1220899,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862365492Z",
+      "last_updated": "2026-10-18T15:01:06.862365492Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.ntf",
+      "sha256": "67982e4d7b1490b09cce06e7c29175c6bd011cd542cfacb1a1c310084a50821a",
+      "size_bytes": 16384,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862366766Z",
+      "last_updated": "2026-10-18T15:01:06.862366766Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/fixed.input.fasta.nto",
+      "sha256": "987b0f3fc8340461560071991ad1f2f06a3f3fdd6a21944803e3355b98878074",
+      "size_bytes": 536,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862368185Z",
+      "last_updated": "2026-10-18T15:01:06.862368185Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/mob_blast_results.txt",
+      "sha256": "614d9ccf5630c21911b5bea380579893307cfc6fc83df94cceeb6c39f7cd840d",
+      "size_bytes": 1360,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862369746Z",
+      "last_updated": "2026-10-18T15:01:06.862369746Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/mpf_blast_results.txt",
+      "sha256": "9a78e8f8dca63c6348721412cde24168017f542c50cb5c8e021262a33f229c56",
+      "size_bytes": 147349,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862371216Z",
+      "last_updated": "2026-10-18T15:01:06.862371216Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630124/__tmp/replicon_blast_results.txt",
+      "sha256": "600ef979ccc8e92680ef2621c59de3d9a2eebceeeff41060b23c8283622ddb47",
+      "size_bytes": 10845,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862372665Z",
+      "last_updated": "2026-10-18T15:01:06.862372665Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta",
+      "sha256": "876d180b655251e414fd9b8991702d882be98f5ecc1df557a1fd0de1899f7f45",
+      "size_bytes": 5152115,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862373763Z",
+      "last_updated": "2026-10-18T15:01:06.862373763Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.ndb",
+      "sha256": "872e8276ddeaa1d8e48193878bc646e0c0f467c1fcecb03fc65e6ac13593fe39",
+      "size_bytes": 20480,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862374930Z",
+      "last_updated": "2026-10-18T15:01:06.862374930Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nhr",
+      "sha256": "662d7de2259779fc72c5ac5cb1d56d4dc21fe0150853cd849ffaede4d27829fe",
+      "size_bytes": 9708,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862376380Z",
+      "last_updated": "2026-10-18T15:01:06.862376380Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nin",
+      "sha256": "533eda9aaf32dc8d3076d73a598f39bfb1c87719e28329299c820579f5a215f7",
+      "size_bytes": 1172,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862377708Z",
+      "last_updated": "2026-10-18T15:01:06.862377708Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.njs",
+      "sha256": "4ac88722f547a22fda9aac09c68ef6933c2b1fef0ef12bde3215b3634b023b98",
+      "size_bytes": 570,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862379103Z",
+      "last_updated": "2026-10-18T15:01:06.862379103Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.not",
+      "sha256": "a136fb7f1e72b1f8900f72a2565cc74e9ea9c987be32eb6d8d3da6497288525c",
+      "size_bytes": 1040,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862380569Z",
+      "last_updated": "2026-10-18T15:01:06.862380569Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nsq",
+      "sha256": "23e7ade6ec0916c8babed7393d1f7600e760ec56ee0f75ae3feb3d794b2a3c0d",
+      "size_bytes": 1286945,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862381997Z",
+      "last_updated": "2026-10-18T15:01:06.862381997Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.ntf",
+      "sha256": "67982e4d7b1490b09cce06e7c29175c6bd011cd542cfacb1a1c310084a50821a",
+      "size_bytes": 16384,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862383496Z",
+      "last_updated": "2026-10-18T15:01:06.862383496Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/fixed.input.fasta.nto",
+      "sha256": "99785f07bf2dafbe674d754109de8ecd7aad9fdcf08e8342be8d620aa510e07d",
+      "size_bytes": 348,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862385400Z",
+      "last_updated": "2026-10-18T15:01:06.862385400Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/mob_blast_results.txt",
+      "sha256": "ecd562167e3da9df53463fc6bd06c352beefa0a504d0ef84b9059fdd7754ab05",
+      "size_bytes": 5256,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862387094Z",
+      "last_updated": "2026-10-18T15:01:06.862387094Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/mpf_blast_results.txt",
+      "sha256": "2e9fde4800b44a343265c56a5c9c9d1c924fbcf6ae57b5bf2b51229a2f9cb738",
+      "size_bytes": 229354,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862391520Z",
+      "last_updated": "2026-10-18T15:01:06.862391520Z"
+    },
+    {
+      "path": "mobrecon/SAMN06630263/__tmp/replicon_blast_results.txt",
+      "sha256": "a4868375177dd08e1405a0fef2e4380c50bb7e19337032058fe1adb7c787a8ee",
+      "size_bytes": 10686,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862393209Z",
+      "last_updated": "2026-10-18T15:01:06.862393209Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta",
+      "sha256": "9e881ac4c5cbc73fcd99ceaeb5794f27f10375c8e34e26bc1946dc6082fbf756",
+      "size_bytes": 4786193,
+      "media_type": "text/x-fasta",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862394249Z",
+      "last_updated": "2026-10-18T15:01:06.862394249Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.ndb",
+      "sha256": "c5bba65fac7815783d5eba0d37c2ee98f4e080c78da6d674211ced72b8344ce6",
+      "size_bytes": 20480,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862395352Z",
+      "last_updated": "2026-10-18T15:01:06.862395352Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nhr",
+      "sha256": "75fae36291d8577cb0a12c17252cf61232281c8a8d65e4ce00a222080182067a",
+      "size_bytes": 19657,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862396791Z",
+      "last_updated": "2026-10-18T15:01:06.862396791Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nin",
+      "sha256": "2a2d09df133dd2f36ca36b535814cb46f942da02c2a2805af72b5f1d0a4fdb8a",
+      "size_bytes": 2216,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862398276Z",
+      "last_updated": "2026-10-18T15:01:06.862398276Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.njs",
+      "sha256": "62d6c5f3d1fb39ff04fd7506b268c1a42efce38c65c6837563cc3219e60fd9ef",
+      "size_bytes": 571,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862402233Z",
+      "last_updated": "2026-10-18T15:01:06.862402233Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.not",
+      "sha256": "2b8e0cb61e7139155c34e25a34c19b1066c6460b76d7685cdc1e0db046475165",
+      "size_bytes": 2084,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862403851Z",
+      "last_updated": "2026-10-18T15:01:06.862403851Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nsq",
+      "sha256": "4575a0f9c58c2d0fe3b77f812946870dd3157bed63218d79fbe82005a3f36964",
+      "size_bytes": 1194352,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862405571Z",
+      "last_updated": "2026-10-18T15:01:06.862405571Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.ntf",
+      "sha256": "67982e4d7b1490b09cce06e7c29175c6bd011cd542cfacb1a1c310084a50821a",
+      "size_bytes": 16384,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862407285Z",
+      "last_updated": "2026-10-18T15:01:06.862407285Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/fixed.input.fasta.nto",
+      "sha256": "162c6b471cc045ccfe703364a715d74a59d2806b5571bbac68ad5a4145ce51b0",
+      "size_bytes": 696,
+      "media_type": "application/octet-stream",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862409490Z",
+      "last_updated": "2026-10-18T15:01:06.862409490Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/mob_blast_results.txt",
+      "sha256": "3a28b3af1639aa4b40a7957b2fdc96e1f6df15d7a948e3153bc5b1d579530f5a",
+      "size_bytes": 109,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862411698Z",
+      "last_updated": "2026-10-18T15:01:06.862411698Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/mpf_blast_results.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862413318Z",
+      "last_updated": "2026-10-18T15:01:06.862413318Z"
+    },
+    {
+      "path": "mobrecon/SAMN13286408/__tmp/replicon_blast_results.txt",
+      "sha256": "3a8bf2ec7c59c58a9e14442b13a93ee6d113f70aaccfe66791fb406ce519016a",
+      "size_bytes": 5606,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862414967Z",
+      "last_updated": "2026-10-18T15:01:06.862414967Z"
+    },
+    {
+      "path": "mobrecon_SAMN06630092.log",
+      "sha256": "2e6037b00188b87219d91d5ea5bc267731ae70aee772069889b89c2de92c032e",
+      "size_bytes": 3144,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862415989Z",
+      "last_updated": "2026-10-18T15:01:06.862415989Z"
+    },
+    {
+      "path": "mobrecon_SAMN06630124.log",
+      "sha256": "f9f563facf4518dd7dc7cdde9ea62d6df13a198ab7e6946fd9e69d229149207e",
+      "size_bytes": 3144,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862417395Z",
+      "last_updated": "2026-10-18T15:01:06.862417395Z"
+    },
+    {
+      "path": "mobrecon_SAMN06630263.log",
+      "sha256": "0edd82ce1b1316e90d067a2dd4c32fc30b4839fd6c26e053b2caf08067144b26",
+      "size_bytes": 3144,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862418377Z",
+      "last_updated": "2026-10-18T15:01:06.862418377Z"
+    },
+    {
+      "path": "mobrecon_SAMN13286408.log",
+      "sha256": "e78b25d1de4077b37e3ab901abe2582f18a372b3ac9f7e674d180762863e62c3",
+      "size_bytes": 3144,
+      "media_type": "text/plain",
+      "created_by": "cmd-0005",
+      "modified_by": [],
+      "first_recorded": "2026-10-18T15:01:06.862419327Z",
+      "last_updated": "2026-10-18T15:01:06.862419327Z"
     }
   ],
   "env_snapshots": []
