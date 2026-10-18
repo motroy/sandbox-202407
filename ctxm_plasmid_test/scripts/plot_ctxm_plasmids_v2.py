@@ -81,15 +81,20 @@ def read_mge(path):
     low = {c: c.lower() for c in df.columns}
 
     def pick(*keys, exclude=()):
-        for c, l in low.items():
-            if any(k in l for k in keys) and not any(x in l for x in exclude):
-                return c
+        for k in keys:   # keys are in priority order
+            for c, l in low.items():
+                if k in l and not any(x in l for x in exclude):
+                    return c
         return None
 
-    cols = dict(contig=pick("contig_id", "contig"), start=pick("start"), end=pick("end", "stop"),
+    # MOB-suite 3.x mge.report.txt has mge_start/mge_end (position within the MGE reference) AND
+    # contig_start/contig_end (position on the contig): use the contig ones, and mge_type (e.g. ISSen6) as label.
+    cols = dict(contig=pick("contig_id", "contig"),
+                start=pick("contig_start") or pick("start", exclude=("mge_",)) or pick("start"),
+                end=pick("contig_end") or pick("end", "stop", exclude=("mge_",)) or pick("end", "stop"),
                 strand=pick("strand"),
-                name=pick("mge", "element", "family", "type", "name", "subject",
-                          exclude=("molecule", "contig", "sample")))
+                name=pick("mge_type", "mge_acs", "element", "family", "type", "name", "subject",
+                          exclude=("molecule", "contig", "sample")) or pick("mge_id", "mge"))
     if not all(cols[k] for k in ("contig", "start", "end")):
         raise SystemExit(f"Cannot parse {path}: columns are {list(df.columns)}")
     out = pd.DataFrame({

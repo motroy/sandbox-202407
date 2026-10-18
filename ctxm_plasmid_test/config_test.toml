@@ -2,7 +2,7 @@
 # Run:  python plot_ctxm_plasmids_v2.py --config config.toml
 # Any command-line option overrides the value here. Relative paths are relative to where you run the script.
 
-mobrecon_dir = "mobrecon"          # <mobrecon_dir>/<sample>/plasmid_<CLUSTER>.fasta
+mobrecon_dir = "mobrecon_first_run"
 amr_dir      = "amrfinder"         # AMRFinderPlus tables, one per sample
 
 outdir       = "ctxm_plasmid_figs_test"
