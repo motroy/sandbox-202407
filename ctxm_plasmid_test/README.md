@@ -11,7 +11,9 @@ Short-read *E. coli* assemblies for testing the reference-guided blaCTX-M plasmi
 | `input/SraRunInfo_6.csv` | SRA run table (BioSample list) |
 | `input/biosamples.txt` | 266 unique BioSample accessions |
 | `input/atb_query.tsv` | ATB lookup: `sample_accession`, `aws_url` |
+| `scripts/00_select_subset.py` | reproduces the subset selection from ATB's precomputed tables (needs `atb fetch --tables assembly.parquet,assembly_stats.parquet,mlst.parquet,amrfinderplus.parquet`, plus `duckdb`) |
 | `scripts/01_download_genomes.sh` | reproduces the download |
+| `scripts/02_make_subset.sh`, `scripts/03_run_mobrecon.sh` | link the subset; run MOB-recon (`mobrecon/`, git-ignored) |
 | `scripts/plot_ctxm_plasmids_v2.py`, `config.toml`, `environment.yml` | the script under test, its config and conda env |
 | `ctxm-plasmid-test.dochist.json` | dochist session log |
 
