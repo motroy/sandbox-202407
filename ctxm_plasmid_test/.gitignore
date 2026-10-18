@@ -1,0 +1,9 @@
+genomes/
+mobrecon/
+amrfinder/
+ctxm_plasmid_figs/
+subset_genomes/
+fasta_tmp/
+mobrecon_*.log
+mobrecon_first_run/
+mobrecon_first_run_logs/

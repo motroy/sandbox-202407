@@ -1,0 +1,14 @@
+name: ctxm-plasmid-plots
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - blast
+  - pandas
+  - biopython
+  - matplotlib
+  - pip
+  - pip:
+      - pygenomeviz>=1.0
