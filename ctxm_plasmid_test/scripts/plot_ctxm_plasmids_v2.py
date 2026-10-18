@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Reference-guided backbone alignment of blaCTX-M plasmids from SHORT-READ (fragmented) assemblies.
+Reference-guided backbone alignment of blaCTX-M (or any --gene) plasmids from SHORT-READ (fragmented) assemblies.
 
 Per MOB-suite cluster (e.g. AA147):
   1. Each isolate's plasmid_<CLUSTER>.fasta (ALL contigs MOB-recon assigned to that cluster) is
@@ -12,7 +12,8 @@ Per MOB-suite cluster (e.g. AA147):
      Contigs with no match to the reference are appended at the end ("unplaced").
   4. Tracks are sorted by how much of the reference they cover; adjacent tracks are linked by
      blastn ribbons (grey = same strand, red = inverted).
-  5. AMRFinderPlus genes are drawn as arrows (colour = drug class), blaCTX-M outlined in black.
+  5. AMRFinderPlus genes are drawn as arrows (colour = drug class), the target gene (--gene, default
+     blaCTX-M = all variants; use blaCTX-M-15 for that allele only) outlined in black.
      A track label ends with "*" when the blaCTX-M contig itself could NOT be placed on the
      reference (so it cannot be claimed to sit on that backbone).
 
@@ -43,9 +44,18 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from pygenomeviz import GenomeViz
 
-CTX = "blaCTX-M"
+CTX = "blaCTX-M"   # default target gene; override with --gene (e.g. blaCTX-M-15)
 GAP = 500  # bp drawn between contigs
 DEFAULT_CLUSTERS = ["AA147", "AC315", "AA474", "AA161", "AA176", "AB690", "AA887", "AA738"]
+
+
+def is_target(symbol, gene):
+    """True for the target gene or any of its variants: gene 'blaCTX-M' matches blaCTX-M and blaCTX-M-15 etc.,
+    gene 'blaCTX-M-15' matches only blaCTX-M-15 (not blaCTX-M-1 or blaCTX-M-150). Case-insensitive."""
+    s, g = str(symbol).lower(), gene.lower()
+    return s == g or s.startswith(g + "-")
+
+
 AMR_COLS = ["contig", "start", "end", "strand", "symbol", "cls"]
 
 
@@ -108,7 +118,7 @@ def read_mge(path):
     return out[MGE_COLS]
 
 
-def load_bins(mob_dir, amr_dir, clusters, meta, mge_name="mge.report.txt"):
+def load_bins(mob_dir, amr_dir, clusters, meta, mge_name="mge.report.txt", gene=CTX):
     bins = defaultdict(list)
     for sd in sorted(p for p in mob_dir.iterdir() if p.is_dir()):
         amr_file = find_amr_file(amr_dir, sd.name)
@@ -121,7 +131,7 @@ def load_bins(mob_dir, amr_dir, clusters, meta, mge_name="mge.report.txt"):
             contigs = list(SeqIO.parse(fa, "fasta"))
             ids = {c.id for c in contigs}
             hits = amr[amr["contig"].isin(ids)].reset_index(drop=True)
-            ctx = hits["symbol"].astype(str).str.contains(CTX, case=False, na=False)
+            ctx = hits["symbol"].map(lambda s: is_target(s, gene))
             bins[cl].append(dict(sample=sd.name, host=meta.get(sd.name, ""), contigs=contigs, amr=hits,
                                  mge=mge_all[mge_all["contig"].isin(ids)].reset_index(drop=True),
                                  has_ctx=bool(ctx.any()),
@@ -196,7 +206,7 @@ def assemble(b, ref_rec, min_id, min_len):
 
 
 # ------------------------------------------------------------------ plotting
-def draw(cl, tracks, ref_label, outdir, min_id):
+def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
     classes = sorted({c for t in tracks for c in t["genes"]["cls"]})
     cmap = plt.get_cmap("tab20")
     pal = {c: cmap(i % 20) for i, c in enumerate(classes)}
@@ -215,9 +225,9 @@ def draw(cl, tracks, ref_label, outdir, min_id):
         for _, m in t["mges"].iterrows():   # MOB-recon MGEs: dark grey boxes, label below
             tr.add_feature(int(m["start"]), int(m["end"]), 1 if m["strand"] == "+" else -1,
                            plotstyle="box", fc="dimgray", ec="none", label=str(m["name"]),
-                           text_kws=dict(rotation=45, vpos="bottom", hpos="left", size=7, color="dimgray"))
+                           text_kws=dict(rotation=45, vpos="bottom", hpos="left", size=11, color="black"))
         for _, g in t["genes"].iterrows():
-            is_ctx = CTX.lower() in str(g["symbol"]).lower()
+            is_ctx = is_target(g["symbol"], gene)
             tr.add_feature(int(g["start"]), int(g["end"]), 1 if g["strand"] == "+" else -1,
                            plotstyle="bigarrow", fc=pal[g["cls"]], ec="black" if is_ctx else "none",
                            lw=1.5 if is_ctx else 0, label=str(g["symbol"]),
@@ -242,8 +252,8 @@ def draw(cl, tracks, ref_label, outdir, min_id):
     fig.canvas.draw()   # gene labels stick out above the figure box: put the title above everything drawn so far
     bb = fig.get_tightbbox(fig.canvas.get_renderer())
     top = bb.y1 / fig.get_size_inches()[1] + 0.02
-    fig.suptitle(f"{cl}: blaCTX-M plasmids, ordered on reference {ref_label} "
-                 f"(white = contig break; * = blaCTX-M contig not placed on reference)", fontsize=9,
+    fig.suptitle(f"{cl}: {gene} plasmids, ordered on reference {ref_label} "
+                 f"(white = contig break; * = {gene} contig not placed on reference)", fontsize=9,
                  y=top, va="bottom")
     for ext in ("png", "svg", "pdf"):
         fig.savefig(outdir / f"{cl}_ctxm_alignment.{ext}", dpi=300, bbox_inches="tight")
@@ -257,6 +267,7 @@ def main():
     ap.add_argument("--mobrecon-dir", type=Path)
     ap.add_argument("--amr-dir", type=Path)
     ap.add_argument("--metadata", type=Path)
+    ap.add_argument("--gene", default=CTX, help="target gene or variant, e.g. blaCTX-M (all variants) or blaCTX-M-15 (only that allele)")
     ap.add_argument("--clusters", nargs="+", default=DEFAULT_CLUSTERS)
     ap.add_argument("--refs", nargs="*", default=[], help="CLUSTER=ref.fasta (optional external reference)")
     ap.add_argument("--outdir", type=Path, default=Path("ctxm_plasmid_figs"))
@@ -288,13 +299,13 @@ def main():
         meta = dict(zip(m["sample"].astype(str), m["host"].astype(str)))
     ext_refs = dict(r.split("=", 1) for r in a.refs)
 
-    bins = load_bins(a.mobrecon_dir, a.amr_dir, a.clusters, meta, a.mge_file)
+    bins = load_bins(a.mobrecon_dir, a.amr_dir, a.clusters, meta, a.mge_file, a.gene)
     summary = []
     for cl in a.clusters:
         allb = bins.get(cl, [])
         ctxb = [b for b in allb if b["has_ctx"]]
         if len(ctxb) < 2:
-            print(f"[skip] {cl}: {len(ctxb)} CTX-M isolate(s)")
+            print(f"[skip] {cl}: {len(ctxb)} {a.gene} isolate(s)")
             continue
 
         # reference
@@ -321,14 +332,14 @@ def main():
         tracks = [ref] + picked
 
         for t in [ref] + asm:
-            ctx = t["genes"][t["genes"]["symbol"].astype(str).str.contains(CTX, na=False)]
+            ctx = t["genes"][t["genes"]["symbol"].map(lambda s: is_target(s, a.gene))]
             is_ref = t is ref
             summary.append(dict(cluster=cl, sample=t["sample"], host=t["host"], n_contigs=len(t["contigs"]),
                                 total_bp=t["total"], aligned_bp_to_ref=t["total"] if is_ref else t["aligned_bp"],
                                 n_unplaced_contigs=0 if is_ref else t["n_unplaced"], ctxm=";".join(ctx["symbol"]),
                                 ctxm_contig_placed=t["ctx_placed"], reference=rb["sample"], is_reference=is_ref))
         print(f"[plot] {cl}: ref={rb['sample']}, {len(tracks)} tracks")
-        draw(cl, tracks, rb["sample"], a.outdir, a.min_identity)
+        draw(cl, tracks, rb["sample"], a.outdir, a.min_identity, a.gene)
 
     pd.DataFrame(summary).to_csv(a.outdir / "ctxm_plasmid_summary.tsv", sep="\t", index=False)
 

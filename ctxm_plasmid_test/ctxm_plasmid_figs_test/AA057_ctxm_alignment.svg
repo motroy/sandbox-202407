@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-18T16:31:24.688479</dc:date>
+    <dc:date>2026-10-18T16:32:38.380983</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -150,7 +150,7 @@ z
    <g id="line2d_1">
     <path d="M 387.31875 98.696173 
 L 1467.31875 98.696173 
-" clip-path="url(#pd1cc47f31f)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
+" clip-path="url(#p9777aa6b3d)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
    </g>
    <g id="PatchCollection_3">
     <path d="M 535.179504 98.696173 
@@ -329,10 +329,10 @@ z
     <text style="font-size: 20px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="376.51875" y="106.338361" transform="rotate(-0 376.51875 106.338361)">SAMN06630209 | 54 kb, 3 contigs</text>
    </g>
    <g id="text_2">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #696969" x="823.633264" y="115.416821" transform="rotate(-45 823.633264 115.416821)">ISSoEn2</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="825.782206" y="117.565763" transform="rotate(-45 825.782206 117.565763)">ISSoEn2</text>
    </g>
    <g id="text_3">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #696969" x="1392.833561" y="115.416821" transform="rotate(-45 1392.833561 115.416821)">ISEcp1</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="1394.982503" y="117.565763" transform="rotate(-45 1394.982503 117.565763)">ISEcp1</text>
    </g>
    <g id="text_4">
     <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="538.824502" y="84.547074" transform="rotate(-45 538.824502 84.547074)">psi-GI</text>
@@ -457,7 +457,7 @@ z
    <g id="line2d_2">
     <path d="M 387.31875 206.696173 
 L 1339.870804 206.696173 
-" clip-path="url(#pdba026e565)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
+" clip-path="url(#p6a8515b1e1)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
    </g>
    <g id="PatchCollection_5">
     <path d="M 526.450729 206.696173 
@@ -600,10 +600,10 @@ z
     <text style="font-size: 20px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="376.51875" y="214.338361" transform="rotate(-0 376.51875 214.338361)">SAMN06630194 | 46 kb, 7 contigs</text>
    </g>
    <g id="text_24">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #696969" x="579.873411" y="223.416821" transform="rotate(-45 579.873411 223.416821)">ISSoEn2</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="582.022352" y="225.565763" transform="rotate(-45 582.022352 225.565763)">ISSoEn2</text>
    </g>
    <g id="text_25">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #696969" x="1180.289843" y="223.416821" transform="rotate(-45 1180.289843 223.416821)">ISEcp1</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="1182.438785" y="225.565763" transform="rotate(-45 1182.438785 225.565763)">ISEcp1</text>
    </g>
    <g id="text_26">
     <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="530.800292" y="192.547074" transform="rotate(-45 530.800292 192.547074)">hsp20</text>
@@ -652,7 +652,7 @@ z
    </g>
   </g>
   <g id="text_41">
-   <text style="font-size: 9px; font-family: 'Inter', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="927.31875" y="44.71875" transform="rotate(-0 927.31875 44.71875)">AA057: blaCTX-M plasmids, ordered on reference SAMN06630209 (white = contig break; * = blaCTX-M contig not placed on reference)</text>
+   <text style="font-size: 9px; font-family: 'Inter', 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="927.31875" y="44.71875" transform="rotate(-0 927.31875 44.71875)">AA057: blaCTX-M-15 plasmids, ordered on reference SAMN06630209 (white = contig break; * = blaCTX-M-15 contig not placed on reference)</text>
   </g>
   <g id="legend_1">
    <g id="text_42">
@@ -705,10 +705,10 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pd1cc47f31f">
+  <clipPath id="p9777aa6b3d">
    <rect x="387.31875" y="87.896173" width="1080" height="21.6"/>
   </clipPath>
-  <clipPath id="pdba026e565">
+  <clipPath id="p6a8515b1e1">
    <rect x="387.31875" y="195.896173" width="1080" height="21.6"/>
   </clipPath>
  </defs>

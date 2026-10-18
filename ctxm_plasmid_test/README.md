@@ -30,6 +30,11 @@ MOB-recon and plasmid clustering on all 266 genomes is unnecessary for testing, 
 - Clusters are **not known yet**: ST is only a proxy for a shared plasmid, so expect some of the intended MOB-suite clusters (AA147 etc.) to be skipped.
 - `scripts/02_make_subset.sh` links the subset into `subset_genomes/` and copies ATB's AMRFinderPlus tables (contig IDs match the FASTA headers) into `amrfinder/`, which can replace step 2 below.
 
+## Script options added during testing
+- `gene` / `--gene`: target gene. `blaCTX-M` (default) matches every variant; `blaCTX-M-15` matches only that allele (not `-1`, `-150`). Isolates are counted, outlined and flagged "*" for this gene only; the title, skip messages and summary follow it. `config.toml` now sets `gene = "blaCTX-M-15"`.
+- MGE parsing fixed for MOB-suite 3.x (`contig_start`/`contig_end`, labels from `mge_type`); MGE labels enlarged.
+- Reference is now included in `ctxm_plasmid_summary.tsv` (`is_reference`); title/legend no longer overlap the tracks.
+
 ## Still to do before running the plot script
 The script reads MOB-recon and AMRFinderPlus output, not raw assemblies, so these remain:
 1. `mob_recon -i subset_genomes/<SAMN>.fa.gz -o mobrecon/<SAMN>` per sample (needs `plasmid_<CLUSTER>.fasta` files and `mge.report.txt`).
