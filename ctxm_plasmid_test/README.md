@@ -32,7 +32,7 @@ MOB-recon and plasmid clustering on all 266 genomes is unnecessary for testing, 
 
 ## Script options added during testing
 - `gene` / `--gene`: target gene. `blaCTX-M` (default) matches every variant; `blaCTX-M-15` matches only that allele (not `-1`, `-150`). Isolates are counted, outlined and flagged "*" for this gene only; the title, skip messages and summary follow it. `config.toml` now sets `gene = "blaCTX-M-15"`.
-- MGE parsing fixed for MOB-suite 3.x (`contig_start`/`contig_end`, labels from `mge_type`); gene and MGE labels are horizontal callouts with leader lines, stepped to avoid overlap.
+- MGE parsing fixed for MOB-suite 3.x (`contig_start`/`contig_end`, labels from `mge_type`); gene and MGE labels are callouts with leader lines, angled (`--label-angle`, default 45; 0 = horizontal) and stepped so their text boxes never overlap.
 - Reference is now included in `ctxm_plasmid_summary.tsv` (`is_reference`); title/legend no longer overlap the tracks.
 
 ## Still to do before running the plot script

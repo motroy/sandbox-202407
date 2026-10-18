@@ -206,29 +206,59 @@ def assemble(b, ref_rec, min_id, min_len):
 
 
 # ------------------------------------------------------------------ plotting
-def callouts(fig, ax, items, base_pt=5.0, step_pt=9.5, fontsize=7, pad_px=6):
-    """Horizontal labels at stepped heights above a track, each joined to its feature by a thin leader line.
-    items: list of (x_bp, label, color, bold). A label goes on the lowest level whose previous label has
-    already ended (measured from the rendered text), so labels never overlap one another."""
+def _quad(x, y, w, h, angle_deg, pad=0.0):
+    """Corners (display px) of a w x h text box whose bottom-left is at (x, y), rotated by angle_deg."""
+    import math
+    c, s = math.cos(math.radians(angle_deg)), math.sin(math.radians(angle_deg))
+    x, y, w, h = x - pad, y - pad, w + 2 * pad, h + 2 * pad
+    return [(x, y), (x + w * c, y + w * s), (x + w * c - h * s, y + w * s + h * c), (x - h * s, y + h * c)]
+
+
+def _overlap(p, q):
+    """Separating-axis test for two convex polygons."""
+    for poly in (p, q):
+        for i in range(len(poly)):
+            (x1, y1), (x2, y2) = poly[i], poly[(i + 1) % len(poly)]
+            nx, ny = y1 - y2, x2 - x1
+            pa = [nx * x + ny * y for x, y in p]
+            pb = [nx * x + ny * y for x, y in q]
+            if max(pa) < min(pb) or max(pb) < min(pa):
+                return False
+    return True
+
+
+def callouts(fig, ax, items, angle=45, base_pt=5.0, step_pt=4.0, fontsize=7, pad_px=2.0, max_steps=40):
+    """Labels above a track, each joined to its feature by a thin leader line. items: list of
+    (x_bp, label, color, bold); angle: text rotation in degrees (0 = horizontal). Left to right, each label
+    is put at the lowest height where its (rotated) text box clears every label already placed on the track."""
     renderer = fig.canvas.get_renderer()
-    right = {}
+    px = fig.dpi / 72
+    y_top = ax.transAxes.transform((0, 1))[1]
+    placed = []
     for x, label, color, bold in sorted(items, key=lambda i: i[0]):
-        t = ax.annotate(label, xy=(x, 1.0), xycoords=("data", "axes fraction"), xytext=(1.5, base_pt),
-                        textcoords="offset points", ha="left", va="bottom", fontsize=fontsize, color=color,
-                        fontweight="bold" if bold else "normal", annotation_clip=False, zorder=10,
-                        arrowprops=dict(arrowstyle="-", lw=0.5, color="0.55", relpos=(0, 0),
-                                        shrinkA=0, shrinkB=0),
-                        bbox=dict(boxstyle="square,pad=0.08", fc="white", ec="none", alpha=0.85))
-        x0 = ax.transData.transform((x, 0))[0]
-        w = t.get_window_extent(renderer).width
-        lvl = 0
-        while x0 < right.get(lvl, -1e18) + pad_px:
-            lvl += 1
-        t.xyann = (1.5, base_pt + lvl * step_pt)
-        right[lvl] = x0 + w
+        kw = dict(xy=(x, 1.0), xycoords=("data", "axes fraction"), textcoords="offset points",
+                  annotation_clip=False, zorder=10)
+        t = ax.annotate(label, xytext=(1.5, base_pt), ha="left", va="bottom", fontsize=fontsize, color=color,
+                        fontweight="bold" if bold else "normal", rotation=angle, rotation_mode="anchor",
+                        bbox=dict(boxstyle="square,pad=0.08", fc="white", ec="none", alpha=0.8), **kw)
+        leader = ax.annotate("", xytext=(1.5, base_pt),
+                             arrowprops=dict(arrowstyle="-", lw=0.5, color="0.55", shrinkA=0, shrinkB=0), **kw)
+        t.set_rotation(0)
+        bb = t.get_window_extent(renderer)
+        w, h = bb.width, bb.height
+        t.set_rotation(angle)
+        x_px = ax.transData.transform((x, 0))[0] + 1.5 * px
+        off = base_pt
+        for _ in range(max_steps):
+            quad = _quad(x_px, y_top + off * px, w, h, angle, pad_px)
+            if not any(_overlap(quad, q) for q in placed):
+                break
+            off += step_pt
+        placed.append(quad)
+        t.xyann = leader.xyann = (1.5, off)
 
 
-def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
+def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX, label_angle=45):
     classes = sorted({c for t in tracks for c in t["genes"]["cls"]})
     cmap = plt.get_cmap("tab20")
     pal = {c: cmap(i % 20) for i, c in enumerate(classes)}
@@ -267,7 +297,7 @@ def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
 
     fig = gv.plotfig()
     for tr, lab_items in trs:
-        callouts(fig, tr.ax, lab_items)
+        callouts(fig, tr.ax, lab_items, label_angle)
     try:
         gv.set_colorbar(fig, bar_colors=["lightgrey"], vmin=min_id, bar_label="blastn identity (%)")
     except Exception:
@@ -295,6 +325,7 @@ def main():
     ap.add_argument("--amr-dir", type=Path)
     ap.add_argument("--metadata", type=Path)
     ap.add_argument("--gene", default=CTX, help="target gene or variant, e.g. blaCTX-M (all variants) or blaCTX-M-15 (only that allele)")
+    ap.add_argument("--label-angle", type=float, default=45, help="rotation of gene/MGE labels in degrees (0 = horizontal)")
     ap.add_argument("--clusters", nargs="+", default=DEFAULT_CLUSTERS)
     ap.add_argument("--refs", nargs="*", default=[], help="CLUSTER=ref.fasta (optional external reference)")
     ap.add_argument("--outdir", type=Path, default=Path("ctxm_plasmid_figs"))
@@ -366,7 +397,7 @@ def main():
                                 n_unplaced_contigs=0 if is_ref else t["n_unplaced"], ctxm=";".join(ctx["symbol"]),
                                 ctxm_contig_placed=t["ctx_placed"], reference=rb["sample"], is_reference=is_ref))
         print(f"[plot] {cl}: ref={rb['sample']}, {len(tracks)} tracks")
-        draw(cl, tracks, rb["sample"], a.outdir, a.min_identity, a.gene)
+        draw(cl, tracks, rb["sample"], a.outdir, a.min_identity, a.gene, a.label_angle)
 
     pd.DataFrame(summary).to_csv(a.outdir / "ctxm_plasmid_summary.tsv", sep="\t", index=False)
 
