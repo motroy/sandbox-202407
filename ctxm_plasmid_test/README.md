@@ -13,7 +13,7 @@ Short-read *E. coli* assemblies for testing the reference-guided blaCTX-M plasmi
 | `input/atb_query.tsv` | ATB lookup: `sample_accession`, `aws_url` |
 | `scripts/01_download_genomes.sh` | reproduces the download |
 | `scripts/plot_ctxm_plasmids_v2.py`, `config.toml`, `environment.yml` | the script under test, its config and conda env |
-| `ctxm_plasmid_test.dochist.json` | dochist session log |
+| `ctxm-plasmid-test.dochist.json` | dochist session log |
 
 ## Reproduce the download
 ```bash
