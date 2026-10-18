@@ -206,12 +206,31 @@ def assemble(b, ref_rec, min_id, min_len):
 
 
 # ------------------------------------------------------------------ plotting
+def stagger(items, maxlen, min_gap=0.024):
+    """Label placement without overlap. items: list of (start_bp, label). Returns a list of
+    (vpos, raise_lines) per item. Labels are rotated 45 degrees, so two labels on the same level only collide
+    when their start points are closer than about one text line (min_gap * longest track, in bp). Levels:
+    above the track, above and raised by 4 and 8 blank lines, below the track. Greedy left to right."""
+    levels = [("top", 0), ("top", 4), ("top", 8), ("bottom", 0)]
+    last = [-1e18] * len(levels)
+    out = [None] * len(items)
+    for i in sorted(range(len(items)), key=lambda k: items[k][0]):
+        start = items[i][0]
+        lvl = next((k for k in range(len(levels)) if start - last[k] >= min_gap * maxlen), None)
+        if lvl is None:                      # all levels busy: use the one that is free the longest
+            lvl = min(range(len(levels)), key=lambda k: last[k])
+        last[lvl] = start
+        out[i] = levels[lvl]
+    return out
+
+
 def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
     classes = sorted({c for t in tracks for c in t["genes"]["cls"]})
     cmap = plt.get_cmap("tab20")
     pal = {c: cmap(i % 20) for i, c in enumerate(classes)}
 
     gv = GenomeViz(track_align_type="left", fig_track_height=0.6)
+    maxlen = max(len(t["rec"].seq) for t in tracks)
     names = []
     for i, t in enumerate(tracks):
         flag = "*" if t["ctx_placed"] is False else ""
@@ -222,16 +241,26 @@ def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
         names.append(label)
         for s, e in t["breaks"]:
             tr.add_feature(s, e, 1, plotstyle="box", fc="white", ec="none")
-        for _, m in t["mges"].iterrows():   # MOB-recon MGEs: dark grey boxes, label below
+        # label placement: genes and MGEs share the staggering so neighbouring labels do not overlap
+        items = [(int(m["start"]), str(m["name"])) for _, m in t["mges"].iterrows()] + \
+                [(int(g["start"]), str(g["symbol"])) for _, g in t["genes"].iterrows()]
+        place = stagger(items, maxlen)
+        nm = len(t["mges"])
+
+        def txt(k, color):
+            vpos, up = place[k]
+            return items[k][1] + "\n" * up, dict(rotation=45, vpos=vpos, hpos="left", size=7, color=color)
+
+        for k, (_, m) in enumerate(t["mges"].iterrows()):   # MOB-recon MGEs: dark grey boxes
+            lab, kw = txt(k, "#333333")
             tr.add_feature(int(m["start"]), int(m["end"]), 1 if m["strand"] == "+" else -1,
-                           plotstyle="box", fc="dimgray", ec="none", label=str(m["name"]),
-                           text_kws=dict(rotation=45, vpos="top", hpos="left", size=7, color="#333333"))
-        for _, g in t["genes"].iterrows():
+                           plotstyle="box", fc="dimgray", ec="none", label=lab, text_kws=kw)
+        for k, (_, g) in enumerate(t["genes"].iterrows(), start=nm):
             is_ctx = is_target(g["symbol"], gene)
+            lab, kw = txt(k, "black")
             tr.add_feature(int(g["start"]), int(g["end"]), 1 if g["strand"] == "+" else -1,
                            plotstyle="bigarrow", fc=pal[g["cls"]], ec="black" if is_ctx else "none",
-                           lw=1.5 if is_ctx else 0, label=str(g["symbol"]),
-                           text_kws=dict(rotation=45, vpos="top", hpos="left", size=7))
+                           lw=1.5 if is_ctx else 0, label=lab, text_kws=kw)
 
     for (n1, t1), (n2, t2) in zip(zip(names[:-1], tracks[:-1]), zip(names[1:], tracks[1:])):
         a = SeqRecord(t1["rec"].seq, id="a", description="")
