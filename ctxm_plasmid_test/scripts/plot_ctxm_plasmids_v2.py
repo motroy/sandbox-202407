@@ -225,7 +225,7 @@ def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
         for _, m in t["mges"].iterrows():   # MOB-recon MGEs: dark grey boxes, label below
             tr.add_feature(int(m["start"]), int(m["end"]), 1 if m["strand"] == "+" else -1,
                            plotstyle="box", fc="dimgray", ec="none", label=str(m["name"]),
-                           text_kws=dict(rotation=45, vpos="bottom", hpos="left", size=11, color="black"))
+                           text_kws=dict(rotation=45, vpos="top", hpos="left", size=7, color="#333333"))
         for _, g in t["genes"].iterrows():
             is_ctx = is_target(g["symbol"], gene)
             tr.add_feature(int(g["start"]), int(g["end"]), 1 if g["strand"] == "+" else -1,

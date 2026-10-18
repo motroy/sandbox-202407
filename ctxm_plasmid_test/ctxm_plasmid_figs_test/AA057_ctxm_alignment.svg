@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-18T16:32:38.380983</dc:date>
+    <dc:date>2026-10-18T16:42:51.811001</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -150,7 +150,7 @@ z
    <g id="line2d_1">
     <path d="M 387.31875 98.696173 
 L 1467.31875 98.696173 
-" clip-path="url(#p9777aa6b3d)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
+" clip-path="url(#pf6d3f0025b)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
    </g>
    <g id="PatchCollection_3">
     <path d="M 535.179504 98.696173 
@@ -329,10 +329,10 @@ z
     <text style="font-size: 20px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="376.51875" y="106.338361" transform="rotate(-0 376.51875 106.338361)">SAMN06630209 | 54 kb, 3 contigs</text>
    </g>
    <g id="text_2">
-    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="825.782206" y="117.565763" transform="rotate(-45 825.782206 117.565763)">ISSoEn2</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #333333" x="818.683517" y="84.547074" transform="rotate(-45 818.683517 84.547074)">ISSoEn2</text>
    </g>
    <g id="text_3">
-    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="1394.982503" y="117.565763" transform="rotate(-45 1394.982503 117.565763)">ISEcp1</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #333333" x="1387.883814" y="84.547074" transform="rotate(-45 1387.883814 84.547074)">ISEcp1</text>
    </g>
    <g id="text_4">
     <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="538.824502" y="84.547074" transform="rotate(-45 538.824502 84.547074)">psi-GI</text>
@@ -457,7 +457,7 @@ z
    <g id="line2d_2">
     <path d="M 387.31875 206.696173 
 L 1339.870804 206.696173 
-" clip-path="url(#p6a8515b1e1)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
+" clip-path="url(#p6b85380ec6)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
    </g>
    <g id="PatchCollection_5">
     <path d="M 526.450729 206.696173 
@@ -600,10 +600,10 @@ z
     <text style="font-size: 20px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="376.51875" y="214.338361" transform="rotate(-0 376.51875 214.338361)">SAMN06630194 | 46 kb, 7 contigs</text>
    </g>
    <g id="text_24">
-    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="582.022352" y="225.565763" transform="rotate(-45 582.022352 225.565763)">ISSoEn2</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #333333" x="574.923663" y="192.547074" transform="rotate(-45 574.923663 192.547074)">ISSoEn2</text>
    </g>
    <g id="text_25">
-    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="1182.438785" y="225.565763" transform="rotate(-45 1182.438785 225.565763)">ISEcp1</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #333333" x="1175.340096" y="192.547074" transform="rotate(-45 1175.340096 192.547074)">ISEcp1</text>
    </g>
    <g id="text_26">
     <text style="font-size: 7px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="530.800292" y="192.547074" transform="rotate(-45 530.800292 192.547074)">hsp20</text>
@@ -705,10 +705,10 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p9777aa6b3d">
+  <clipPath id="pf6d3f0025b">
    <rect x="387.31875" y="87.896173" width="1080" height="21.6"/>
   </clipPath>
-  <clipPath id="p6a8515b1e1">
+  <clipPath id="p6b85380ec6">
    <rect x="387.31875" y="195.896173" width="1080" height="21.6"/>
   </clipPath>
  </defs>
