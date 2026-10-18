@@ -206,22 +206,26 @@ def assemble(b, ref_rec, min_id, min_len):
 
 
 # ------------------------------------------------------------------ plotting
-def stagger(items, maxlen, min_gap=0.024):
-    """Label placement without overlap. items: list of (start_bp, label). Returns a list of
-    (vpos, raise_lines) per item. Labels are rotated 45 degrees, so two labels on the same level only collide
-    when their start points are closer than about one text line (min_gap * longest track, in bp). Levels:
-    above the track, above and raised by 4 and 8 blank lines, below the track. Greedy left to right."""
-    levels = [("top", 0), ("top", 4), ("top", 8), ("bottom", 0)]
-    last = [-1e18] * len(levels)
-    out = [None] * len(items)
-    for i in sorted(range(len(items)), key=lambda k: items[k][0]):
-        start = items[i][0]
-        lvl = next((k for k in range(len(levels)) if start - last[k] >= min_gap * maxlen), None)
-        if lvl is None:                      # all levels busy: use the one that is free the longest
-            lvl = min(range(len(levels)), key=lambda k: last[k])
-        last[lvl] = start
-        out[i] = levels[lvl]
-    return out
+def callouts(fig, ax, items, base_pt=5.0, step_pt=9.5, fontsize=7, pad_px=6):
+    """Horizontal labels at stepped heights above a track, each joined to its feature by a thin leader line.
+    items: list of (x_bp, label, color, bold). A label goes on the lowest level whose previous label has
+    already ended (measured from the rendered text), so labels never overlap one another."""
+    renderer = fig.canvas.get_renderer()
+    right = {}
+    for x, label, color, bold in sorted(items, key=lambda i: i[0]):
+        t = ax.annotate(label, xy=(x, 1.0), xycoords=("data", "axes fraction"), xytext=(1.5, base_pt),
+                        textcoords="offset points", ha="left", va="bottom", fontsize=fontsize, color=color,
+                        fontweight="bold" if bold else "normal", annotation_clip=False, zorder=10,
+                        arrowprops=dict(arrowstyle="-", lw=0.5, color="0.55", relpos=(0, 0),
+                                        shrinkA=0, shrinkB=0),
+                        bbox=dict(boxstyle="square,pad=0.08", fc="white", ec="none", alpha=0.85))
+        x0 = ax.transData.transform((x, 0))[0]
+        w = t.get_window_extent(renderer).width
+        lvl = 0
+        while x0 < right.get(lvl, -1e18) + pad_px:
+            lvl += 1
+        t.xyann = (1.5, base_pt + lvl * step_pt)
+        right[lvl] = x0 + w
 
 
 def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
@@ -229,8 +233,8 @@ def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
     cmap = plt.get_cmap("tab20")
     pal = {c: cmap(i % 20) for i, c in enumerate(classes)}
 
-    gv = GenomeViz(track_align_type="left", fig_track_height=0.6)
-    maxlen = max(len(t["rec"].seq) for t in tracks)
+    gv = GenomeViz(track_align_type="left", fig_track_height=0.6, link_track_ratio=1.6)
+    trs = []
     names = []
     for i, t in enumerate(tracks):
         flag = "*" if t["ctx_placed"] is False else ""
@@ -241,26 +245,18 @@ def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
         names.append(label)
         for s, e in t["breaks"]:
             tr.add_feature(s, e, 1, plotstyle="box", fc="white", ec="none")
-        # label placement: genes and MGEs share the staggering so neighbouring labels do not overlap
-        items = [(int(m["start"]), str(m["name"])) for _, m in t["mges"].iterrows()] + \
-                [(int(g["start"]), str(g["symbol"])) for _, g in t["genes"].iterrows()]
-        place = stagger(items, maxlen)
-        nm = len(t["mges"])
-
-        def txt(k, color):
-            vpos, up = place[k]
-            return items[k][1] + "\n" * up, dict(rotation=45, vpos=vpos, hpos="left", size=7, color=color)
-
-        for k, (_, m) in enumerate(t["mges"].iterrows()):   # MOB-recon MGEs: dark grey boxes
-            lab, kw = txt(k, "#333333")
+        lab_items = []   # (x_bp, label, colour, bold) -> drawn as callouts once the figure exists
+        for _, m in t["mges"].iterrows():   # MOB-recon MGEs: dark grey boxes
             tr.add_feature(int(m["start"]), int(m["end"]), 1 if m["strand"] == "+" else -1,
-                           plotstyle="box", fc="dimgray", ec="none", label=lab, text_kws=kw)
-        for k, (_, g) in enumerate(t["genes"].iterrows(), start=nm):
+                           plotstyle="box", fc="dimgray", ec="none")
+            lab_items.append(((int(m["start"]) + int(m["end"])) / 2, str(m["name"]), "#333333", False))
+        for _, g in t["genes"].iterrows():
             is_ctx = is_target(g["symbol"], gene)
-            lab, kw = txt(k, "black")
             tr.add_feature(int(g["start"]), int(g["end"]), 1 if g["strand"] == "+" else -1,
                            plotstyle="bigarrow", fc=pal[g["cls"]], ec="black" if is_ctx else "none",
-                           lw=1.5 if is_ctx else 0, label=lab, text_kws=kw)
+                           lw=1.5 if is_ctx else 0)
+            lab_items.append(((int(g["start"]) + int(g["end"])) / 2, str(g["symbol"]), "black", is_ctx))
+        trs.append((tr, lab_items))
 
     for (n1, t1), (n2, t2) in zip(zip(names[:-1], tracks[:-1]), zip(names[1:], tracks[1:])):
         a = SeqRecord(t1["rec"].seq, id="a", description="")
@@ -270,6 +266,8 @@ def draw(cl, tracks, ref_label, outdir, min_id, gene=CTX):
                         v=pid, vmin=min_id, curve=False)
 
     fig = gv.plotfig()
+    for tr, lab_items in trs:
+        callouts(fig, tr.ax, lab_items)
     try:
         gv.set_colorbar(fig, bar_colors=["lightgrey"], vmin=min_id, bar_label="blastn identity (%)")
     except Exception:
