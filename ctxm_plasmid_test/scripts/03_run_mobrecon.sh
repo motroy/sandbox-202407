@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run MOB-recon on the 34 subset assemblies (4 in parallel, 1 thread each) -> mobrecon/<SAMN>/
+# Run MOB-recon on the subset assemblies, all CTX-M-15 carriers first (4 in parallel, 1 thread each) -> mobrecon/<SAMN>/
 # Run from ctxm_plasmid_test/ with the `ctxm` env (environment.yml + mob_suite) on PATH.
 set -uo pipefail
 mkdir -p mobrecon fasta_tmp
@@ -11,4 +11,4 @@ run() {
   rm -f fasta_tmp/$s.fasta
 }
 export -f run
-xargs -a input/subset_biosamples.txt -P 4 -I{} bash -c 'run {}'
+xargs -a input/mobrecon_order.txt -P 4 -I{} bash -c 'run {}'
