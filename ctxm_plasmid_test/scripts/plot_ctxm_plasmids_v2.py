@@ -131,7 +131,7 @@ def load_bins(mob_dir, amr_dir, clusters, meta, mge_name="mge.report.txt", gene=
             contigs = list(SeqIO.parse(fa, "fasta"))
             ids = {c.id for c in contigs}
             hits = amr[amr["contig"].isin(ids)].reset_index(drop=True)
-            ctx = hits["symbol"].map(lambda s: is_target(s, gene))
+            ctx = hits["symbol"].map(lambda s: is_target(s, gene)).astype(bool)   # bool even when hits is empty
             bins[cl].append(dict(sample=sd.name, host=meta.get(sd.name, ""), contigs=contigs, amr=hits,
                                  mge=mge_all[mge_all["contig"].isin(ids)].reset_index(drop=True),
                                  has_ctx=bool(ctx.any()),
@@ -390,7 +390,7 @@ def main():
         tracks = [ref] + picked
 
         for t in [ref] + asm:
-            ctx = t["genes"][t["genes"]["symbol"].map(lambda s: is_target(s, a.gene))]
+            ctx = t["genes"][t["genes"]["symbol"].map(lambda s: is_target(s, a.gene)).astype(bool)]   # empty table: still a mask
             is_ref = t is ref
             summary.append(dict(cluster=cl, sample=t["sample"], host=t["host"], n_contigs=len(t["contigs"]),
                                 total_bp=t["total"], aligned_bp_to_ref=t["total"] if is_ref else t["aligned_bp"],
