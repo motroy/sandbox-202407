@@ -5,7 +5,7 @@
   "description": "Download short-read assemblies (PRJNA379782, AAC 01689-18) with atb-cli to test plot_ctxm_plasmids_v2.py",
   "status": "active",
   "created_at": "2026-10-18T14:24:35.350229235Z",
-  "updated_at": "2026-10-18T17:20:45.153307337Z",
+  "updated_at": "2026-10-19T20:56:44.236936308Z",
   "environment": {
     "user": "unknown",
     "hostname": "vm",
@@ -1319,6 +1319,41 @@
       "artifacts_modified": [
         "ctxm_plasmid_figs_test/ctxm_plasmid_summary.tsv"
       ],
+      "tools": [
+        {
+          "name": "micromamba",
+          "path": "/root/.local/bin/micromamba",
+          "sha256": "366cd9cd8be14df1ab8ed50352a82111082a36686b2d389fdb79a92c3fafb3e3",
+          "version": "2.9.0",
+          "version_probe": "--version"
+        }
+      ]
+    },
+    {
+      "id": "cmd-0011",
+      "seq": 11,
+      "command_line": "micromamba run -n ctxm python scripts/plot_ctxm_plasmids_v2.py --config config_test.toml",
+      "cwd": "/home/user/sandbox-202407/ctxm_plasmid_test",
+      "started_at": "2026-10-19T20:56:33.173342044Z",
+      "finished_at": "2026-10-19T20:56:43.241984539Z",
+      "duration_ms": 10068,
+      "exit_code": 0,
+      "stdout_tail": "[skip] AA147: isolates carry this plasmid but not the gene on it; the gene is present in 1 of them elsewhere (plasmid/AA057) - check that is real\n[skip] AC315: cluster AC315 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)\n[skip] AA474: isolates carry this plasmid but not the gene on it; the gene is present in 1 of them elsewhere (chromosome/-) - check that is real\n[skip] AA161: cluster AA161 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)\n[skip] AA176: isolates carry this plasmid but not the gene on it; the gene is present in 1 of them elsewhere (chromosome/-) - check that is real\n[skip] AB690: cluster AB690 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)\n[skip] AA887: cluster AA887 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)\n[skip] AA738: cluster AA738 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)\n[plot] AA173: ref=SAMN13286427, 6 tracks\n[plot] AA002: ref=SAMN06630280, 2 tracks\n[plot] AA057: ref=SAMN06630094, 3 tracks\n",
+      "stderr_tail": "",
+      "artifacts_created": [
+        "ctxm_plasmid_figs_test/AA002_ctxm_alignment.pdf",
+        "ctxm_plasmid_figs_test/AA002_ctxm_alignment.png",
+        "ctxm_plasmid_figs_test/AA002_ctxm_alignment.svg",
+        "ctxm_plasmid_figs_test/AA057_ctxm_alignment.pdf",
+        "ctxm_plasmid_figs_test/AA057_ctxm_alignment.png",
+        "ctxm_plasmid_figs_test/AA057_ctxm_alignment.svg",
+        "ctxm_plasmid_figs_test/AA173_ctxm_alignment.pdf",
+        "ctxm_plasmid_figs_test/AA173_ctxm_alignment.png",
+        "ctxm_plasmid_figs_test/AA173_ctxm_alignment.svg",
+        "ctxm_plasmid_figs_test/cluster_report.tsv",
+        "ctxm_plasmid_figs_test/gene_locations.tsv"
+      ],
+      "artifacts_modified": [],
       "tools": [
         {
           "name": "micromamba",
@@ -4013,15 +4048,15 @@
     },
     {
       "path": "README.md",
-      "sha256": "a5d980e72e09541ed7c3f391ed914ed5c3065e0e4c77d504dd17a8c457aaa57b",
-      "size_bytes": 4592,
+      "sha256": "7dce0aebd2e1e0d4641a63dd171c3f8919941dab4cb4a99adec7388a34f6547d",
+      "size_bytes": 5678,
       "media_type": "text/markdown",
       "created_by": null,
       "modified_by": [
         "cmd-0008"
       ],
       "first_recorded": "2026-10-18T14:25:31.888684910Z",
-      "last_updated": "2026-10-18T17:20:01.179956986Z",
+      "last_updated": "2026-10-19T20:56:44.226306846Z",
       "role": "output"
     },
     {
@@ -4918,81 +4953,87 @@
     },
     {
       "path": "ctxm_plasmid_figs_test/AA002_ctxm_alignment.pdf",
-      "sha256": "a5311259a2b01e2ae2ed14012fcbf89108b5b250fa67d0e9c6176ccfe7963ea7",
+      "sha256": "7eeec621a745b059bbf4dff2fbc7a52a1d37e684959a06c677d4deac1e4b41a2",
       "size_bytes": 36397,
       "media_type": "application/pdf",
       "created_by": "cmd-0006",
       "modified_by": [
         "cmd-0008",
-        "cmd-0010"
+        "cmd-0010",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:51.881407248Z",
-      "last_updated": "2026-10-18T17:20:31.776940196Z"
+      "last_updated": "2026-10-19T20:56:44.185090710Z"
     },
     {
       "path": "ctxm_plasmid_figs_test/AA002_ctxm_alignment.svg",
-      "sha256": "14c3cd483ec2b1c4edbeac7eaa7471a68fd629b8613ef120819c4dd178e9f066",
+      "sha256": "259a54b63ef868cb539037f92703c5398c1c09ae143ca67fa57dab852ae9fa73",
       "size_bytes": 30580,
       "media_type": "image/svg+xml",
       "created_by": "cmd-0006",
       "modified_by": [
         "cmd-0008",
-        "cmd-0010"
+        "cmd-0010",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:51.881417003Z",
-      "last_updated": "2026-10-18T17:20:31.776947747Z"
+      "last_updated": "2026-10-19T20:56:44.185104952Z"
     },
     {
       "path": "ctxm_plasmid_figs_test/AA057_ctxm_alignment.pdf",
-      "sha256": "6a8dd8ed8d706cdc453d6dcd748e4b9717aba9ac0e7bcd23481aa8c3b6f11abc",
+      "sha256": "e12abc741b5ac52d017541f6d0177a5b7e9c1cbb758df064a87b223056876b61",
       "size_bytes": 40199,
       "media_type": "application/pdf",
       "created_by": "cmd-0006",
       "modified_by": [
         "cmd-0008",
-        "cmd-0010"
+        "cmd-0010",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:51.881417771Z",
-      "last_updated": "2026-10-18T17:20:31.776948356Z"
+      "last_updated": "2026-10-19T20:56:44.185105578Z"
     },
     {
       "path": "ctxm_plasmid_figs_test/AA057_ctxm_alignment.svg",
-      "sha256": "265753cb6c67995129b5d60f53cee6d0d48634180bec30fae633933938f5dfa7",
+      "sha256": "40049f4c68fb85b98bbf69e02101fc4c6ed5eadf4636aeae6e4d19b8135d241b",
       "size_bytes": 66123,
       "media_type": "image/svg+xml",
       "created_by": "cmd-0006",
       "modified_by": [
         "cmd-0008",
-        "cmd-0010"
+        "cmd-0010",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:51.881418608Z",
-      "last_updated": "2026-10-18T17:20:31.776949882Z"
+      "last_updated": "2026-10-19T20:56:44.185107138Z"
     },
     {
       "path": "ctxm_plasmid_figs_test/AA173_ctxm_alignment.pdf",
-      "sha256": "82148778206bb638d876c70c0f60bb6cfe7ee00a092b1f341c71fef65c52ddfc",
+      "sha256": "478e840526842e25d7e1c84bfde8fd0a90001402bf3c8f33462163492d2ec0ae",
       "size_bytes": 44216,
       "media_type": "application/pdf",
       "created_by": "cmd-0006",
       "modified_by": [
         "cmd-0008",
-        "cmd-0010"
+        "cmd-0010",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:51.881419430Z",
-      "last_updated": "2026-10-18T17:20:31.776950496Z"
+      "last_updated": "2026-10-19T20:56:44.185107710Z"
     },
     {
       "path": "ctxm_plasmid_figs_test/AA173_ctxm_alignment.svg",
-      "sha256": "3f1719f1b51367996f70c9fa5b6110b2259c71e577da9b666e30f464f5127271",
+      "sha256": "5297c926ea3e97d6362d4beebeb124e9957dd73c202052a81ab6b83156b1a80d",
       "size_bytes": 98082,
       "media_type": "image/svg+xml",
       "created_by": "cmd-0006",
       "modified_by": [
         "cmd-0008",
-        "cmd-0010"
+        "cmd-0010",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:51.881420286Z",
-      "last_updated": "2026-10-18T17:20:31.776951813Z"
+      "last_updated": "2026-10-19T20:56:44.185109168Z"
     },
     {
       "path": "ctxm_plasmid_figs_test/AA739_ctxm_alignment.pdf",
@@ -5136,15 +5177,15 @@
     },
     {
       "path": "scripts/plot_ctxm_plasmids_v2.py",
-      "sha256": "ed698d5c6dd56d39a509a0957dbfe87379156a2a50e2bca5db16bdb5cc4db3b8",
-      "size_bytes": 20724,
+      "sha256": "2daa10543b7f1bd7ee98346be3ad1e71f5076addbc36a3d6b535613919e37a74",
+      "size_bytes": 25456,
       "media_type": "application/octet-stream",
       "created_by": null,
       "modified_by": [
         "cmd-0008"
       ],
       "first_recorded": "2026-10-18T16:25:55.455407468Z",
-      "last_updated": "2026-10-18T17:20:45.153305756Z",
+      "last_updated": "2026-10-19T20:56:44.236932830Z",
       "role": "provenance"
     },
     {
@@ -5165,10 +5206,11 @@
       "media_type": "image/png",
       "created_by": "cmd-0010",
       "modified_by": [
-        "cmd-0008"
+        "cmd-0008",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:55.490296498Z",
-      "last_updated": "2026-10-18T17:20:45.095497950Z",
+      "last_updated": "2026-10-19T20:56:44.185101964Z",
       "role": "output"
     },
     {
@@ -5178,10 +5220,11 @@
       "media_type": "image/png",
       "created_by": "cmd-0010",
       "modified_by": [
-        "cmd-0008"
+        "cmd-0008",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:55.506372715Z",
-      "last_updated": "2026-10-18T17:20:45.105974140Z",
+      "last_updated": "2026-10-19T20:56:44.185106264Z",
       "role": "output"
     },
     {
@@ -5191,10 +5234,11 @@
       "media_type": "image/png",
       "created_by": "cmd-0010",
       "modified_by": [
-        "cmd-0008"
+        "cmd-0008",
+        "cmd-0011"
       ],
       "first_recorded": "2026-10-18T16:25:55.548116921Z",
-      "last_updated": "2026-10-18T17:20:45.116303509Z",
+      "last_updated": "2026-10-19T20:56:44.185108282Z",
       "role": "output"
     },
     {
@@ -10442,6 +10486,28 @@
       "first_recorded": "2026-10-18T17:20:45.144113192Z",
       "last_updated": "2026-10-18T17:20:45.144113192Z",
       "role": "provenance"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/cluster_report.tsv",
+      "sha256": "00a764d057c75343dbd61db101cda253d8f9ed0e31d90944770bac1cabbc6a8e",
+      "size_bytes": 1237,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0011",
+      "modified_by": [],
+      "first_recorded": "2026-10-19T20:56:44.185109806Z",
+      "last_updated": "2026-10-19T20:56:44.204150714Z",
+      "role": "output"
+    },
+    {
+      "path": "ctxm_plasmid_figs_test/gene_locations.tsv",
+      "sha256": "73f8e90f251fca524b3a28fd9a3f89bd0e40b61861c7dad7517485307c041248",
+      "size_bytes": 1184,
+      "media_type": "text/tab-separated-values",
+      "created_by": "cmd-0011",
+      "modified_by": [],
+      "first_recorded": "2026-10-19T20:56:44.185126941Z",
+      "last_updated": "2026-10-19T20:56:44.214958216Z",
+      "role": "output"
     }
   ],
   "env_snapshots": []

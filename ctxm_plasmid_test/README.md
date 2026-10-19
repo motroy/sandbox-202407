@@ -35,6 +35,14 @@ MOB-recon and plasmid clustering on all 266 genomes is unnecessary for testing, 
 - MGE parsing fixed for MOB-suite 3.x (`contig_start`/`contig_end`, labels from `mge_type`); gene and MGE labels are callouts with leader lines, angled (`--label-angle`, default 45; 0 = horizontal) and stepped so their text boxes never overlap.
 - Reference is now included in `ctxm_plasmid_summary.tsv` (`is_reference`); title/legend no longer overlap the tracks.
 
+## Why was a cluster skipped? (`cluster_report.tsv`, `gene_locations.tsv`)
+Every run writes `cluster_report.tsv` (one row per requested cluster: `status`, `reason`, counts) and `gene_locations.tsv` (every target-gene hit and where MOB-recon put its contig). Reasons:
+- `cluster X not found in any isolate...` - no isolate has `plasmid_X.fasta`; check the ID or it is genuinely absent.
+- `genuine non-carriage` - isolates have the plasmid, none has the gene anywhere on it.
+- `only 1 isolate carries the gene` - needs >= 2 to draw.
+- `isolates carry this plasmid but not the gene on it; the gene is present ... elsewhere (chromosome / plasmid/CLUSTER)` - the gene is in those isolates but on another contig. Real biology (a different plasmid), or MOB-recon called a plasmid contig chromosome/unassigned: check `gene_locations.tsv`.
+- `INPUT PROBLEM` / `[WARN]` lines - samples with no AMR file (counted as non-carriers!) or gene hits whose contig ID is not in the MOB-recon output (AMRFinderPlus and assembly use different contig names). These mean a skip may be an error, not biology.
+
 ## Still to do before running the plot script
 The script reads MOB-recon and AMRFinderPlus output, not raw assemblies, so these remain:
 1. `mob_recon -i subset_genomes/<SAMN>.fa.gz -o mobrecon/<SAMN>` per sample (needs `plasmid_<CLUSTER>.fasta` files and `mge.report.txt`).

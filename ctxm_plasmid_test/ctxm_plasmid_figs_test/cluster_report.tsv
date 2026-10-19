@@ -1,0 +1,12 @@
+cluster	status	reason	n_isolates_with_cluster	n_carriers	n_gene_elsewhere	n_isolates_no_amr_file
+AA147	skipped	isolates carry this plasmid but not the gene on it; the gene is present in 1 of them elsewhere (plasmid/AA057) - check that is real	1	0	1	0
+AC315	skipped	cluster AC315 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)	0	0	0	0
+AA474	skipped	isolates carry this plasmid but not the gene on it; the gene is present in 1 of them elsewhere (chromosome/-) - check that is real	2	0	1	0
+AA161	skipped	cluster AA161 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)	0	0	0	0
+AA176	skipped	isolates carry this plasmid but not the gene on it; the gene is present in 1 of them elsewhere (chromosome/-) - check that is real	1	0	1	0
+AB690	skipped	cluster AB690 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)	0	0	0	0
+AA887	skipped	cluster AA887 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)	0	0	0	0
+AA738	skipped	cluster AA738 not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)	0	0	0	0
+AA173	plotted		12	5	3	0
+AA002	plotted		2	2	0	0
+AA057	plotted		8	2	0	0
