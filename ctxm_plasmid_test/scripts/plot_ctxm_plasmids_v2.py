@@ -118,11 +118,38 @@ def read_mge(path):
     return out[MGE_COLS]
 
 
+def read_contig_report(path):
+    """MOB-recon contig_report.txt -> contig (first word of the header), molecule type, primary cluster."""
+    if not path.exists() or path.stat().st_size == 0:
+        return None
+    df = pd.read_csv(path, sep="\t")
+    return pd.DataFrame({"contig": df["contig_id"].astype(str).str.split().str[0],
+                         "molecule": df["molecule_type"].astype(str),
+                         "cluster": df["primary_cluster_id"].fillna("").astype(str)})
+
+
 def load_bins(mob_dir, amr_dir, clusters, meta, mge_name="mge.report.txt", gene=CTX):
+    """Returns (bins, info). info['samples'] has one row per sample (AMR file found? gene hits?) and
+    info['gene_loc'] one row per target-gene hit saying where MOB-recon put its contig; both feed the
+    skip diagnostics so a cluster skipped for a genuine reason can be told from one skipped by an input problem."""
     bins = defaultdict(list)
+    info = dict(samples=[], gene_loc=[])
     for sd in sorted(p for p in mob_dir.iterdir() if p.is_dir()):
         amr_file = find_amr_file(amr_dir, sd.name)
         amr = read_amr(amr_file) if amr_file else pd.DataFrame(columns=AMR_COLS)
+        cr = read_contig_report(sd / "contig_report.txt")
+        hit = amr[amr["symbol"].map(lambda s: is_target(s, gene)).astype(bool)]
+        for _, h in hit.iterrows():
+            if cr is None:
+                mol, cl_ = "no contig_report.txt", ""
+            else:
+                m_ = cr[cr["contig"] == h["contig"]]
+                mol, cl_ = (m_.iloc[0]["molecule"], m_.iloc[0]["cluster"]) if len(m_) else \
+                    ("CONTIG NOT IN MOB-RECON OUTPUT (ID mismatch?)", "")
+            info["gene_loc"].append(dict(sample=sd.name, gene=h["symbol"], contig=h["contig"],
+                                         molecule=mol, cluster=cl_))
+        info["samples"].append(dict(sample=sd.name, amr_file=str(amr_file or ""), n_amr_rows=len(amr),
+                                    n_gene_hits=len(hit), has_contig_report=cr is not None))
         mge_all = read_mge(sd / mge_name)
         for cl in clusters:
             fa = sd / f"plasmid_{cl}.fasta"
@@ -136,7 +163,7 @@ def load_bins(mob_dir, amr_dir, clusters, meta, mge_name="mge.report.txt", gene=
                                  mge=mge_all[mge_all["contig"].isin(ids)].reset_index(drop=True),
                                  has_ctx=bool(ctx.any()),
                                  ctx_contigs=set(hits.loc[ctx, "contig"])))
-    return bins
+    return bins, info
 
 
 # ------------------------------------------------------------------ blast + assembly
@@ -357,13 +384,53 @@ def main():
         meta = dict(zip(m["sample"].astype(str), m["host"].astype(str)))
     ext_refs = dict(r.split("=", 1) for r in a.refs)
 
-    bins = load_bins(a.mobrecon_dir, a.amr_dir, a.clusters, meta, a.mge_file, a.gene)
+    bins, info = load_bins(a.mobrecon_dir, a.amr_dir, a.clusters, meta, a.mge_file, a.gene)
+    samples_df = pd.DataFrame(info["samples"], columns=["sample", "amr_file", "n_amr_rows", "n_gene_hits", "has_contig_report"])
+    loc_df = pd.DataFrame(info["gene_loc"], columns=["sample", "gene", "contig", "molecule", "cluster"])
+    loc_df.to_csv(a.outdir / "gene_locations.tsv", sep="\t", index=False)
+    no_amr = samples_df[samples_df["amr_file"] == ""]["sample"].tolist()
+    bad_id = sorted(set(loc_df[loc_df["molecule"].str.startswith("CONTIG NOT IN")]["sample"]))
+    if no_amr:
+        print(f"[WARN] {len(no_amr)} sample(s) have NO AMR file, so they count as non-carriers: {no_amr[:8]}{' ...' if len(no_amr) > 8 else ''}")
+    if bad_id:
+        print(f"[WARN] {len(bad_id)} sample(s) have {a.gene} hits on contigs missing from the MOB-recon output "
+              f"(contig ID mismatch between AMRFinderPlus and the assembly?): {bad_id[:8]}")
+    report = []
+
+    def diagnose(cl, allb, ctxb):
+        """(status, reason, n_gene_elsewhere, n_no_amr) for one cluster."""
+        with_cl = {b["sample"] for b in allb}
+        elsewhere = loc_df[loc_df["sample"].isin(with_cl) & (loc_df["cluster"] != cl)]
+        n_else = elsewhere["sample"].nunique()
+        n_noamr = len(with_cl & set(no_amr))
+        if len(ctxb) >= 2:
+            return "plotted", "", n_else, n_noamr
+        if not allb:
+            why = f"cluster {cl} not found in any isolate's MOB-recon output (check the ID, or it is genuinely absent)"
+        elif len(ctxb) == 1:
+            why = f"only 1 isolate carries {a.gene} on this plasmid (need >= 2)"
+        elif n_noamr == len(with_cl):
+            why = "INPUT PROBLEM: none of the isolates with this cluster has an AMR file"
+        elif n_else:
+            elsew = "; ".join(f"{m}{'/' + c if c else ''}" for m, c in
+                              elsewhere[["molecule", "cluster"]].drop_duplicates().itertuples(index=False))
+            why = (f"isolates carry this plasmid but not the gene on it; the gene is present in {n_else} of them "
+                   f"elsewhere ({elsew}) - check that is real")
+        else:
+            why = f"genuine non-carriage: {len(with_cl)} isolate(s) have the plasmid, none has {a.gene}"
+        if n_noamr and len(ctxb) < 2:
+            why += f" [WARN: {n_noamr} of these isolates have no AMR file]"
+        return "skipped", why, n_else, n_noamr
+
     summary = []
     for cl in a.clusters:
         allb = bins.get(cl, [])
         ctxb = [b for b in allb if b["has_ctx"]]
         if len(ctxb) < 2:
-            print(f"[skip] {cl}: {len(ctxb)} {a.gene} isolate(s)")
+            st, why, n_else, n_noamr = diagnose(cl, allb, ctxb)
+            report.append(dict(cluster=cl, status=st, reason=why, n_isolates_with_cluster=len(allb),
+                               n_carriers=len(ctxb), n_gene_elsewhere=n_else, n_isolates_no_amr_file=n_noamr))
+            print(f"[skip] {cl}: {why}")
             continue
 
         # reference
@@ -396,10 +463,14 @@ def main():
                                 total_bp=t["total"], aligned_bp_to_ref=t["total"] if is_ref else t["aligned_bp"],
                                 n_unplaced_contigs=0 if is_ref else t["n_unplaced"], ctxm=";".join(ctx["symbol"]),
                                 ctxm_contig_placed=t["ctx_placed"], reference=rb["sample"], is_reference=is_ref))
+        st, why, n_else, n_noamr = diagnose(cl, allb, ctxb)
+        report.append(dict(cluster=cl, status=st, reason=why, n_isolates_with_cluster=len(allb),
+                           n_carriers=len(ctxb), n_gene_elsewhere=n_else, n_isolates_no_amr_file=n_noamr))
         print(f"[plot] {cl}: ref={rb['sample']}, {len(tracks)} tracks")
         draw(cl, tracks, rb["sample"], a.outdir, a.min_identity, a.gene, a.label_angle)
 
     pd.DataFrame(summary).to_csv(a.outdir / "ctxm_plasmid_summary.tsv", sep="\t", index=False)
+    pd.DataFrame(report).to_csv(a.outdir / "cluster_report.tsv", sep="\t", index=False)
 
 
 if __name__ == "__main__":

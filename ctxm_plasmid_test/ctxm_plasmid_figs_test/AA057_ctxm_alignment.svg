@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-18T17:20:30.192531</dc:date>
+    <dc:date>2026-10-19T20:56:42.586004</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -183,7 +183,7 @@ z
    <g id="line2d_1">
     <path d="M 397.31875 97.992708 
 L 1472.112799 97.992708 
-" clip-path="url(#p8e477725b6)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
+" clip-path="url(#p216bc9b2f8)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
    </g>
    <g id="PatchCollection_4">
     <path d="M 479.87026 97.992708 
@@ -673,7 +673,7 @@ z
    <g id="line2d_2">
     <path d="M 397.31875 199.157265 
 L 1477.31875 199.157265 
-" clip-path="url(#p33a1a09b6b)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
+" clip-path="url(#pfc64bb7d76)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
    </g>
    <g id="PatchCollection_6">
     <path d="M 704.783005 199.157265 
@@ -1253,7 +1253,7 @@ z
    <g id="line2d_3">
     <path d="M 397.31875 300.321822 
 L 1349.870804 300.321822 
-" clip-path="url(#pd121f5935e)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
+" clip-path="url(#p15b1d8faca)" style="fill: none; stroke: #808080; stroke-linecap: square"/>
    </g>
    <g id="PatchCollection_8">
     <path d="M 470.984915 300.321822 
@@ -1722,13 +1722,13 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p8e477725b6">
+  <clipPath id="p216bc9b2f8">
    <rect x="397.31875" y="91.157265" width="1080" height="13.670886"/>
   </clipPath>
-  <clipPath id="p33a1a09b6b">
+  <clipPath id="pfc64bb7d76">
    <rect x="397.31875" y="192.321822" width="1080" height="13.670886"/>
   </clipPath>
-  <clipPath id="pd121f5935e">
+  <clipPath id="p15b1d8faca">
    <rect x="397.31875" y="293.486379" width="1080" height="13.670886"/>
   </clipPath>
  </defs>
