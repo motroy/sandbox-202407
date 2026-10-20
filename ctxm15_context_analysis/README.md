@@ -45,6 +45,13 @@ The `flank_bp = 5000` default and the recurrence-based selection of representati
 
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
 
+## Why ResFinder + Platon are the defaults (30-genome test subset vs the paper's table)
+| | ResFinder + Platon | AMRFinderPlus + MOB-recon |
+|---|---|---|
+| blaCTX-M chromosome/plasmid copy numbers match | 30/30 | 28/30 |
+| co-located ARG set (barcode partners) matches the paper | 8/8 exact | gene names differ (allele naming, `catB3`), window-bound |
+ResFinder uses the paper's gene names (`aac(6')-Ib-cr`, `aac(3)-IIa`, `mph(A)`), found the CTX-M-172/183 copies AMRFinderPlus missed, and Platon matched the paper on the one contig where MOB-recon disagreed. Notes: ResFinder lists every tied allele as a separate hit (a novel allele can tie 5 ways), so overlapping hits are collapsed to one locus and the tied alleles are kept in `allele_ties`; ResFinder gives no strand (step 06 reads it from the GBFF). The ARG barcode is now the ARGs inside the *inserted region* (everything within `window_bp`, extended by ARGs/IS chained on with gaps <= `region_gap_bp`, capped at `region_max_bp`), which recovered islands longer than the flank window. Only 8 of the 30 genomes have a paper barcode, so treat the 8/8 as encouraging, not conclusive.
+
 ## Phylogeny (`08_phylogeny.sh`, `09_tree_annotate.py`)
 ```bash
 THREADS=8 scripts/08_phylogeny.sh test_data/genomes results/phylo      # <id>.fa + <id>.gbff per genome
@@ -70,8 +77,9 @@ Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completenes
 ## Tools (chosen by the user; the paper used ABRicate/ResFinder/ISfinder/Platon instead)
 | Task | Tool |
 |---|---|
-| ARGs, blaCTX-M variants | AMRFinderPlus (`--plus --organism Escherichia`; point mutations are excluded from barcodes) |
-| Chromosome vs plasmid, plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`) |
+| ARGs, blaCTX-M variants, barcodes | **ResFinder 4.7** (default; 80% identity/coverage) or AMRFinderPlus (`arg_tool = "amrfinder"`; `--plus --organism Escherichia`, point mutations excluded) |
+| Chromosome vs plasmid | **Platon 1.7 + the paper's 500 kb size rule** (default) or MOB-recon (`location_tool = "mobrecon"`); if both are supplied, disagreements are flagged in `location_disagreement` |
+| Plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`); IS detection alternatives are benchmarked below |
 | ST / phylogroup / O:H / fimH | mlst, ClermonTyping, ECTyper, FimTyper |
 | cgMLST de-duplication | chewBBACA AlleleCall + cgmlst-dists |
 | Phylogeny | Mashtree (assemblies), Panaroo (pangenome + core alignment, FAMSA), IQ-TREE 3 |

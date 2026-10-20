@@ -3,7 +3,11 @@
 # Needs: amrfinder (AMRFinderPlus, `amrfinder -u` done), mob_recon, mlst, clermonTyping.sh, ectyper, FimTyper (see below).
 set -euo pipefail
 s=$1; fa=$2; t=${THREADS:-4}
-mkdir -p amrfinder mobrecon typing
+mkdir -p amrfinder mobrecon typing resfinder platon
+# ResFinder 4 (acquired genes, 80% identity/coverage; RESFINDER_DB = clone of bitbucket.org/genomicepidemiology/resfinder_db) and Platon
+# (PLATON_DB = db.tar.gz from zenodo.org/records/4066768) are the default ARG / chromosome-plasmid callers (see config.toml).
+run_resfinder.py -ifa "$fa" -o "resfinder/$s" -db_res "${RESFINDER_DB:?set RESFINDER_DB}" -acq -l 0.8 -t 0.8 -b "$(command -v blastn)" >/dev/null
+platon --db "${PLATON_DB:?set PLATON_DB}" --threads "$t" --output "platon/$s" "$fa" >/dev/null 2>&1 || true   # no table is written when no contig passes Platon's filters
 amrfinder -n "$fa" --plus --organism Escherichia --threads "$t" -o "amrfinder/$s.amrfinder.tsv"
 mob_recon -i "$fa" -o "mobrecon/$s" -n "$t" --force        # contig_report.txt (chromosome/plasmid) + mge.report.txt
 mlst "$fa" > "typing/$s.mlst.tsv"

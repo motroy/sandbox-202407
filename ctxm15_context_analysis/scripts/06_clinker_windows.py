@@ -14,6 +14,16 @@ from pathlib import Path
 from Bio import SeqIO
 
 
+def gene_strand(rec, start, end):
+    """Strand of the CDS that overlaps the gene most (ResFinder hits carry no strand); '+' if none."""
+    best, strand = 0, "+"
+    for f in rec.features:
+        if f.type == "CDS":
+            ov = min(int(f.location.end), end) - max(int(f.location.start) + 1, start) + 1
+            if ov > best: best, strand = ov, "-" if f.location.strand == -1 else "+"
+    return strand
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--config", default="config.toml")
@@ -49,14 +59,15 @@ def main():
             s = max(0, int(h["region_start"]) - 1 - cc["flank_bp"])
             e = min(len(rec), int(h["region_end"]) + cc["flank_bp"])
             sub = rec[s:e]
-            if h["strand"] == "-":
+            strand = h["strand"] if h["strand"] in ("+", "-") else gene_strand(rec, int(h["start"]), int(h["end"]))
+            if strand == "-":
                 sub = sub.reverse_complement(id=True, name=True, description=True, annotations=True)
             name = re.sub(r"\W", "_", h["sample"])
             sub.id = sub.name = name[:16]
             sub.description = f"{h['sample']} {h['contig']}:{s + 1}-{e} {h['location']} barcode={h['barcode']}"
             sub.annotations["molecule_type"] = "DNA"
             SeqIO.write(sub, d / f"{name}.gbk", "genbank")
-            rows.append([h["sample"], h["contig"], s + 1, e, h["strand"], h["mediator"], h["barcode"]])
+            rows.append([h["sample"], h["contig"], s + 1, e, strand, h["mediator"], h["barcode"]])
         with open(d / "manifest.tsv", "w", newline="") as f:
             w = csv.writer(f, delimiter="\t")
             w.writerow(["sample", "contig", "window_start", "window_end", "strand", "mediator", "barcode"]); w.writerows(rows)
