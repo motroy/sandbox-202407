@@ -13,4 +13,4 @@ Final tables and Clinker plots only; raw AMRFinderPlus / MOB-recon / mlst / ECTy
 | `site_histogram.tsv` | 0.1-min bin | genomes per insertion position |
 | `typing.tsv` | genome | ST, phylogroup, O:H, fimH, ST131 subclade |
 | `comparison.tsv` | genome | our calls next to the paper's (Zenodo table) |
-| `clinker/<variant>.html/.csv/.png` | variant | synteny plot (interactive HTML, static PNG from `scripts/07_clinker_png.py`) and pairwise protein identities of the blaCTX-M windows; only variants with >= 2 windows are drawn |
+| `clinker/<variant>.html/.csv/.png/.svg` | variant | synteny plot (interactive HTML, styled PNG/SVG from `scripts/07_clinker_png.py --style`: coloured gene classes, renamed legend, key genes labelled) and pairwise protein identities of the blaCTX-M windows; only variants with >= 2 windows are drawn |
