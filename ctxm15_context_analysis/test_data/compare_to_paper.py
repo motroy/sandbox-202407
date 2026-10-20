@@ -34,7 +34,7 @@ for r in sub:
                 "paper_chrom": sum(pc.values()), "ours_chrom": len(oc), "paper_plasmid": sum(pp.values()),
                 "ours_plasmid": len(op), "copies_agree": int(ok),
                 "paper_chrom_variants": ";".join(sorted(pc)), "ours_chrom_variants": ";".join(sorted({h["gene"] for h in oc})),
-                "paper_st": "ST" + r["Sequence Type"], "ours_st": t.get("st", "NA"),
+                "paper_st": "ND" if r["Sequence Type"] == "ND" else "ST" + r["Sequence Type"], "ours_st": t.get("st", "NA"),
                 "paper_st131_clade": r["Sequence Type 131 clade"], "ours_st131_subclade": t.get("st131_subclade", "NA"),
                 "paper_barcode": r["ARGs barcode"], "ours_barcodes": " | ".join(sorted({h["barcode"] for h in oc})) or "none",
                 "ours_mediators": ",".join(sorted({h["mediator"] for h in oc})) or "none"})

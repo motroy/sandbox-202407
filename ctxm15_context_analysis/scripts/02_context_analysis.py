@@ -39,7 +39,7 @@ def read_amrfinder(path):
         for r in csv.DictReader(f, delimiter="\t"):
             sym = r.get("Element symbol") or r.get("Gene symbol")
             yield (r["Contig id"].split()[0], int(r["Start"]), int(r["Stop"]),
-                   r["Strand"], sym, r.get("Type", ""))
+                   r["Strand"], sym, r.get("Element type") or r.get("Type", ""))
 
 
 def read_mge(path):
