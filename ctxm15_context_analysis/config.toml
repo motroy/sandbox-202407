@@ -37,3 +37,9 @@ max_contamination = 5.0
 resfinder_min_identity = 80.0
 resfinder_min_coverage = 80.0
 max_cgmlst_dist = 10
+
+[clinker]
+# 06_clinker_windows.py
+flank_bp = 5000          # flank added on each side of the inserted region (assumption; not stated in the supplied Methods)
+location = "chromosome"  # which hits to align: chromosome | plasmid | all
+max_per_variant = 12     # genomes per variant, most recurrent barcodes first

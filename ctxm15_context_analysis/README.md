@@ -34,6 +34,12 @@ Rscript scripts/04_plot_sites.R results/insertion_sites.tsv results/sites.pdf bl
 ```
 Outputs: `results/context_hits.tsv`, `barcodes.tsv`, `summary_by_st.tsv`, `insertion_sites.tsv`, `site_histogram.tsv`.
 
+**Clinker synteny (`06_clinker_windows.py`):** per variant, cuts the inserted region +- `flank_bp` from each GBFF, orients it so blaCTX-M is forward, and writes `results/clinker/<variant>/<sample>.gbk` plus a manifest. Genomes are ordered by barcode recurrence (most frequent structure first, one window per genome, capped by `max_per_variant`). `--run` then calls `clinker` to produce `<variant>.html` and `<variant>.csv`.
+```bash
+python scripts/06_clinker_windows.py --config config.toml --run
+```
+The `flank_bp = 5000` default and the recurrence-based selection of representatives are my assumptions; the Methods don't give them. Clinker only aligns CDS with translations, so use annotated GBFFs.
+
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
 
 ## Tools (chosen by the user; the paper used ABRicate/ResFinder/ISfinder/Platon instead)
@@ -46,8 +52,8 @@ Genomes sharing the same flanking-gene pair belong to the same integration regio
 `05_typing.py` assigns ST131 subclades with a simple fimH / blaCTX-M-15 heuristic (fimH41 = A, fimH22 = B, fimH30 = C2 with blaCTX-M-15 else C1), not the paper's definitions (its ref. 47, which I have not seen). Output layouts of ClermonTyping and FimTyper vary by version, and `01_run_tools.sh` leaves them as commented commands. Because of the MOB-recon choice the paper's Platon + 500 kb size rule and manual review of >500 kb contigs are not applied; gene-level and genome-level counts are in `summary_by_st.tsv`.
 
 ## Status
-`00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
+`06` was also run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
 
 ## Not included
-Clinker synteny of flanking windows per variant (`clinker windows/*.gbk -p`) and the manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).
+The manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).
 Genome screening/filtering (the paper started from 451,174 public genomes, keeping 2,269 CTX-M long-read/hybrid assemblies), ST/subclade typing, and the integration-rate modelling. Use short-read assemblies with care: contigs break at IS elements, so chromosome/plasmid calls are unreliable.
