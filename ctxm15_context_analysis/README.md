@@ -4,7 +4,17 @@ Modelled on Danjean et al., *Chromosomal integration of blaCTX-M redefines the e
 
 **Caveat:** built from the abstract plus the Methods excerpts for ARG barcodes, representative structures and insertion-site mapping. The earlier Methods (genome screening, annotation tools, thresholds, which are in the paper's Supplementary Information) are not available to me, so the window size, identity cutoffs and tool choices in `config.toml` are my assumptions.
 
-## What it does (per blaCTX-M-15 hit, long-read/hybrid assemblies)
+## Step 0: genome collection (`00_select_genomes.py`, `00b_cgmlst.sh`)
+1. `filter`: from an NCBI assembly metadata table keep taxid 562, ANI `OK`, N50 >= 100 kb, completeness >= 90%, contamination <= 5%, BioProject and release date present, long-read/hybrid technology (column names and thresholds in `[selection]`). Download FASTA + GBFF for these.
+2. Run ResFinder per genome (`<accession>.tsv`), then `00b_cgmlst.sh` (chewBBACA AlleleCall, Achtman 2,513-gene scheme, cgmlst-dists).
+3. `dedup`: keep genomes with a blaCTX-M hit (ResFinder identity and coverage >= 80%), then collapse duplicates (same BioProject AND cgMLST distance <= 10 AND identical ARG profile) to one representative per cluster. The representative rule (highest N50, then completeness) is my assumption, as the Methods don't say.
+```bash
+python scripts/00_select_genomes.py filter ncbi_meta.tsv candidates.tsv
+python scripts/00_select_genomes.py dedup candidates.tsv resfinder/ cgmlst_dists.tsv final_genomes.tsv
+```
+The Methods text I have stops at "Phylogroups were assigned using ClermontTyper", so phylogroup / ST typing is not implemented. The downstream scripts use AMRFinderPlus for ARG calls, whereas the paper used ResFinder for selection; the paper's downstream ARG tool is not known to me.
+
+## What steps 1-6 do (per blaCTX-M-15 hit, long-read/hybrid assemblies)
 1. Locate the gene (AMRFinderPlus) and classify its contig as chromosome or plasmid (MOB-recon).
 2. Record the relative position along the contig (the paper reports integration across the whole chromosome).
 3. Find IS elements within `window_bp` of the gene (BLAST vs an IS reference set) and assign the mediator, ISEcp1 first, then IS26.
@@ -26,7 +36,7 @@ Outputs: `results/context_hits.tsv`, `barcodes.tsv`, `summary_by_st.tsv`, `inser
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
 
 ## Status
-`02` and `03` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
+`00`, `02` and `03` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
 
 ## Not included
 Clinker synteny of flanking windows per variant (`clinker windows/*.gbk -p`) and the manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).

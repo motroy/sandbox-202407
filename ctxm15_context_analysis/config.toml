@@ -19,3 +19,23 @@ n_anchors = 5          # CDS per flank mapped to K-12
 max_chain_gap_min = 1.0
 min_chain_genes = 2
 max_junction_gap_min = 5.0
+
+[selection]
+# 00_select_genomes.py. Column names of the NCBI assembly metadata table (e.g. from `datasets summary genome` -> TSV)
+taxid_col = "taxid"          # 562 = E. coli
+ani_col = "ani_status"       # must equal "OK"
+n50_col = "n50"
+completeness_col = "completeness"
+contamination_col = "contamination"
+bioproject_col = "bioproject"
+release_date_col = "release_date"
+tech_col = "sequencing_tech" # must match long_read_regex
+long_read_regex = "(?i)nanopore|ont|pacbio|sequel|minion|promethion|hybrid"
+accession_col = "accession"
+taxid = "562"
+min_n50 = 100000
+min_completeness = 90.0
+max_contamination = 5.0
+resfinder_min_identity = 80.0
+resfinder_min_coverage = 80.0
+max_cgmlst_dist = 10
