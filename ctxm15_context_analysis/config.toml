@@ -1,0 +1,12 @@
+# Settings for scripts/02_context_analysis.py
+[analysis]
+gene_regex = "^blaCTX-M-15$"   # AMRFinderPlus 'Element symbol' to analyse; use "^blaCTX-M" for all variants
+window_bp  = 10000             # flank searched on each side of the gene for IS and other AMR genes
+is_min_pident = 90.0
+is_min_cov_bp = 100            # minimum alignment length for an IS hit
+# IS families credited as integration mediators, checked in this order
+mediators  = ["ISEcp1", "IS26"]
+
+[input]
+samples = "input/samples.tsv"  # sample, fasta, amrfinder, mobrecon_dir, is_hits[, st]
+outdir  = "results"

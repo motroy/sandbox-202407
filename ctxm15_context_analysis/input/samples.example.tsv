@@ -1,0 +1,2 @@
+sample	fasta	amrfinder	mobrecon_dir	is_hits	st
+SAMPLE1	assemblies/SAMPLE1.fa	amrfinder/SAMPLE1.amrfinder.tsv	mobrecon/SAMPLE1	is_blast/SAMPLE1.tsv	ST131
