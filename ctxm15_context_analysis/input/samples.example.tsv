@@ -1,0 +1,2 @@
+sample	fasta	amrfinder	mobrecon_dir	st	gbff	mlst	clermont	ectyper	fimtyper
+SAMPLE1	assemblies/SAMPLE1.fa	amrfinder/SAMPLE1.amrfinder.tsv	mobrecon/SAMPLE1	ST131	gbff/SAMPLE1.gbff	typing/SAMPLE1.mlst.tsv	typing/SAMPLE1.clermont.txt	typing/SAMPLE1.ectyper.tsv	typing/SAMPLE1.fimtyper.tsv
