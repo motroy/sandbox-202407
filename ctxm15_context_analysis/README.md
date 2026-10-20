@@ -57,6 +57,13 @@ python scripts/09_tree_annotate.py config.toml results/phylo
 
 The core threshold, clean mode, model and support settings are my choices; the paper used PPanGGOLiN and FastTree instead. Install: `panaroo`, `iqtree`, `mashtree`, `famsa` (and `mafft`) from bioconda (kept in a separate environment from the AMR tools if conda resolution complains); `pip install matplotlib biopython` for step 09.
 
+## Comparison with the paper's own tools (`test_data/run_paper_tools.sh`, `scripts/10_compare_paper_tools.py`)
+Runs the tools named in the paper's Methods on the same genomes and compares them with this pipeline and with the paper's table:
+- **ABRicate 1.0.1** with `resfinder`, `ecoh` (bundled) and two custom databases you build once: `isfinder` (`IS.fna` from github.com/thanhleviet/ISfinder-sequences, the paper used the Oct 2020 ISfinder; this copy's date is unknown) and `fimtyper` (`fimH.fsa` from bitbucket.org/genomicepidemiology/fimtyper_db): `mkdir $CONDA_PREFIX/db/<name>`, copy the FASTA there as `sequences`, run `abricate --setupdb`.
+- **Platon 1.7** (database from zenodo.org/records/4066768, 1.7 GB) with the paper's size rule (contigs > 500 kb are chromosomal; a Platon plasmid call on one is flagged). Platon writes no table when no contig passes its filters, which the comparison reads as "no plasmid contigs".
+- **PPanGGOLiN 2.2.4** (`workflow` on the GBFFs, then `msa --partition softcore --soft_core 0.95 --source dna --phylo`) and **FastTree 2.1.10** (`-gtr -gamma -nt`) for the paper's phylogeny.
+`10_compare_paper_tools.py <config> <subset.tsv> <run_paper_dir> [fasttree.nwk]` writes `comparison/`: `ctxm_hits_paper_tools.tsv`, `per_genome_comparison.tsv`, `tree_rf.tsv` (normalised Robinson-Foulds between FastTree, IQ-TREE and Mashtree) and `summary.txt`. Caveats: ISfinder lists ISEc9 as a 100%-identical copy of ISEcp1 and ABRicate prints only one name, so ISEc9 is counted as ISEcp1; MOB-suite's MGE set has no IS26 entry, so this pipeline counts its IS6-family elements as IS26-family.
+
 ## Assembly quality
 Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completeness >= 90%; see `00_select_genomes.py filter`). IS elements and blaCTX-M are repeats, so short-read drafts break at them and chromosome/plasmid, flank and insertion-site calls are unreliable. `context_hits.tsv` has a `context_quality` column: `ok`, or `short_contig` (linear contig < `min_contig_bp`) and/or `truncated_flank` (linear contig ends within `window_bp` of the region). Circular contigs (MOB-recon `circularity_status`) are never flagged. Treat flagged hits as unreliable and consider excluding them from rates.
 

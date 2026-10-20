@@ -53,7 +53,10 @@ def read_mge(path):
     with open(path) as f:
         for r in csv.DictReader(f, delimiter="\t"):
             b, e = int(r["contig_start"]), int(r["contig_end"])
-            hits[r["contig_id"].split()[0]].append((min(b, e), max(b, e), r["mge_type"]))
+            name = r["mge_type"]
+            if r.get("mge_subtype") == "IS6" and not name.startswith("IS26"):
+                name = "IS26"            # MOB-suite's MGE set has no IS26 entry; its IS6-family copies (IS6100, ...) count as IS26-family
+            hits[r["contig_id"].split()[0]].append((min(b, e), max(b, e), name))
     return hits
 
 
