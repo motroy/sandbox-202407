@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Render the Clinker HTML plots (06_clinker_windows.py --run) to PNG/SVG with headless Chromium.
 
-Usage: 07_clinker_png.py <clinker_dir> [--style] [--scale 2] [--browser /path/to/chrome]
+Usage: 07_clinker_png.py <clinker_dir> [--style [--grey-links]] [--scale 2] [--browser /path/to/chrome]
 Plain mode writes <variant>.png (cropped to the figure, no control panel).
 --style adjusts the plot first, then also writes <variant>.svg and <variant>.styled.html:
-  * gene groups are coloured by class (blaCTX-M red, ISEcp1 blue, other IS purple, other ARGs orange, rest grey)
+  * gene groups and their links are coloured by class (--grey-links keeps identity-shaded ribbons + identity bar) (pastel: blaCTX-M red, ISEcp1 blue, other IS purple, other ARGs orange, rest light grey)
   * legend entries are renamed from the member genes' products instead of "Group N"
   * gene labels only for blaCTX-M, ISEcp1, IS26 and ARGs (a custom label type "short"); white label halo, more row spacing
 Needs `pip install playwright` and a Chromium (PLAYWRIGHT_BROWSERS_PATH is honoured; otherwise pass --browser).
@@ -15,7 +15,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-COL = {"blaCTX-M": "#d62728", "ISEcp1": "#1f77b4", "IS": "#9467bd", "ARG": "#ff7f0e", "other": "#c8c8c8"}
+COL = {"blaCTX-M": "#f28e8e", "ISEcp1": "#8fbbe8", "IS": "#c9a9e3", "ARG": "#ffc58a", "other": "#e6e6e6"}   # pastel
 ARG_RX = [(r"CTX-M-?(\d+)?", None), (r"beta-lactamase|OXA", "bla"), (r"aminoglycoside|acetyltransferase.*(AAC|aac)|nucleotidyltransferase.*aad", "aac/aad"),
           (r"dihydropteroate", "sul"), (r"dihydrofolate", "dfr"), (r"tetracycline", "tet"), (r"quinolone resistance|Qnr", "qnr"),
           (r"chloramphenicol", "cat"), (r"macrolide", "mph")]
@@ -72,6 +72,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("clinker_dir"); ap.add_argument("--scale", type=float, default=2)
     ap.add_argument("--style", action="store_true", help="colour groups, rename legend, short gene labels; also write SVG")
+    ap.add_argument("--grey-links", action="store_true", help="with --style: keep identity-shaded grey ribbons (and the identity bar)")
     ap.add_argument("--browser", default=None, help="Chromium executable (default: Playwright's own)")
     a = ap.parse_args()
     with sync_playwright() as p:
@@ -85,6 +86,7 @@ def main():
             pg.goto(src.resolve().as_uri()); pg.wait_for_selector("g.clusterMapG", timeout=30000); pg.wait_for_timeout(1000)
             if a.style:
                 pg.check("#input-gene-labels"); pg.select_option("#select-label-type", "short")
+                if not a.grey_links: pg.check("#input-link-group-colour")     # ribbons take their group's pastel colour
                 for sel, val in (("#input-label-rotation", "45"), ("#input-cluster-spacing", "58"), ("#input-label-size", "10")):
                     pg.fill(sel, val); pg.dispatch_event(sel, "change")
                 # white halo so labels stay readable over the black identity ribbons
