@@ -45,6 +45,18 @@ The `flank_bp = 5000` default and the recurrence-based selection of representati
 
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
 
+## Phylogeny (`08_phylogeny.sh`, `09_tree_annotate.py`)
+```bash
+THREADS=8 scripts/08_phylogeny.sh test_data/genomes results/phylo      # <id>.fa + <id>.gbff per genome
+python scripts/09_tree_annotate.py config.toml results/phylo
+```
+1. **Mashtree** on the assemblies (`mashtree.dnd`).
+2. **Panaroo** on the NCBI GBFFs (no re-annotation): strict clean mode, core threshold 0.98, `--remove-invalid-genes` (NCBI annotations contain frameshifted CDS that Panaroo rejects), FAMSA with `--codons` (protein alignment back-translated; about 5x faster than MAFFT here, `ALIGNER=mafft` to switch). Panaroo only converts GenBank files when `-i` is a text file listing the paths, which the script does.
+3. **IQ-TREE 3** on the core-gene alignment with a fixed `GTR+F+I+G4` (`MODEL=MFP` runs ModelFinder, which takes hours on a multi-Mb alignment). Support: ultrafast bootstrap by default (`BOOTSTRAPS=1000`, about an hour for 30 genomes; `BOOTSTRAPS=0 ALRT=1000` uses fast SH-aLRT instead).
+4. `09_tree_annotate.py` writes `annotation/`: `tree_metadata.tsv` (ST, phylogroup, subclade, variant, integration status, mediators), iTOL colour-strip files, `tree_<name>.png` and `tree_<name>_cladogram.png` (midpoint-rooted, strips for integration / ST / variant), and the normalised Robinson-Foulds distance between the two topologies.
+
+The core threshold, clean mode, model and support settings are my choices; the paper used PPanGGOLiN and FastTree instead. Install: `panaroo`, `iqtree`, `mashtree`, `famsa` (and `mafft`) from bioconda (kept in a separate environment from the AMR tools if conda resolution complains); `pip install matplotlib biopython` for step 09.
+
 ## Assembly quality
 Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completeness >= 90%; see `00_select_genomes.py filter`). IS elements and blaCTX-M are repeats, so short-read drafts break at them and chromosome/plasmid, flank and insertion-site calls are unreliable. `context_hits.tsv` has a `context_quality` column: `ok`, or `short_contig` (linear contig < `min_contig_bp`) and/or `truncated_flank` (linear contig ends within `window_bp` of the region). Circular contigs (MOB-recon `circularity_status`) are never flagged. Treat flagged hits as unreliable and consider excluding them from rates.
 
@@ -55,6 +67,7 @@ Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completenes
 | Chromosome vs plasmid, plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`) |
 | ST / phylogroup / O:H / fimH | mlst, ClermonTyping, ECTyper, FimTyper |
 | cgMLST de-duplication | chewBBACA AlleleCall + cgmlst-dists |
+| Phylogeny | Mashtree (assemblies), Panaroo (pangenome + core alignment, FAMSA), IQ-TREE 3 |
 `05_typing.py` assigns ST131 subclades with a simple fimH / blaCTX-M-15 heuristic (fimH41 = A, fimH22 = B, fimH30 = C2 with blaCTX-M-15 else C1, other fimH = Other), not the paper's definitions (its ref. 47, which I have not seen). On the 30-genome test subset it matches the paper's clade for 11/11 ST131 genomes. ClermonTyping and FimTyper output layouts vary by version, so check `typing.tsv` after upgrades.
 
 **Installing FimTyper** (not on conda): `git clone https://bitbucket.org/genomicepidemiology/fimtyper.git` and `.../fimtyper_db.git`, then `export FIMTYPER_DIR=<fimtyper clone> FIMTYPER_DB=<fimtyper_db clone>`. It is a Perl script needing BLAST, `perl-bioperl` and `perl-try-tiny-retry` (in `environment.yml`). ClermonTyping is the bioconda `clermontyping` package; its R report step may print an error, but `*_phylogroups.txt` is still written. Because of the MOB-recon choice the paper's Platon + 500 kb size rule and manual review of >500 kb contigs are not applied; gene-level and genome-level counts are in `summary_by_st.tsv`.
@@ -62,7 +75,7 @@ Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completenes
 ## Status
 Re-run needed: the stored AMRFinderPlus outputs in `test_data/run/` were made without `--organism`; `run_subset.sh` skips existing files, so delete `test_data/run/amrfinder/` first. `context_quality` was checked on the existing outputs only.
 
-`06` and `07` were run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
+`08` and `09` were run on the 30-genome subset (2,930 core genes, 2.75 Mb core alignment, SH-aLRT 1000, no ultrafast bootstrap). `06` and `07` were run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
 
 ## Not included
 The manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).

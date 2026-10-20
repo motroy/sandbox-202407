@@ -1,4 +1,4 @@
 name: ctxm15-context
 channels: [conda-forge, bioconda]
-dependencies: [python>=3.11, ncbi-amrfinderplus, mob_suite, mlst, ectyper, chewbbaca, cgmlst-dists, clinker-py, biopython, r-base, clermontyping, blast, perl-bioperl, perl-try-tiny-retry]
+dependencies: [python>=3.11, ncbi-amrfinderplus, mob_suite, mlst, ectyper, chewbbaca, cgmlst-dists, clinker-py, panaroo, iqtree, mashtree, famsa, mafft, matplotlib, biopython, r-base, clermontyping, blast, perl-bioperl, perl-try-tiny-retry]
 # FimTyper: clone from bitbucket.org/genomicepidemiology (see README). PNG export: pip install playwright

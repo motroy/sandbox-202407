@@ -1,0 +1,174 @@
+IQ-TREE 3.1.4 built Sep 29 2026
+
+Input file name: test_data/run/phylo/panaroo/core_gene_alignment.aln
+Type of analysis: tree reconstruction
+Random seed number: 915791
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Piyumal Demotte, Hector Banos,
+Andrew J. Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman,
+Matthew W. Hahn, Mario dos Reis, Le Sy Vinh, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2026)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Molecular Biology and Evolution, msag117.
+https://doi.org/10.1093/molbev/msag117
+
+SEQUENCE ALIGNMENT
+------------------
+
+NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
+Input data: 30 sequences with 2751489 nucleotide sites
+Number of constant sites: 2.59247e+06 (= 94.2207% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 2.59247e+06 (= 94.2207% of all sites)
+Number of parsimony informative sites: 122655
+Number of distinct site patterns: 19947
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: GTR+F+I+G4
+
+Rate parameter R:
+
+  A-C: 0.9071
+  A-G: 4.5200
+  A-T: 1.1304
+  C-G: 0.5425
+  C-T: 6.7622
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2345
+  pi(C) = 0.2492
+  pi(G) = 0.2781
+  pi(T) = 0.2382
+
+Rate matrix Q:
+
+  A   -0.9564    0.1234    0.6861     0.147
+  C    0.1161    -1.078   0.08234    0.8791
+  G    0.5784   0.07377   -0.7822      0.13
+  T    0.1447    0.9197    0.1518    -1.216
+
+Model of rate heterogeneity: Invar+Gamma with 4 categories
+Proportion of invariable sites: 0.8693
+Gamma shape alpha: 0.83
+
+ Category  Relative_rate  Proportion
+  0         0              0.8693
+  1         0.78           0.03267
+  2         3.206          0.03267
+  3         7.385          0.03267
+  4         19.24          0.03267
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -5437854.0242 (s.e. 3891.9742)
+Unconstrained log-likelihood (without tree): -5954810.9782
+Number of free parameters (#branches + #model parameters): 67
+Akaike information criterion (AIC) score: 10875842.0484
+Corrected Akaike information criterion (AICc) score: 10875842.0517
+Bayesian information criterion (BIC) score: 10876701.5011
+
+Total tree length (sum of branch lengths): 0.1092
+Sum of internal branch lengths: 0.0626 (57.2678% of tree length)
+
+WARNING: 3 near-zero internal branches (<0.0000) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'GCA_040555885.1' is drawn at root
+Numbers in parentheses are SH-aLRT support (%)
+
++--GCA_040555885.1
+|
+|                 +--GCA_050193975.1
+|              +**| (0)
+|              |  |                                                        +--GCA_016775965.1
+|              |  |                                                     +--| (100)
+|              |  |                                                     |  |  +--GCA_016888625.1
+|              |  |                                                     |  +--| (100)
+|              |  |                                                     |     |  +--GCA_014162235.1
+|              |  |                                                     |     +--| (100)
+|              |  |                                                     |        +--GCA_051834685.1
+|              |  |                                   +-----------------| (100)
+|              |  |                                   |                 +--GCA_023658265.1
+|              |  |              +--------------------| (100)
+|              |  |              |                    |                 +--GCA_050626155.1
+|              |  |              |                    |              +--| (100)
+|              |  |              |                    |              |  +--GCA_051618695.1
+|              |  |              |                    |         +----| (100)
+|              |  |              |                    |         |    +---GCA_024585685.1
+|              |  |              |                    |      +--| (100)
+|              |  |              |                    |      |  |             +--GCA_052766305.1
+|              |  |              |                    |      |  |          +--| (100)
+|              |  |              |                    |      |  |          |  +-------GCA_041227525.1
+|              |  |              |                    |      |  |       +--| (100)
+|              |  |              |                    |      |  |       |  +--GCA_040812675.1
+|              |  |              |                    |      |  |    +--| (100)
+|              |  |              |                    |      |  |    |  +----GCA_024918755.1
+|              |  |              |                    |      |  +----| (100)
+|              |  |              |                    |      |       +---GCA_032372975.1
+|              |  |              |                    +------| (100)
+|              |  |              |                           +------------GCA_001971765.1
+|              |  |        +-----| (100)
+|              |  |        |     |  +------GCA_050190135.1
+|              |  |        |     +--| (100)
+|              |  |        |        +-----GCF_904863105.1
+|              |  |     +--| (100)
+|              |  |     |  +--GCA_052999365.1
+|              |  |  +--| (100)
+|              |  |  |  +--GCF_025593335.1
+|              |  +--| (84)
+|              |     |     +--GCF_045572035.1
+|              |     |  +--| (99.9)
+|              |     |  |  +--GCF_045585035.1
+|              |     +--| (99.8)
+|              |        +--GCA_029990375.1
+|           +**| (0)
+|           |  +--GCA_050197075.1
+|        +--| (73.2)
+|        |  +--GCA_054890185.1
+|     +--| (100)
+|     |  +--GCF_025584285.1
+|  +--| (99.2)
+|  |  +--GCA_053711225.1
++**| (0)
+|  |  +--GCA_026135825.1
+|  +--| (100)
+|     +--GCA_007109385.1
+|
++--GCF_045608945.1
+
+Tree in newick format:
+
+(GCA_040555885.1:0.0000255318,((((((GCA_050193975.1:0.0000207530,(((((((GCA_016775965.1:0.0001524039,(GCA_016888625.1:0.0007146547,(GCA_014162235.1:0.0001525098,GCA_051834685.1:0.0001377823)100:0.0000881106)100:0.0004565759)100:0.0005410153,GCA_023658265.1:0.0004896331)100:0.0139293875,((((GCA_050626155.1:0.0006078897,GCA_051618695.1:0.0005742401)100:0.0027634791,GCA_024585685.1:0.0034410292)100:0.0038273037,((((GCA_052766305.1:0.0016860009,GCA_041227525.1:0.0059981143)100:0.0016037611,GCA_040812675.1:0.0027388288)100:0.0011342561,GCA_024918755.1:0.0037480443)100:0.0013089411,GCA_032372975.1:0.0035958946)100:0.0042011694)100:0.0029018881,GCA_001971765.1:0.0096790660)100:0.0057650486)100:0.0157060877,(GCA_050190135.1:0.0058825720,GCF_904863105.1:0.0050154200)100:0.0023327727)100:0.0048075301,GCA_052999365.1:0.0015105046)100:0.0010124746,GCF_025593335.1:0.0002475551)100:0.0001255079,((GCF_045572035.1:0.0000335933,GCF_045585035.1:0.0000117706)99.9:0.0000087217,GCA_029990375.1:0.0000123942)99.8:0.0000086894)84:0.0000011668)0:0.0000000371,GCA_050197075.1:0.0000170589)0:0.0000000371,GCA_054890185.1:0.0000366680)73.2:0.0000003713,GCF_025584285.1:0.0000122377)100:0.0000070651,GCA_053711225.1:0.0000185552)99.2:0.0000025931,(GCA_026135825.1:0.0000751428,GCA_007109385.1:0.0000123927)100:0.0000300173)0:0.0000000777,GCF_045608945.1:0.0000359565);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t test_data/run/phylo/iqtree.treefile -m "GTR{0.90715,4.52004,1.13042,0.542452,6.76225}+F{0.234477,0.249195,0.278119,0.238209}+I{0.869333}+G4{0.829976}" --length 2751489
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s test_data/run/phylo/panaroo/core_gene_alignment.aln --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s test_data/run/phylo/panaroo/core_gene_alignment.aln --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Tue Oct 20 11:23:12 2026
+Total CPU time used: 2253.23791 seconds (0h:37m:33s)
+Total wall-clock time used: 589.610052 seconds (0h:9m:49s)
+

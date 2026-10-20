@@ -1,0 +1,2 @@
+tips compared: 30
+normalised Robinson-Foulds (0 = identical, 1 = no shared splits): 0.481

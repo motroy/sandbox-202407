@@ -5,7 +5,7 @@ Usage: 09_tree_annotate.py <config.toml> <phylo_dir>      (phylo_dir from 08_phy
 Writes <phylo_dir>/annotation/:
   tree_metadata.tsv      per genome: ST, phylogroup, ST131 subclade, blaCTX-M variants, integration status, mediators
   itol_<field>.txt       iTOL colour-strip datasets (st, integration, variant)  - upload with the .treefile / .dnd
-  tree_<name>.png        rectangular tree (midpoint-rooted) with coloured strips
+  tree_<name>.png        rectangular tree (midpoint-rooted) with coloured strips; tree_<name>_cladogram.png ignores branch lengths
   tree_comparison.txt    normalised Robinson-Foulds distance between the Mashtree and IQ-TREE topologies
 Needs Biopython and matplotlib.
 """
@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 from Bio import Phylo
 
 PAL = ["#8dd3c7", "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f", "#a6cee3"]
+PAL2 = ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#a65628", "#f781bf", "#999999", "#66c2a5", "#ffd92f", "#1b9e77", "#7570b3"]
 INTEG = {"chromosome": "#f28e8e", "both": "#c9a9e3", "plasmid": "#8fbbe8", "none": "#eeeeee"}
 
 
@@ -48,13 +49,14 @@ def bipartitions(tree):
     out = set()
     for cl in tree.get_nonterminals():
         s = frozenset(t.name for t in cl.get_terminals())
-        if 1 < len(s) < len(tips) - 1: out.add(min(s, tips - s, key=lambda x: sorted(x)))
+        if 1 < len(s) < len(tips) - 1: out.add(min(s, frozenset(tips - s), key=lambda x: sorted(x)))
     return out
 
 
-def colours(values):
-    uniq = sorted(set(values), key=lambda v: (-list(values).count(v), v))
-    return {v: PAL[i % len(PAL)] for i, v in enumerate(uniq)}
+def colours(values, pal=PAL):
+    values = list(values)
+    uniq = sorted(set(values), key=lambda v: (-values.count(v), v))
+    return {v: pal[i % len(pal)] for i, v in enumerate(uniq)}
 
 
 def itol(path, field, cmap, ids):
@@ -64,9 +66,9 @@ def itol(path, field, cmap, ids):
         for tip, (val) in ids.items(): f.write(f"{tip}\t{cmap[val]}\t{val}\n")
 
 
-def draw(tree, name, meta, samples, out):
+def draw(tree, name, meta, samples, out, cladogram=False):
     tree.root_at_midpoint(); tree.ladderize()
-    tips = tree.get_terminals(); depth = tree.depths()
+    tips = tree.get_terminals(); depth = tree.depths(unit_branch_lengths=cladogram)
     ypos = {t: i for i, t in enumerate(tips)}
     for cl in tree.get_nonterminals(order="postorder"): ypos[cl] = sum(ypos[c] for c in cl.clades) / len(cl.clades)
     fig, ax = plt.subplots(figsize=(11, 0.28 * len(tips) + 2))
@@ -77,7 +79,7 @@ def draw(tree, name, meta, samples, out):
         if cl.clades: ax.plot([x0, x0], [ypos[cl.clades[0]], ypos[cl.clades[-1]]], "k-", lw=0.9)
     xmax = max(depth.values()); w = xmax * 0.05
     fields = [("integration", INTEG), ("st", colours([m["st"] for m in meta.values()])),
-              ("variant", colours([m["variant"] for m in meta.values()]))]
+              ("variant", colours([m["variant"] for m in meta.values()], PAL2))]
     for k, (field, cmap) in enumerate(fields):
         for t in tips:
             s = match(t.name, samples)
@@ -87,8 +89,11 @@ def draw(tree, name, meta, samples, out):
         s = match(t.name, samples)
         ax.text(xmax * 1.03 + 3 * w * 1.15 + w * 0.3, ypos[t], f"{t.name}  {meta[s]['st'] if s else ''}", va="center", fontsize=6.5)
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in INTEG.values()]
-    ax.legend(handles, [f"{k} blaCTX-M" for k in INTEG], loc="lower left", fontsize=7, title="integration", title_fontsize=7, frameon=False)
-    ax.set_ylim(len(tips), -2.5); ax.set_xlim(-xmax * 0.02, xmax * 2.1); ax.axis("off"); ax.set_title(name, fontsize=10, loc="left")
+    leg = ax.legend(handles, [f"{k} blaCTX-M" for k in INTEG], loc="lower left", fontsize=7, title="integration", title_fontsize=7, frameon=False)
+    ax.add_artist(leg)
+    vcm = fields[2][1]; present = sorted({meta[match(t.name, samples)]["variant"] for t in tips if match(t.name, samples)})
+    ax.legend([plt.Rectangle((0, 0), 1, 1, color=vcm[v]) for v in present], present, loc="upper right", fontsize=6.5, title="variant", title_fontsize=7, frameon=False)
+    ax.set_ylim(len(tips), -2.5); ax.set_xlim(-xmax * 0.02, xmax * 2.1); ax.axis("off"); ax.set_title(name + (" (cladogram)" if cladogram else ""), fontsize=10, loc="left")
     fig.savefig(out, dpi=170, bbox_inches="tight", facecolor="white"); plt.close(fig)
 
 
@@ -112,10 +117,10 @@ def main():
             cm = INTEG if field == "integration" else colours([m[field] for m in meta.values()])
             itol(ann / f"itol_{field}_{stem}.txt", field, cm, {tip: meta[s][field] for tip, s in ids.items() if s})
         draw(t, name, meta, samples, ann / f"tree_{stem}.png")
+        draw(t, name, meta, samples, ann / f"tree_{stem}_cladogram.png", cladogram=True)
     if len(read) == 2:
         a, b = list(read.values()); shared = {t.name for t in a.get_terminals()} & {t.name for t in b.get_terminals()}
-        for t in (a, b): t.prune  # topology compared on shared tips only
-        if len(shared) < len(a.get_terminals()):
+        if len(shared) < max(len(a.get_terminals()), len(b.get_terminals())):   # compare topology on shared tips only
             for t in (a, b):
                 for c in [c for c in t.get_terminals() if c.name not in shared]: t.prune(c)
         ba, bb = bipartitions(a), bipartitions(b); rf = len(ba ^ bb) / max(1, len(ba) + len(bb))
