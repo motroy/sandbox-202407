@@ -2,6 +2,7 @@
 [analysis]
 arg_tool = "resfinder"        # resfinder (ResFinder 4, 80% id/cov) | amrfinder
 location_tool = "platon"      # platon (+ size rule) | mobrecon
+is_tool = "isfinder"          # isfinder (ABRicate + ISfinder DB; best ISEcp1/IS26 sensitivity in our benchmark) | mobrecon (mge.report.txt)
 plasmid_size_rule = 500000    # Platon mode: contigs longer than this are chromosomal (the paper's rule)
 resfinder_min_identity = 80.0
 resfinder_min_coverage = 80.0
@@ -13,7 +14,7 @@ region_gap_bp = 5000           # max gap when merging blaCTX-M, co-located ARGs 
 mediators  = ["ISEcp1", "IS26"]
 
 [input]
-samples = "input/samples.tsv"  # sample, fasta, resfinder, platon[, amrfinder, mobrecon_dir, st, gbff, mlst, clermont, ectyper, fimtyper]
+samples = "input/samples.tsv"  # sample, fasta, resfinder, platon[, isfinder, amrfinder, mobrecon_dir, st, gbff, mlst, clermont, ectyper, fimtyper]
 outdir  = "results"
 
 [sites]

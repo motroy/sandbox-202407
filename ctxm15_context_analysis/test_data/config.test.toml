@@ -2,6 +2,7 @@
 [analysis]
 arg_tool = "resfinder"
 location_tool = "platon"
+is_tool = "isfinder"
 plasmid_size_rule = 500000
 resfinder_min_identity = 80.0
 resfinder_min_coverage = 80.0

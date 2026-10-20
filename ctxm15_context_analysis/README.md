@@ -52,6 +52,15 @@ Genomes sharing the same flanking-gene pair belong to the same integration regio
 | co-located ARG set (barcode partners) matches the paper | 8/8 exact | gene names differ (allele naming, `catB3`), window-bound |
 ResFinder uses the paper's gene names (`aac(6')-Ib-cr`, `aac(3)-IIa`, `mph(A)`), found the CTX-M-172/183 copies AMRFinderPlus missed, and Platon matched the paper on the one contig where MOB-recon disagreed. Notes: ResFinder lists every tied allele as a separate hit (a novel allele can tie 5 ways), so overlapping hits are collapsed to one locus and the tied alleles are kept in `allele_ties`; ResFinder gives no strand (step 06 reads it from the GBFF). The ARG barcode is now the ARGs inside the *inserted region* (everything within `window_bp`, extended by ARGs/IS chained on with gaps <= `region_gap_bp`, capped at `region_max_bp`), which recovered islands longer than the flank window. Only 8 of the 30 genomes have a paper barcode, so treat the 8/8 as encouraging, not conclusive.
 
+## IS detection benchmark (`11_compare_is_tools.py`, 29 chromosomal blaCTX-M copies, IS within 10 kb)
+| Route | ISEcp1 | IS26 | none |
+|---|---|---|---|
+| ABRicate + ISfinder (ISEc9 = ISEcp1) | 23 (79%) | 5 (17%) | 1 |
+| MOB-recon `mge.report.txt` | 20 (69%) | 1 (3%) | 8 |
+| ISEScan 1.7.3 (family: IS1380 / IS6) | 11 (38%) | 7 (24%) | 11 |
+| ISEScan + BLAST naming vs ISfinder | 11 (38%) | 6 (21%) | 12 |
+The paper (2,269 genomes) reports ISEcp1 77.3% and IS26 18.9%. ISfinder is the reference *database* and the only route here that matches those proportions; it is a plain BLAST search, so it gives no element boundaries and needs care with duplicate entries (ISEc9 = ISEcp1). ISEScan is a better general IS *inventory* tool (de novo, element boundaries) but missed 13 of the 23 ISEcp1 copies that ISfinder finds as full-length 100% matches (ISEcp1's inverted repeats are imperfect), so it is not safe for calling these two mediators. MOB-recon's MGE set has no IS26 entry. ISEScan was run on 60 kb windows around each hit (whole-genome runs took 15+ min each; `test_data/run_isescan_windows.py`).
+
 ## Phylogeny (`08_phylogeny.sh`, `09_tree_annotate.py`)
 ```bash
 THREADS=8 scripts/08_phylogeny.sh test_data/genomes results/phylo      # <id>.fa + <id>.gbff per genome
@@ -79,7 +88,8 @@ Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completenes
 |---|---|
 | ARGs, blaCTX-M variants, barcodes | **ResFinder 4.7** (default; 80% identity/coverage) or AMRFinderPlus (`arg_tool = "amrfinder"`; `--plus --organism Escherichia`, point mutations excluded) |
 | Chromosome vs plasmid | **Platon 1.7 + the paper's 500 kb size rule** (default) or MOB-recon (`location_tool = "mobrecon"`); if both are supplied, disagreements are flagged in `location_disagreement` |
-| Plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`); IS detection alternatives are benchmarked below |
+| IS mediators (ISEcp1, IS26) | **ABRicate vs ISfinder** (`is_tool = "isfinder"`, default; ISEc9 is counted as ISEcp1) or MOB-recon MGEs (`is_tool = "mobrecon"`) |
+| Plasmid clusters | MOB-recon `contig_report.txt` (optional) |
 | ST / phylogroup / O:H / fimH | mlst, ClermonTyping, ECTyper, FimTyper |
 | cgMLST de-duplication | chewBBACA AlleleCall + cgmlst-dists |
 | Phylogeny | Mashtree (assemblies), Panaroo (pangenome + core alignment, FAMSA), IQ-TREE 3 |

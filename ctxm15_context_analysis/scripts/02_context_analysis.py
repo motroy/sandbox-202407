@@ -2,7 +2,8 @@
 """Genomic-context analysis of blaCTX-M (default blaCTX-M-15) in E. coli assemblies.
 
 Tools (config [analysis]): arg_tool = "resfinder" (ResFinder 4 tab output, default) | "amrfinder" (AMRFinderPlus);
-location_tool = "platon" (Platon + size rule: contigs > plasmid_size_rule are chromosomal, default) | "mobrecon" (MOB-recon).
+location_tool = "platon" (Platon + size rule: contigs > plasmid_size_rule are chromosomal, default) | "mobrecon" (MOB-recon);
+is_tool = "isfinder" (ABRicate vs ISfinder, default) | "mobrecon" (MOB-recon mge.report; no IS26 entry, fewer ISEcp1 hits).
 If MOB-recon output is also given it supplies plasmid clusters and IS/MGEs, and any chromosome/plasmid disagreement is flagged.
 For each gene hit: chromosome vs plasmid, relative chromosomal position, IS/MGEs (MOB-recon mge.report.txt) in the flanks
 (ISEcp1 / IS26 credited as mediators), and other AMR genes within the window (co-integration).
@@ -124,6 +125,22 @@ def read_mge(path):
     return hits
 
 
+ISFINDER_ALIAS = {"ISEc9": "ISEcp1"}   # ISfinder lists ISEc9 as a 100%-identical copy of ISEcp1; ABRicate prints one name per locus
+
+
+def read_abricate_is(path):
+    """ABRicate output against an ISfinder database -> contig -> [(start, end, name)] (ISEc9 reported as ISEcp1)."""
+    hits = defaultdict(list)
+    if not path or not Path(path).exists():
+        return hits
+    with open(path) as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            n = r["GENE"].split("_")[0]
+            b, e = int(r["START"]), int(r["END"])
+            hits[r["SEQUENCE"].split()[0]].append((min(b, e), max(b, e), ISFINDER_ALIAS.get(n, n)))
+    return hits
+
+
 def family(name, mediators):
     for m in mediators:
         if name.upper().startswith(m.upper()):
@@ -142,6 +159,7 @@ def main():
 
     arg_tool, loc_tool = an.get("arg_tool", "amrfinder"), an.get("location_tool", "mobrecon")
     size_rule = an.get("plasmid_size_rule", 500_000)
+    is_tool = an.get("is_tool", "mobrecon")
     rows = []
     with open(inp["samples"]) as f:
         samples = list(csv.DictReader(f, delimiter="\t"))
@@ -152,7 +170,10 @@ def main():
             amr = list(read_resfinder(s["resfinder"], an.get("resfinder_min_identity", 80.0), an.get("resfinder_min_coverage", 80.0)))
         else:
             amr = list(read_amrfinder(s["amrfinder"]))
-        isr = read_mge(Path(s["mobrecon_dir"]) / "mge.report.txt") if s.get("mobrecon_dir") else defaultdict(list)
+        if is_tool == "isfinder":
+            isr = read_abricate_is(s.get("isfinder"))
+        else:
+            isr = read_mge(Path(s["mobrecon_dir"]) / "mge.report.txt") if s.get("mobrecon_dir") else defaultdict(list)
         plat = read_platon(s["platon"]) if loc_tool == "platon" else None
         if loc_tool == "platon" and plat is None:
             print(f"[WARN] {s['sample']}: no Platon output, locations unknown", file=sys.stderr)
