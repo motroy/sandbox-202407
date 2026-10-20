@@ -57,3 +57,10 @@ Genomes sharing the same flanking-gene pair belong to the same integration regio
 ## Not included
 The manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).
 Genome screening/filtering (the paper started from 451,174 public genomes, keeping 2,269 CTX-M long-read/hybrid assemblies), ST/subclade typing, and the integration-rate modelling. Use short-read assemblies with care: contigs break at IS elements, so chromosome/plasmid calls are unreliable.
+
+## Test data (Zenodo 10.5281/zenodo.20934804)
+`test_data/summary_df_2507genomes.txt` is the paper's metadata table (2,507 genomes, with the authors' chromosomal/plasmidic blaCTX-M calls, ARG barcodes and ST131 clades, so it doubles as ground truth). Fetch it with `zenodo_get 20934804`.
+```bash
+python test_data/make_subset.py test_data/summary_df_2507genomes.txt test_data/subset.tsv   # 30 stratified genomes (seed 1)
+python test_data/download_genomes.py test_data/subset.tsv test_data/genomes                  # FASTA + GBFF from NCBI Datasets
+```
