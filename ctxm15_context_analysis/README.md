@@ -17,7 +17,7 @@ The Methods text I have stops at "Phylogroups were assigned using ClermontTyper"
 ## What steps 1-6 do (per blaCTX-M-15 hit, long-read/hybrid assemblies)
 1. Locate the gene (AMRFinderPlus) and classify its contig as chromosome or plasmid (MOB-recon).
 2. Record the relative position along the contig (the paper reports integration across the whole chromosome).
-3. Find IS elements within `window_bp` of the gene (BLAST vs an IS reference set) and assign the mediator, ISEcp1 first, then IS26.
+3. Find IS/MGEs within `window_bp` of the gene from MOB-recon's `mge.report.txt` (`contig_start`/`contig_end`/`mge_type`) and assign the mediator, ISEcp1 first, then IS26.
 4. List other AMR genes in the window (co-integration).
 5. **ARG barcode** = sorted set of ARGs in the region. Chromosomal barcodes are compared with plasmid barcodes: `identical_to_plasmid`, `contained_in_larger_plasmid` (gene stabilised within part of a plasmid MDR island) or `chromosome_specific`. `barcodes.tsv` gives recurrence by genomes, variants and STs.
 6. **Insertion sites** (`03_insertion_sites.py`): up to 5 CDS per flank are mapped to E. coli K-12 on the 0-100 min scale (gene symbol / locus tag / product). Per flank the longest contiguous anchor chain (gap <= 1.0 min, >= 2 genes) is kept; both flanks with junction gap <= 5.0 min give the circular midpoint, otherwise the longer flank or the single valid flank, else `ND`. Positions are rounded to 0.1 min; `04_plot_sites.R` draws the circular map (optional variant and ST filters).
@@ -25,9 +25,10 @@ The Methods text I have stops at "Phylogroups were assigned using ClermontTyper"
 ## Usage
 ```bash
 conda env create -f environment.yml
-scripts/01_run_tools.sh SAMPLE1 assemblies/SAMPLE1.fa is_references.fa   # per sample
+scripts/01_run_tools.sh SAMPLE1 assemblies/SAMPLE1.fa   # per sample
 # fill input/samples.tsv (see input/samples.example.tsv; `st` optional, `gbff` needed for step 03)
 python scripts/02_context_analysis.py --config config.toml
+python scripts/05_typing.py config.toml               # typing.tsv + ST131 subclades
 python scripts/03_insertion_sites.py config.toml      # needs input/k12_MG1655.gbff (NC_000913.3)
 Rscript scripts/04_plot_sites.R results/insertion_sites.tsv results/sites.pdf blaCTX-M-15 ST131
 ```
@@ -35,8 +36,17 @@ Outputs: `results/context_hits.tsv`, `barcodes.tsv`, `summary_by_st.tsv`, `inser
 
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
 
+## Tools (chosen by the user; the paper used ABRicate/ResFinder/ISfinder/Platon instead)
+| Task | Tool |
+|---|---|
+| ARGs, blaCTX-M variants | AMRFinderPlus (`--plus`) |
+| Chromosome vs plasmid, plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`) |
+| ST / phylogroup / O:H / fimH | mlst, ClermonTyping, ECTyper, FimTyper |
+| cgMLST de-duplication | chewBBACA AlleleCall + cgmlst-dists |
+`05_typing.py` assigns ST131 subclades with a simple fimH / blaCTX-M-15 heuristic (fimH41 = A, fimH22 = B, fimH30 = C2 with blaCTX-M-15 else C1), not the paper's definitions (its ref. 47, which I have not seen). Output layouts of ClermonTyping and FimTyper vary by version, and `01_run_tools.sh` leaves them as commented commands. Because of the MOB-recon choice the paper's Platon + 500 kb size rule and manual review of >500 kb contigs are not applied; gene-level and genome-level counts are in `summary_by_st.tsv`.
+
 ## Status
-`00`, `02` and `03` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
+`00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
 
 ## Not included
 Clinker synteny of flanking windows per variant (`clinker windows/*.gbk -p`) and the manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).

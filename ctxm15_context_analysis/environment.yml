@@ -1,3 +1,4 @@
 name: ctxm15-context
 channels: [conda-forge, bioconda]
-dependencies: [python>=3.11, ncbi-amrfinderplus, mob_suite, blast, clinker-py, r-base]
+dependencies: [python>=3.11, ncbi-amrfinderplus, mob_suite, mlst, ectyper, chewbbaca, cgmlst-dists, clinker-py, r-base]
+# ClermonTyping and FimTyper: install separately (see their repositories)

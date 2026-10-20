@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Genomic-context analysis of blaCTX-M (default blaCTX-M-15) in E. coli assemblies.
 
-For each gene hit: chromosome vs plasmid, relative chromosomal position, IS elements in the flanks
+For each gene hit: chromosome vs plasmid, relative chromosomal position, IS/MGEs (MOB-recon mge.report.txt) in the flanks
 (ISEcp1 / IS26 credited as mediators), and other AMR genes within the window (co-integration).
 ARG barcode = sorted set of ARGs in the window; chromosomal barcodes are compared with plasmid barcodes
 (identical / contained in a larger plasmid barcode / chromosome-specific) to tell isolated gene insertion
@@ -42,13 +42,15 @@ def read_amrfinder(path):
                    r["Strand"], sym, r.get("Type", ""))
 
 
-def read_is_hits(path, min_pident, min_len):
+def read_mge(path):
+    """MOB-recon mge.report.txt (MOB-suite 3.x): contig -> [(start, end, mge_type)] on contig coordinates."""
     hits = defaultdict(list)
+    if not Path(path).exists():
+        return hits
     with open(path) as f:
-        for line in f:
-            q, s, pid, ln, qs, qe, *_ = line.rstrip("\n").split("\t")
-            if float(pid) >= min_pident and int(ln) >= min_len:
-                hits[q].append((min(int(qs), int(qe)), max(int(qs), int(qe)), s))
+        for r in csv.DictReader(f, delimiter="\t"):
+            b, e = int(r["contig_start"]), int(r["contig_end"])
+            hits[r["contig_id"].split()[0]].append((min(b, e), max(b, e), r["mge_type"]))
     return hits
 
 
@@ -75,7 +77,7 @@ def main():
         lens = contig_lengths(s["fasta"])
         mob = read_mobrecon(s["mobrecon_dir"])
         amr = list(read_amrfinder(s["amrfinder"]))
-        isr = read_is_hits(s["is_hits"], an["is_min_pident"], an["is_min_cov_bp"])
+        isr = read_mge(Path(s["mobrecon_dir"]) / "mge.report.txt")
         for contig, st, en, strand, sym, _ in amr:
             if not rx.search(sym or ""):
                 continue
@@ -138,19 +140,20 @@ def main():
                         ";".join(sorted({r["gene"] for r in rs})), ";".join(sorted({r["st"] for r in rs})),
                         rs[0]["barcode_class"]])
 
-    # Per-ST summary: gene hits, % chromosomal, mediator counts, % chromosomal hits with co-integrated AMR genes
+    # Per-ST summary, gene level (each copy counts) and genome level (>=1 chromosomal copy): gene hits, % chromosomal, mediator counts, % chromosomal hits with co-integrated AMR genes
     by = defaultdict(list)
     for r in rows: by[r["st"]].append(r)
     with open(out / "summary_by_st.tsv", "w", newline="") as f:
         w = csv.writer(f, delimiter="\t")
         w.writerow(["st", "n_hits", "n_chromosomal", "pct_chromosomal", "mediators_in_chromosomal",
-                    "pct_chromosomal_co_integrated"])
+                    "pct_chromosomal_co_integrated", "n_genomes", "n_genomes_chromosomal"])
         for st, rs in sorted(by.items()):
             chrom = [r for r in rs if r["location"] == "chromosome"]
             m = Counter(r["mediator"] for r in chrom)
             w.writerow([st, len(rs), len(chrom), f"{100 * len(chrom) / len(rs):.1f}",
                         ";".join(f"{k}={v}" for k, v in m.most_common()) or "none",
-                        f"{100 * sum(r['co_integrated'] for r in chrom) / len(chrom):.1f}" if chrom else "NA"])
+                        f"{100 * sum(r['co_integrated'] for r in chrom) / len(chrom):.1f}" if chrom else "NA",
+                        len({r["sample"] for r in rs}), len({r["sample"] for r in chrom})])
     print(f"{len(rows)} hits in {len(samples)} samples -> {out}", file=sys.stderr)
 
 
