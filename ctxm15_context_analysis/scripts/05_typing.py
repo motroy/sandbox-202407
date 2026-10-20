@@ -4,7 +4,7 @@
 Reads samples.tsv columns mlst, clermont, ectyper, fimtyper (any may be blank). Writes results/typing.tsv.
 Parsing is header-tolerant because output layouts differ between tool versions; check typing.tsv.
 ST131 subclade (heuristic from fimH / O-type / blaCTX-M-15; replace with the paper's reference 47 definitions
-once available): fimH41 -> A, fimH22 -> B, fimH30 -> C2 if the genome carries blaCTX-M-15 else C1.
+once available): fimH41 -> A, fimH22 -> B, fimH30 -> C2 if the genome carries blaCTX-M-15 else C1, any other fimH -> Other.
 Needs results/context_hits.tsv for the blaCTX-M-15 check (run 02 with gene_regex "^blaCTX-M" for all variants).
 """
 import csv, re, sys, tomllib
@@ -43,7 +43,8 @@ def get_fimh(path):                       # FimTyper results_tab.txt: "FimH type
 
 def subclade(st, fimh, ctxm15):
     if st != "ST131": return "NA"
-    return {"fimH41": "A", "fimH22": "B"}.get(fimh, ("C2" if ctxm15 else "C1") if fimh == "fimH30" else "ND")
+    if fimh == "ND": return "ND"
+    return {"fimH41": "A", "fimH22": "B"}.get(fimh, ("C2" if ctxm15 else "C1") if fimh == "fimH30" else "Other")
 
 
 def main():

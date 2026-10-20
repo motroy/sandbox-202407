@@ -2,7 +2,7 @@
 
 Final tables and Clinker plots only; raw AMRFinderPlus / MOB-recon / mlst / ECTyper output (about 150 MB) is not committed. Regenerate with `test_data/run_subset.sh`.
 
-**Provenance:** AMRFinderPlus ran with `--plus` but *without* `--organism Escherichia` (added afterwards); the tables were regenerated from those outputs with the current scripts. ClermonTyping / FimTyper were not run, so phylogroup and fimH are `ND` and `st131_subclade` is not meaningful.
+**Provenance:** AMRFinderPlus ran with `--plus` but *without* `--organism Escherichia` (added afterwards); the tables were regenerated from those outputs with the current scripts. ClermonTyping and FimTyper were run, so phylogroup, fimH and `st131_subclade` are filled (11/11 ST131 clades match the paper; the rule is a fimH/blaCTX-M-15 heuristic, see `scripts/05_typing.py`).
 
 | File | One row per | Content |
 |---|---|---|
@@ -13,4 +13,4 @@ Final tables and Clinker plots only; raw AMRFinderPlus / MOB-recon / mlst / ECTy
 | `site_histogram.tsv` | 0.1-min bin | genomes per insertion position |
 | `typing.tsv` | genome | ST, phylogroup, O:H, fimH, ST131 subclade |
 | `comparison.tsv` | genome | our calls next to the paper's (Zenodo table) |
-| `clinker/<variant>.html/.csv` | variant | synteny plot and pairwise protein identities of the blaCTX-M windows |
+| `clinker/<variant>.html/.csv/.png` | variant | synteny plot (interactive HTML, static PNG from `scripts/07_clinker_png.py`) and pairwise protein identities of the blaCTX-M windows; only variants with >= 2 windows are drawn |

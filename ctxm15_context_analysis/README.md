@@ -38,6 +38,8 @@ Outputs (`results/`, git-ignored): `context_hits.tsv`, `barcodes.tsv`, `summary_
 ```bash
 python scripts/06_clinker_windows.py --config config.toml --run
 ```
+**PNG export (`07_clinker_png.py`):** `python scripts/07_clinker_png.py results/clinker` renders each `<variant>.html` to a cropped `<variant>.png` with headless Chromium (`pip install playwright`; pass `--browser` if Playwright's own Chromium is not installed).
+
 The `flank_bp = 5000` default and the recurrence-based selection of representatives are my assumptions; the Methods don't give them. Clinker only aligns CDS with translations, so use annotated GBFFs.
 
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
@@ -52,12 +54,14 @@ Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completenes
 | Chromosome vs plasmid, plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`) |
 | ST / phylogroup / O:H / fimH | mlst, ClermonTyping, ECTyper, FimTyper |
 | cgMLST de-duplication | chewBBACA AlleleCall + cgmlst-dists |
-`05_typing.py` assigns ST131 subclades with a simple fimH / blaCTX-M-15 heuristic (fimH41 = A, fimH22 = B, fimH30 = C2 with blaCTX-M-15 else C1), not the paper's definitions (its ref. 47, which I have not seen). Output layouts of ClermonTyping and FimTyper vary by version, and `01_run_tools.sh` leaves them as commented commands. Because of the MOB-recon choice the paper's Platon + 500 kb size rule and manual review of >500 kb contigs are not applied; gene-level and genome-level counts are in `summary_by_st.tsv`.
+`05_typing.py` assigns ST131 subclades with a simple fimH / blaCTX-M-15 heuristic (fimH41 = A, fimH22 = B, fimH30 = C2 with blaCTX-M-15 else C1, other fimH = Other), not the paper's definitions (its ref. 47, which I have not seen). On the 30-genome test subset it matches the paper's clade for 11/11 ST131 genomes. ClermonTyping and FimTyper output layouts vary by version, so check `typing.tsv` after upgrades.
+
+**Installing FimTyper** (not on conda): `git clone https://bitbucket.org/genomicepidemiology/fimtyper.git` and `.../fimtyper_db.git`, then `export FIMTYPER_DIR=<fimtyper clone> FIMTYPER_DB=<fimtyper_db clone>`. It is a Perl script needing BLAST, `perl-bioperl` and `perl-try-tiny-retry` (in `environment.yml`). ClermonTyping is the bioconda `clermontyping` package; its R report step may print an error, but `*_phylogroups.txt` is still written. Because of the MOB-recon choice the paper's Platon + 500 kb size rule and manual review of >500 kb contigs are not applied; gene-level and genome-level counts are in `summary_by_st.tsv`.
 
 ## Status
 Re-run needed: the stored AMRFinderPlus outputs in `test_data/run/` were made without `--organism`; `run_subset.sh` skips existing files, so delete `test_data/run/amrfinder/` first. `context_quality` was checked on the existing outputs only.
 
-`06` was also run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
+`06` and `07` were run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
 
 ## Not included
 The manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).
