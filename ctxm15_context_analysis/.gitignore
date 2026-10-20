@@ -2,3 +2,4 @@ test_data/genomes/
 results/
 test_data/run/
 test_data/k12_MG1655.gbff
+*.styled.html
