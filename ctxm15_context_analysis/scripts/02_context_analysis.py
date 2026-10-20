@@ -25,18 +25,21 @@ def contig_lengths(fasta):
 
 
 def read_mobrecon(d):
-    """contig_id -> (molecule_type, primary_cluster_id) from contig_report.txt."""
+    """contig_id -> (molecule_type, primary_cluster_id, circular) from contig_report.txt."""
     out = {}
     with open(Path(d) / "contig_report.txt") as f:
         for r in csv.DictReader(f, delimiter="\t"):
             cid = r["contig_id"].split()[0]
-            out[cid] = (r["molecule_type"].lower(), r.get("primary_cluster_id", "-"))
+            out[cid] = (r["molecule_type"].lower(), r.get("primary_cluster_id", "-"),
+                        r.get("circularity_status", "").lower().startswith("circular"))
     return out
 
 
 def read_amrfinder(path):
     with open(path) as f:
         for r in csv.DictReader(f, delimiter="\t"):
+            if r.get("Element subtype") == "POINT":      # --organism point mutations are not ARG context
+                continue
             sym = r.get("Element symbol") or r.get("Gene symbol")
             yield (r["Contig id"].split()[0], int(r["Start"]), int(r["Stop"]),
                    r["Strand"], sym, r.get("Element type") or r.get("Type", ""))
@@ -97,8 +100,13 @@ def main():
                 for b, e in feats:
                     if b <= re_ + an["region_gap_bp"] and e >= rs - an["region_gap_bp"]:
                         rs, re_ = min(rs, b), max(re_, e)
-            mols = mob.get(contig, ("unknown", "-"))
+            mols = mob.get(contig, ("unknown", "-", False))
             clen = lens.get(contig, 0)
+            # unreliable-context flags: only linear contigs can be cut short by their ends
+            q = []
+            if not mols[2]:
+                if clen < an["min_contig_bp"]: q.append("short_contig")
+                if lo <= 1 or hi >= clen: q.append("truncated_flank")
             nearest = {m: min((d for f_, _, d in near_is if f_ == m), default=None) for m in med}
             mediator = next((m for m in med if nearest[m] is not None), "none")
             rows.append({
@@ -111,6 +119,7 @@ def main():
                 "co_resistance_genes": ";".join(co) or "none",
                 "co_integrated": int(bool(co)),
                 "region_start": rs, "region_end": re_,
+                "context_quality": ",".join(q) or "ok",
                 "barcode": ",".join(sorted({sym, *co})),
                 "barcode_class": "plasmid" if mols[0] == "plasmid" else "",
             })

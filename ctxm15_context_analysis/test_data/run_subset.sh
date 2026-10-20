@@ -7,7 +7,7 @@ R=test_data/run; mkdir -p $R/{amrfinder,mobrecon,typing}
 THREADS=${THREADS:-2}; JOBS=${JOBS:-4}
 cut -f2 test_data/subset.tsv | tail -n +2 | xargs -P "$JOBS" -I{} bash -c '
   s={}; fa=test_data/genomes/$s.fa; cd '"$R"'
-  [ -s amrfinder/$s.amrfinder.tsv ] || amrfinder -n ../../$fa --plus --threads '"$THREADS"' -o amrfinder/$s.amrfinder.tsv
+  [ -s amrfinder/$s.amrfinder.tsv ] || amrfinder -n ../../$fa --plus --organism Escherichia --threads '"$THREADS"' -o amrfinder/$s.amrfinder.tsv
   [ -s mobrecon/$s/contig_report.txt ] || mob_recon -i ../../$fa -o mobrecon/$s -n '"$THREADS"' --force
   [ -s typing/$s.mlst.tsv ] || mlst ../../$fa > typing/$s.mlst.tsv
   [ -s typing/$s.ectyper.tsv ] || { ectyper -i ../../$fa -o typing/$s.ectyper --cores '"$THREADS"' && cp typing/$s.ectyper/output.tsv typing/$s.ectyper.tsv; }

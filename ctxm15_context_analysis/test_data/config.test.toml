@@ -3,6 +3,7 @@
 gene_regex = "^blaCTX-M"       # all variants, to compare with the paper's per-genome calls
 window_bp  = 10000
 region_gap_bp = 5000
+min_contig_bp = 100000
 mediators  = ["ISEcp1", "IS26"]
 
 [input]
