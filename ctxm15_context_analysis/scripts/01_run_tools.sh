@@ -4,7 +4,7 @@
 set -euo pipefail
 s=$1; fa=$2; t=${THREADS:-4}
 mkdir -p amrfinder mobrecon typing
-amrfinder -n "$fa" --plus --threads "$t" -o "amrfinder/$s.amrfinder.tsv"
+amrfinder -n "$fa" --plus --organism Escherichia --threads "$t" -o "amrfinder/$s.amrfinder.tsv"
 mob_recon -i "$fa" -o "mobrecon/$s" -n "$t" --force        # contig_report.txt (chromosome/plasmid) + mge.report.txt
 mlst "$fa" > "typing/$s.mlst.tsv"
 ectyper -i "$fa" -o "typing/$s.ectyper" --cores "$t" && cp "typing/$s.ectyper/output.tsv" "typing/$s.ectyper.tsv"

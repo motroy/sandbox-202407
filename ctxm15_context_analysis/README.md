@@ -34,20 +34,38 @@ Rscript scripts/04_plot_sites.R results/insertion_sites.tsv results/sites.pdf bl
 ```
 Outputs: `results/context_hits.tsv`, `barcodes.tsv`, `summary_by_st.tsv`, `insertion_sites.tsv`, `site_histogram.tsv`.
 
+**Clinker synteny (`06_clinker_windows.py`):** per variant, cuts the inserted region +- `flank_bp` from each GBFF, orients it so blaCTX-M is forward, and writes `results/clinker/<variant>/<sample>.gbk` plus a manifest. Genomes are ordered by barcode recurrence (most frequent structure first, one window per genome, capped by `max_per_variant`). `--run` then calls `clinker` to produce `<variant>.html` and `<variant>.csv`.
+```bash
+python scripts/06_clinker_windows.py --config config.toml --run
+```
+The `flank_bp = 5000` default and the recurrence-based selection of representatives are my assumptions; the Methods don't give them. Clinker only aligns CDS with translations, so use annotated GBFFs.
+
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
+
+## Assembly quality
+Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completeness >= 90%; see `00_select_genomes.py filter`). IS elements and blaCTX-M are repeats, so short-read drafts break at them and chromosome/plasmid, flank and insertion-site calls are unreliable. `context_hits.tsv` has a `context_quality` column: `ok`, or `short_contig` (linear contig < `min_contig_bp`) and/or `truncated_flank` (linear contig ends within `window_bp` of the region). Circular contigs (MOB-recon `circularity_status`) are never flagged. Treat flagged hits as unreliable and consider excluding them from rates.
 
 ## Tools (chosen by the user; the paper used ABRicate/ResFinder/ISfinder/Platon instead)
 | Task | Tool |
 |---|---|
-| ARGs, blaCTX-M variants | AMRFinderPlus (`--plus`) |
+| ARGs, blaCTX-M variants | AMRFinderPlus (`--plus --organism Escherichia`; point mutations are excluded from barcodes) |
 | Chromosome vs plasmid, plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`) |
 | ST / phylogroup / O:H / fimH | mlst, ClermonTyping, ECTyper, FimTyper |
 | cgMLST de-duplication | chewBBACA AlleleCall + cgmlst-dists |
 `05_typing.py` assigns ST131 subclades with a simple fimH / blaCTX-M-15 heuristic (fimH41 = A, fimH22 = B, fimH30 = C2 with blaCTX-M-15 else C1), not the paper's definitions (its ref. 47, which I have not seen). Output layouts of ClermonTyping and FimTyper vary by version, and `01_run_tools.sh` leaves them as commented commands. Because of the MOB-recon choice the paper's Platon + 500 kb size rule and manual review of >500 kb contigs are not applied; gene-level and genome-level counts are in `summary_by_st.tsv`.
 
 ## Status
-`00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
+Re-run needed: the stored AMRFinderPlus outputs in `test_data/run/` were made without `--organism`; `run_subset.sh` skips existing files, so delete `test_data/run/amrfinder/` first. `context_quality` was checked on the existing outputs only.
+
+`06` was also run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
 
 ## Not included
-Clinker synteny of flanking windows per variant (`clinker windows/*.gbk -p`) and the manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).
+The manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).
 Genome screening/filtering (the paper started from 451,174 public genomes, keeping 2,269 CTX-M long-read/hybrid assemblies), ST/subclade typing, and the integration-rate modelling. Use short-read assemblies with care: contigs break at IS elements, so chromosome/plasmid calls are unreliable.
+
+## Test data (Zenodo 10.5281/zenodo.20934804)
+`test_data/summary_df_2507genomes.txt` is the paper's metadata table (2,507 genomes, with the authors' chromosomal/plasmidic blaCTX-M calls, ARG barcodes and ST131 clades, so it doubles as ground truth). Fetch it with `zenodo_get 20934804`.
+```bash
+python test_data/make_subset.py test_data/summary_df_2507genomes.txt test_data/subset.tsv   # 30 stratified genomes (seed 1)
+python test_data/download_genomes.py test_data/subset.tsv test_data/genomes                  # FASTA + GBFF from NCBI Datasets
+```

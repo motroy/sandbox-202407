@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Map chromosomal blaCTX-M insertion sites onto the E. coli K-12 0-100 min scale.
 
-Input: results/context_hits.tsv (chromosomal rows) + per-sample GBFF (column `gbff` of samples.tsv; LOCUS names must match contig ids).
+Input: results/context_hits.tsv (chromosomal rows) + per-sample GBFF (column `gbff` of samples.tsv; LOCUS or VERSION ids must match contig ids).
 For each chromosomal hit, up to n_anchors CDS on each side of the inserted region are mapped to K-12
 by gene symbol / locus tag / product. The longest contiguous anchor chain per flank (consecutive gap
 <= max_chain_gap_min, >= min_chain_genes genes) fixes the position:
@@ -29,6 +29,8 @@ def parse_cds(gbff):
         if line.startswith("LOCUS"):
             close(); feat, in_feat = None, False
             rec = line.split()[1]; recs[rec] = []
+        elif line.startswith("VERSION") and rec:
+            recs[line.split()[1]] = recs[rec]                      # FASTA/MOB-recon ids carry the .version
         elif line.startswith("FEATURES"):
             in_feat = True
         elif line.startswith("ORIGIN"):

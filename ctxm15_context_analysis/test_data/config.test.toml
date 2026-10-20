@@ -1,0 +1,23 @@
+# Config for the Zenodo test subset (paths relative to ctxm15_context_analysis/)
+[analysis]
+gene_regex = "^blaCTX-M"       # all variants, to compare with the paper's per-genome calls
+window_bp  = 10000
+region_gap_bp = 5000
+min_contig_bp = 100000
+mediators  = ["ISEcp1", "IS26"]
+
+[input]
+samples = "test_data/run/samples.tsv"
+outdir  = "test_data/run/results"
+
+[sites]
+k12_gbff = "test_data/k12_MG1655.gbff"
+n_anchors = 5
+max_chain_gap_min = 1.0
+min_chain_genes = 2
+max_junction_gap_min = 5.0
+
+[clinker]
+flank_bp = 5000
+location = "chromosome"
+max_per_variant = 12

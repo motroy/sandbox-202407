@@ -2,6 +2,7 @@
 [analysis]
 gene_regex = "^blaCTX-M-15$"   # AMRFinderPlus 'Element symbol' to analyse; use "^blaCTX-M" for all variants
 window_bp  = 10000             # flank searched on each side of the gene for IS and other AMR genes
+min_contig_bp = 100000       # linear contigs shorter than this are flagged short_contig
 region_gap_bp = 5000           # max gap when merging blaCTX-M, co-located ARGs and IS into the inserted region            # minimum alignment length for an IS hit
 # IS families credited as integration mediators, checked in this order
 mediators  = ["ISEcp1", "IS26"]
@@ -37,3 +38,9 @@ max_contamination = 5.0
 resfinder_min_identity = 80.0
 resfinder_min_coverage = 80.0
 max_cgmlst_dist = 10
+
+[clinker]
+# 06_clinker_windows.py
+flank_bp = 5000          # flank added on each side of the inserted region (assumption; not stated in the supplied Methods)
+location = "chromosome"  # which hits to align: chromosome | plasmid | all
+max_per_variant = 12     # genomes per variant, most recurrent barcodes first
