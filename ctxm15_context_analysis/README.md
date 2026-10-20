@@ -32,7 +32,7 @@ python scripts/05_typing.py config.toml               # typing.tsv + ST131 subcl
 python scripts/03_insertion_sites.py config.toml      # needs input/k12_MG1655.gbff (NC_000913.3)
 Rscript scripts/04_plot_sites.R results/insertion_sites.tsv results/sites.pdf blaCTX-M-15 ST131
 ```
-Outputs: `results/context_hits.tsv`, `barcodes.tsv`, `summary_by_st.tsv`, `insertion_sites.tsv`, `site_histogram.tsv`.
+Outputs (`results/`, git-ignored): `context_hits.tsv`, `barcodes.tsv`, `summary_by_st.tsv`, `insertion_sites.tsv`, `site_histogram.tsv`, `typing.tsv`, `clinker/`. A committed example from the test subset, with a description of every column set, is in [`test_data/example_results/`](test_data/example_results/).
 
 **Clinker synteny (`06_clinker_windows.py`):** per variant, cuts the inserted region +- `flank_bp` from each GBFF, orients it so blaCTX-M is forward, and writes `results/clinker/<variant>/<sample>.gbk` plus a manifest. Genomes are ordered by barcode recurrence (most frequent structure first, one window per genome, capped by `max_per_variant`). `--run` then calls `clinker` to produce `<variant>.html` and `<variant>.csv`.
 ```bash
