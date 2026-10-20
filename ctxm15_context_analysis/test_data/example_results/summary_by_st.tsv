@@ -1,0 +1,14 @@
+st	n_hits	n_chromosomal	pct_chromosomal	mediators_in_chromosomal	pct_chromosomal_co_integrated	n_genomes	n_genomes_chromosomal
+ND	5	3	60.0	ISEcp1=2;none=1	100.0	3	2
+ST10	1	0	0.0	none	NA	1	0
+ST1011	1	0	0.0	none	NA	1	0
+ST1193	1	1	100.0	ISEcp1=1	0.0	1	1
+ST12452	1	1	100.0	ISEcp1=1	100.0	1	1
+ST12468	4	3	75.0	ISEcp1=3	100.0	1	1
+ST131	14	9	64.3	ISEcp1=7;none=2	44.4	11	7
+ST141	1	0	0.0	none	NA	1	0
+ST155	2	1	50.0	ISEcp1=1	0.0	1	1
+ST162	2	0	0.0	none	NA	2	0
+ST38	6	6	100.0	ISEcp1=3;none=3	33.3	5	5
+ST450	1	1	100.0	ISEcp1=1	0.0	1	1
+ST4981	1	1	100.0	none=1	0.0	1	1
