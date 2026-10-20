@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compare IS-mediator calls for each blaCTX-M hit across four routes:
-  mobrecon   MOB-recon mge.report (as used in step 02; IS6-family counted as IS26)
+  pipeline   the mediator step 02 reported, i.e. whatever is_tool was configured (isfinder or mobrecon; MOB-recon: IS6-family counted as IS26)
   isfinder   ABRicate against ISfinder (ISEc9 counted as ISEcp1: identical sequence in ISfinder)
   isescan    ISEScan family: IS1380 -> ISEcp1, IS6 -> IS26
   isescan+   ISEScan elements named by BLAST against ISfinder (>= 95% identity over >= 80% of the element)
@@ -59,13 +59,13 @@ def main():
         s, c, st, en = h["sample"], h["contig"], int(h["start"]), int(h["end"])
         near = lambda d: {n for b, e, n in d.get((s, c), []) if e >= st - win and b <= en + win}
         rows.append({"sample": s, "gene": h["gene"], "location": h["location"], "contig": c, "start": st, "end": en,
-                     "mobrecon": h["mediator"], "isfinder": pick(near(isf)), "isescan": pick(near(esc)), "isescan+": pick(near(named))})
+                     "pipeline": h["mediator"], "isfinder": pick(near(isf)), "isescan": pick(near(esc)), "isescan+": pick(near(named))})
     with open(out / "is_mediators.tsv", "w", newline="") as f:
         w = csv.DictWriter(f, list(rows[0]), delimiter="\t"); w.writeheader(); w.writerows(rows)
 
-    methods = ["mobrecon", "isfinder", "isescan", "isescan+"]
+    methods = ["pipeline", "isfinder", "isescan", "isescan+"]
     ch = [r for r in rows if r["location"] == "chromosome"]
-    L = [f"chromosomal blaCTX-M copies: {len(ch)}  (paper, all 2,269 genomes: ISEcp1 77.3%, IS26 18.9%)"]
+    L = [f"chromosomal blaCTX-M copies: {len(ch)}  (paper, all 2,269 genomes: ISEcp1 77.3%, IS26 18.9%); pipeline = is_tool \"{cfg['analysis'].get('is_tool', 'mobrecon')}\""]
     for m in methods:
         c = Counter(r[m] for r in ch)
         L.append(f"  {m:10s} ISEcp1 {c['ISEcp1']:3d} ({100 * c['ISEcp1'] / len(ch):.0f}%)  IS26 {c['IS26']:3d} ({100 * c['IS26'] / len(ch):.0f}%)  none {c['none']:3d}")

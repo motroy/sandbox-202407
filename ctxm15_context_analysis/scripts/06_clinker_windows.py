@@ -15,12 +15,14 @@ from Bio import SeqIO
 
 
 def gene_strand(rec, start, end):
-    """Strand of the CDS that overlaps the gene most (ResFinder hits carry no strand); '+' if none."""
-    best, strand = 0, "+"
+    """Strand of the CDS that overlaps the gene most (ResFinder hits carry no strand); '+' if none.
+    Ties go to the shorter CDS: some GBFFs carry a CDS spanning a whole contig that would otherwise win."""
+    best, strand = (0, 0), "+"
     for f in rec.features:
         if f.type == "CDS":
             ov = min(int(f.location.end), end) - max(int(f.location.start) + 1, start) + 1
-            if ov > best: best, strand = ov, "-" if f.location.strand == -1 else "+"
+            key = (ov, -(int(f.location.end) - int(f.location.start)))
+            if ov > 0 and key > best: best, strand = key, "-" if f.location.strand == -1 else "+"
     return strand
 
 

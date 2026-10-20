@@ -56,7 +56,7 @@ ResFinder uses the paper's gene names (`aac(6')-Ib-cr`, `aac(3)-IIa`, `mph(A)`),
 | Route | ISEcp1 | IS26 | none |
 |---|---|---|---|
 | ABRicate + ISfinder (ISEc9 = ISEcp1) | 23 (79%) | 5 (17%) | 1 |
-| MOB-recon `mge.report.txt` | 20 (69%) | 1 (3%) | 8 |
+| MOB-recon `mge.report.txt` (measured with `is_tool = "mobrecon"`) | 20 (69%) | 1 (3%) | 8 |
 | ISEScan 1.7.3 (family: IS1380 / IS6) | 11 (38%) | 7 (24%) | 11 |
 | ISEScan + BLAST naming vs ISfinder | 11 (38%) | 6 (21%) | 12 |
 The paper (2,269 genomes) reports ISEcp1 77.3% and IS26 18.9%. ISfinder is the reference *database* and the only route here that matches those proportions; it is a plain BLAST search, so it gives no element boundaries and needs care with duplicate entries (ISEc9 = ISEcp1). ISEScan is a better general IS *inventory* tool (de novo, element boundaries) but missed 13 of the 23 ISEcp1 copies that ISfinder finds as full-length 100% matches (ISEcp1's inverted repeats are imperfect), so it is not safe for calling these two mediators. MOB-recon's MGE set has no IS26 entry. ISEScan was run on 60 kb windows around each hit (whole-genome runs took 15+ min each; `test_data/run_isescan_windows.py`).
@@ -79,6 +79,15 @@ Runs the tools named in the paper's Methods on the same genomes and compares the
 - **Platon 1.7** (database from zenodo.org/records/4066768, 1.7 GB) with the paper's size rule (contigs > 500 kb are chromosomal; a Platon plasmid call on one is flagged). Platon writes no table when no contig passes its filters, which the comparison reads as "no plasmid contigs".
 - **PPanGGOLiN 2.2.4** (`workflow` on the GBFFs, then `msa --partition softcore --soft_core 0.95 --source dna --phylo`) and **FastTree 2.1.10** (`-gtr -gamma -nt`) for the paper's phylogeny.
 `10_compare_paper_tools.py <config> <subset.tsv> <run_paper_dir> [fasttree.nwk]` writes `comparison/`: `ctxm_hits_paper_tools.tsv`, `per_genome_comparison.tsv`, `tree_rf.tsv` (normalised Robinson-Foulds between FastTree, IQ-TREE and Mashtree) and `summary.txt`. Caveats: ISfinder lists ISEc9 as a 100%-identical copy of ISEcp1 and ABRicate prints only one name, so ISEc9 is counted as ISEcp1; MOB-suite's MGE set has no IS26 entry, so this pipeline counts its IS6-family elements as IS26-family.
+
+## ggCaller vs NCBI annotations (30 genomes; `ggcaller` 1.5.2 gene calls, then Panaroo)
+In 1.5.2 ggCaller does graph-based gene calling and ORF clustering only (no pangenome table), so the comparison is Panaroo on ggCaller's calls vs Panaroo on the NCBI annotations (same settings: strict, `--remove-invalid-genes`, FAMSA codons, core 0.98, then IQ-TREE `GTR+F+I+G4` + SH-aLRT).
+| | NCBI annotations | ggCaller calls |
+|---|---|---|
+| core (>= 99%) / soft-core / shell / cloud | 2,930 / 437 / 2,825 / 4,965 | 3,039 / 252 / 2,824 / 5,012 |
+| total gene families | 11,157 | 11,127 |
+| parsimony-informative core sites | 122,655 | 144,340 |
+Same gene calls for every genome convert soft-core families into core ones (fewer annotation-dependent gaps). The two IQ-TREE topologies differ by normalised RF 0.41 (each differs from Mashtree by 0.48-0.52). The 15 branches that are well supported (SH-aLRT >= 95) in both trees include the backbone between STs; the 12 well-supported branches that contradict the other tree all sit in near-identical groups (the ST131 cluster and three ST38 genomes). SH-aLRT is therefore overconfident there: for near-clonal groups use ultrafast bootstrap and mask recombination (Gubbins/ClonalFrameML) before reading fine structure. ggCaller needs its 120 MB model database (`ftp.ebi.ac.uk/pub/databases/pp_dbs/ggCallerdb.tar.bz2`) unpacked into the package's `models/` directory (the built-in downloader hung behind a proxy here). Whether ggCaller is the better default at 2,500 genomes is untested here.
 
 ## Assembly quality
 Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completeness >= 90%; see `00_select_genomes.py filter`). IS elements and blaCTX-M are repeats, so short-read drafts break at them and chromosome/plasmid, flank and insertion-site calls are unreliable. `context_hits.tsv` has a `context_quality` column: `ok`, or `short_contig` (linear contig < `min_contig_bp`) and/or `truncated_flank` (linear contig ends within `window_bp` of the region). Circular contigs (MOB-recon `circularity_status`) are never flagged. Treat flagged hits as unreliable and consider excluding them from rates.

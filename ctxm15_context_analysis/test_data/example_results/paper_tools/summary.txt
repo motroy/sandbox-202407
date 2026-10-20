@@ -1,0 +1,10 @@
+genomes: 30
+blaCTX-M chromosome+plasmid copy numbers match the paper table: ours 30/30, paper tools 30/30
+chromosomal copies: paper 29, ours 29, paper tools 29
+plasmid copies: paper 13, ours 13, paper tools 13
+ours vs paper tools: same chromosomal count in 30/30; same mediator (chromosomal) in 30/30
+Platon-called plasmid on a >500 kb contig (flagged for review): 0
+ST131 genomes with a paper clade: 11; ours matches 11
+fimH ours vs paper-tools (FimTyper via ABRicate): same in 30/30
+
+genomes where either pipeline differs from the paper table:

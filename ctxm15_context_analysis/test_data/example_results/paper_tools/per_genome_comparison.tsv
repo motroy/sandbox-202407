@@ -1,0 +1,31 @@
+sample	stratum	paper_chrom	ours_chrom	tools_chrom	paper_plasmid	ours_plasmid	tools_plasmid	ours_agrees	tools_agrees	paper_chrom_variants	tools_chrom_variants	ours_mediator	tools_mediator	platon_large_contig_review	paper_st131_clade	ours_st131_subclade	tools_fimH	ours_fimH	ecoh_otype	ectyper_otype	paper_serotype
+GCA_026135825.1	chrom_ST131	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	IS26	IS26	0	C2	C2	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCA_050197075.1	chrom_ST131	2	2	2	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	C2	C2	fimH30	fimH30	wzx,wzy	O25	FimH30-O31:Undefined
+GCF_025584285.1	chrom_ST131	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	C2	C2	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCA_053711225.1	chrom_ST131	2	2	2	1	1	1	1	1	blaCTX-M-14	blaCTX-M-14	ISEcp1	ISEcp1	0	C1	C1	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCA_052999365.1	chrom_ST131	1	1	1	0	0	0	1	1	blaCTX-M-27	blaCTX-M-27	ISEcp1	ISEcp1	0	A	A	fimH41	fimH41	fliC,wzx,wzy	O16	FimH41-O16:H5
+GCA_014162235.1	chrom_ST38	1	1	1	0	0	0	1	1	blaCTX-M-14	blaCTX-M-14	ISEcp1	ISEcp1	0	non_ST131	NA	fimH5	fimH5	fliC,wzx,wzy	O2/O50	FimH5-O2:H30
+GCA_023658265.1	chrom_ST38	1	1	1	0	0	0	1	1	blaCTX-M-14	blaCTX-M-14	ISEcp1	ISEcp1	0	non_ST131	NA	fimH27	fimH27	fliC,wzx,wzy	O86	FimH27-O86:H18
+GCA_016775965.1	chrom_ST38	2	2	2	0	0	0	1	1	blaCTX-M-122	blaCTX-M-122	ISEcp1	ISEcp1	0	non_ST131	NA	fimH2598	fimH2598	fliC,wzx,wzy	O153	FimH2598-O153:H30
+GCA_051834685.1	chrom_ST38	1	1	1	0	0	0	1	1	blaCTX-M-14	blaCTX-M-14	ISEcp1	ISEcp1	0	non_ST131	NA	fimH5	fimH5	fliC,wzx,wzy	O153	FimH5-O153:H30
+GCA_052766305.1	chrom_other	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	non_ST131	NA	fimH54	fimH54	fliC,wzx,wzy	O111	FimH54-O111:H12
+GCA_040812675.1	chrom_other	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	non_ST131	NA	ND	ND	fliC,wzx,wzy	O153	Undefined-O153:H30
+GCA_041227525.1	chrom_other	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	none	none	0	non_ST131	NA	ND	ND	fliC,wzm,wzt	-	Undefined-O32:H9
+GCA_050190135.1	chrom_other	1	1	1	0	0	0	1	1	blaCTX-M-14	blaCTX-M-14	ISEcp1	ISEcp1	0	non_ST131	NA	fimH64	fimH64	fliC,wzx	O75	FimH64-O75:H5
+GCA_032372975.1	chrom_other	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	non_ST131	NA	fimH86	fimH86	fliC,wzx,wzy	O13/O135	FimH86-O129:H30
+GCF_045585035.1	chrom_multiARG	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	IS26	IS26	0	non_ST131	NA	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCA_029990375.1	chrom_multiARG	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	IS26	IS26	0	C2	C2	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCA_016888625.1	chrom_multiARG	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	non_ST131	NA	fimH5	fimH5	fliC,wzx,wzy	O15	FimH5-O15:H30
+GCA_050193975.1	chrom_multiARG	1	1	1	0	0	0	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	C2	C2	fimH30	fimH30	fliC	-	FimH30-Undefined:H4
+GCA_007109385.1	plasmid_ST131	0	0	0	1	1	1	1	1			none	none	0	C1	C1	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCF_045608945.1	plasmid_ST131	0	0	0	1	1	1	1	1			none	none	0	C1	C1	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCF_025593335.1	plasmid_ST131	0	0	0	1	1	1	1	1			none	none	0	Other	Other	fimH5	fimH5	fliC,wzx,wzy	O25	FimH5-O31:H4
+GCA_040555885.1	plasmid_ST131	0	0	0	1	1	1	1	1			none	none	0	C1	C1	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCA_050626155.1	plasmid_other	0	0	0	1	1	1	1	1			none	none	0	non_ST131	NA	fimH32	fimH32	fliC,wzx,wzy	O184	FimH32-O184:H21
+GCF_904863105.1	plasmid_other	0	0	0	1	1	1	1	1			none	none	0	non_ST131	NA	fimH14	fimH14	fliC,wzx,wzy	O2	FimH14-O2:H6
+GCA_001971765.1	plasmid_other	0	0	0	1	1	1	1	1			none	none	0	non_ST131	NA	fimH31	fimH31	fliC,wzx,wzy	O86	FimH31-O86:H51
+GCA_051618695.1	plasmid_other	0	0	0	1	1	1	1	1			none	none	0	non_ST131	NA	fimH32	fimH32	fliC,wzm,wzt,wzx,wzy	O9/O30	FimH32-O30/O9:H19
+GCA_024918755.1	both	3	3	3	1	1	1	1	1	blaCTX-M-14	blaCTX-M-14	ISEcp1	ISEcp1	0	non_ST131	NA	fimH41	fimH41	fliC,wzx,wzy	O141	FimH41-O141:H5
+GCA_054890185.1	both	2	2	2	1	1	1	1	1	blaCTX-M-15	blaCTX-M-15	ISEcp1	ISEcp1	0	non_ST131	NA	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCF_045572035.1	both	2	2	2	1	1	1	1	1	blaCTX-M-172;blaCTX-M-183	blaCTX-M-172;blaCTX-M-183	IS26	IS26	0	non_ST131	NA	fimH30	fimH30	fliC,wzx,wzy	O25	FimH30-O31:H4
+GCA_024585685.1	both	1	1	1	1	1	1	1	1	blaCTX-M-32	blaCTX-M-32	ISEcp1	ISEcp1	0	non_ST131	NA	fimH32	fimH32	fliC	-	FimH32-Undefined:H21

@@ -14,7 +14,7 @@ GCA_026135825.1	#f28e8e	chromosome
 GCF_025584285.1	#f28e8e	chromosome
 GCF_904863105.1	#8fbbe8	plasmid
 GCA_050190135.1	#f28e8e	chromosome
-GCA_052766305.1	#8fbbe8	plasmid
+GCA_052766305.1	#f28e8e	chromosome
 GCA_041227525.1	#f28e8e	chromosome
 GCA_040812675.1	#f28e8e	chromosome
 GCA_032372975.1	#f28e8e	chromosome
@@ -33,7 +33,7 @@ GCF_045608945.1	#8fbbe8	plasmid
 GCA_040555885.1	#8fbbe8	plasmid
 GCA_007109385.1	#8fbbe8	plasmid
 GCF_045585035.1	#f28e8e	chromosome
-GCF_045572035.1	#8fbbe8	plasmid
+GCF_045572035.1	#c9a9e3	both
 GCA_029990375.1	#f28e8e	chromosome
 GCA_050193975.1	#f28e8e	chromosome
 GCA_054890185.1	#c9a9e3	both
