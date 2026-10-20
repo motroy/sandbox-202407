@@ -104,29 +104,35 @@ def main():
     meta = load_meta(res, samples)
     with open(ann / "tree_metadata.tsv", "w", newline="") as f:
         w = csv.DictWriter(f, list(next(iter(meta.values()))), delimiter="\t"); w.writeheader(); w.writerows(meta.values())
-    trees = {"IQ-TREE (Panaroo core alignment)": phylo / "iqtree.treefile", "Mashtree": phylo / "mashtree.dnd"}
+    trees = {"IQ-TREE (Panaroo core alignment)": (phylo / "iqtree.treefile", "iqtree"), "Mashtree": (phylo / "mashtree.dnd", "mashtree"),
+             "FastTree (PPanGGOLiN soft-core alignment)": (phylo / "fasttree.nwk", "fasttree")}
     read = {}
-    for name, p in trees.items():
-        if not p.exists(): continue
+    for name, (p, stem) in trees.items():
+        if not p.exists() or p.stat().st_size == 0: continue
         t = Phylo.read(str(p), "newick")
         for c in t.get_terminals(): c.name = (c.name or "").strip("'")
         read[name] = t
-        stem = "iqtree" if name.startswith("IQ") else "mashtree"
         ids = {c.name: match(c.name, samples) for c in t.get_terminals()}
         for field in ("st", "integration", "variant"):
             cm = INTEG if field == "integration" else colours([m[field] for m in meta.values()])
             itol(ann / f"itol_{field}_{stem}.txt", field, cm, {tip: meta[s][field] for tip, s in ids.items() if s})
         draw(t, name, meta, samples, ann / f"tree_{stem}.png")
         draw(t, name, meta, samples, ann / f"tree_{stem}_cladogram.png", cladogram=True)
-    if len(read) == 2:
-        a, b = list(read.values()); shared = {t.name for t in a.get_terminals()} & {t.name for t in b.get_terminals()}
-        if len(shared) < max(len(a.get_terminals()), len(b.get_terminals())):   # compare topology on shared tips only
-            for t in (a, b):
-                for c in [c for c in t.get_terminals() if c.name not in shared]: t.prune(c)
-        ba, bb = bipartitions(a), bipartitions(b); rf = len(ba ^ bb) / max(1, len(ba) + len(bb))
-        (ann / "tree_comparison.txt").write_text(f"tips compared: {len(shared)}\nnormalised Robinson-Foulds (0 = identical, 1 = no shared splits): {rf:.3f}\n")
-        print(open(ann / "tree_comparison.txt").read(), file=sys.stderr)
-
+    names = list(read)
+    if len(names) >= 2:
+        splits = {}
+        for n in names:
+            splits[n] = (read[n], {t.name for t in read[n].get_terminals()})
+        shared = set.intersection(*(v[1] for v in splits.values()))
+        lines = [f"tips compared: {len(shared)}", "normalised Robinson-Foulds (0 = identical, 1 = no shared splits):"]
+        pruned = {}
+        for n, (t, tips) in splits.items():
+            for c in [c for c in t.get_terminals() if c.name not in shared]: t.prune(c)
+            pruned[n] = bipartitions(t)
+        for i, a_ in enumerate(names):
+            for b_ in names[i + 1:]:
+                lines.append(f"  {a_} vs {b_}: {len(pruned[a_] ^ pruned[b_]) / max(1, len(pruned[a_]) + len(pruned[b_])):.3f}")
+        (ann / "tree_comparison.txt").write_text("\n".join(lines) + "\n"); print("\n".join(lines), file=sys.stderr)
 
 if __name__ == "__main__":
     main()
