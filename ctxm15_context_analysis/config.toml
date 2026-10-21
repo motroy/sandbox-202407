@@ -20,7 +20,13 @@ outdir  = "results"
 [sites]
 # 03_insertion_sites.py: K-12 MG1655 GBFF (NC_000913.3) used as the 0-100 min reference
 k12_gbff = "input/k12_MG1655.gbff"
-n_anchors = 5          # CDS per flank mapped to K-12
+n_anchors = 5          # mappable CDS per flank used as anchors (scanned outward, mobile-element genes skipped)
+mode = "homology"      # homology (BLASTp vs K-12 proteome) | name (gene symbol / locus tag only)
+max_scan = 80          # CDS scanned per flank while looking for n_anchors (islands absent from K-12 need a long scan)
+island_skip = 10       # flag a site island_flank when its nearest mapped anchor is more than this many CDS away
+min_identity = 80.0    # % amino-acid identity of the best K-12 hit
+min_coverage = 80.0    # % query coverage of the best K-12 hit
+ambiguity_ratio = 1.1  # best bitscore must beat the second-best hit by this factor (skips paralogs)
 max_chain_gap_min = 1.0
 min_chain_genes = 2
 max_junction_gap_min = 5.0

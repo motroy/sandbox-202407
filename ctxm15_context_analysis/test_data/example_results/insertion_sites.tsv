@@ -1,30 +1,30 @@
-sample	st	gene	position_min	method	n_up_chain	n_down_chain	up_anchor_min	down_anchor_min	mediator
-GCA_026135825.1	ST131	blaCTX-M-15	68.1	single_flank	0	2	NA	68.05	IS26
-GCA_050197075.1	ST131	blaCTX-M-15	26.9	single_flank	0	4	NA	26.90	ISEcp1
-GCA_050197075.1	ST131	blaCTX-M-15	27.8	single_flank	0	3	NA	27.75	ISEcp1
-GCF_025584285.1	ST131	blaCTX-M-15	44.0	single_flank	0	5	NA	43.97	ISEcp1
-GCA_053711225.1	ST131	blaCTX-M-14	83.9	both_flanks	5	3	83.91	83.91	ISEcp1
-GCA_053711225.1	ST131	blaCTX-M-14	66.4	both_flanks	3	3	66.34	66.41	ISEcp1
-GCA_052999365.1	ST131	blaCTX-M-27	74.5	both_flanks	4	4	74.46	74.49	ISEcp1
-GCA_014162235.1	ST38	blaCTX-M-14	44.9	both_flanks	3	3	44.89	44.83	ISEcp1
-GCA_023658265.1	ST38	blaCTX-M-14	ND	ND	0	0	NA	NA	ISEcp1
-GCA_016775965.1	ST38	blaCTX-M-65	ND	ND	0	0	NA	NA	ISEcp1
-GCA_016775965.1	ST38	blaCTX-M-65	47.7	single_flank	2	0	47.69	NA	ISEcp1
-GCA_051834685.1	ST38	blaCTX-M-14b	78.8	single_flank	0	2	NA	78.77	ISEcp1
-GCA_052766305.1	ST10	blaCTX-M-15	ND	ND	0	0	NA	NA	ISEcp1
-GCA_040812675.1	ST450	blaCTX-M-15	ND	ND	0	0	NA	NA	ISEcp1
-GCA_041227525.1	ST4981	blaCTX-M-15	8.4	both_flanks	3	5	8.39	8.51	none
-GCA_050190135.1	ST1193	blaCTX-M-14	60.2	both_flanks	3	3	60.18	60.25	ISEcp1
-GCA_032372975.1	ST12452	blaCTX-M-15	38.4	both_flanks	4	4	38.39	38.43	ISEcp1
-GCF_045585035.1	ND	blaCTX-M-15	47.4	both_flanks	5	2	47.51	47.30	IS26
-GCA_029990375.1	ST131	blaCTX-M-15	46.1	both_flanks	5	3	47.51	44.75	IS26
-GCA_016888625.1	ST38	blaCTX-M-15	ND	ND	0	0	NA	NA	ISEcp1
-GCA_050193975.1	ST131	blaCTX-M-15	37.6	single_flank	5	0	37.63	NA	ISEcp1
-GCA_024918755.1	ST12468	blaCTX-M-14	62.9	single_flank	3	0	62.88	NA	ISEcp1
-GCA_024918755.1	ST12468	blaCTX-M-14	ND	ND	0	0	NA	NA	ISEcp1
-GCA_024918755.1	ST12468	blaCTX-M-14	62.8	single_flank	0	5	NA	62.79	ISEcp1
-GCA_054890185.1	ND	blaCTX-M-15	79.1	single_flank	0	5	NA	79.10	ISEcp1
-GCA_054890185.1	ND	blaCTX-M-15	79.1	single_flank	0	5	NA	79.10	ISEcp1
-GCF_045572035.1	ND	blaCTX-M-101	47.4	both_flanks	2	4	47.30	47.44	IS26
-GCF_045572035.1	ND	blaCTX-M-181	47.4	both_flanks	2	5	47.30	47.51	IS26
-GCA_024585685.1	ST155	blaCTX-M-32	86.9	both_flanks	3	4	86.93	86.91	ISEcp1
+sample	st	gene	position_min	method	n_up_chain	n_down_chain	up_anchor_min	down_anchor_min	up_skipped	down_skipped	site_quality	mediator	anchor_mode
+GCA_026135825.1	ST131	blaCTX-M-15	70.4	both_flanks	3	5	72.67	68.05	22	0	island_flank	IS26	homology
+GCA_050197075.1	ST131	blaCTX-M-15	26.9	both_flanks	5	4	26.82	26.90	9	0	ok	ISEcp1	homology
+GCA_050197075.1	ST131	blaCTX-M-15	27.7	both_flanks	5	5	27.71	27.75	12	2	island_flank	ISEcp1	homology
+GCF_025584285.1	ST131	blaCTX-M-15	44.0	single_flank	0	5	NA	43.97	NA	0	ok	ISEcp1	homology
+GCA_053711225.1	ST131	blaCTX-M-14	83.9	both_flanks	5	5	83.91	83.91	0	1	ok	ISEcp1	homology
+GCA_053711225.1	ST131	blaCTX-M-14	66.4	both_flanks	5	5	66.34	66.37	2	0	ok	ISEcp1	homology
+GCA_052999365.1	ST131	blaCTX-M-27	74.5	both_flanks	5	5	74.46	74.49	1	1	ok	ISEcp1	homology
+GCA_014162235.1	ST38	blaCTX-M-14	44.9	both_flanks	5	5	44.89	44.83	0	1	ok	ISEcp1	homology
+GCA_023658265.1	ST38	blaCTX-M-14	82.6	both_flanks	5	4	82.63	82.59	1	1	ok	ISEcp1	homology
+GCA_016775965.1	ST38	blaCTX-M-65	83.2	both_flanks	5	5	83.25	83.18	3	1	ok	ISEcp1	homology
+GCA_016775965.1	ST38	blaCTX-M-65	47.7	both_flanks	5	5	47.67	47.64	2	0	ok	ISEcp1	homology
+GCA_051834685.1	ST38	blaCTX-M-14b	78.8	both_flanks	5	5	78.74	78.77	8	3	ok	ISEcp1	homology
+GCA_052766305.1	ST10	blaCTX-M-15	47.3	both_flanks	2	2	47.30	47.26	3	23	island_flank	ISEcp1	homology
+GCA_040812675.1	ST450	blaCTX-M-15	23.5	longer_flank	4	5	44.74	23.51	21	5	island_flank	ISEcp1	homology
+GCA_041227525.1	ST4981	blaCTX-M-15	8.4	both_flanks	5	5	8.39	8.51	2	0	ok	none	homology
+GCA_050190135.1	ST1193	blaCTX-M-14	60.2	both_flanks	5	5	60.18	60.24	0	1	ok	ISEcp1	homology
+GCA_032372975.1	ST12452	blaCTX-M-15	38.4	both_flanks	5	5	38.39	38.43	1	0	ok	ISEcp1	homology
+GCF_045585035.1	ND	blaCTX-M-15	47.4	both_flanks	5	5	47.51	47.30	0	2	ok	IS26	homology
+GCA_029990375.1	ST131	blaCTX-M-15	46.1	both_flanks	5	5	47.51	44.75	0	1	ok	IS26	homology
+GCA_016888625.1	ST38	blaCTX-M-15	67.2	longer_flank	2	5	44.76	67.23	0	14	island_flank	ISEcp1	homology
+GCA_050193975.1	ST131	blaCTX-M-15	37.7	both_flanks	5	5	37.63	37.68	0	9	ok	ISEcp1	homology
+GCA_024918755.1	ST12468	blaCTX-M-14	62.9	single_flank	5	0	62.88	NA	2	6	ok	ISEcp1	homology
+GCA_024918755.1	ST12468	blaCTX-M-14	62.9	both_flanks	2	2	62.88	62.83	1	6	ok	ISEcp1	homology
+GCA_024918755.1	ST12468	blaCTX-M-14	62.8	single_flank	0	5	NA	62.79	1	0	ok	ISEcp1	homology
+GCA_054890185.1	ND	blaCTX-M-15	79.1	single_flank	0	5	NA	79.10	NA	0	ok	ISEcp1	homology
+GCA_054890185.1	ND	blaCTX-M-15	79.1	single_flank	0	5	NA	79.10	NA	0	ok	ISEcp1	homology
+GCF_045572035.1	ND	blaCTX-M-101	47.4	both_flanks	5	5	47.30	47.44	2	1	ok	IS26	homology
+GCF_045572035.1	ND	blaCTX-M-181	47.4	both_flanks	5	5	47.30	47.51	2	0	ok	IS26	homology
+GCA_024585685.1	ST155	blaCTX-M-32	86.9	both_flanks	5	5	86.93	86.91	2	0	ok	ISEcp1	homology

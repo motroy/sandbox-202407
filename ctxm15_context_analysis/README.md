@@ -20,7 +20,7 @@ The Methods text I have stops at "Phylogroups were assigned using ClermontTyper"
 3. Find IS/MGEs within `window_bp` of the gene from MOB-recon's `mge.report.txt` (`contig_start`/`contig_end`/`mge_type`) and assign the mediator, ISEcp1 first, then IS26.
 4. List other AMR genes in the window (co-integration).
 5. **ARG barcode** = sorted set of ARGs in the region. Chromosomal barcodes are compared with plasmid barcodes: `identical_to_plasmid`, `contained_in_larger_plasmid` (gene stabilised within part of a plasmid MDR island) or `chromosome_specific`. `barcodes.tsv` gives recurrence by genomes, variants and STs.
-6. **Insertion sites** (`03_insertion_sites.py`): up to 5 CDS per flank are mapped to E. coli K-12 on the 0-100 min scale (gene symbol / locus tag / product). Per flank the longest contiguous anchor chain (gap <= 1.0 min, >= 2 genes) is kept; both flanks with junction gap <= 5.0 min give the circular midpoint, otherwise the longer flank or the single valid flank, else `ND`. Positions are rounded to 0.1 min; `04_plot_sites.R` draws the circular map (optional variant and ST filters).
+6. **Insertion sites** (`03_insertion_sites.py`): the CDS flanking the inserted region are the anchors. Mobile-element genes (transposase, integrase, recombinase, IS) are skipped, circular chromosomes wrap across the origin, and each anchor is mapped to E. coli K-12 on the 0-100 min scale by **BLASTp against the K-12 proteome** (best hit >= 80% identity and coverage, unique: best bitscore >= 1.1x the second hit; gene symbol / locus tag as fallback; `mode = "name"` restores name-only mapping). Scanning goes outward (up to `max_scan` = 80 CDS per flank) until `n_anchors` = 5 are mapped. Per flank the longest contiguous anchor chain (gap <= 1.0 min, >= 2 genes) is kept; both flanks with junction gap <= 5.0 min give the circular midpoint, otherwise the longer flank or the single valid flank, else `ND`. Positions are rounded to 0.1 min. `site_quality = island_flank` marks sites whose nearest mapped anchor is more than `island_skip` = 10 CDS away: the insertion sits in or next to a genomic island absent from K-12 and the position is only accurate to about the island size (about 1 min per 46 kb). `04_plot_sites.R` draws the circular map (optional variant and ST filters).
 
 ## Usage
 ```bash
@@ -51,6 +51,17 @@ Genomes sharing the same flanking-gene pair belong to the same integration regio
 | blaCTX-M chromosome/plasmid copy numbers match | 30/30 | 28/30 |
 | co-located ARG set (barcode partners) matches the paper | 8/8 exact | gene names differ (allele naming, `catB3`), window-bound |
 ResFinder uses the paper's gene names (`aac(6')-Ib-cr`, `aac(3)-IIa`, `mph(A)`), found the CTX-M-172/183 copies AMRFinderPlus missed, and Platon matched the paper on the one contig where MOB-recon disagreed. Notes: ResFinder lists every tied allele as a separate hit (a novel allele can tie 5 ways), so overlapping hits are collapsed to one locus and the tied alleles are kept in `allele_ties`; ResFinder gives no strand (step 06 reads it from the GBFF). The ARG barcode is now the ARGs inside the *inserted region* (everything within `window_bp`, extended by ARGs/IS chained on with gaps <= `region_gap_bp`, capped at `region_max_bp`), which recovered islands longer than the flank window. Only 8 of the 30 genomes have a paper barcode, so treat the 8/8 as encouraging, not conclusive.
+
+## Insertion-site mapping: why homology, and how accurate it is
+The first version mapped anchors by gene symbol, which fails for the many genes that carry only a descriptive product ("iron transporter", "FadR family transcriptional regulator"), and it did not skip transposases or scan past genomic islands. On the 29 chromosomal copies of the test subset:
+| Version | both flanks | one flank | longer flank | ND |
+|---|---|---|---|---|
+| name-based, 5 CDS per flank (first version) | 12 | 11 | 0 | 6 |
+| name-based + skip mobile genes + wrap + scan 20 | 19 | 8 | 0 | 2 |
+| BLASTp homology, scan 20 | 19 | 8 | 0 | 2 |
+| BLASTp homology, scan 80 (default) | 22 | 5 | 2 | 0 |
+Homology and name mapping agree where both place a site (27 sites, maximum difference 0.2 min); the gain from the first row to the second is the mobile-gene skip and the origin wrap, and the gain to the last row is the longer scan across genomic islands (5 sites are flagged `island_flank`). The 5 remaining one-flank sites are at contig ends or in tandem duplicates.
+**Positive control** (`test_data/validate_insertion_mapping.py`): 600 random backbone genes in 6 genomes were treated as insertions and re-located from their flanks alone. 99.7% were placed; median |error| 0.01 min, 90th percentile 0.04 min, 98.7% within 0.5 min, the rest are rearrangements (up to 38 min). This only scores conserved backbone, uses the same BLAST mapping for truth and anchors, and cannot score islands, so real accuracy near islands is lower (hence `island_flank`). The paper's table has no insertion coordinates, so there is no external ground truth.
 
 ## IS detection benchmark (`11_compare_is_tools.py`, 29 chromosomal blaCTX-M copies, IS within 10 kb)
 | Route | ISEcp1 | IS26 | none |
