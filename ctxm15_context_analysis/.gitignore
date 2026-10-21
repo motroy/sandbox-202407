@@ -6,3 +6,5 @@ test_data/k12_MG1655.gbff
 test_data/run_paper/
 *.list
 *.tmp
+__pycache__/
+*.pyc

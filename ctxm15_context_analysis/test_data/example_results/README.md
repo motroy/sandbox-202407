@@ -9,7 +9,7 @@ Final tables, plots and trees only; raw tool output (about 8 GB) is not committe
 | `context_hits.tsv` | blaCTX-M copy | contig, coordinates, chromosome/plasmid, `location_disagreement`, `allele_ties` (ResFinder alleles tied for the locus), inserted region, `context_quality`, ARG barcode + class, mediator, IS and co-located ARGs |
 | `barcodes.tsv` | distinct barcode x location | recurrence over genomes, variants, STs, class vs plasmid barcodes |
 | `summary_by_st.tsv` | ST | gene-level and genome-level counts, % chromosomal, mediators, % co-integrated |
-| `insertion_sites.tsv`, `site_histogram.tsv` | chromosomal copy; 0.1-min bin | K-12 position (min, 0-100), method, anchor chains |
+| `insertion_sites.tsv`, `site_histogram.tsv` | chromosomal copy; 0.1-min bin | K-12 position (min, 0-100), method, anchor chains, CDS skipped before the first anchor, `site_quality` (`island_flank` = nearest mapped anchor is >10 CDS away); anchors mapped by BLASTp vs the K-12 proteome |
 | `typing.tsv` | genome | ST, phylogroup, O:H, fimH, ST131 subclade |
 | `comparison.tsv` | genome | our calls next to the paper's (Zenodo table), incl. barcode partner Jaccard |
 | `clinker/<variant>.html/.csv/.png/.svg` | variant | synteny of the blaCTX-M windows (`07_clinker_png.py --style`: pastel gene/ribbon classes, renamed legend, key genes labelled); only variants with >= 2 windows are drawn |

@@ -19,6 +19,12 @@ outdir  = "test_data/run/results"
 [sites]
 k12_gbff = "test_data/k12_MG1655.gbff"
 n_anchors = 5
+mode = "homology"
+max_scan = 80
+island_skip = 10
+min_identity = 80.0
+min_coverage = 80.0
+ambiguity_ratio = 1.1
 max_chain_gap_min = 1.0
 min_chain_genes = 2
 max_junction_gap_min = 5.0
