@@ -1,0 +1,12 @@
+chromosomal blaCTX-M copies: 29  (paper, all 2,269 genomes: ISEcp1 77.3%, IS26 18.9%); pipeline = is_tool "isfinder"
+  pipeline   ISEcp1  23 (79%)  IS26   5 (17%)  none   1
+  isfinder   ISEcp1  23 (79%)  IS26   5 (17%)  none   1
+  isescan    ISEcp1  11 (38%)  IS26   7 (24%)  none  11
+  isescan+   ISEcp1  11 (38%)  IS26   6 (21%)  none  12
+pairwise agreement (same call) on chromosomal copies:
+  pipeline vs isfinder: 29/29
+  pipeline vs isescan: 15/29
+  pipeline vs isescan+: 14/29
+  isfinder vs isescan: 15/29
+  isfinder vs isescan+: 14/29
+  isescan vs isescan+: 28/29

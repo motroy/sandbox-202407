@@ -45,16 +45,63 @@ The `flank_bp = 5000` default and the recurrence-based selection of representati
 
 Genomes sharing the same flanking-gene pair belong to the same integration region (group `insertion_sites.tsv` by `up_anchor_min`/`down_anchor_min`).
 
+## Why ResFinder + Platon are the defaults (30-genome test subset vs the paper's table)
+| | ResFinder + Platon | AMRFinderPlus + MOB-recon |
+|---|---|---|
+| blaCTX-M chromosome/plasmid copy numbers match | 30/30 | 28/30 |
+| co-located ARG set (barcode partners) matches the paper | 8/8 exact | gene names differ (allele naming, `catB3`), window-bound |
+ResFinder uses the paper's gene names (`aac(6')-Ib-cr`, `aac(3)-IIa`, `mph(A)`), found the CTX-M-172/183 copies AMRFinderPlus missed, and Platon matched the paper on the one contig where MOB-recon disagreed. Notes: ResFinder lists every tied allele as a separate hit (a novel allele can tie 5 ways), so overlapping hits are collapsed to one locus and the tied alleles are kept in `allele_ties`; ResFinder gives no strand (step 06 reads it from the GBFF). The ARG barcode is now the ARGs inside the *inserted region* (everything within `window_bp`, extended by ARGs/IS chained on with gaps <= `region_gap_bp`, capped at `region_max_bp`), which recovered islands longer than the flank window. Only 8 of the 30 genomes have a paper barcode, so treat the 8/8 as encouraging, not conclusive.
+
+## IS detection benchmark (`11_compare_is_tools.py`, 29 chromosomal blaCTX-M copies, IS within 10 kb)
+| Route | ISEcp1 | IS26 | none |
+|---|---|---|---|
+| ABRicate + ISfinder (ISEc9 = ISEcp1) | 23 (79%) | 5 (17%) | 1 |
+| MOB-recon `mge.report.txt` (measured with `is_tool = "mobrecon"`) | 20 (69%) | 1 (3%) | 8 |
+| ISEScan 1.7.3 (family: IS1380 / IS6) | 11 (38%) | 7 (24%) | 11 |
+| ISEScan + BLAST naming vs ISfinder | 11 (38%) | 6 (21%) | 12 |
+The paper (2,269 genomes) reports ISEcp1 77.3% and IS26 18.9%. ISfinder is the reference *database* and the only route here that matches those proportions; it is a plain BLAST search, so it gives no element boundaries and needs care with duplicate entries (ISEc9 = ISEcp1). ISEScan is a better general IS *inventory* tool (de novo, element boundaries) but missed 13 of the 23 ISEcp1 copies that ISfinder finds as full-length 100% matches (ISEcp1's inverted repeats are imperfect), so it is not safe for calling these two mediators. MOB-recon's MGE set has no IS26 entry. ISEScan was run on 60 kb windows around each hit (whole-genome runs took 15+ min each; `test_data/run_isescan_windows.py`).
+
+## Phylogeny (`08_phylogeny.sh`, `09_tree_annotate.py`)
+```bash
+THREADS=8 scripts/08_phylogeny.sh test_data/genomes results/phylo      # <id>.fa + <id>.gbff per genome
+python scripts/09_tree_annotate.py config.toml results/phylo
+```
+1. **Mashtree** on the assemblies (`mashtree.dnd`).
+2. **Panaroo** on the NCBI GBFFs (no re-annotation): strict clean mode, core threshold 0.98, `--remove-invalid-genes` (NCBI annotations contain frameshifted CDS that Panaroo rejects), FAMSA with `--codons` (protein alignment back-translated; about 5x faster than MAFFT here, `ALIGNER=mafft` to switch). Panaroo only converts GenBank files when `-i` is a text file listing the paths, which the script does.
+3. **IQ-TREE 3** on the core-gene alignment with a fixed `GTR+F+I+G4` (`MODEL=MFP` runs ModelFinder, which takes hours on a multi-Mb alignment). Support: ultrafast bootstrap by default (`BOOTSTRAPS=1000`, about an hour for 30 genomes; `BOOTSTRAPS=0 ALRT=1000` uses fast SH-aLRT instead).
+4. `09_tree_annotate.py` writes `annotation/`: `tree_metadata.tsv` (ST, phylogroup, subclade, variant, integration status, mediators), iTOL colour-strip files, `tree_<name>.png` and `tree_<name>_cladogram.png` (midpoint-rooted, strips for integration / ST / variant), and the normalised Robinson-Foulds distance between the two topologies.
+
+The core threshold, clean mode, model and support settings are my choices; the paper used PPanGGOLiN and FastTree instead. Install: `panaroo`, `iqtree`, `mashtree`, `famsa` (and `mafft`) from bioconda (kept in a separate environment from the AMR tools if conda resolution complains); `pip install matplotlib biopython` for step 09.
+
+## Comparison with the paper's own tools (`test_data/run_paper_tools.sh`, `scripts/10_compare_paper_tools.py`)
+Runs the tools named in the paper's Methods on the same genomes and compares them with this pipeline and with the paper's table:
+- **ABRicate 1.0.1** with `resfinder`, `ecoh` (bundled) and two custom databases you build once: `isfinder` (`IS.fna` from github.com/thanhleviet/ISfinder-sequences, the paper used the Oct 2020 ISfinder; this copy's date is unknown) and `fimtyper` (`fimH.fsa` from bitbucket.org/genomicepidemiology/fimtyper_db): `mkdir $CONDA_PREFIX/db/<name>`, copy the FASTA there as `sequences`, run `abricate --setupdb`.
+- **Platon 1.7** (database from zenodo.org/records/4066768, 1.7 GB) with the paper's size rule (contigs > 500 kb are chromosomal; a Platon plasmid call on one is flagged). Platon writes no table when no contig passes its filters, which the comparison reads as "no plasmid contigs".
+- **PPanGGOLiN 2.2.4** (`workflow` on the GBFFs, then `msa --partition softcore --soft_core 0.95 --source dna --phylo`) and **FastTree 2.1.10** (`-gtr -gamma -nt`) for the paper's phylogeny.
+`10_compare_paper_tools.py <config> <subset.tsv> <run_paper_dir> [fasttree.nwk]` writes `comparison/`: `ctxm_hits_paper_tools.tsv`, `per_genome_comparison.tsv`, `tree_rf.tsv` (normalised Robinson-Foulds between FastTree, IQ-TREE and Mashtree) and `summary.txt`. Caveats: ISfinder lists ISEc9 as a 100%-identical copy of ISEcp1 and ABRicate prints only one name, so ISEc9 is counted as ISEcp1; MOB-suite's MGE set has no IS26 entry, so this pipeline counts its IS6-family elements as IS26-family.
+
+## ggCaller vs NCBI annotations (30 genomes; `ggcaller` 1.5.2 gene calls, then Panaroo)
+In 1.5.2 ggCaller does graph-based gene calling and ORF clustering only (no pangenome table), so the comparison is Panaroo on ggCaller's calls vs Panaroo on the NCBI annotations (same settings: strict, `--remove-invalid-genes`, FAMSA codons, core 0.98, then IQ-TREE `GTR+F+I+G4` + SH-aLRT).
+| | NCBI annotations | ggCaller calls |
+|---|---|---|
+| core (>= 99%) / soft-core / shell / cloud | 2,930 / 437 / 2,825 / 4,965 | 3,039 / 252 / 2,824 / 5,012 |
+| total gene families | 11,157 | 11,127 |
+| parsimony-informative core sites | 122,655 | 144,340 |
+Same gene calls for every genome convert soft-core families into core ones (fewer annotation-dependent gaps). The two IQ-TREE topologies differ by normalised RF 0.41 (each differs from Mashtree by 0.48-0.52). The 15 branches that are well supported (SH-aLRT >= 95) in both trees include the backbone between STs; the 12 well-supported branches that contradict the other tree all sit in near-identical groups (the ST131 cluster and three ST38 genomes). SH-aLRT is therefore overconfident there: for near-clonal groups use ultrafast bootstrap and mask recombination (Gubbins/ClonalFrameML) before reading fine structure. ggCaller needs its 120 MB model database (`ftp.ebi.ac.uk/pub/databases/pp_dbs/ggCallerdb.tar.bz2`) unpacked into the package's `models/` directory (the built-in downloader hung behind a proxy here). Whether ggCaller is the better default at 2,500 genomes is untested here.
+
 ## Assembly quality
 Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completeness >= 90%; see `00_select_genomes.py filter`). IS elements and blaCTX-M are repeats, so short-read drafts break at them and chromosome/plasmid, flank and insertion-site calls are unreliable. `context_hits.tsv` has a `context_quality` column: `ok`, or `short_contig` (linear contig < `min_contig_bp`) and/or `truncated_flank` (linear contig ends within `window_bp` of the region). Circular contigs (MOB-recon `circularity_status`) are never flagged. Treat flagged hits as unreliable and consider excluding them from rates.
 
 ## Tools (chosen by the user; the paper used ABRicate/ResFinder/ISfinder/Platon instead)
 | Task | Tool |
 |---|---|
-| ARGs, blaCTX-M variants | AMRFinderPlus (`--plus --organism Escherichia`; point mutations are excluded from barcodes) |
-| Chromosome vs plasmid, plasmid clusters, IS/MGEs | MOB-recon (`contig_report.txt`, `mge.report.txt`) |
+| ARGs, blaCTX-M variants, barcodes | **ResFinder 4.7** (default; 80% identity/coverage) or AMRFinderPlus (`arg_tool = "amrfinder"`; `--plus --organism Escherichia`, point mutations excluded) |
+| Chromosome vs plasmid | **Platon 1.7 + the paper's 500 kb size rule** (default) or MOB-recon (`location_tool = "mobrecon"`); if both are supplied, disagreements are flagged in `location_disagreement` |
+| IS mediators (ISEcp1, IS26) | **ABRicate vs ISfinder** (`is_tool = "isfinder"`, default; ISEc9 is counted as ISEcp1) or MOB-recon MGEs (`is_tool = "mobrecon"`) |
+| Plasmid clusters | MOB-recon `contig_report.txt` (optional) |
 | ST / phylogroup / O:H / fimH | mlst, ClermonTyping, ECTyper, FimTyper |
 | cgMLST de-duplication | chewBBACA AlleleCall + cgmlst-dists |
+| Phylogeny | Mashtree (assemblies), Panaroo (pangenome + core alignment, FAMSA), IQ-TREE 3 |
 `05_typing.py` assigns ST131 subclades with a simple fimH / blaCTX-M-15 heuristic (fimH41 = A, fimH22 = B, fimH30 = C2 with blaCTX-M-15 else C1, other fimH = Other), not the paper's definitions (its ref. 47, which I have not seen). On the 30-genome test subset it matches the paper's clade for 11/11 ST131 genomes. ClermonTyping and FimTyper output layouts vary by version, so check `typing.tsv` after upgrades.
 
 **Installing FimTyper** (not on conda): `git clone https://bitbucket.org/genomicepidemiology/fimtyper.git` and `.../fimtyper_db.git`, then `export FIMTYPER_DIR=<fimtyper clone> FIMTYPER_DB=<fimtyper_db clone>`. It is a Perl script needing BLAST, `perl-bioperl` and `perl-try-tiny-retry` (in `environment.yml`). ClermonTyping is the bioconda `clermontyping` package; its R report step may print an error, but `*_phylogroups.txt` is still written. Because of the MOB-recon choice the paper's Platon + 500 kb size rule and manual review of >500 kb contigs are not applied; gene-level and genome-level counts are in `summary_by_st.tsv`.
@@ -62,7 +109,7 @@ Use long-read or hybrid assemblies (the paper's gate: N50 >= 100 kb, completenes
 ## Status
 Re-run needed: the stored AMRFinderPlus outputs in `test_data/run/` were made without `--organism`; `run_subset.sh` skips existing files, so delete `test_data/run/amrfinder/` first. `context_quality` was checked on the existing outputs only.
 
-`06` and `07` were run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
+`08` and `09` were run on the 30-genome subset (2,930 core genes, 2.75 Mb core alignment, SH-aLRT 1000, no ultrafast bootstrap). `06` and `07` were run against the real `clinker` on two synthetic windows (one reverse-strand). `00`, `02`, `03` and `05` were run on small synthetic inputs only. `04_plot_sites.R` is **untested** (R was not available) and `01_run_tools.sh` has not been run.
 
 ## Not included
 The manual SnapGene / ISfinder / TnCentral boundary curation of the most frequent insertions; the classification of shared IS into three transposition-mechanism categories (Supplementary Note 3, not available to me).

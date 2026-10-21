@@ -1,0 +1,39 @@
+DATASET_COLORSTRIP
+SEPARATOR TAB
+DATASET_LABEL	integration
+COLOR	#000000
+LEGEND_TITLE	integration
+LEGEND_SHAPES	1	1	1	1
+LEGEND_COLORS	#f28e8e	#c9a9e3	#8fbbe8	#eeeeee
+LEGEND_LABELS	chromosome	both	plasmid	none
+DATA
+GCA_053711225.1	#c9a9e3	both
+GCF_025593335.1	#8fbbe8	plasmid
+GCA_050197075.1	#f28e8e	chromosome
+GCA_026135825.1	#f28e8e	chromosome
+GCF_025584285.1	#f28e8e	chromosome
+GCF_904863105.1	#8fbbe8	plasmid
+GCA_050190135.1	#f28e8e	chromosome
+GCA_052766305.1	#f28e8e	chromosome
+GCA_041227525.1	#f28e8e	chromosome
+GCA_040812675.1	#f28e8e	chromosome
+GCA_032372975.1	#f28e8e	chromosome
+GCA_024918755.1	#c9a9e3	both
+GCA_051618695.1	#8fbbe8	plasmid
+GCA_050626155.1	#8fbbe8	plasmid
+GCA_024585685.1	#c9a9e3	both
+GCA_001971765.1	#8fbbe8	plasmid
+GCA_051834685.1	#f28e8e	chromosome
+GCA_016888625.1	#f28e8e	chromosome
+GCA_023658265.1	#f28e8e	chromosome
+GCA_016775965.1	#f28e8e	chromosome
+GCA_014162235.1	#f28e8e	chromosome
+GCA_052999365.1	#f28e8e	chromosome
+GCF_045608945.1	#8fbbe8	plasmid
+GCA_040555885.1	#8fbbe8	plasmid
+GCA_007109385.1	#8fbbe8	plasmid
+GCF_045585035.1	#f28e8e	chromosome
+GCF_045572035.1	#c9a9e3	both
+GCA_029990375.1	#f28e8e	chromosome
+GCA_050193975.1	#f28e8e	chromosome
+GCA_054890185.1	#c9a9e3	both

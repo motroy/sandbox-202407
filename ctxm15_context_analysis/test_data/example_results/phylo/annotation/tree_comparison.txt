@@ -1,0 +1,3 @@
+tips compared: 30
+normalised Robinson-Foulds (0 = identical, 1 = no shared splits):
+  IQ-TREE (Panaroo core alignment) vs Mashtree: 0.481

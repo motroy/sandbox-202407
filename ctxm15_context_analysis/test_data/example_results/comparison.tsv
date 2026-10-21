@@ -1,31 +1,31 @@
-sample	stratum	paper_chrom	ours_chrom	paper_plasmid	ours_plasmid	copies_agree	paper_chrom_variants	ours_chrom_variants	paper_st	ours_st	paper_st131_clade	ours_st131_subclade	paper_barcode	ours_barcodes	ours_mediators
-GCA_026135825.1	chrom_ST131	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[mph(A)]_[sul1]_[aadA5]_[dfrA17]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(6')-Ib-cr5,aadA5,blaCTX-M-15,blaOXA-1,catB3,dfrA17,sul1	none
-GCA_050197075.1	chrom_ST131	2	2	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(3)-IIe,aac(6')-Ib-cr5,blaCTX-M-15,blaOXA-1,catB3 | blaCTX-M-15	ISEcp1
-GCF_025584285.1	chrom_ST131	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	none	blaCTX-M-15	ISEcp1
-GCA_053711225.1	chrom_ST131	2	2	1	1	1	blaCTX-M-14	blaCTX-M-14	ST131	ST131	C1	C1	none	blaCTX-M-14	ISEcp1
-GCA_052999365.1	chrom_ST131	1	1	0	0	1	blaCTX-M-27	blaCTX-M-27	ST131	ST131	A	A	none	blaCTX-M-27	ISEcp1
-GCA_014162235.1	chrom_ST38	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14	ST38	ST38	non_ST131	NA	none	blaCTX-M-14	ISEcp1
-GCA_023658265.1	chrom_ST38	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14	ST38	ST38	non_ST131	NA	none	blaCTX-M-14	ISEcp1
-GCA_016775965.1	chrom_ST38	2	2	0	0	1	blaCTX-M-122	blaCTX-M-24	ST38	ST38	non_ST131	NA	none	blaCTX-M-24 | blaCTX-M-24,emrD	none
-GCA_051834685.1	chrom_ST38	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14	ST38	ST38	non_ST131	NA	none	blaCTX-M-14	none
-GCA_052766305.1	chrom_other	1	0	0	1	0	blaCTX-M-15		ST10	ST10	non_ST131	NA	none	none	none
-GCA_040812675.1	chrom_other	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST450	ST450	non_ST131	NA	none	blaCTX-M-15	ISEcp1
-GCA_041227525.1	chrom_other	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST4981	ST4981	non_ST131	NA	none	blaCTX-M-15	none
-GCA_050190135.1	chrom_other	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14	ST1193	ST1193	non_ST131	NA	none	blaCTX-M-14	ISEcp1
-GCA_032372975.1	chrom_other	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST12452	ST12452	non_ST131	NA	blaCTX-M-15: {[qnrS1]}	blaCTX-M-15,qnrS1	ISEcp1
-GCF_045585035.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ND	ND	non_ST131	NA	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(3)-IIe,aac(6')-Ib-cr5,blaCTX-M-15,blaOXA-1,catB3	none
-GCA_029990375.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(3)-IIe,aac(6')-Ib-cr5,blaCTX-M-15,blaOXA-1,catB3	none
-GCA_016888625.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST38	ST38	non_ST131	NA	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]_[tet(A)]}	aac(3)-IIe,aac(6')-Ib-cr5,blaCTX-M-15,blaOXA-1,catB3	ISEcp1
-GCA_050193975.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]_[tet(A)]}	aac(3)-IIe,aac(6')-Ib-cr5,blaCTX-M-15,blaOXA-1,catB3	ISEcp1
-GCA_007109385.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	C1	C1	none	none	none
-GCF_045608945.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	C1	C1	none	none	none
-GCF_025593335.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	Other	Other	none	none	none
-GCA_040555885.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	C1	C1	none	none	none
-GCA_050626155.1	plasmid_other	0	0	1	1	1			ST162	ST162	non_ST131	NA	none	none	none
-GCF_904863105.1	plasmid_other	0	0	1	1	1			ST141	ST141	non_ST131	NA	none	none	none
-GCA_001971765.1	plasmid_other	0	0	1	1	1			ST1011	ST1011	non_ST131	NA	none	none	none
-GCA_051618695.1	plasmid_other	0	0	1	1	1			ST162	ST162	non_ST131	NA	none	none	none
-GCA_024918755.1	both	3	3	1	1	1	blaCTX-M-14	blaCTX-M-14	ST12468	ST12468	non_ST131	NA	none	blaCTX-M-14,dfrA51	ISEcp1
-GCA_054890185.1	both	2	2	1	1	1	blaCTX-M-15	blaCTX-M-15	ND	ND	non_ST131	NA	blaCTX-M-15: {[aac(6')-Ib-cr]_[blaOXA-1]_[blaCTX-M-15]_[aac(6')-Ib-cr]_[blaOXA-1]; [blaCTX-M-15]_[aac(6')-Ib-cr]_[blaOXA-1]_[aac(6')-Ib-cr]_[blaOXA-1]}	aac(6')-Ib-cr5,blaCTX-M-15,blaOXA-1,catB3	ISEcp1
-GCF_045572035.1	both	2	0	1	1	0	blaCTX-M-172;blaCTX-M-183		ND	ND	non_ST131	NA	none	none	none
-GCA_024585685.1	both	1	1	1	1	1	blaCTX-M-32	blaCTX-M-32	ST155	ST155	non_ST131	NA	none	blaCTX-M-32	ISEcp1
+sample	stratum	paper_chrom	ours_chrom	paper_plasmid	ours_plasmid	copies_agree	paper_chrom_variants	ours_chrom_variants	paper_st	ours_st	paper_st131_clade	ours_st131_subclade	paper_barcode	ours_barcodes	ours_mediators	barcode_partners_paper	barcode_partners_ours	barcode_jaccard
+GCA_026135825.1	chrom_ST131	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[mph(A)]_[sul1]_[aadA5]_[dfrA17]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(6')-Ib-cr,aadA5,blaCTX-M-15,blaOXA-1,dfrA17,mph(A),sul1	IS26	aac(6')-Ib-cr;aadA5;blaOXA-1;dfrA17;mph(A);sul1	aac(6')-Ib-cr;aadA5;blaOXA-1;dfrA17;mph(A);sul1	1.00
+GCA_050197075.1	chrom_ST131	2	2	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(3)-IIa,aac(6')-Ib-cr,blaCTX-M-15,blaOXA-1 | blaCTX-M-15	ISEcp1	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1	1.00
+GCF_025584285.1	chrom_ST131	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	none	blaCTX-M-15	ISEcp1			NA
+GCA_053711225.1	chrom_ST131	2	2	1	1	1	blaCTX-M-14	blaCTX-M-14	ST131	ST131	C1	C1	none	blaCTX-M-14	ISEcp1			NA
+GCA_052999365.1	chrom_ST131	1	1	0	0	1	blaCTX-M-27	blaCTX-M-27	ST131	ST131	A	A	none	blaCTX-M-27	ISEcp1			NA
+GCA_014162235.1	chrom_ST38	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14	ST38	ST38	non_ST131	NA	none	blaCTX-M-14	ISEcp1			NA
+GCA_023658265.1	chrom_ST38	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14	ST38	ST38	non_ST131	NA	none	blaCTX-M-14	ISEcp1			NA
+GCA_016775965.1	chrom_ST38	2	2	0	0	1	blaCTX-M-122	blaCTX-M-65	ST38	ST38	non_ST131	NA	none	blaCTX-M-65	ISEcp1			NA
+GCA_051834685.1	chrom_ST38	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14b	ST38	ST38	non_ST131	NA	none	blaCTX-M-14b	ISEcp1			NA
+GCA_052766305.1	chrom_other	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST10	ST10	non_ST131	NA	none	blaCTX-M-15	ISEcp1			NA
+GCA_040812675.1	chrom_other	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST450	ST450	non_ST131	NA	none	blaCTX-M-15	ISEcp1			NA
+GCA_041227525.1	chrom_other	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST4981	ST4981	non_ST131	NA	none	blaCTX-M-15	none			NA
+GCA_050190135.1	chrom_other	1	1	0	0	1	blaCTX-M-14	blaCTX-M-14	ST1193	ST1193	non_ST131	NA	none	blaCTX-M-14	ISEcp1			NA
+GCA_032372975.1	chrom_other	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST12452	ST12452	non_ST131	NA	blaCTX-M-15: {[qnrS1]}	blaCTX-M-15,qnrS1	ISEcp1	qnrS1	qnrS1	1.00
+GCF_045585035.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ND	ND	non_ST131	NA	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(3)-IIa,aac(6')-Ib-cr,blaCTX-M-15,blaOXA-1	IS26	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1	1.00
+GCA_029990375.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]}	aac(3)-IIa,aac(6')-Ib-cr,blaCTX-M-15,blaOXA-1	IS26	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1	1.00
+GCA_016888625.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST38	ST38	non_ST131	NA	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]_[tet(A)]}	aac(3)-IIa,aac(6')-Ib-cr,blaCTX-M-15,blaOXA-1,tet(A)	ISEcp1	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1;tet(A)	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1;tet(A)	1.00
+GCA_050193975.1	chrom_multiARG	1	1	0	0	1	blaCTX-M-15	blaCTX-M-15	ST131	ST131	C2	C2	blaCTX-M-15: {[aac(3)-IIa]_[blaOXA-1]_[aac(6')-Ib-cr]_[tet(A)]}	aac(3)-IIa,aac(6')-Ib-cr,blaCTX-M-15,blaOXA-1,tet(A)	ISEcp1	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1;tet(A)	aac(3)-IIa;aac(6')-Ib-cr;blaOXA-1;tet(A)	1.00
+GCA_007109385.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	C1	C1	none	none	none			NA
+GCF_045608945.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	C1	C1	none	none	none			NA
+GCF_025593335.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	Other	Other	none	none	none			NA
+GCA_040555885.1	plasmid_ST131	0	0	1	1	1			ST131	ST131	C1	C1	none	none	none			NA
+GCA_050626155.1	plasmid_other	0	0	1	1	1			ST162	ST162	non_ST131	NA	none	none	none			NA
+GCF_904863105.1	plasmid_other	0	0	1	1	1			ST141	ST141	non_ST131	NA	none	none	none			NA
+GCA_001971765.1	plasmid_other	0	0	1	1	1			ST1011	ST1011	non_ST131	NA	none	none	none			NA
+GCA_051618695.1	plasmid_other	0	0	1	1	1			ST162	ST162	non_ST131	NA	none	none	none			NA
+GCA_024918755.1	both	3	3	1	1	1	blaCTX-M-14	blaCTX-M-14	ST12468	ST12468	non_ST131	NA	none	blaCTX-M-14	ISEcp1			NA
+GCA_054890185.1	both	2	2	1	1	1	blaCTX-M-15	blaCTX-M-15	ND	ND	non_ST131	NA	blaCTX-M-15: {[aac(6')-Ib-cr]_[blaOXA-1]_[blaCTX-M-15]_[aac(6')-Ib-cr]_[blaOXA-1]; [blaCTX-M-15]_[aac(6')-Ib-cr]_[blaOXA-1]_[aac(6')-Ib-cr]_[blaOXA-1]}	aac(6')-Ib-cr,blaCTX-M-15,blaOXA-1	ISEcp1	aac(6')-Ib-cr;blaOXA-1	aac(6')-Ib-cr;blaOXA-1	1.00
+GCF_045572035.1	both	2	2	1	1	1	blaCTX-M-172;blaCTX-M-183	blaCTX-M-101;blaCTX-M-181	ND	ND	non_ST131	NA	none	aac(3)-IIa,aac(6')-Ib-cr,blaCTX-M-101,blaCTX-M-181,blaOXA-1	IS26			NA
+GCA_024585685.1	both	1	1	1	1	1	blaCTX-M-32	blaCTX-M-32	ST155	ST155	non_ST131	NA	none	blaCTX-M-32	ISEcp1			NA

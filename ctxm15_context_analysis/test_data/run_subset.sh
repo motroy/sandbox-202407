@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 # Run the pipeline on the Zenodo test subset. Run from ctxm15_context_analysis/.
-# Needs amrfinder, mob_recon, mlst, ectyper, clermonTyping.sh on PATH, FIMTYPER_DIR / FIMTYPER_DB (see 01_run_tools.sh), genomes in test_data/genomes (download_genomes.py)
+# Needs run_resfinder.py (+RESFINDER_DB), platon (+PLATON_DB), abricate with a custom `isfinder` db (README), amrfinder, mob_recon, mlst, ectyper, clermonTyping.sh on PATH, FIMTYPER_DIR / FIMTYPER_DB (see 01_run_tools.sh), genomes in test_data/genomes (download_genomes.py)
 # and the K-12 MG1655 GBFF (NC_000913.3) at test_data/k12_MG1655.gbff.
 set -euo pipefail
-export FIMTYPER_DIR=${FIMTYPER_DIR:?set FIMTYPER_DIR} FIMTYPER_DB=${FIMTYPER_DB:?set FIMTYPER_DB}
-R=test_data/run; mkdir -p $R/{amrfinder,mobrecon,typing}
+export FIMTYPER_DIR=${FIMTYPER_DIR:?set FIMTYPER_DIR} FIMTYPER_DB=${FIMTYPER_DB:?set FIMTYPER_DB} RESFINDER_DB=${RESFINDER_DB:?set RESFINDER_DB} PLATON_DB=${PLATON_DB:?set PLATON_DB}
+R=test_data/run; mkdir -p $R/{amrfinder,mobrecon,typing,resfinder,platon,isfinder}
 THREADS=${THREADS:-2}; JOBS=${JOBS:-4}
 cut -f2 test_data/subset.tsv | tail -n +2 | xargs -P "$JOBS" -I{} bash -c '
   s={}; fa=test_data/genomes/$s.fa; cd '"$R"'
   [ -s amrfinder/$s.amrfinder.tsv ] || amrfinder -n ../../$fa --plus --organism Escherichia --threads '"$THREADS"' -o amrfinder/$s.amrfinder.tsv
+  [ -s resfinder/$s/ResFinder_results_tab.txt ] || run_resfinder.py -ifa ../../$fa -o resfinder/$s -db_res $RESFINDER_DB -acq -l 0.8 -t 0.8 -b $(command -v blastn) >/dev/null 2>&1
+  [ -d platon/$s ] && [ -n "$(ls platon/$s)" ] || platon --db $PLATON_DB --threads '"$THREADS"' --output platon/$s ../../$fa >/dev/null 2>&1 || true
+  [ -s isfinder/$s.tsv ] || abricate --db isfinder --minid 80 --mincov 80 --quiet ../../$fa > isfinder/$s.tsv
   [ -s mobrecon/$s/contig_report.txt ] || mob_recon -i ../../$fa -o mobrecon/$s -n '"$THREADS"' --force
   [ -s typing/$s.mlst.tsv ] || mlst ../../$fa > typing/$s.mlst.tsv
   [ -s typing/$s.ectyper.tsv ] || { ectyper -i ../../$fa -o typing/$s.ectyper --cores '"$THREADS"' && cp typing/$s.ectyper/output.tsv typing/$s.ectyper.tsv; }
@@ -19,10 +22,10 @@ python3 - <<'PY'
 import csv
 rows = list(csv.DictReader(open("test_data/subset.tsv"), delimiter="\t"))
 with open("test_data/run/samples.tsv", "w") as f:
-    f.write("sample\tfasta\tamrfinder\tmobrecon_dir\tst\tgbff\tmlst\tclermont\tectyper\tfimtyper\n")
+    f.write("sample\tfasta\tresfinder\tplaton\tisfinder\tamrfinder\tmobrecon_dir\tst\tgbff\tmlst\tclermont\tectyper\tfimtyper\n")
     for r in rows:
         s = r["Strain"]; st = r["Sequence Type"]
-        f.write(f"{s}\ttest_data/genomes/{s}.fa\ttest_data/run/amrfinder/{s}.amrfinder.tsv\ttest_data/run/mobrecon/{s}\t"
+        f.write(f"{s}\ttest_data/genomes/{s}.fa\ttest_data/run/resfinder/{s}/ResFinder_results_tab.txt\ttest_data/run/platon/{s}\ttest_data/run/isfinder/{s}.tsv\ttest_data/run/amrfinder/{s}.amrfinder.tsv\ttest_data/run/mobrecon/{s}\t"
                 f"{'ST' + st if st != 'ND' else 'ND'}\ttest_data/genomes/{s}.gbff\ttest_data/run/typing/{s}.mlst.tsv\t"
                 f"test_data/run/typing/{s}.clermont.txt\ttest_data/run/typing/{s}.ectyper.tsv\ttest_data/run/typing/{s}.fimtyper.tsv\n")
 PY

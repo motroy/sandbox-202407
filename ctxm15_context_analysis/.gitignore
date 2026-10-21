@@ -3,3 +3,6 @@ results/
 test_data/run/
 test_data/k12_MG1655.gbff
 *.styled.html
+test_data/run_paper/
+*.list
+*.tmp
